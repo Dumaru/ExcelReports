@@ -1,0 +1,22 @@
+tipo de tecnologia ->Rat (3g..)
+blwl->NO
+Operador->Movistar,Tigo,Claro,CNT
+Channel->NO
+IMSI->Se mantiene
+IMEI->Cambia
+
+Ver: Cuales imeis han cambiado para un imsi
+Cuantos imeis hay
+
+TMSI->Si
+MS POWER->Intencidad de señal : Si
+TA->Tiempo de avance: solo para 2g:0,3g:1,2,3 4g:1-6
+last_lac:No
+model: No en cuenta
+Latitud->No
+Longitud->No
+Nombre->No
+Notes->No
+Hits->Cantidad de 
+
+Hora y fecha si tener en cuenta
