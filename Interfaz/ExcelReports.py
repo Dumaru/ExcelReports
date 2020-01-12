@@ -1,6 +1,7 @@
 import sys
+import os
 import pandas as pd
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.uic import loadUi
 
 
@@ -15,10 +16,20 @@ class ExcelReportsInicio(QMainWindow):
         self.setupUi()
     
     def setupUi(self):
-        self.actionAbrir.triggered.connect(self.fnAbrirDir)
+        self.actionAbrir.triggered.connect(self.fnProcessOpenDir)
+
+    def fnProcessOpenDir(self):
+        dirPath = self.fnAbrirDir()
+        if(dirPath):
+            fileNames = os.listdir()
+            self.listWidgetListaArchivos.addItems(fileNames)
 
     def fnAbrirDir(self):
-        print("Abir directorio")
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileDir = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        print(f"Files Folder {fileDir}")
+        return fileDir
 
 
 if(__name__=="__main__"):
