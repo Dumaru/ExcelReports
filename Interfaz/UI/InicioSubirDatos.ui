@@ -36,7 +36,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayoutTablaMostrarDatos">
      <item>
-      <widget class="QListWidget" name="listWidgetaListaArchivos"/>
+      <widget class="QListWidget" name="listWidgetListaArchivos"/>
      </item>
     </layout>
    </widget>
