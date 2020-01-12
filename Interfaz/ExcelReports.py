@@ -12,7 +12,13 @@ class ExcelReportsInicio(QMainWindow):
         # Calls the super class to init all the values in the this object
         super(ExcelReportsInicio, self).__init__()
         loadUi("UI/InicioSubirDatos.ui", self)
+        self.setupUi()
     
+    def setupUi(self):
+        self.actionAbrir.triggered.connect(self.fnAbrirDir)
+
+    def fnAbrirDir(self):
+        print("Abir directorio")
 
 
 if(__name__=="__main__"):
