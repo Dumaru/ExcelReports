@@ -34,19 +34,30 @@ class ExcelReportsInicio(QMainWindow):
                         self.fnMuestraDirectorios()
 
     def fnMuestraDirectorios(self):
+        self.listWidgetListaArchivos.clear()
         self.listWidgetListaArchivos.addItems(self.filesDirectories)
 
     def fnAbrirDir(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileDir = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        fileDir = str(QFileDialog.getExistingDirectory(self, "Selecciona una carpeta"))
         print(f"Files Folder {fileDir}")
         return fileDir
 
     def fnProcesaAddArchivo(self):
-        
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"Añadir archivo", "","All Files (*);;Excel files (*.xlsx)", options=options)
+        if fileName:
+            print(fileName)
+            self.filesDirectories.append(fileName)
+            self.fnMuestraDirectorios()
+            print(f"Directory {fileName}")
+
     def fnProcesaElimnarArchivo(self):
-        print("Fn procesa eliminar")
+        selectedItems = self.listWidgetListaArchivos.selectedItems()
+        self.filesDirectories = list(set(self.filesDirectories).difference([item.text() for item in selectedItems ]))
+        self.fnMuestraDirectorios()
 
     def fnProcesaCargarDatos(self):
         print("Fn procesa cargar datos")
