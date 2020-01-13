@@ -25,7 +25,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_8">
      <item>
-      <widget class="QTableWidget" name="tableWidget">
+      <widget class="QTableWidget" name="tableWidgetDatosExcel">
        <row>
         <property name="text">
          <string>1</string>
@@ -166,7 +166,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_7">
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pushButtonBuscarDato">
        <property name="text">
         <string>Buscar</string>
        </property>
@@ -185,31 +185,24 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
      <item>
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="textEditBuscarDatos"/>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
+      <x>0</x>
+      <y>40</y>
       <width>231</width>
-      <height>251</height>
+      <height>231</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="labelRAT">
        <property name="text">
         <string>1. RAT</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>2.  OPERADOR</string>
        </property>
       </widget>
      </item>
@@ -237,6 +230,16 @@
        </item>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QTextBrowser" name="textBrowserRATCONTADOR"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelOPERATOR">
+       <property name="text">
+        <string>2.  OPERADOR</string>
+       </property>
+      </widget>
+     </item>
      <item row="2" column="1">
       <widget class="QComboBox" name="comboBox_7">
        <item>
@@ -256,38 +259,28 @@
        </item>
       </widget>
      </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+     <item row="3" column="1">
+      <widget class="QTextBrowser" name="textBrowserOPERATORCONTADOR"/>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_11">
+      <widget class="QLabel" name="labelIMEI">
        <property name="text">
         <string>3. IMEI</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QTextBrowser" name="textBrowser_10"/>
+      <widget class="QTextBrowser" name="textBrowserIMEICONTADOR"/>
      </item>
      <item row="5" column="0">
-      <widget class="QLabel" name="label_12">
+      <widget class="QLabel" name="labelIMSI">
        <property name="text">
         <string>4. IMSI</string>
        </property>
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QTextBrowser" name="textBrowser"/>
-     </item>
-     <item row="1" column="1">
-      <widget class="QTextBrowser" name="textBrowser_8"/>
-     </item>
-     <item row="3" column="1">
-      <widget class="QTextBrowser" name="textBrowser_7"/>
+      <widget class="QTextBrowser" name="textBrowserIMSICONTADOR"/>
      </item>
     </layout>
    </widget>
@@ -301,108 +294,108 @@
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_2">
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_7">
+     <item row="1" column="1">
+      <widget class="QPushButton" name="pushButtonVerInformacionHoras">
        <property name="text">
-        <string/>
+        <string>Ver Información detallada Horas</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_10">
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelMostrarOcultarColumna">
        <property name="text">
         <string>Mostrar / Ocultar Columnas</string>
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
-      <widget class="QCheckBox" name="checkBox">
+     <item row="4" column="0">
+      <widget class="QCheckBox" name="checkBoxRAT">
        <property name="text">
         <string>RAT</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="0">
-      <widget class="QCheckBox" name="checkBox_2">
+     <item row="5" column="0">
+      <widget class="QCheckBox" name="checkBoxOPERATOR">
        <property name="text">
         <string>OPERATOR</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
-      <widget class="QCheckBox" name="checkBox_3">
+     <item row="6" column="0">
+      <widget class="QCheckBox" name="checkBoxCHANNEL">
        <property name="text">
         <string>CHANNEL</string>
        </property>
       </widget>
      </item>
-     <item row="8" column="0">
-      <widget class="QCheckBox" name="checkBox_4">
+     <item row="7" column="0">
+      <widget class="QCheckBox" name="checkBoxIMEI">
        <property name="text">
         <string>IMEI</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
-      <widget class="QCheckBox" name="checkBox_5">
+     <item row="8" column="0">
+      <widget class="QCheckBox" name="checkBoxIMSI">
        <property name="text">
         <string>IMSI</string>
        </property>
       </widget>
      </item>
-     <item row="10" column="0">
-      <widget class="QCheckBox" name="checkBox_6">
+     <item row="9" column="0">
+      <widget class="QCheckBox" name="checkBoxTMSI">
        <property name="text">
         <string>TMSI</string>
        </property>
       </widget>
      </item>
-     <item row="11" column="0">
-      <widget class="QCheckBox" name="checkBox_7">
+     <item row="10" column="0">
+      <widget class="QCheckBox" name="checkBoxMSPOWER">
        <property name="text">
         <string>MS POWER</string>
        </property>
       </widget>
      </item>
-     <item row="12" column="0">
-      <widget class="QCheckBox" name="checkBox_8">
+     <item row="11" column="0">
+      <widget class="QCheckBox" name="checkBoxTA">
        <property name="text">
         <string>TA</string>
        </property>
       </widget>
      </item>
-     <item row="13" column="0">
-      <widget class="QCheckBox" name="checkBox_9">
+     <item row="12" column="0">
+      <widget class="QCheckBox" name="checkBoxLASTLAC">
        <property name="text">
         <string>LAST LAC</string>
        </property>
       </widget>
      </item>
-     <item row="14" column="0">
-      <widget class="QCheckBox" name="checkBox_10">
+     <item row="13" column="0">
+      <widget class="QCheckBox" name="checkBoxNAME">
        <property name="text">
         <string>NAME</string>
        </property>
       </widget>
      </item>
-     <item row="15" column="0">
-      <widget class="QCheckBox" name="checkBox_11">
+     <item row="14" column="0">
+      <widget class="QCheckBox" name="checkBoxHITS">
        <property name="text">
         <string>HITS</string>
        </property>
       </widget>
      </item>
-     <item row="16" column="0">
-      <widget class="QCheckBox" name="checkBox_12">
+     <item row="15" column="0">
+      <widget class="QCheckBox" name="checkBoxDATATIME">
        <property name="text">
         <string>DATA-TIME</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="pushButton_2">
+     <item row="16" column="1">
+      <widget class="QPushButton" name="pushButtonVerDatosIncidentales">
        <property name="text">
-        <string>Ver Información detallada Horas</string>
+        <string>Ver Datos Incidentales</string>
        </property>
       </widget>
      </item>
@@ -419,7 +412,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="pushButtonVolverPrincipal">
        <property name="text">
         <string>Volver a Principal</string>
        </property>
