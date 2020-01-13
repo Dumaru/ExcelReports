@@ -36,7 +36,7 @@ class Overlay(QWidget):
     def showEvent(self, event):
         """ Process the show widget event, stating the timer"""
         # Creates a new timer with a time interval of 50 miliseconds and sets the timer id  
-        self.timerId = self.startTimer(10)
+        self.timerId = self.startTimer(1)
         self.counter = 0
     
     def timerEvent(self, event):
