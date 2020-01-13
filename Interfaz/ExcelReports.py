@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.uic import loadUi
-
+from LoadingOverlay import Overlay 
 
 class ExcelReportsInicio(QMainWindow):
     """
@@ -15,14 +15,16 @@ class ExcelReportsInicio(QMainWindow):
         loadUi("UI/InicioSubirDatos.ui", self)
         self.setupUi()
         self.filesDirectories = []
+        self.overlay = Overlay(self)
+        self.overlay.hide()
     
     def setupUi(self):
+        # Links all the events for the different actions and buttons
         self.actionAbrir.triggered.connect(self.fnProcessOpenDir)
         self.pushButtonAnadirArchivo.clicked.connect(self.fnProcesaAddArchivo)
         self.pushButtonEliminar.clicked.connect(self.fnProcesaElimnarArchivo)
         self.pushButtonCargarDatos.clicked.connect(self.fnProcesaCargarDatos)
         self.pushButtonMostrarDatos.clicked.connect(self.fnProcesaMostarDatos)
-
 
     def fnProcessOpenDir(self):
         dirPath = self.fnAbrirDir()
@@ -60,10 +62,14 @@ class ExcelReportsInicio(QMainWindow):
         self.fnMuestraDirectorios()
 
     def fnProcesaCargarDatos(self):
-        print("Fn procesa cargar datos")
+        self.overlay.show()
 
     def fnProcesaMostarDatos(self):
         print("Fn procesa mostrar datos")
+
+    def resizeEvent(self, event):
+        self.overlay.resize(event.size())
+        event.accept()
 
 class VistaGeneralDatos(QMainWindow):
     def __init__(self, parent=None):
