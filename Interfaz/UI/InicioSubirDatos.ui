@@ -13,14 +13,18 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(85, 170, 255);
+border-color: rgb(0, 0, 0);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>20</y>
-      <width>231</width>
-      <height>41</height>
+      <x>470</x>
+      <y>30</y>
+      <width>301</width>
+      <height>48</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -28,7 +32,11 @@
       <widget class="QLabel" name="labelTtiulo">
        <property name="font">
         <font>
-         <pointsize>16</pointsize>
+         <family>Arial Narrow</family>
+         <pointsize>24</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+         <underline>false</underline>
         </font>
        </property>
        <property name="text">
@@ -49,22 +57,35 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayoutTablaMostrarDatos">
      <item>
-      <widget class="QListWidget" name="listWidgetListaArchivos"/>
+      <widget class="QListWidget" name="listWidgetListaArchivos">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(222, 227, 255);</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>50</x>
       <y>120</y>
-      <width>111</width>
-      <height>100</height>
+      <width>174</width>
+      <height>112</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="AnadirverticalLayout">
      <item>
       <widget class="QPushButton" name="pushButtonAnadirArchivo">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>28</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Añadir Archivo</string>
        </property>
@@ -72,6 +93,12 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonEliminar">
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Eliminar Archivo</string>
        </property>
@@ -79,6 +106,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonCargarDatos">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Cargar Datos</string>
        </property>
@@ -89,8 +119,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>330</y>
+      <x>510</x>
+      <y>350</y>
       <width>161</width>
       <height>30</height>
      </rect>
@@ -98,6 +128,10 @@
     <layout class="QHBoxLayout" name="horizontalLayoutVerDatos">
      <item>
       <widget class="QPushButton" name="pushButtonMostrarDatos">
+       <property name="styleSheet">
+        <string notr="true">
+background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="text">
         <string>Ver Datos </string>
        </property>
@@ -105,17 +139,20 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="Titulo">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>0</y>
-      <width>141</width>
-      <height>41</height>
+      <width>241</width>
+      <height>81</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/Logo.png);</string>
+    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;IOCOM &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string/>
     </property>
    </widget>
   </widget>
@@ -178,6 +215,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Recursos/qrc.qrc"/>
+ </resources>
  <connections/>
 </ui>
