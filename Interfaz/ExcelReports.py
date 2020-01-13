@@ -4,7 +4,7 @@ import pandas as pd
 from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.uic import loadUi
 from LoadingOverlay import Overlay 
-import PandasUtils
+from  PandasUtils import PandasDataLoader
 import UiUtils
 class ExcelReportsInicio(QMainWindow):
     """
@@ -19,6 +19,7 @@ class ExcelReportsInicio(QMainWindow):
         self.setupUi()
         # State Fields 
         self.filesDirectories = []
+        self.pandasUtils = PandasDataLoader()
     
     def setupUi(self):
         self.overlay.hide()
@@ -70,11 +71,16 @@ class ExcelReportsInicio(QMainWindow):
         Carga todos los paths en una lista de dataframes de pandas 
         """
         self.overlay.show()
-        dfs = PandasUtils.loadDataframes(self.filesDirectories)
+        # self.pandasUtils.loadDataframes(self.filesDirectories, self.fnCargaDatosCompleta)
+        self.pandasUtils.loadDataframes(self.filesDirectories, self.fnCargaDatosCompleta)
+
+
+    def fnCargaDatosCompleta(self):
         self.overlay.killAndHide()
         UiUtils.showInfoMessage(parent=self, 
                                 title="Informacion de carga", 
-                                description=f"Se cargaron {len(dfs)} archivos. =)")
+                                description=f"Se cargaron {len(self.pandasUtils.dfsList)} archivos.")
+        
 
     def fnProcesaMostarDatos(self):
         print("Fn procesa mostrar datos")
