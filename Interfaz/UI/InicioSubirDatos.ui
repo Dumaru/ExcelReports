@@ -106,8 +106,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
         <string>Eliminar Archivo</string>
        </property>
        <property name="icon">
-        <iconset resource="../Recursos/qrc.qrc">
-         <normaloff>:/newPrefix/icons8-eliminar-400.png</normaloff>:/newPrefix/icons8-eliminar-400.png</iconset>
+        <iconset>
+         <normaloff>../Recursos/icons8-eliminar-400.png</normaloff>../Recursos/icons8-eliminar-400.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -133,8 +133,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
         <string>Cargar Datos</string>
        </property>
        <property name="icon">
-        <iconset resource="../Recursos/qrc.qrc">
-         <normaloff>:/newPrefix/upload.png</normaloff>:/newPrefix/upload.png</iconset>
+        <iconset>
+         <normaloff>../Recursos/upload.png</normaloff>../Recursos/upload.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -156,7 +156,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/newPrefix/Logo.png);
+     <string notr="true">image: url(:/Imagenes/Logo.png);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
     </property>
     <property name="text">
@@ -271,6 +271,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
  </widget>
  <resources>
   <include location="../Recursos/qrc.qrc"/>
+  <include location="../Recursos/Re.qrc"/>
  </resources>
  <connections/>
 </ui>

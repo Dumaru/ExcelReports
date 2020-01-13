@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="Imagenes">
+    <file>Logo.png</file>
+    <file>Iocom png.png</file>
+  </qresource>
+</RCC>
