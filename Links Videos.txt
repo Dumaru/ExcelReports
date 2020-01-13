@@ -1,0 +1,9 @@
+https://www.youtube.com/watch?v=gWa2rqe8l6E-------- (Qt Tutorials For Beginners 7 - Layouts in QT (Horizontal, Vertical, Grid and Form)
+
+https://www.youtube.com/watch?v=FVpho_UiDAY&feature=youtu.be------- (PyQt5 Tutorial - How to Use Qt Designer)
+
+https://www.youtube.com/watch?v=y7k0ITqN1fU------ (Tutorial Qt Creator - QPixmapComboBox)
+
+https://www.youtube.com/watch?v=Cf6z9BBsi3o--------------(24 PyQt5 Tables Python GUI Programming With PyQt5)
+
+https://www.youtube.com/watch?v=3paHUQiDn8M------------- Tabla (QTableWidget) con Python y PyQt5

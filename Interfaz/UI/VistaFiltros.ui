@@ -338,9 +338,6 @@
     </property>
     <layout class="QHBoxLayout" name="DATOSFILTRADOSLayout">
      <item>
-      <widget class="QTextEdit" name="textEdit"/>
-     </item>
-     <item>
       <widget class="QTextBrowser" name="DATOStextBrowser"/>
      </item>
      <item>
