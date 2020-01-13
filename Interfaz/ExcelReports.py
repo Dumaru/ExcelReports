@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt5.uic import loadUi
 from LoadingOverlay import Overlay 
 import PandasUtils
-
+import UiUtils
 class ExcelReportsInicio(QMainWindow):
     """
     Window class to load all the files from a directory
@@ -61,14 +61,20 @@ class ExcelReportsInicio(QMainWindow):
 
     def fnProcesaElimnarArchivo(self):
         selectedItems = self.listWidgetListaArchivos.selectedItems()
-        self.filesDirectories = list(set(self.filesDirectories).difference([item.text() for item in selectedItems ]))
-        self.fnMuestraDirectorios()
+        if(len(selectedItems)):
+            self.filesDirectories = list(set(self.filesDirectories).difference([item.text() for item in selectedItems ]))
+            self.fnMuestraDirectorios()
 
     def fnProcesaCargarDatos(self):
+        """
+        Carga todos los paths en una lista de dataframes de pandas 
+        """
         self.overlay.show()
-        PandasUtils.loadDataframes(self.filesDirectories)
-
+        dfs = PandasUtils.loadDataframes(self.filesDirectories)
         self.overlay.killAndHide()
+        UiUtils.showInfoMessage(parent=self, 
+                                title="Informacion de carga", 
+                                description=f"Se cargaron {len(dfs)} archivos. =)")
 
     def fnProcesaMostarDatos(self):
         print("Fn procesa mostrar datos")

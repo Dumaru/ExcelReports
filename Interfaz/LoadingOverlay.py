@@ -11,13 +11,6 @@ class Overlay(QWidget):
         palette = QPalette(self.palette())
         palette.setColor(palette.Background, Qt.transparent)
         self.setPalette(palette)
-        # self.centerOnScreen()
-
-    # def centerOnScreen (self):
-        # '''centerOnScreen() Centers the window on the screen.'''
-        # resolution = QDesktopWidget().screenGeometry()
-        # self.move((resolution.width() / 2) - (self.frameSize().width() / 2),
-                #   (resolution.height() / 2) - (self.frameSize().height() / 2)) 
 
     def paintEvent(self, event):
     
@@ -43,7 +36,7 @@ class Overlay(QWidget):
     def showEvent(self, event):
         """ Process the show widget event, stating the timer"""
         # Creates a new timer with a time interval of 50 miliseconds and sets the timer id  
-        self.timerId = self.startTimer(100)
+        self.timerId = self.startTimer(10)
         self.counter = 0
     
     def timerEvent(self, event):
@@ -51,8 +44,8 @@ class Overlay(QWidget):
         self.counter += 1
         self.update()
         # if self.counter == 60:
-            # self.killTimer(self.timer)
+            # self.killTimer(self.timerId)
             # self.hide()
     def killAndHide(self):
-            self.killTimer(self.timer)
+            self.killTimer(self.timerId)
             self.hide()
