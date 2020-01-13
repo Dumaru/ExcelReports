@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1746</width>
-    <height>1117</height>
+    <width>1854</width>
+    <height>1163</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -165,9 +165,9 @@
     <property name="geometry">
      <rect>
       <x>720</x>
-      <y>90</y>
+      <y>80</y>
       <width>321</width>
-      <height>89</height>
+      <height>41</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -303,36 +303,11 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
      <rect>
       <x>1360</x>
       <y>150</y>
-      <width>351</width>
+      <width>386</width>
       <height>481</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_2">
-     <item row="1" column="0">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Ver Información detallada Horas</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="pushButtonVerInformacionHoras">
-       <property name="styleSheet">
-        <string notr="true">image: url(:/newPrefix/icons8-ver-80.png);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="0">
       <widget class="QLabel" name="labelMostrarOcultarColumna">
        <property name="text">
@@ -437,6 +412,21 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
        </property>
       </spacer>
      </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="QPushButton" name="pushButtonVerInformacionHoras">
+       <property name="styleSheet">
+        <string notr="true">
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Ver Información Detallada Horas</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../Recursos/qrc.qrc">
+         <normaloff>:/newPrefix/icons8-ver-80.png</normaloff>:/newPrefix/icons8-ver-80.png</iconset>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -468,18 +458,28 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
    <widget class="QPushButton" name="pushButtonBuscarDato">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>90</y>
-      <width>51</width>
-      <height>31</height>
+      <x>600</x>
+      <y>80</y>
+      <width>111</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/newPrefix/icons8-google-web-search-400.png);
+     <string notr="true">
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
     </property>
     <property name="text">
-     <string/>
+     <string>Buscar</string>
+    </property>
+    <property name="icon">
+     <iconset resource="../Recursos/qrc.qrc">
+      <normaloff>:/newPrefix/icons8-google-web-search-400.png</normaloff>:/newPrefix/icons8-google-web-search-400.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -522,7 +522,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1746</width>
+     <width>1854</width>
      <height>26</height>
     </rect>
    </property>
