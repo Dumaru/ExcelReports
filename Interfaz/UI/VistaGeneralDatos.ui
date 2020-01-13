@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1746</width>
-    <height>1184</height>
+    <height>1117</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(85, 170, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget_6">
@@ -20,12 +23,15 @@
       <x>250</x>
       <y>150</y>
       <width>1071</width>
-      <height>891</height>
+      <height>831</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_8">
      <item>
       <widget class="QTableWidget" name="tableWidgetDatosExcel">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <row>
         <property name="text">
          <string>1</string>
@@ -155,37 +161,23 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>60</y>
-      <width>95</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
-     <item>
-      <widget class="QPushButton" name="pushButtonBuscarDato">
-       <property name="text">
-        <string>Buscar</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget_11">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>60</y>
+      <x>720</x>
+      <y>90</y>
       <width>321</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
      <item>
-      <widget class="QTextEdit" name="textEditBuscarDatos"/>
+      <widget class="QTextEdit" name="textEditBuscarDatos">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);
+border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -195,7 +187,7 @@
       <x>0</x>
       <y>40</y>
       <width>231</width>
-      <height>231</height>
+      <height>211</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -208,6 +200,9 @@
      </item>
      <item row="0" column="1">
       <widget class="QComboBox" name="comboBox_5">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <item>
         <property name="text">
          <string/>
@@ -231,7 +226,11 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QTextBrowser" name="textBrowserRATCONTADOR"/>
+      <widget class="QTextBrowser" name="textBrowserRATCONTADOR">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="labelOPERATOR">
@@ -242,6 +241,9 @@
      </item>
      <item row="2" column="1">
       <widget class="QComboBox" name="comboBox_7">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <item>
         <property name="text">
          <string/>
@@ -260,7 +262,11 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QTextBrowser" name="textBrowserOPERATORCONTADOR"/>
+      <widget class="QTextBrowser" name="textBrowserOPERATORCONTADOR">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="labelIMEI">
@@ -270,7 +276,11 @@
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QTextBrowser" name="textBrowserIMEICONTADOR"/>
+      <widget class="QTextBrowser" name="textBrowserIMEICONTADOR">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
      <item row="5" column="0">
       <widget class="QLabel" name="labelIMSI">
@@ -280,7 +290,11 @@
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QTextBrowser" name="textBrowserIMSICONTADOR"/>
+      <widget class="QTextBrowser" name="textBrowserIMSICONTADOR">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -289,15 +303,19 @@
      <rect>
       <x>1340</x>
       <y>100</y>
-      <width>361</width>
+      <width>385</width>
       <height>481</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_2">
      <item row="1" column="1">
       <widget class="QPushButton" name="pushButtonVerInformacionHoras">
+       <property name="styleSheet">
+        <string notr="true">image: url(:/newPrefix/icons8-ver-80.png);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
        <property name="text">
-        <string>Ver Información detallada Horas</string>
+        <string/>
        </property>
       </widget>
      </item>
@@ -399,6 +417,18 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ver Información detallada Horas</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -420,6 +450,23 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="pushButtonBuscarDato">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>80</y>
+      <width>71</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/icons8-google-web-search-400.png);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -433,6 +480,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="../Recursos/qrc.qrc"/>
+ </resources>
  <connections/>
 </ui>

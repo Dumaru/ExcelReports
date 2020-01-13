@@ -15,15 +15,16 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(85, 170, 255);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
 border-color: rgb(0, 0, 0);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>570</x>
+      <x>510</x>
       <y>0</y>
-      <width>301</width>
+      <width>281</width>
       <height>48</height>
      </rect>
     </property>
@@ -38,6 +39,9 @@ border-color: rgb(0, 0, 0);</string>
          <bold>true</bold>
          <underline>false</underline>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <property name="text">
         <string>Lista De Archivos</string>
@@ -59,7 +63,7 @@ border-color: rgb(0, 0, 0);</string>
      <item>
       <widget class="QListWidget" name="listWidgetListaArchivos">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(222, 227, 255);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
@@ -68,9 +72,9 @@ border-color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>130</y>
-      <width>91</width>
+      <x>200</x>
+      <y>120</y>
+      <width>121</width>
       <height>193</height>
      </rect>
     </property>
@@ -85,6 +89,7 @@ border-color: rgb(0, 0, 0);</string>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(85, 170, 255);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
 image: url(:/newPrefix/icons8-ayuda-100.png);
 </string>
        </property>
@@ -99,9 +104,9 @@ image: url(:/newPrefix/icons8-ayuda-100.png);
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-background-color: rgb(85, 170, 255);
-image: url(:/newPrefix/icons8-eliminar-400.png);</string>
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
+image: url(:/newPrefix/icons8-eliminar-400.png);
+</string>
        </property>
        <property name="text">
         <string/>
@@ -112,6 +117,7 @@ image: url(:/newPrefix/icons8-eliminar-400.png);</string>
       <widget class="QPushButton" name="pushButtonCargarDatos">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(85, 170, 255);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
 image: url(:/newPrefix/upload.png);</string>
        </property>
        <property name="text">
@@ -126,16 +132,30 @@ image: url(:/newPrefix/upload.png);</string>
      <rect>
       <x>680</x>
       <y>330</y>
-      <width>71</width>
+      <width>138</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayoutVerDatos">
      <item>
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ver Datos </string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButtonMostrarDatos">
        <property name="styleSheet">
         <string notr="true">image: url(:/newPrefix/icons8-ver-80.png);
-background-color: rgb(85, 170, 255);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
 </string>
        </property>
        <property name="text">
@@ -148,14 +168,15 @@ background-color: rgb(85, 170, 255);
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>0</y>
-      <width>241</width>
+      <width>181</width>
       <height>81</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/newPrefix/Logo.png);</string>
+     <string notr="true">image: url(:/newPrefix/Logo.png);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
     </property>
     <property name="text">
      <string/>
@@ -166,13 +187,15 @@ background-color: rgb(85, 170, 255);
      <rect>
       <x>50</x>
       <y>270</y>
-      <width>101</width>
+      <width>121</width>
       <height>24</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -184,13 +207,15 @@ background-color: rgb(85, 170, 255);
      <rect>
       <x>50</x>
       <y>210</y>
-      <width>121</width>
+      <width>141</width>
       <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -202,41 +227,23 @@ background-color: rgb(85, 170, 255);
      <rect>
       <x>50</x>
       <y>150</y>
-      <width>121</width>
+      <width>131</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>10</pointsize>
-      <weight>50</weight>
-      <bold>false</bold>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
-background-color: rgb(85, 170, 255);</string>
+     <string notr="true">
+color: rgb(0, 0, 0);</string>
     </property>
     <property name="text">
      <string>Añadir Archivo</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>360</y>
-      <width>81</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Ver Datos </string>
     </property>
    </widget>
   </widget>
