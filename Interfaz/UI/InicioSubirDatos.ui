@@ -75,8 +75,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
         <string>Añadir Archivos</string>
        </property>
        <property name="icon">
-        <iconset resource="../Recursos/qrc.qrc">
-         <normaloff>:/newPrefix/icons8-añadir-libro-100.png</normaloff>:/newPrefix/icons8-añadir-libro-100.png</iconset>
+        <iconset>
+         <normaloff>../Recursos/icons8-añadir-libro-100.png</normaloff>../Recursos/icons8-añadir-libro-100.png</iconset>
        </property>
        <property name="iconSize">
         <size>
