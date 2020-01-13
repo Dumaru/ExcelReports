@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(85, 170, 255);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget_6">
@@ -167,7 +167,7 @@
       <x>720</x>
       <y>90</y>
       <width>321</width>
-      <height>31</height>
+      <height>89</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -184,10 +184,10 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>40</y>
+      <x>10</x>
+      <y>150</y>
       <width>231</width>
-      <height>211</height>
+      <height>453</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -201,7 +201,7 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
      <item row="0" column="1">
       <widget class="QComboBox" name="comboBox_5">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <item>
         <property name="text">
@@ -242,7 +242,7 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
      <item row="2" column="1">
       <widget class="QComboBox" name="comboBox_7">
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <item>
         <property name="text">
@@ -301,13 +301,27 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
    <widget class="QWidget" name="formLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>1340</x>
-      <y>100</y>
-      <width>385</width>
+      <x>1360</x>
+      <y>150</y>
+      <width>351</width>
       <height>481</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_2">
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ver Información detallada Horas</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="1">
       <widget class="QPushButton" name="pushButtonVerInformacionHoras">
        <property name="styleSheet">
@@ -410,37 +424,38 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
        </property>
       </widget>
      </item>
-     <item row="16" column="1">
-      <widget class="QPushButton" name="pushButtonVerDatosIncidentales">
-       <property name="text">
-        <string>Ver Datos Incidentales</string>
+     <item row="2" column="0">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
        </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
        </property>
-       <property name="text">
-        <string>Ver Información detallada Horas</string>
-       </property>
-      </widget>
+      </spacer>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>1480</x>
-      <y>1000</y>
+      <x>1550</x>
+      <y>860</y>
       <width>160</width>
       <height>80</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButtonVerDatosIncidentales">
+       <property name="text">
+        <string>Ver Datos Incidentales</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QPushButton" name="pushButtonVolverPrincipal">
        <property name="text">
@@ -453,15 +468,49 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
    <widget class="QPushButton" name="pushButtonBuscarDato">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>80</y>
-      <width>71</width>
-      <height>51</height>
+      <x>660</x>
+      <y>90</y>
+      <width>51</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/newPrefix/icons8-google-web-search-400.png);
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>1540</x>
+      <y>940</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/Logo.png);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>0</y>
+      <width>181</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/newPrefix/Logo.png);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
     </property>
     <property name="text">
      <string/>

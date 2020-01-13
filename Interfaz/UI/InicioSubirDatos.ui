@@ -14,15 +14,14 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(85, 170, 255);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
+   <string notr="true">
 border-color: rgb(0, 0, 0);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>510</x>
+      <x>580</x>
       <y>0</y>
       <width>281</width>
       <height>48</height>
@@ -34,14 +33,15 @@ border-color: rgb(0, 0, 0);</string>
        <property name="font">
         <font>
          <family>Arial Narrow</family>
-         <pointsize>24</pointsize>
+         <pointsize>18</pointsize>
          <weight>75</weight>
+         <italic>true</italic>
          <bold>true</bold>
          <underline>false</underline>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Lista De Archivos</string>
@@ -54,9 +54,9 @@ border-color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>340</x>
-      <y>100</y>
+      <y>60</y>
       <width>681</width>
-      <height>221</height>
+      <height>261</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayoutTablaMostrarDatos">
@@ -74,7 +74,7 @@ border-color: rgb(0, 0, 0);</string>
      <rect>
       <x>200</x>
       <y>120</y>
-      <width>121</width>
+      <width>41</width>
       <height>193</height>
      </rect>
     </property>
@@ -127,48 +127,10 @@ image: url(:/newPrefix/upload.png);</string>
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>330</y>
-      <width>138</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayoutVerDatos">
-     <item>
-      <widget class="QLabel" name="label_5">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Ver Datos </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonMostrarDatos">
-       <property name="styleSheet">
-        <string notr="true">image: url(:/newPrefix/icons8-ver-80.png);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
-</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>20</x>
       <y>0</y>
       <width>181</width>
       <height>81</height>
@@ -245,6 +207,44 @@ color: rgb(0, 0, 0);</string>
     <property name="text">
      <string>Añadir Archivo</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="formLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>330</y>
+      <width>211</width>
+      <height>72</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="2" column="1">
+      <widget class="QPushButton" name="pushButtonMostrarDatos">
+       <property name="styleSheet">
+        <string notr="true">image: url(:/newPrefix/icons8-ver-80.png);
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Ver Datos </string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
