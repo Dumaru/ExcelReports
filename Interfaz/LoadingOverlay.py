@@ -53,6 +53,6 @@ class Overlay(QWidget):
         # if self.counter == 60:
             # self.killTimer(self.timer)
             # self.hide()
-    def killAndHied(self):
+    def killAndHide(self):
             self.killTimer(self.timer)
             self.hide()
