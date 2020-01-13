@@ -6,7 +6,17 @@
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
 
-.vscode
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
 
 ~$*
 .ipynb_checkpoints
