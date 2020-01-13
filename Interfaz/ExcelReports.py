@@ -14,6 +14,7 @@ class ExcelReportsInicio(QMainWindow):
         super(ExcelReportsInicio, self).__init__()
         loadUi("UI/InicioSubirDatos.ui", self)
         self.setupUi()
+        self.filesDirectories = []
     
     def setupUi(self):
         self.actionAbrir.triggered.connect(self.fnProcessOpenDir)
@@ -26,8 +27,14 @@ class ExcelReportsInicio(QMainWindow):
     def fnProcessOpenDir(self):
         dirPath = self.fnAbrirDir()
         if(dirPath):
-            fileNames = os.listdir(dirPath)
-            self.listWidgetListaArchivos.addItems(fileNames)
+            with os.scandir(dirPath) as it:
+                for entry in it:
+                    if not entry.name.startswith(('.','~$')) and entry.is_file():
+                        self.filesDirectories.append(entry.path)
+                        self.fnMuestraDirectorios()
+
+    def fnMuestraDirectorios(self):
+        self.listWidgetListaArchivos.addItems(self.filesDirectories)
 
     def fnAbrirDir(self):
         options = QFileDialog.Options()
@@ -37,8 +44,7 @@ class ExcelReportsInicio(QMainWindow):
         return fileDir
 
     def fnProcesaAddArchivo(self):
-        print("Fn procesa add")
-
+        
     def fnProcesaElimnarArchivo(self):
         print("Fn procesa eliminar")
 
@@ -57,8 +63,8 @@ class VistaGeneralDatos(QMainWindow):
 if(__name__=="__main__"):
     # Instanciates a new QApplication with the given terminal parameters
     app=QApplication(sys.argv)
-    # inicioCarga = ExcelReportsInicio()
-    # inicioCarga.show()
-    vistaGeneralDatos = VistaGeneralDatos()
-    vistaGeneralDatos.show()
+    inicioCarga = ExcelReportsInicio()
+    inicioCarga.show()
+    # vistaGeneralDatos = VistaGeneralDatos()
+    # vistaGeneralDatos.show()
     sys.exit(app.exec_())
