@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1085</width>
-    <height>503</height>
+    <height>543</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,10 +21,10 @@ border-color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>0</y>
+      <x>290</x>
+      <y>90</y>
       <width>681</width>
-      <height>321</height>
+      <height>291</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayoutTablaMostrarDatos">
@@ -44,8 +44,8 @@ border-color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>90</y>
+      <x>0</x>
+      <y>0</y>
       <width>221</width>
       <height>281</height>
      </rect>
@@ -149,10 +149,10 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>324</y>
+      <x>460</x>
+      <y>400</y>
       <width>211</width>
-      <height>65</height>
+      <height>71</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout_2">
@@ -195,10 +195,10 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>251</width>
-      <height>111</height>
+      <x>460</x>
+      <y>-20</y>
+      <width>311</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="styleSheet">
