@@ -184,10 +184,10 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>60</x>
       <y>150</y>
-      <width>231</width>
-      <height>453</height>
+      <width>179</width>
+      <height>425</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -199,7 +199,7 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="comboBox_5">
+      <widget class="QComboBox" name="comboBoxRAT">
        <property name="styleSheet">
         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
@@ -225,22 +225,15 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
        </item>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QTextBrowser" name="textBrowserRATCONTADOR">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="labelOPERATOR">
+      <widget class="QLabel" name="labelOperator">
        <property name="text">
         <string>2.  OPERADOR</string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QComboBox" name="comboBox_7">
+      <widget class="QComboBox" name="comboBoxOPERADOR">
        <property name="styleSheet">
         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
@@ -261,13 +254,6 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
        </item>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QTextBrowser" name="textBrowserOPERATORCONTADOR">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="0">
       <widget class="QLabel" name="labelIMEI">
        <property name="text">
@@ -276,9 +262,9 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
       </widget>
      </item>
      <item row="4" column="1">
-      <widget class="QTextBrowser" name="textBrowserIMEICONTADOR">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <widget class="QLabel" name="labelIMEIDatos">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -290,9 +276,23 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
       </widget>
      </item>
      <item row="5" column="1">
-      <widget class="QTextBrowser" name="textBrowserIMSICONTADOR">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+      <widget class="QLabel" name="labelIMSIDatos">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="labelRATContador">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="labelOperadorDatos">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -413,13 +413,13 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
       </spacer>
      </item>
      <item row="1" column="0" colspan="2">
-      <widget class="QPushButton" name="pushButtonVerInformacionHoras">
+      <widget class="QPushButton" name="pushButtonFiltrarDatos">
        <property name="styleSheet">
         <string notr="true">
 background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <property name="text">
-        <string>Ver Información Detallada Horas</string>
+        <string>Filtrar Datos</string>
        </property>
        <property name="icon">
         <iconset resource="../Recursos/qrc.qrc">
