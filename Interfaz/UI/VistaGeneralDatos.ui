@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1886</width>
+    <width>1854</width>
     <height>1163</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:0.534, stop:1 rgba(51, 99, 255, 255));</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalLayoutWidget_6">
@@ -99,10 +99,10 @@
    <widget class="QWidget" name="verticalLayoutWidget_11">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>110</y>
+      <x>720</x>
+      <y>80</y>
       <width>301</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -119,8 +119,8 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>130</y>
+      <x>50</x>
+      <y>150</y>
       <width>185</width>
       <height>425</height>
      </rect>
@@ -259,7 +259,7 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
      <rect>
       <x>1370</x>
       <y>150</y>
-      <width>331</width>
+      <width>458</width>
       <height>481</height>
      </rect>
     </property>
@@ -348,6 +348,18 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
        </property>
       </widget>
      </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="labelMostrarOcultarColumna">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Mostrar / Ocultar Columnas</string>
+       </property>
+      </widget>
+     </item>
      <item row="16" column="0" colspan="2">
       <spacer name="verticalSpacer">
        <property name="orientation">
@@ -361,18 +373,6 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
        </property>
       </spacer>
      </item>
-     <item row="3" column="0" colspan="2">
-      <widget class="QLabel" name="labelMostrarOcultarColumna">
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Mostrar / Ocultar Columnas</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -385,6 +385,46 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pushButtonAnalisisHorario">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Análisis Horario</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/icons8-tiempo-400.png</normaloff>../Recursos/icons8-tiempo-400.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonFiltrarDatos">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Filtrar Datos</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../Recursos/qrc.qrc">
+         <normaloff>:/newPrefix/icons8-ver-80.png</normaloff>:/newPrefix/icons8-ver-80.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QPushButton" name="pushButtonVerDatosIncidentales">
        <property name="styleSheet">
@@ -406,56 +446,16 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButtonMostrarDatosOriginales">
+      <widget class="QPushButton" name="pushButtonVolverPrincipal">
        <property name="styleSheet">
         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <property name="text">
-        <string>Mostrar Datos Originales</string>
+        <string>Volver a Principal</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../Recursos/icons8-big-data-150.png</normaloff>../Recursos/icons8-big-data-150.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>40</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonAnalisisHorario">
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Hacer Analisis De Horas</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-tiempo-400.png</normaloff>../Recursos/icons8-tiempo-400.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>40</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButtonFiltrarDatos">
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Filtrar Datos </string>
-       </property>
-       <property name="icon">
-        <iconset resource="../Recursos/qrc.qrc">
-         <normaloff>:/newPrefix/icons8-ver-80.png</normaloff>:/newPrefix/icons8-ver-80.png</iconset>
+         <normaloff>../Recursos/icons8-persona-en-casa-256.png</normaloff>../Recursos/icons8-persona-en-casa-256.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -470,10 +470,10 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
    <widget class="QPushButton" name="pushButtonBuscarDato">
     <property name="geometry">
      <rect>
-      <x>900</x>
-      <y>110</y>
+      <x>600</x>
+      <y>80</y>
       <width>111</width>
-      <height>31</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -497,9 +497,9 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>1500</x>
-      <y>930</y>
-      <width>151</width>
+      <x>0</x>
+      <y>980</y>
+      <width>1871</width>
       <height>61</height>
      </rect>
     </property>
@@ -514,9 +514,9 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>10</y>
-      <width>161</width>
+      <x>0</x>
+      <y>0</y>
+      <width>1851</width>
       <height>71</height>
      </rect>
     </property>
@@ -528,45 +528,13 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
      <string/>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>250</x>
-      <y>70</y>
-      <width>181</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Guardar Datos</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Generar Nombres para IMEI</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1886</width>
+     <width>1854</width>
      <height>26</height>
     </rect>
    </property>
