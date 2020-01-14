@@ -392,8 +392,20 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuVolver">
+    <property name="title">
+     <string>Volver</string>
+    </property>
+    <addaction name="actionDatos_General"/>
+   </widget>
+   <addaction name="menuVolver"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionDatos_General">
+   <property name="text">
+    <string>Datos General</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../Recursos/Re.qrc"/>
