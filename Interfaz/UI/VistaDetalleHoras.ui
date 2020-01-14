@@ -27,34 +27,8 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="5" column="0">
-      <widget class="QPushButton" name="pushButton">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Ver</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>50</width>
-         <height>50</height>
-        </size>
-       </property>
-      </widget>
-     </item>
      <item row="4" column="0">
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pushButtonGraficarDatosTablaFiltrada">
        <property name="font">
         <font>
          <family>Corbel</family>
@@ -82,7 +56,7 @@
      <item row="0" column="0" colspan="2">
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="2" column="1">
-        <widget class="QTimeEdit" name="timeEdit">
+        <widget class="QTimeEdit" name="timeEditRangoInicial">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
@@ -116,14 +90,14 @@
         </widget>
        </item>
        <item row="2" column="3">
-        <widget class="QTimeEdit" name="timeEdit_2">
+        <widget class="QTimeEdit" name="timeEditRangoFinal">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1" colspan="2">
-        <widget class="QDateEdit" name="dateEdit">
+        <widget class="QDateEdit" name="dateEditFecha">
          <property name="styleSheet">
           <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
@@ -145,7 +119,7 @@
       </layout>
      </item>
      <item row="6" column="0" rowspan="4">
-      <widget class="QTableWidget" name="tableWidget">
+      <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
@@ -164,6 +138,32 @@
          <string>Data-Time</string>
         </property>
        </column>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButtonVerDatosTablaFiltrada">
+       <property name="font">
+        <font>
+         <family>Corbel</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Ver</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
       </widget>
      </item>
     </layout>
@@ -195,7 +195,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QGraphicsView" name="graphicsView">
+      <widget class="QGraphicsView" name="graphicsViewDatosFiltrados">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
@@ -233,7 +233,7 @@
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="pushButtonVerDatosEstaticos">
        <property name="font">
         <font>
          <family>Corbel</family>
@@ -259,7 +259,7 @@
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="pushButtonGraficarDatosEstaticos">
        <property name="font">
         <font>
          <family>Corbel</family>
@@ -346,7 +346,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QTableWidget" name="tableWidget_3">
+      <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
@@ -369,7 +369,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QTableWidget" name="tableWidget_4">
+   <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos_2">
     <property name="geometry">
      <rect>
       <x>1180</x>
@@ -396,12 +396,12 @@
     <property name="title">
      <string>Volver</string>
     </property>
-    <addaction name="actionDatos_General"/>
+    <addaction name="actionVolverDatos_General"/>
    </widget>
    <addaction name="menuVolver"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionDatos_General">
+  <action name="actionVolverDatos_General">
    <property name="text">
     <string>Datos General</string>
    </property>
