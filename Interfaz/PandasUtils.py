@@ -63,12 +63,57 @@ class PandasDataLoader:
             # Puts all the general and raw data into a df
             self.allData = pd.concat(
                 [df for dflist in self.dfsList for df in dflist])
+
+            # TODO: HACER REEMPLAZO DE UNA
+            self.allData['DATE-TIME'] = self.allData['DATE-TIME'].apply(self.toDatetime)
+            self.allData['DATE'] = pd.to_datetime(self.allData['DATE-TIME'], format="%Y-%m-%d").dt.date
+            self.allData['TIME'] = pd.to_datetime(self.allData['DATE-TIME']).dt.time
+            self.allData.sort_values(by=["DATE"], inplace=True, ascending=True)
+            # Borra columna
+            self.allData.drop('DATE-TIME', axis=1, inplace=True)
+            # Cambia el nombre de las columnas a estandar
+            cols = self.allData.columns
+            cols = cols.map(lambda x: x.strip().replace(' ', '_').strip() if isinstance(x, (str, )) else x)
+            self.allData.columns = cols
             self.processing = False
         self.threadProcessor.setWorker(loadDataWrapper)
         self.threadProcessor.start(QThread.HighestPriority)
         self.threadProcessor.finished.connect(callback)
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
 
+    def getMonthInt(self,strMonth):
+        if(strMonth.lower() in ["ene"]):
+            return 1
+        elif(strMonth.lower() in ["feb"]):
+            return 2
+        elif(strMonth.lower() in ["mar"]):
+            return 3
+        elif(strMonth.lower() in ["abr"]):
+            return 4
+        elif(strMonth.lower() in ["may"]):
+            return 5
+        elif(strMonth.lower() in ["jun"]):
+            return 6
+        elif(strMonth.lower() in ["jul"]):
+            return 7
+        elif(strMonth.lower() in ["ago"]):
+            return 8
+        elif(strMonth.lower() in ["sep"]):
+            return 9
+        elif(strMonth.lower() in ["oct"]):
+            return 10
+        elif(strMonth.lower() in ["nov"]):
+            return 11
+        elif(strMonth.lower() in ["dic"]):
+            return 12
+
+    def toDatetime(self,dateStr):
+        # Date string example-> ma. dic. 31 23:50:11 2019
+        _, month,t_year = list(map(str.strip, dateStr.split('.')))
+        day, t, year = t_year.split(' ') 
+        month = self.getMonthInt(month)
+        dateStr = f"{year}-{month}-{day} {t}"
+        return pd.to_datetime(dateStr, format="%Y-%m-%d %X")
 
 class ThreadingUtils_:
 
