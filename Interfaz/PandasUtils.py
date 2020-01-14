@@ -34,6 +34,10 @@ class PandasDataLoader:
         groupedData = df.groupby(columna)
         dfs = [groupedData.get_group(gn) for gn in filtros]
         return pd.concat(dfs).shape[0]
+    
+    def getRowCountForColumn(self, df, columna):
+        # returns the number of non-NaN values in the column
+        return df[columna].count()
 
     def getUniqueColumnValues(self, column):
         """

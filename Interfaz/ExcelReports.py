@@ -78,16 +78,15 @@ class ExcelReportsInicio(QMainWindow):
         """
         Carga todos los paths en una lista de dataframes de pandas
         """
-        if(len(self.filesDirectories)>0):
+        if(len(self.filesDirectories) > 0):
             self.overlay.show()
             # self.pandasUtils.loadDataframes(self.filesDirectories, self.fnCargaDatosCompleta)
             self.pandasUtils.loadDataframes(
                 self.filesDirectories, self.fnCargaDatosCompleta)
         else:
             UiUtils.showInfoMessage(parent=self,
-                                title="Informacion de carga",
-                                description=f"No se han cargado archivos.")
-     
+                                    title="Informacion de carga",
+                                    description=f"No se han cargado archivos.")
 
     def fnCargaDatosCompleta(self):
         self.overlay.killAndHide()
@@ -118,25 +117,39 @@ class VistaGeneralDatos(QMainWindow):
         self.setupUi()
 
     def setupUi(self):
-        print("Setting general UI")
+        print("Setting general UI values")
         self.comboBoxRAT.clear()
         self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'RAT')
-        self.comboBoxRAT.addItems(self.pandasUtils.getUniqueColumnValues('RAT'))
+        self.comboBoxRAT.addItems(
+            self.pandasUtils.getUniqueColumnValues('RAT'))
         self.comboBoxOPERADOR.clear()
-        self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'OPERATOR')
-        self.comboBoxOPERADOR.addItems(self.pandasUtils.getUniqueColumnValues('OPERATOR'))
+        self.pandasUtils.setUniqueColumnValues(
+            self.pandasUtils.allData, 'OPERATOR')
+        self.comboBoxOPERADOR.addItems(
+            self.pandasUtils.getUniqueColumnValues('OPERATOR'))
+
+        self.labelIMEIDatos.setText(
+            str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.allData, "IMEI")))
+        self.labelIMSIDatos.setText(
+            str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.allData, "IMSI")))
 
         # Connects signals to sloots and callbacks
-        self.comboBoxOPERADOR.currentTextChanged.connect(self.fnProcesaCambioOperador)
+        self.comboBoxOPERADOR.currentTextChanged.connect(
+            self.fnProcesaCambioOperador)
         self.comboBoxRAT.currentTextChanged.connect(self.fnProcesaCambioRAT)
-
+        # Calls manually to set a initial value
+        self.fnProcesaCambioRAT(self.pandasUtils.getUniqueColumnValues('RAT')[0])
+        self.fnProcesaCambioOperador(self.pandasUtils.getUniqueColumnValues('OPERATOR')[0])
     def fnProcesaCambioRAT(self, paramText):
         print(f"Fn procesa cambio Rat {paramText}")
         cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.allData, 'RAT', [paramText])
+
         self.labelRATContador.setText(str(cantidad))
+
     def fnProcesaCambioOperador(self, paramText):
         print(f"Fn procesa cambio Operator {paramText}")
-        cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.allData, 'OPERATOR', [paramText])
+        cantidad = self.pandasUtils.getCantidadDatos(
+            self.pandasUtils.allData, 'OPERATOR', [paramText])
         self.labelOperadorDatos.setText(str(cantidad))
 
 
