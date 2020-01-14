@@ -1,12 +1,12 @@
 import sys
 import os
 import pandas as pd
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QAction, QTableWidgetItem, QTableWidget
 from PyQt5.uic import loadUi
 from LoadingOverlay import Overlay
 from PandasUtils import PandasDataLoader
 import UiUtils
-
+import pandas as pd
 
 class ExcelReportsInicio(QMainWindow):
     """
@@ -112,46 +112,88 @@ class VistaGeneralDatos(QMainWindow):
         super(VistaGeneralDatos, self).__init__(parent)
         # State fields
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
+        self.ratsSeleccionados = dict()
+        self.operadoresSeleccionados = dict()
+
         # UI
         loadUi('UI/VistaGeneralDatos.ui', self)
         self.setupUi()
 
-    def setupUi(self):
-        print("Setting general UI values")
-        self.comboBoxRAT.clear()
-        self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'RAT')
-        self.comboBoxRAT.addItems(
-            self.pandasUtils.getUniqueColumnValues('RAT'))
-        self.comboBoxOPERADOR.clear()
-        self.pandasUtils.setUniqueColumnValues(
-            self.pandasUtils.allData, 'OPERATOR')
-        self.comboBoxOPERADOR.addItems(
-            self.pandasUtils.getUniqueColumnValues('OPERATOR'))
 
+    def setupUi(self):
+        print("Setting the menus for the buttons")
+        self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'RAT')
+        self.ratsSeleccionados = {rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')}
+        menuRats = UiUtils.createMenu(self.ratsSeleccionados.keys())
+        
+        self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'OPERATOR')
+        self.operadoresSeleccionados = {op: True for op in self.pandasUtils.getUniqueColumnValues('OPERATOR')}
+        menuOperadores = UiUtils.createMenu(self.operadoresSeleccionados.keys())
+
+        self.pushButtonOperadores.setMenu(menuOperadores)
+        self.pushButtonRATS.setMenu(menuRats)
+
+        # Establece contadores inicialmente
+        self.fnMuestraCambiosEnRats()
+        self.fnMuestraCambiosEnOperadores()
         self.labelIMEIDatos.setText(
             str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.allData, "IMEI")))
         self.labelIMSIDatos.setText(
             str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.allData, "IMSI")))
 
         # Connects signals to sloots and callbacks
-        self.comboBoxOPERADOR.currentTextChanged.connect(
-            self.fnProcesaCambioOperador)
-        self.comboBoxRAT.currentTextChanged.connect(self.fnProcesaCambioRAT)
-        # Calls manually to set a initial value
-        self.fnProcesaCambioRAT(self.pandasUtils.getUniqueColumnValues('RAT')[0])
-        self.fnProcesaCambioOperador(self.pandasUtils.getUniqueColumnValues('OPERATOR')[0])
-    def fnProcesaCambioRAT(self, paramText):
-        print(f"Fn procesa cambio Rat {paramText}")
-        cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.allData, 'RAT', [paramText])
+        menuOperadores.triggered.connect(self.fnProcesaSeleccionOperadores)
+        menuRats.triggered.connect(self.fnProcesaSeleccionRats)
 
-        self.labelRATContador.setText(str(cantidad))
+        # Fill the table
+        self.fillTableWidget(self.pandasUtils.allData)
 
-    def fnProcesaCambioOperador(self, paramText):
-        print(f"Fn procesa cambio Operator {paramText}")
-        cantidad = self.pandasUtils.getCantidadDatos(
-            self.pandasUtils.allData, 'OPERATOR', [paramText])
-        self.labelOperadorDatos.setText(str(cantidad))
+    def fillTableWidget(self, df:pd.DataFrame=None):
+        # TODO: Hacerla general recibiendo el widget
+        # Limpiar contenidos de tabla
+        headerList = tuple(df.columns.values)
+        self.tableWidgetDatosExcel.clearContents()
+        self.tableWidgetDatosExcel.setColumnCount(len(headerList))
+        rowCount = 0
+        for row in df.itertuples():
+            # Sets the number of rows in this table's model to rows. If this is less than rowCount(),
+            # the data in the unwanted rows is discarded.
+            self.tableWidgetDatosExcel.setRowCount(rowCount+1)
+            for i,columnName in enumerate(headerList):
+                # val = QTableWidgetItem(row._asdict()[str(columnName)])
+                val = QTableWidgetItem(str(row._asdict()[columnName]))
+                # print(val.text())
+                self.tableWidgetDatosExcel.setItem(rowCount, i, val)
+            rowCount += 1
 
+    def fnProcesaSeleccionRats(self, action: QAction):
+        print(f"Fn procesa seleccion Rat {action}")
+        self.ratsSeleccionados[str(action.data())] = action.isChecked()
+        self.fnMuestraCambiosEnRats()
+
+    def fnMuestraCambiosEnRats(self):
+        """
+        This function is called when there is a change in the selected rats dictionary
+        """
+        listaRats =  [rat for rat,v in self.ratsSeleccionados.items() if v is True]
+        print(f"Lista rats {listaRats}")
+        if len(listaRats)>0:
+            cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.allData, 'RAT', listaRats)
+            self.labelRATContador.setText(str(cantidad))
+
+    def fnProcesaSeleccionOperadores(self, action: QAction):
+        print(f"Fn procesa seleccion opeadores {action}")
+        self.operadoresSeleccionados[str(action.data())] = action.isChecked()
+        self.fnMuestraCambiosEnOperadores()
+
+    def fnMuestraCambiosEnOperadores(self):
+        """
+        This function is called when there is a change in the selected rats dictionary
+        """
+        listaOps =  [rat for rat,v in self.operadoresSeleccionados.items() if v]
+        if len(listaOps)>0:
+            cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.allData, 'OPERATOR', listaOps)
+            self.labelOperadorDatos.setText(str(cantidad))
 
 if(__name__ == "__main__"):
     # Instanciates a new QApplication with the given terminal parameters
