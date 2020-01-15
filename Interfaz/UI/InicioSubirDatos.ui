@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">
-border-color: rgb(0, 0, 0);</string>
+background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -44,8 +44,8 @@ border-color: rgb(0, 0, 0);</string>
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>20</x>
+      <y>90</y>
       <width>221</width>
       <height>281</height>
      </rect>
@@ -61,8 +61,8 @@ border-color: rgb(0, 0, 0);</string>
        </property>
        <property name="font">
         <font>
-         <family>Ebrima</family>
-         <pointsize>10</pointsize>
+         <family>Corbel</family>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -90,8 +90,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
       <widget class="QPushButton" name="pushButtonEliminar">
        <property name="font">
         <font>
-         <family>Ebrima</family>
-         <pointsize>10</pointsize>
+         <family>Corbel</family>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="whatsThis">
@@ -111,8 +111,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
        </property>
        <property name="iconSize">
         <size>
-         <width>30</width>
-         <height>30</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -121,8 +121,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
       <widget class="QPushButton" name="pushButtonCargarDatos">
        <property name="font">
         <font>
-         <family>Ebrima</family>
-         <pointsize>10</pointsize>
+         <family>Corbel</family>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -138,8 +138,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
        </property>
        <property name="iconSize">
         <size>
-         <width>30</width>
-         <height>30</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -149,7 +149,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>550</x>
       <y>400</y>
       <width>211</width>
       <height>71</height>
@@ -166,8 +166,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
        </property>
        <property name="font">
         <font>
-         <family>Ebrima</family>
-         <pointsize>10</pointsize>
+         <family>Corbel</family>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="styleSheet">
@@ -195,8 +195,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>-20</y>
+      <x>450</x>
+      <y>-10</y>
       <width>311</width>
       <height>101</height>
      </rect>

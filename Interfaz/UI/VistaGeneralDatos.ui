@@ -261,8 +261,8 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>650</y>
+      <x>90</x>
+      <y>750</y>
       <width>311</width>
       <height>165</height>
      </rect>
@@ -369,9 +369,9 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>90</x>
       <y>120</y>
-      <width>281</width>
+      <width>261</width>
       <height>171</height>
      </rect>
     </property>
@@ -570,7 +570,7 @@ border-top-color: rgb(0, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>70</x>
-      <y>520</y>
+      <y>470</y>
       <width>301</width>
       <height>121</height>
      </rect>
