@@ -22,10 +22,18 @@ class PandasDataLoader:
         else:
             self.dfsList = []
             self.allData = None
+            self.dfEmaisFaltantes = None
             self.processing = False
             self.threadProcessor = ThreadingUtils()
+            self.saverThread = ThreadingUtils()
             self.uniqueColumnValues = dict()
             PandasDataLoader.__instance = self
+
+    def getAllDataOk(self):
+        return self.allData
+
+    def getDfEmaisFaltantes(self):
+        return self.dfEmaisFaltates
 
     def setUniqueColumnValues(self, df, column):
         self.uniqueColumnValues[column] = df[column].unique().tolist()
@@ -65,25 +73,58 @@ class PandasDataLoader:
                 [df for dflist in self.dfsList for df in dflist])
 
             # TODO: HACER REEMPLAZO DE UNA
-            self.allData['DATE-TIME'] = self.allData['DATE-TIME'].apply(
+            self.allData['DATE_TIME'] = self.allData['DATE-TIME'].apply(
                 self.toDatetime)
-            self.allData['DATE'] = pd.to_datetime(
-                self.allData['DATE-TIME'], format="%Y-%m-%d").dt.date
-            self.allData['TIME'] = pd.to_datetime(
-                self.allData['DATE-TIME']).dt.time
-            self.allData.sort_values(by=["DATE"], inplace=True, ascending=True)
-            # Borra columna
             self.allData.drop('DATE-TIME', axis=1, inplace=True)
+            self.allData.sort_values(
+                by=["DATE_TIME"], inplace=True, ascending=True)
             # Cambia el nombre de las columnas a estandar
             cols = self.allData.columns
             cols = cols.map(lambda x: x.strip().replace(
                 ' ', '_').strip() if isinstance(x, (str, )) else x)
             self.allData.columns = cols
+
+            self.allData = self.allData[self.allData['IMEI'].notnull()]
+            self.dfEmaisFaltantes = self.allData[self.allData['IMEI'].isnull()]
             self.processing = False
         self.threadProcessor.setWorker(loadDataWrapper)
         self.threadProcessor.start(QThread.HighestPriority)
         self.threadProcessor.finished.connect(callback)
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
+
+    def getGroupedByEmais(self, df: pd.DataFrame):
+        # Returns a df with grouped and aggregated values
+        def joinValues(series):
+            return ','.join(map(str, series[series.notnull()].unique()))
+        groupedDf = df.groupby('IMEI').agg(
+            RAT=pd.NamedAgg(column='RAT', aggfunc=joinValues),
+            OPERATOR=pd.NamedAgg(column='OPERATOR', aggfunc=joinValues),
+            CHANNEL=pd.NamedAgg(column='CHANNEL', aggfunc=joinValues),
+            IMSI=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
+            TMSI=pd.NamedAgg(column='TMSI', aggfunc=joinValues),
+            MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
+            TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
+            LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
+            NAME=pd.NamedAgg(column='NAME', aggfunc=joinValues),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
+        )
+        return groupedDf
+
+    def saveToExcelFile(self, df: pd.DataFrame, newFilePath: str, index=False, callbackSave=None):
+        def saveFunctionWrapper():
+            df.to_excel((newFilePath if newFilePath.endswith(
+                ".xlsx") else (newFilePath+".xlsx")), index=index)
+        self.saverThread.setWorker(saveFunctionWrapper)
+        self.saverThread.start(QThread.HighestPriority)
+        self.saverThread.finished.connect(callbackSave)
+
+    def setUniqueNameIdColumn(self, dfEmaisOk: pd.DataFrame):
+        """ Updates the NAME with a unique KEY for a EMAI groups and returns that new DataFrame"""
+        import hashlib
+        fn = lambda x: hashlib.md5(str(x).encode()).hexdigest()[0:10]
+        df1 = dfEmaisOk.groupby('IMEI')['IMEI'].transform(fn)
+        return dfEmaisOk.assign(NAME=df1)
 
     def filterDfByEmai(self, df: pd.DataFrame = None, imei: str = ""):
         return df[df['IMEI'] == float(imei)]
@@ -101,6 +142,10 @@ class PandasDataLoader:
         groupedColumn = df.groupby(column)
         dfs = [groupedColumn.get_group(gn) for gn in columnValues]
         return pd.concat(dfs)
+
+    def getDfDatosIncosistentes(self, df: pd.DataFrame, col: str):
+        """ Gets a df where there is nan values in the param column"""
+        return df[df[col].isnull()]
 
     def getDatosIncosistentes(self, df, cols=[]):
         return df[df[cols[0]].isnull()]
@@ -134,10 +179,10 @@ class PandasDataLoader:
 
     def toDatetime(self, dateStr):
         # Date string example-> ma. dic. 31 23:50:11 2019
-        _, month, t_year = list(map(str.strip, dateStr.split('.')))
-        day, t, year = t_year.split(' ')
-        month = self.getMonthInt(month)
-        dateStr = f"{year}-{month}-{day} {t}"
+        _, month, t_year= list(map(str.strip, dateStr.split('.')))
+        day, t, year= t_year.split(' ')
+        month= self.getMonthInt(month)
+        dateStr= f"{year}-{month}-{day} {t}"
         return pd.to_datetime(dateStr, format="%Y-%m-%d %X")
 
 
@@ -146,22 +191,24 @@ class ThreadingUtils_:
     @staticmethod
     def doInThread(worker=None, callback=None):
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            future = executor.submit(worker)
+            future= executor.submit(worker)
             future.add_done_callback(callback)
             return future
 
 
 class ThreadingUtils(QThread):
-    updateSignal = pyqtSignal()
+    """ Thread class processor to do hard work """
+    updateSignal= pyqtSignal()
 
     def __init__(self, worker=None):
         super(QThread, self).__init__()
-        self.worker = worker
+        self.worker= worker
 
     def setWorker(self, worker):
-        self.worker = worker
+        self.worker= worker
 
     def run(self):
+        # Starts the worker and then emits the signal
         self.worker()
         self.updateSignal.emit()
 
