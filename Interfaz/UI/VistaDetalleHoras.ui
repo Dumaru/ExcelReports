@@ -53,71 +53,6 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0" colspan="2">
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="2" column="1">
-        <widget class="QTimeEdit" name="timeEditRangoInicial">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="label">
-         <property name="font">
-          <font>
-           <family>Corbel</family>
-           <pointsize>14</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Hasta</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="font">
-          <font>
-           <family>Corbel</family>
-           <pointsize>14</pointsize>
-           <underline>false</underline>
-          </font>
-         </property>
-         <property name="text">
-          <string>Ingresar Día:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
-        <widget class="QTimeEdit" name="timeEditRangoFinal">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QDateEdit" name="dateEditFecha">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="font">
-          <font>
-           <family>Corbel</family>
-           <pointsize>14</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Desde</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
      <item row="6" column="0" rowspan="4">
       <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
        <property name="styleSheet">
@@ -139,6 +74,90 @@
         </property>
        </column>
       </widget>
+     </item>
+     <item row="0" column="0" colspan="2">
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="2" column="1">
+        <widget class="QTimeEdit" name="timeEditRangoInicial">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QDateEdit" name="dateEditFechaSalida">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label">
+         <property name="font">
+          <font>
+           <family>Corbel</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>            Hasta</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QTimeEdit" name="timeEditRangoFinal">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="font">
+          <font>
+           <family>Corbel</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Desde</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDateEdit" name="dateEditFechaIngreso">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_5">
+         <property name="font">
+          <font>
+           <family>Corbel</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>            Hasta</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="font">
+          <font>
+           <family>Corbel</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Desde</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="pushButtonVerDatosTablaFiltrada">
@@ -195,7 +214,7 @@
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QGraphicsView" name="graphicsViewDatosFiltrados">
+      <widget class="QGraphicsView" name="graphicsViewDatosFiltradosEstaticcos">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
@@ -285,7 +304,10 @@
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="comboBoxOrganizacionJornadas">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <item>
         <property name="text">
          <string/>
@@ -293,42 +315,42 @@
        </item>
        <item>
         <property name="text">
-         <string>Mayor Uso Durante Madrugada (12:00:00 am - 05:59:59 am)</string>
+         <string>Mayor Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Mayor Uso Durante Mañana (06:00:00 am - 12:59:59 pm)</string>
+         <string>Mayor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Mayor Uso Durante Tarde (13:00:00 pm - 18:59:59 pm)</string>
+         <string>Mayor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Mayor Uso Durante Noche (17:00:00 pm - 23:59:59 pm)</string>
+         <string>Mayor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Menor  Uso Durante Madrugada (12:00:00 am - 05:59:59 am)</string>
+         <string>Menor  Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Menor Uso Durante Mañana (06:00:00 am - 12:59:59 pm)</string>
+         <string>Menor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Menor Uso Durante Tarde (13:00:00 pm - 18:59:59 pm)</string>
+         <string>Menor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Menor Uso Durante Noche (17:00:00 pm - 23:59:59 pm)</string>
+         <string>Menor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
         </property>
        </item>
       </widget>
@@ -369,17 +391,115 @@
      </item>
     </layout>
    </widget>
-   <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos_2">
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Corbel</family>
+      <pointsize>14</pointsize>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>Ingresar Día:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>50</y>
+      <width>141</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Corbel</family>
+      <pointsize>14</pointsize>
+      <underline>false</underline>
+     </font>
+    </property>
+    <property name="text">
+     <string>Ingresar Hora:</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
       <x>1180</x>
-      <y>560</y>
+      <y>550</y>
       <width>531</width>
-      <height>341</height>
+      <height>351</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QGraphicsView" name="graphicsViewDatosFiltradosDinamicos">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QScrollBar" name="verticalScrollBar">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>209</y>
+      <width>20</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QScrollBar" name="verticalScrollBar_2">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>570</y>
+      <width>20</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QScrollBar" name="verticalScrollBar_3">
+    <property name="geometry">
+     <rect>
+      <x>1710</x>
+      <y>200</y>
+      <width>20</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QScrollBar" name="verticalScrollBar_4">
+    <property name="geometry">
+     <rect>
+      <x>1710</x>
+      <y>560</y>
+      <width>20</width>
+      <height>321</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
     </property>
    </widget>
   </widget>
