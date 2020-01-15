@@ -18,6 +18,26 @@ def createMenu(menuItems) -> QMenu:
         accion.setData(str(item))
         menu.addAction(accion)
     return menu
+def fnAbrirDir():
+        """
+        Opens a folder dialog and returns the path to the folder
+        """
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileDir = str(QFileDialog.getExistingDirectory(
+            self, "Selecciona una carpeta"))
+        print(f"Files Folder {fileDir}")
+        return fileDir
+
+def saveFileDialog():
+    """
+    Opens a save file dialog and returns the path to the file
+    """
+    options = QFileDialog.Options()
+    options |= QFileDialog.DontUseNativeDialog
+    fileName, _ = QFileDialog.getSaveFileName(self,"Guardar archivo","","All Files (*);;Text Files (*.txt)", options=options)
+    if fileName:
+        return fileName
 
 if(__name__ == "__main__"):
     app = QApplication(sys.argv)
