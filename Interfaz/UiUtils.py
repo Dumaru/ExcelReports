@@ -1,14 +1,12 @@
 import sys
 from PyQt5.QtWidgets import QMessageBox, QApplication, QMenu, QAction
 
-def showInfoMessage(parent=None, title: str = "", description: str = "") -> QMessageBox:
-    msb = QMessageBox()
+def showInfoMessage(parent=None,title: str = "", description: str = "") -> QMessageBox:
+    msb = QMessageBox(parent=parent)
     msb.setIcon(QMessageBox.Information)
     msb.setWindowTitle(title)
     msb.setText(description)
-    # Executes and returns the status
-    msb.exec()
-
+    status = msb.exec()
 
 def createMenu(menuItems) -> QMenu:
     menu = QMenu()

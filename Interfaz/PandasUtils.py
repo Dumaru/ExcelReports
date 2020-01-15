@@ -34,7 +34,7 @@ class PandasDataLoader:
         groupedData = df.groupby(columna)
         dfs = [groupedData.get_group(gn) for gn in filtros]
         return pd.concat(dfs).shape[0]
-    
+
     def getRowCountForColumn(self, df, columna):
         # returns the number of non-NaN values in the column
         return df[columna].count()
@@ -65,15 +65,19 @@ class PandasDataLoader:
                 [df for dflist in self.dfsList for df in dflist])
 
             # TODO: HACER REEMPLAZO DE UNA
-            self.allData['DATE-TIME'] = self.allData['DATE-TIME'].apply(self.toDatetime)
-            self.allData['DATE'] = pd.to_datetime(self.allData['DATE-TIME'], format="%Y-%m-%d").dt.date
-            self.allData['TIME'] = pd.to_datetime(self.allData['DATE-TIME']).dt.time
+            self.allData['DATE-TIME'] = self.allData['DATE-TIME'].apply(
+                self.toDatetime)
+            self.allData['DATE'] = pd.to_datetime(
+                self.allData['DATE-TIME'], format="%Y-%m-%d").dt.date
+            self.allData['TIME'] = pd.to_datetime(
+                self.allData['DATE-TIME']).dt.time
             self.allData.sort_values(by=["DATE"], inplace=True, ascending=True)
             # Borra columna
             self.allData.drop('DATE-TIME', axis=1, inplace=True)
             # Cambia el nombre de las columnas a estandar
             cols = self.allData.columns
-            cols = cols.map(lambda x: x.strip().replace(' ', '_').strip() if isinstance(x, (str, )) else x)
+            cols = cols.map(lambda x: x.strip().replace(
+                ' ', '_').strip() if isinstance(x, (str, )) else x)
             self.allData.columns = cols
             self.processing = False
         self.threadProcessor.setWorker(loadDataWrapper)
@@ -81,7 +85,28 @@ class PandasDataLoader:
         self.threadProcessor.finished.connect(callback)
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
 
-    def getMonthInt(self,strMonth):
+    def filterDfByEmai(self, df: pd.DataFrame = None, imei: str = ""):
+        return df[df['IMEI'] == float(imei)]
+
+    def getDfCompletoEmaisOk(self, df: pd.DataFrame):
+        """
+        Returns the df where the EMAIS are not null
+        """
+        return df.loc[df['IMEI'].notnull()]
+
+    def filterDfByColumnValues(self, df: pd.DataFrame, column: str, columnValues: list):
+        """
+        Groups the df by the column parameters and gets the groups in the columnValues list
+        """
+        groupedColumn = df.groupby(column)
+        dfs = [groupedColumn.get_group(gn) for gn in columnValues]
+        return pd.concat(dfs)
+
+    def getDatosIncosistentes(self, df, cols=[]):
+        return df[df[cols[0]].isnull()]
+    # getDatosIncosistentes(allData, ['IMEI',])
+
+    def getMonthInt(self, strMonth):
         if(strMonth.lower() in ["ene"]):
             return 1
         elif(strMonth.lower() in ["feb"]):
@@ -107,13 +132,14 @@ class PandasDataLoader:
         elif(strMonth.lower() in ["dic"]):
             return 12
 
-    def toDatetime(self,dateStr):
+    def toDatetime(self, dateStr):
         # Date string example-> ma. dic. 31 23:50:11 2019
-        _, month,t_year = list(map(str.strip, dateStr.split('.')))
-        day, t, year = t_year.split(' ') 
+        _, month, t_year = list(map(str.strip, dateStr.split('.')))
+        day, t, year = t_year.split(' ')
         month = self.getMonthInt(month)
         dateStr = f"{year}-{month}-{day} {t}"
         return pd.to_datetime(dateStr, format="%Y-%m-%d %X")
+
 
 class ThreadingUtils_:
 
