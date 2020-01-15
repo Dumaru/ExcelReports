@@ -442,7 +442,7 @@ background-color: rgb(255, 255, 255);</string>
     </property>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="1">
-      <widget class="QPushButton" name="pushButtonVerDatosFiltrados">
+      <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
        <property name="font">
         <font>
          <family>Corbel</family>
@@ -630,12 +630,12 @@ background-color: rgb(255, 255, 255);</string>
     <property name="title">
      <string>Archivo </string>
     </property>
-    <addaction name="actionAbrir"/>
+    <addaction name="actionIrADatosGenerales"/>
    </widget>
    <addaction name="menuArchivo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionAbrir">
+  <action name="actionIrADatosGenerales">
    <property name="text">
     <string>Volver Datos Generales</string>
    </property>
