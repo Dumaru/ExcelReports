@@ -116,115 +116,6 @@ border-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="formLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>1340</x>
-      <y>300</y>
-      <width>231</width>
-      <height>381</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout_2">
-     <item row="3" column="0">
-      <widget class="QCheckBox" name="checkBoxRAT">
-       <property name="text">
-        <string>RAT</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="QCheckBox" name="checkBoxOPERATOR">
-       <property name="text">
-        <string>OPERATOR</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0">
-      <widget class="QCheckBox" name="checkBoxCHANNEL">
-       <property name="text">
-        <string>CHANNEL</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="0">
-      <widget class="QCheckBox" name="checkBoxIMEI">
-       <property name="text">
-        <string>IMEI</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="0">
-      <widget class="QCheckBox" name="checkBoxIMSI">
-       <property name="text">
-        <string>IMSI</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QCheckBox" name="checkBoxTMSI">
-       <property name="text">
-        <string>TMSI</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <widget class="QCheckBox" name="checkBoxMSPOWER">
-       <property name="text">
-        <string>MS POWER</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="0">
-      <widget class="QCheckBox" name="checkBoxTA">
-       <property name="text">
-        <string>TA</string>
-       </property>
-      </widget>
-     </item>
-     <item row="11" column="0">
-      <widget class="QCheckBox" name="checkBoxLASTLAC">
-       <property name="text">
-        <string>LAST LAC</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="0">
-      <widget class="QCheckBox" name="checkBoxNAME">
-       <property name="text">
-        <string>NAME</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="0">
-      <widget class="QCheckBox" name="checkBoxHITS">
-       <property name="text">
-        <string>HITS</string>
-       </property>
-      </widget>
-     </item>
-     <item row="14" column="0">
-      <widget class="QCheckBox" name="checkBoxDATATIME">
-       <property name="text">
-        <string>DATA-TIME</string>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="0" colspan="2">
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="pushButtonBuscarDato">
     <property name="geometry">
      <rect>
@@ -262,7 +153,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>520</y>
+      <y>460</y>
       <width>311</width>
       <height>165</height>
      </rect>
@@ -347,24 +238,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QLabel" name="labelMostrarOcultarColumna">
-    <property name="geometry">
-     <rect>
-      <x>1320</x>
-      <y>250</y>
-      <width>351</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Mostrar / Ocultar Columnas</string>
-    </property>
    </widget>
    <widget class="QFrame" name="frame">
     <property name="geometry">
@@ -505,7 +378,7 @@ border-top-color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButtonAsignarNombresIMEI">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>710</x>
       <y>70</y>
       <width>311</width>
       <height>61</height>
@@ -537,7 +410,7 @@ border-top-color: rgb(0, 0, 0);</string>
    <widget class="QPushButton" name="pushButtonGuardarDatos">
     <property name="geometry">
      <rect>
-      <x>460</x>
+      <x>420</x>
       <y>70</y>
       <width>289</width>
       <height>61</height>
@@ -586,10 +459,10 @@ image: url(:/newPrefix/Logo.png);</string>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>1310</x>
-      <y>100</y>
+      <x>720</x>
+      <y>0</y>
       <width>301</width>
-      <height>121</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -603,9 +476,9 @@ image: url(:/newPrefix/Logo.png);</string>
    <widget class="QPushButton" name="pushButtonAnalisisHorario">
     <property name="geometry">
      <rect>
-      <x>1060</x>
+      <x>1020</x>
       <y>70</y>
-      <width>249</width>
+      <width>261</width>
       <height>61</height>
      </rect>
     </property>
@@ -630,19 +503,6 @@ image: url(:/newPrefix/Logo.png);</string>
       <width>60</width>
       <height>60</height>
      </size>
-    </property>
-   </widget>
-   <widget class="QScrollBar" name="verticalScrollBar">
-    <property name="geometry">
-     <rect>
-      <x>1280</x>
-      <y>130</y>
-      <width>31</width>
-      <height>551</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
     </property>
    </widget>
   </widget>
