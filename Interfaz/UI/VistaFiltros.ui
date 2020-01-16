@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1841</width>
-    <height>1383</height>
+    <width>2097</width>
+    <height>1198</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -29,7 +29,7 @@
       <x>1000</x>
       <y>560</y>
       <width>751</width>
-      <height>391</height>
+      <height>451</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayoutGraficas"/>
@@ -37,14 +37,24 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>30</y>
-      <width>881</width>
-      <height>921</height>
+      <x>30</x>
+      <y>50</y>
+      <width>651</width>
+      <height>781</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayoutGeneral">
-     <item row="6" column="2">
+     <item row="3" column="2">
+      <widget class="QCheckBox" name="checkBox2G">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>2G</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="2">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -60,87 +70,77 @@
        </property>
       </spacer>
      </item>
-     <item row="2" column="4">
-      <widget class="QPushButton" name="pushButtonGenerarGraficas">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Generar Gráficas </string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>40</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="3">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>                                    Filtros</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="4">
-      <widget class="QPushButton" name="pushButtonVerAnalisis">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Ver Análisis</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>40</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="4">
-      <widget class="QLabel" name="label_4">
-       <property name="styleSheet">
-        <string notr="true">image: url(:/Imagenes/Logo.png);</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="4">
-      <layout class="QVBoxLayout" name="BoxLayout_2"/>
-     </item>
-     <item row="6" column="3">
+     <item row="9" column="3" rowspan="2">
       <layout class="QFormLayout" name="formLayout_3">
        <item row="4" column="1">
         <layout class="QVBoxLayout" name="BoxLayoutMS"/>
+       </item>
+       <item row="5" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="LabelMSPOWER">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>MS Power</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="CheckBoxTomarDatoMSPower">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Tomar Dato</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="6" column="1">
+        <layout class="QVBoxLayout" name="LabelMSPOWER_2">
+         <item>
+          <widget class="QLabel" name="LabelRangoInciaMSPOWER">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Ingresa EL rango Incial </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditValorRangoFinalMSPOWER">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelRangoFinalMSPOWER">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Ingresa EL rango Final </string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="lineEditValorRangoInicialMSPOWER">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
        </item>
        <item row="8" column="1">
         <layout class="QVBoxLayout" name="TituloTALayout_2">
@@ -183,15 +183,15 @@ background-color: rgb(255, 255, 255);</string>
          </item>
         </layout>
        </item>
-       <item row="11" column="1">
+       <item row="10" column="1">
         <layout class="QFormLayout" name="formLayout"/>
        </item>
-       <item row="10" column="1">
+       <item row="11" column="1">
         <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
          <property name="font">
           <font>
            <family>Corbel</family>
-           <pointsize>14</pointsize>
+           <pointsize>11</pointsize>
           </font>
          </property>
          <property name="styleSheet">
@@ -206,82 +206,53 @@ background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="iconSize">
           <size>
-           <width>50</width>
-           <height>50</height>
+           <width>30</width>
+           <height>30</height>
           </size>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="1">
-        <layout class="QVBoxLayout" name="LabelMSPOWER_2">
-         <item>
-          <widget class="QLabel" name="LabelRangoInciaMSPOWER">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>Ingresa EL rango Incial </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditValorRangoFinalMSPOWER">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="LabelRangoFinalMSPOWER">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>Ingresa EL rango Final </string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="5" column="1">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="LabelMSPOWER">
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>MS Power</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="CheckBoxTomarDatoMSPower">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>Tomar Dato</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="7" column="1">
-        <widget class="QLineEdit" name="lineEditValorRangoInicialMSPOWER">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
-     <item row="4" column="3">
+     <item row="6" column="2">
+      <widget class="QCheckBox" name="checkBox4G">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>4G</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="4">
+      <widget class="QLabel" name="label_4">
+       <property name="styleSheet">
+        <string notr="true">image: url(:/Imagenes/Logo.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="4">
+      <layout class="QVBoxLayout" name="BoxLayout_2"/>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="labelRAT">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>RAT</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="3">
       <layout class="QVBoxLayout" name="BoxLayout">
        <item>
         <layout class="QVBoxLayout" name="TituloTALayout">
@@ -341,6 +312,16 @@ background-color: rgb(255, 255, 255);</string>
         </widget>
        </item>
       </layout>
+     </item>
+     <item row="5" column="2">
+      <widget class="QCheckBox" name="checkBox3G">
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>3G</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -438,73 +419,68 @@ background-color: rgb(255, 255, 255);</string>
      </property>
     </column>
    </widget>
-   <widget class="QLabel" name="labelRAT">
+   <widget class="QPushButton" name="pushButtonGenerarGraficas">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>36</width>
-      <height>24</height>
+      <x>810</x>
+      <y>560</y>
+      <width>191</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <family>Corbel</family>
+      <pointsize>11</pointsize>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
     </property>
     <property name="text">
-     <string>RAT</string>
+     <string>Generar Gráficas </string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>30</width>
+      <height>40</height>
+     </size>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox3G">
+   <widget class="QPushButton" name="pushButtonVerAnalisis">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>88</y>
-      <width>42</width>
-      <height>20</height>
+      <x>810</x>
+      <y>60</y>
+      <width>191</width>
+      <height>49</height>
      </rect>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-    </property>
-    <property name="text">
-     <string>3G</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox4G">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>115</y>
-      <width>42</width>
-      <height>20</height>
-     </rect>
+    <property name="font">
+     <font>
+      <family>Corbel</family>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
     </property>
     <property name="text">
-     <string>4G</string>
+     <string>Ver Análisis</string>
     </property>
-   </widget>
-   <widget class="QCheckBox" name="checkBox2G">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>61</y>
-      <width>42</width>
-      <height>20</height>
-     </rect>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
     </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-    </property>
-    <property name="text">
-     <string>2G</string>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
     </property>
    </widget>
   </widget>
@@ -513,7 +489,7 @@ background-color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1841</width>
+     <width>2097</width>
      <height>26</height>
     </rect>
    </property>
