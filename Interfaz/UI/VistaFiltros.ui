@@ -598,7 +598,7 @@ background-color: rgb(255, 255, 255);</string>
       <height>301</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout"/>
+    <layout class="QVBoxLayout" name="verticalLayoutGraficas"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
