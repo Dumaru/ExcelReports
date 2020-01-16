@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1971</width>
-    <height>906</height>
+    <height>966</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,50 +17,12 @@
    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>30</y>
-      <width>111</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QPushButton" name="pushButtonBuscarDatos">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Buscar</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-google-web-search-400.png</normaloff>../Recursos/icons8-google-web-search-400.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>40</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>20</y>
-      <width>301</width>
+      <width>231</width>
       <height>121</height>
      </rect>
     </property>
@@ -75,7 +37,7 @@
     <property name="geometry">
      <rect>
       <x>1460</x>
-      <y>140</y>
+      <y>60</y>
       <width>491</width>
       <height>671</height>
      </rect>
@@ -86,9 +48,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>140</y>
+      <y>60</y>
       <width>1421</width>
-      <height>681</height>
+      <height>821</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayoutGeneral">
@@ -112,8 +74,8 @@
        </property>
        <property name="iconSize">
         <size>
-         <width>50</width>
-         <height>50</height>
+         <width>40</width>
+         <height>40</height>
         </size>
        </property>
       </widget>
@@ -153,6 +115,32 @@
          <string>Data-Time</string>
         </property>
        </column>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="pushButtonGenerarGraficas">
+       <property name="font">
+        <font>
+         <family>Corbel</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Generar Gráficas </string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
       </widget>
      </item>
      <item row="2" column="1" rowspan="5">
@@ -422,23 +410,35 @@ background-color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="pushButtonGenerarGraficas">
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>10</y>
+      <width>491</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QPushButton" name="pushButtonBuscarDatos">
        <property name="font">
         <font>
          <family>Corbel</family>
-         <pointsize>14</pointsize>
+         <pointsize>12</pointsize>
         </font>
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
        </property>
        <property name="text">
-        <string>Generar Gráficas </string>
+        <string>Buscar</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+         <normaloff>../Recursos/icons8-google-web-search-400.png</normaloff>../Recursos/icons8-google-web-search-400.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -448,20 +448,14 @@ background-color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QTextEdit" name="textEditBusarDatos">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+      </widget>
+     </item>
     </layout>
-   </widget>
-   <widget class="QTextEdit" name="textEditBusarDatos">
-    <property name="geometry">
-     <rect>
-      <x>870</x>
-      <y>40</y>
-      <width>309</width>
-      <height>87</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);</string>
-    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
