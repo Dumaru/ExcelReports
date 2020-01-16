@@ -26,9 +26,9 @@
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>560</y>
-      <width>751</width>
+      <x>870</x>
+      <y>570</y>
+      <width>791</width>
       <height>451</height>
      </rect>
     </property>
@@ -37,24 +37,14 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>50</y>
-      <width>651</width>
-      <height>781</height>
+      <x>180</x>
+      <y>30</y>
+      <width>445</width>
+      <height>761</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayoutGeneral">
-     <item row="3" column="2">
-      <widget class="QCheckBox" name="checkBox2G">
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>2G</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="2">
+     <item row="5" column="2">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -70,7 +60,7 @@
        </property>
       </spacer>
      </item>
-     <item row="9" column="3" rowspan="2">
+     <item row="5" column="3" rowspan="2">
       <layout class="QFormLayout" name="formLayout_3">
        <item row="4" column="1">
         <layout class="QVBoxLayout" name="BoxLayoutMS"/>
@@ -88,7 +78,7 @@
             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
            </property>
            <property name="text">
-            <string>MS Power</string>
+            <string>                   MS Power</string>
            </property>
           </widget>
          </item>
@@ -155,7 +145,7 @@
             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
            </property>
            <property name="text">
-            <string>Last Lac</string>
+            <string>                        Last Lac</string>
            </property>
           </widget>
          </item>
@@ -214,17 +204,7 @@ background-color: rgb(255, 255, 255);</string>
        </item>
       </layout>
      </item>
-     <item row="6" column="2">
-      <widget class="QCheckBox" name="checkBox4G">
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>4G</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="4">
+     <item row="5" column="4">
       <widget class="QLabel" name="label_4">
        <property name="styleSheet">
         <string notr="true">image: url(:/Imagenes/Logo.png);</string>
@@ -234,25 +214,10 @@ background-color: rgb(255, 255, 255);</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="4">
+     <item row="3" column="4">
       <layout class="QVBoxLayout" name="BoxLayout_2"/>
      </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="labelRAT">
-       <property name="font">
-        <font>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>RAT</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="3">
+     <item row="3" column="3">
       <layout class="QVBoxLayout" name="BoxLayout">
        <item>
         <layout class="QVBoxLayout" name="TituloTALayout">
@@ -267,7 +232,7 @@ background-color: rgb(255, 255, 255);</string>
             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
            </property>
            <property name="text">
-            <string>TA (Tiempo de Avance)</string>
+            <string>                 TA (Tiempo de Avance)</string>
            </property>
           </widget>
          </item>
@@ -312,16 +277,6 @@ background-color: rgb(255, 255, 255);</string>
         </widget>
        </item>
       </layout>
-     </item>
-     <item row="5" column="2">
-      <widget class="QCheckBox" name="checkBox3G">
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>3G</string>
-       </property>
-      </widget>
      </item>
     </layout>
    </widget>
@@ -379,9 +334,9 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
     <property name="geometry">
      <rect>
-      <x>1000</x>
+      <x>870</x>
       <y>60</y>
-      <width>749</width>
+      <width>791</width>
       <height>501</height>
      </rect>
     </property>
@@ -422,10 +377,10 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="pushButtonGenerarGraficas">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>560</y>
-      <width>191</width>
-      <height>61</height>
+      <x>700</x>
+      <y>570</y>
+      <width>171</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -454,10 +409,10 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QPushButton" name="pushButtonVerAnalisis">
     <property name="geometry">
      <rect>
-      <x>810</x>
+      <x>690</x>
       <y>60</y>
-      <width>191</width>
-      <height>49</height>
+      <width>181</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
@@ -481,6 +436,75 @@ background-color: rgb(255, 255, 255);</string>
       <width>40</width>
       <height>40</height>
      </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelRAT">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>1</y>
+      <width>42</width>
+      <height>82</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>RAT</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox3G">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>117</y>
+      <width>42</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>3G</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox4G">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>144</y>
+      <width>42</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>4G</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox2G">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>90</y>
+      <width>42</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>2G</string>
     </property>
    </widget>
   </widget>
