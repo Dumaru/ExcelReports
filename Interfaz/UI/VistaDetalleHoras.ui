@@ -164,7 +164,7 @@
       <height>351</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosTabla1"/>
+    <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosDinamicos"/>
    </widget>
    <widget class="QWidget" name="gridLayoutWidget_3">
     <property name="geometry">
@@ -384,7 +384,7 @@
       <height>351</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosTabla2"/>
+    <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosEstaticos"/>
    </widget>
    <widget class="QScrollBar" name="verticalScrollBar">
     <property name="geometry">
