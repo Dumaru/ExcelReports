@@ -35,7 +35,7 @@ class PandasDataLoader:
     def getDfEmaisFaltantes(self):
         return self.dfEmaisFaltates
 
-    def setUniqueColumnValues(self, df, column):
+    def setUniqueColumnValues(self, df: pd.DataFrame, column: str):
         self.uniqueColumnValues[column] = df[column].unique().tolist()
 
     def getCantidadDatos(self, df, columna, filtros=[]):
