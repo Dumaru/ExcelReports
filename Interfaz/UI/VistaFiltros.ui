@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1971</width>
-    <height>966</height>
+    <width>1841</width>
+    <height>1383</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -17,29 +23,13 @@
    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>231</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/Imagenes/Logo.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>1460</x>
-      <y>60</y>
-      <width>491</width>
-      <height>671</height>
+      <x>1000</x>
+      <y>560</y>
+      <width>751</width>
+      <height>391</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayoutGraficas"/>
@@ -47,77 +37,30 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>1421</width>
-      <height>821</height>
+      <x>110</x>
+      <y>30</y>
+      <width>881</width>
+      <height>921</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayoutGeneral">
-     <item row="4" column="0">
-      <widget class="QPushButton" name="pushButtonVerAnalisis">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>14</pointsize>
-        </font>
+     <item row="6" column="2">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
        </property>
-       <property name="text">
-        <string>        Ver Análisis</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
-       </property>
-       <property name="iconSize">
+       <property name="sizeHint" stdset="0">
         <size>
          <width>40</width>
-         <height>40</height>
+         <height>20</height>
         </size>
        </property>
-      </widget>
+      </spacer>
      </item>
-     <item row="2" column="2" rowspan="4">
-      <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <column>
-        <property name="text">
-         <string>IMEI</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>IMSIS Asociados</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Operator</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Channel</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Hits</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Data-Time</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-     <item row="3" column="0">
+     <item row="2" column="4">
       <widget class="QPushButton" name="pushButtonGenerarGraficas">
        <property name="font">
         <font>
@@ -143,200 +86,61 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1" rowspan="5">
+     <item row="3" column="3">
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>                                    Filtros</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="4">
+      <widget class="QPushButton" name="pushButtonVerAnalisis">
+       <property name="font">
+        <font>
+         <family>Corbel</family>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Ver Análisis</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="4">
+      <widget class="QLabel" name="label_4">
+       <property name="styleSheet">
+        <string notr="true">image: url(:/Imagenes/Logo.png);</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="4">
+      <layout class="QVBoxLayout" name="BoxLayout_2"/>
+     </item>
+     <item row="6" column="3">
       <layout class="QFormLayout" name="formLayout_3">
-       <item row="2" column="0">
-        <layout class="QFormLayout" name="formLayout_2">
-         <item row="3" column="0">
-          <widget class="QCheckBox" name="checkBox4G">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>4G</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="checkBox3G">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>3G</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="checkBox2G">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>2G</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="labelRAT">
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>RAT</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="1">
-        <layout class="QVBoxLayout" name="BoxLayout">
-         <item>
-          <layout class="QVBoxLayout" name="TituloTALayout">
-           <item>
-            <widget class="QLabel" name="LabelTiempoAvance">
-             <property name="font">
-              <font>
-               <pointsize>12</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-             </property>
-             <property name="text">
-              <string>TA (Tiempo de Avance)</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="LabelTA">
-           <item>
-            <widget class="QLabel" name="LabelRangoIncialTA">
-             <property name="styleSheet">
-              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-             </property>
-             <property name="text">
-              <string>Ingresa EL rango Incial </string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEditValorRangoInicialTA">
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(255, 255, 255);</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="LabelRangoFinallTA">
-             <property name="styleSheet">
-              <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-             </property>
-             <property name="text">
-              <string>Ingresa EL rango Final </string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditValorRangoFinalTA">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
        <item row="4" column="1">
         <layout class="QVBoxLayout" name="BoxLayoutMS"/>
-       </item>
-       <item row="5" column="1">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="LabelMSPOWER">
-           <property name="font">
-            <font>
-             <pointsize>12</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>MS Power</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="CheckBoxTomarDatoMSPower">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>Tomar Dato</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="6" column="1">
-        <layout class="QVBoxLayout" name="LabelMSPOWER_2">
-         <item>
-          <widget class="QLabel" name="LabelRangoInciaMSPOWER">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>Ingresa EL rango Incial </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditValorRangoFinalMSPOWER">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="LabelRangoFinalMSPOWER">
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>Ingresa EL rango Final </string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="7" column="1">
-        <widget class="QLineEdit" name="lineEditValorRangoInicialMSPOWER">
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(255, 255, 255);</string>
-         </property>
-        </widget>
        </item>
        <item row="8" column="1">
         <layout class="QVBoxLayout" name="TituloTALayout_2">
@@ -379,45 +183,173 @@ background-color: rgb(255, 255, 255);</string>
          </item>
         </layout>
        </item>
-       <item row="10" column="1">
+       <item row="11" column="1">
         <layout class="QFormLayout" name="formLayout"/>
+       </item>
+       <item row="10" column="1">
+        <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
+         <property name="font">
+          <font>
+           <family>Corbel</family>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+         </property>
+         <property name="text">
+          <string>Obtener Datos Filtrados</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <layout class="QVBoxLayout" name="LabelMSPOWER_2">
+         <item>
+          <widget class="QLabel" name="LabelRangoInciaMSPOWER">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Ingresa EL rango Incial </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditValorRangoFinalMSPOWER">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelRangoFinalMSPOWER">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Ingresa EL rango Final </string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="5" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="LabelMSPOWER">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>MS Power</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="CheckBoxTomarDatoMSPower">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Tomar Dato</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="lineEditValorRangoInicialMSPOWER">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
-     <item row="6" column="2">
-      <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Obtener Datos Filtrados</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>50</width>
-         <height>50</height>
-        </size>
-       </property>
-      </widget>
+     <item row="4" column="3">
+      <layout class="QVBoxLayout" name="BoxLayout">
+       <item>
+        <layout class="QVBoxLayout" name="TituloTALayout">
+         <item>
+          <widget class="QLabel" name="LabelTiempoAvance">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>TA (Tiempo de Avance)</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="LabelTA">
+         <item>
+          <widget class="QLabel" name="LabelRangoIncialTA">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Ingresa EL rango Incial </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEditValorRangoInicialTA">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="LabelRangoFinallTA">
+           <property name="styleSheet">
+            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Ingresa EL rango Final </string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEditValorRangoFinalTA">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>870</x>
-      <y>10</y>
-      <width>491</width>
+      <x>1000</x>
+      <y>20</y>
+      <width>374</width>
       <height>31</height>
      </rect>
     </property>
@@ -450,6 +382,12 @@ background-color: rgb(255, 255, 255);</string>
      </item>
      <item>
       <widget class="QTextEdit" name="textEditBusarDatos">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
@@ -457,13 +395,125 @@ background-color: rgb(255, 255, 255);</string>
      </item>
     </layout>
    </widget>
+   <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>60</y>
+      <width>749</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(255, 255, 255);</string>
+    </property>
+    <column>
+     <property name="text">
+      <string>IMEI</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>IMSIS Asociados</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Operator</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Channel</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Hits</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Data-Time</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="labelRAT">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>36</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>RAT</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox3G">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>88</y>
+      <width>42</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>3G</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox4G">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>115</y>
+      <width>42</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>4G</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox2G">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>61</y>
+      <width>42</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+    </property>
+    <property name="text">
+     <string>2G</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1971</width>
+     <width>1841</width>
      <height>26</height>
     </rect>
    </property>
