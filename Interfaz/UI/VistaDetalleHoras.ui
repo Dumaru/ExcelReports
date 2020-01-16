@@ -129,7 +129,7 @@
       <x>110</x>
       <y>240</y>
       <width>531</width>
-      <height>61</height>
+      <height>82</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
@@ -189,7 +189,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
+         <normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -207,7 +207,7 @@
       <x>690</x>
       <y>240</y>
       <width>531</width>
-      <height>61</height>
+      <height>68</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
@@ -227,7 +227,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
+         <normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -314,7 +314,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+      <normaloff>../../../../../.designer/Recursos/20803.png</normaloff>../../../../../.designer/Recursos/20803.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -365,7 +365,7 @@
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+      <normaloff>../../../../../.designer/Recursos/20803.png</normaloff>../../../../../.designer/Recursos/20803.png</iconset>
     </property>
     <property name="iconSize">
      <size>
