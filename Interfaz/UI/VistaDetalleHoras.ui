@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1866</width>
-    <height>1009</height>
+    <height>795</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,28 +51,6 @@
          <height>40</height>
         </size>
        </property>
-      </widget>
-     </item>
-     <item row="6" column="0" rowspan="4">
-      <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <column>
-        <property name="text">
-         <string>IMEI</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>IMSIS</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Data-Time</string>
-        </property>
-       </column>
       </widget>
      </item>
      <item row="0" column="0" colspan="2">
@@ -137,6 +115,28 @@
        </property>
       </widget>
      </item>
+     <item row="6" column="0" rowspan="3">
+      <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <column>
+        <property name="text">
+         <string>IMEI</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>IMSIS</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Data-Time</string>
+        </property>
+       </column>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -161,7 +161,7 @@
       <x>380</x>
       <y>550</y>
       <width>791</width>
-      <height>351</height>
+      <height>181</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosDinamicos"/>
@@ -381,7 +381,7 @@
       <x>1180</x>
       <y>550</y>
       <width>531</width>
-      <height>351</height>
+      <height>181</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosEstaticos"/>
@@ -405,7 +405,7 @@
       <x>360</x>
       <y>570</y>
       <width>20</width>
-      <height>321</height>
+      <height>171</height>
      </rect>
     </property>
     <property name="orientation">
@@ -431,7 +431,7 @@
       <x>1710</x>
       <y>560</y>
       <width>20</width>
-      <height>321</height>
+      <height>171</height>
      </rect>
     </property>
     <property name="orientation">
