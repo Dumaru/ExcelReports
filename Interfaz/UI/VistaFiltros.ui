@@ -281,10 +281,10 @@ background-color: rgb(255, 255, 255);</string>
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>570</x>
       <y>10</y>
       <width>374</width>
-      <height>73</height>
+      <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
