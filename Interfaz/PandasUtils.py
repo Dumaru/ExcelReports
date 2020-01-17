@@ -132,9 +132,13 @@ class PandasDataLoader:
         """ Filters the df where the hits amount are greater or equal to the given amount """
         return df[df['HITS'] >= amount]
 
-    def msPowerRangeFilter(self, df: pd.DataFrame, fromN: int, toN: int):
+    def msPowerRangeFilter(self, df: pd.DataFrame, fromN: float, toN: float):
         """ Filters the df in the column MS POWER with the given boundaries"""
-        return df[df['MS POWER'].between(fromN, toN)]
+        return (df[df['MS_POWER'].between(fromN, toN)]  if fromN is not None and toN is not None else df )
+
+    def filtroLastLacValor(self, df: pd.DataFrame, value: float=None):
+        return df[df['LAST_LAC']==float(value)] if value is not None else df
+
 
     def dfLastLacFrecuencia(self, df: pd.DataFrame):
         groupedDf = df.groupby('LAST_LAC')['LAST_LAC'].agg(FRECUENCIA=pd.NamedAgg(column='LAST_LAC', aggfunc='size'))
@@ -163,9 +167,7 @@ class PandasDataLoader:
         """
         Groups the df by the column parameters and gets the groups in the columnValues list
         """
-        groupedColumn = df.groupby(column)
-        dfs = [groupedColumn.get_group(gn) for gn in columnValues]
-        return pd.concat(dfs)
+        return df[df[column].isin(columnValues)]
 
     def getMonthInt(self, strMonth):
         if(strMonth.lower() in ["ene"]):

@@ -17,7 +17,7 @@ class VentanaFiltros(QMainWindow):
         self.ratsSeleccionados = {'2G': 1, '3G': 1, '4G': 1}
         self.valoresTA = set()
         self.tomarMsPower = False
-        self.hitsMinimos = None
+        self.hitsMinimos = 0
         self.lastLacValue = None
         # UI
         loadUi('UI/VistaFiltros.ui', self)
@@ -67,11 +67,16 @@ class VentanaFiltros(QMainWindow):
 
         self.fillTableWidget(self.tableWidgetDatosObtenidosLASTLAC,
                              self.pandasUtils.dfLastLacFrecuencia(self.pandasUtils.allData))
+        # Boton limpiaar seleccion de last lac
+        self.pushButtonLimpiarSeleccion.clicked.connect(lambda state: self.fnProcesaDeseleccion(self.tableWidgetDatosObtenidosLASTLAC))
         # Tabla Datos filtrados
         self.tableWidgetVerDatosFiltrados.setContextMenuPolicy(
             Qt.CustomContextMenu)
         # Establece la funcion que crea el menu contextual y le pasa la posicion
         self.tableWidgetVerDatosFiltrados.customContextMenuRequested.connect(self.menuContextualDatosFiltrados)
+
+    def fnProcesaDeseleccion(self, tableWidget: QTableWidget):
+        tableWidget.selectionModel().clearSelection()
 
     def fillTableWidget(self, qtable: QTableWidget, df: pd.DataFrame = None):
         # TODO: Hacerla general recibiendo el widget
@@ -140,25 +145,50 @@ class VentanaFiltros(QMainWindow):
         print(f"Fn genera grafica datos filtrados")
 
     def fnProcesaObtenerDatosFiltrados(self):
+        self.ratsSeleccionados['2G'] = self.checkBox2G.isChecked()
+        self.ratsSeleccionados['3G'] = self.checkBox3G.isChecked()
+        self.ratsSeleccionados['4G'] = self.checkBox4G.isChecked()
+
         self.setLastLacValue()
-        if self.lastLacValue is not None:
-            self.valoresTA = set(self.lineEditValorRangosTA.text().split(','))
-            self.hitsMinimos = self.lineEditValorHitsMinimos.text()
-            if self.tomarMsPower:
+        self.valoresTA = set(self.lineEditValorRangosTA.text().split(','))
+        self.hitsMinimos = int(self.lineEditValorHitsMinimos.text()) if len(self.lineEditValorHitsMinimos.text())>0 else 0
+        print(
+            f"Fn procesa obtener datos filtrados rats {self.ratsSeleccionados}",
+            f"valores TA {self.valoresTA} min hits {self.hitsMinimos}",
+            f"tomar ms power {self.tomarMsPower}  valores ms power {self.msInicial} {self.msFinal}",
+            f"Last lasc {self.lastLacValue}")
+        if self.tomarMsPower:
+            try:
                 self.msInicial = float(self.lineEditValorRangoInicialMSPOWER.text())
                 self.msFinal = float(self.lineEditValorRangoFinalMSPOWER.text())
-            print(
-                f"Fn procesa obtener datos filtrados rats {self.ratsSeleccionados}",
-                f"valores TA {self.valoresTA} min hits {self.hitsMinimos}",
-                f"tomar ms power {self.tomarMsPower}  valores ms power {self.msInicial} {self.msFinal}",
-                f"Last lasc {self.lastLacValue}")
+            except expression as identifier:
+                self.msInicial = None
+                self.msFinal = None
         else:
-            print("Debe seleccionar un valor de last lac")
+            self.msInicial = None
+            self.msFinal = None
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.fnAplicaFiltros())
+        
+    def fnAplicaFiltros(self):
+        listaRats = [rat for rat, v in self.ratsSeleccionados.items() if v is True]
+        print(f"Lista rats {listaRats}")
+        dfFiltradoRats = self.pandasUtils.filterDfByColumnValues(
+            self.pandasUtils.allData, "RAT", listaRats
+        )
+        
+        dfTa = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData, list(self.valoresTA))
+        dfMsPower = self.pandasUtils.msPowerRangeFilter(dfTa, self.msInicial, self.msFinal)
+        dfLastLac = self.pandasUtils.filtroLastLacValor(dfMsPower,self.lastLacValue)
+        grouped = self.pandasUtils.getGroupedByEmais(dfLastLac)
+        return self.pandasUtils.filterByHitsAmount(grouped, self.hitsMinimos)
+
     def setLastLacValue(self):
         filaSeleccionada = [dato.text() for dato in self.tableWidgetDatosObtenidosLASTLAC.selectedItems()]
         if(filaSeleccionada):
             print(f"Fila seleccionada {filaSeleccionada}")
             self.lastLacValue = float(filaSeleccionada[0])
+        else:
+            self.lastLacValue = None
 
     def fnProcesaTomaDatosMsPower(self):
         self.tomarMsPower = self.checkBoxTomarDatoMSPower.isChecked()
@@ -185,14 +215,6 @@ class VentanaFiltros(QMainWindow):
             self.valoresTA = {0, 1, 2, 3, 4, 5, 6}
         self.lineEditValorRangosTA.setText(",".join(map(str, list(self.valoresTA))))
 
-    def fnAplicarFiltrosDf(self, df: pd.DataFrame):
-        """ Aplica filtros de la UI y regresa el dataframe"""
-        dfFiltrado = self.pandasUtils.tiempoAvanceFilterTA(
-            self.pandasUtils.allData, list(self.valoresTA)
-        )
-        if self.tomarMsPower:
-            dfFiltrado = self.pandasUtils.msPowerRangeFilter(
-                self.pandasUtils.allData)
 
 
 
