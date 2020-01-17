@@ -101,7 +101,7 @@
       <item row="14" column="1" rowspan="2">
        <layout class="QFormLayout" name="formLayout">
         <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonRats">
+         <widget class="QPushButton" name="pushButtonRATS">
           <property name="text">
            <string>RAT</string>
           </property>
@@ -132,7 +132,7 @@
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QPushButton" name="pushButtonRATS">
+         <widget class="QPushButton" name="pushButton_2">
           <property name="text">
            <string>IMEI</string>
           </property>
