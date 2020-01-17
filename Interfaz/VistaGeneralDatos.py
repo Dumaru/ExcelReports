@@ -147,8 +147,7 @@ class VistaGeneralDatos(QMainWindow):
         """
         df = self.pandasUtils.allData if self.viendoIncidentales is False else self.pandasUtils.dfIncidentales
         # TODO: Tambien tener en cuenta que pudo haber digitado un imei
-        listaRats = [rat for rat, v in self.ratsSeleccionados.items()
-                     if v is True]
+        listaRats = [rat for rat, v in self.ratsSeleccionados.items() if v is True]
         listaOps = [op for op, v in self.operadoresSeleccionados.items() if v is True]
         dfFiltradoRats = self.pandasUtils.filterDfByColumnValues(
             self.pandasUtils.allData, "RAT", listaRats
