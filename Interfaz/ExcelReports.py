@@ -106,7 +106,7 @@ class ExcelReportsInicio(QMainWindow):
     def fnCargaDatosCompleta(self):
         self.overlay.killAndHide()
         UiUtils.showInfoMessage(title="Informacion de carga",
-                                description=f"Se cargaron {len(self.pandasUtils.dfsList)} archivos.")
+                                description=f"Se cargaron los archivos correctamente.")
         self.pushButtonMostrarDatos.setEnabled(True)
 
     def resizeEvent(self, event):

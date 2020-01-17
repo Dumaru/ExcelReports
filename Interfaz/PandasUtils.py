@@ -20,9 +20,8 @@ class PandasDataLoader:
         if PandasDataLoader.__instance != None:
             raise Exception("This class is a singleton!")
         else:
-            self.dfsList = []
             self.allData = None
-            self.dfEmaisFaltantes = None
+            self.dfIncidentales = None
             self.processing = False
             self.threadProcessor = ThreadingUtils()
             self.saverThread = ThreadingUtils()
@@ -31,9 +30,6 @@ class PandasDataLoader:
 
     def getAllDataOk(self):
         return self.allData
-
-    def getDfEmaisFaltantes(self):
-        return self.dfEmaisFaltates
 
     def setUniqueColumnValues(self, df: pd.DataFrame, column: str):
         self.uniqueColumnValues[column] = df[column].unique().tolist()
@@ -57,40 +53,49 @@ class PandasDataLoader:
         def loadDataWrapper():
             print("Empieza carga de datos desde thread")
             self.processing = True
+            dfsList = []
             """
             Reads each excel file and saves all the sheets into a list with the specified columns
             """
             COLS = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
                     "MS POWER", "TA", "LAST LAC", "NAME", "HITS", "DATE-TIME"]
             for filePath in pathList:
-                temd_dfs = [pd.read_excel(f"{filePath}", sheet_name=0, usecols=COLS),  # 2G
-                            pd.read_excel(
-                                f"{filePath}", sheet_name=1, usecols=COLS),  # 3G
-                            pd.read_excel(f"{filePath}", sheet_name=2, usecols=COLS)]  # 4G
-                self.dfsList.append(temd_dfs)
+                temd_df = pd.read_excel(f"{filePath}", usecols=COLS)
+                dfsList.append(temd_df)
             # Puts all the general and raw data into a df
-            self.allData = pd.concat(
-                [df for dflist in self.dfsList for df in dflist])
+            self.allData = pd.concat(dfsList)
+            self.allData.dropna(how='all', inplace=True)
 
             # TODO: HACER REEMPLAZO DE UNA
             self.allData['DATE_TIME'] = self.allData['DATE-TIME'].apply(
                 self.toDatetime)
             self.allData.drop('DATE-TIME', axis=1, inplace=True)
-            self.allData.sort_values(
-                by=["DATE_TIME"], inplace=True, ascending=True)
             # Cambia el nombre de las columnas a estandar
             cols = self.allData.columns
             cols = cols.map(lambda x: x.strip().replace(
                 ' ', '_').strip() if isinstance(x, (str, )) else x)
             self.allData.columns = cols
 
-            self.allData = self.allData[self.allData['IMEI'].notnull()]
-            self.dfEmaisFaltantes = self.allData[self.allData['IMEI'].isnull()]
+            # Sacar los incidentales
+            self.dfIncidentales = self.getDfDatosIncidentales(self.allData, 1)
+            self.allData = self.getDifferenceBetweenDataFrames(self.allData,  self.dfIncidentales)
+
             self.processing = False
         self.threadProcessor.setWorker(loadDataWrapper)
         self.threadProcessor.start(QThread.HighestPriority)
         self.threadProcessor.finished.connect(callback)
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
+
+    def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int):
+        groupedDfHitsMin = df.groupby('IMEI').filter(lambda x: x['HITS'].sum()<=hitsMin)
+        groupedDfNullValues = df[df['DATE_TIME'].isnull() | df['HITS'].isnull()]
+        incidentales = pd.concat([groupedDfHitsMin, groupedDfNullValues])
+        return incidentales
+
+    def getDifferenceBetweenDataFrames(self, dfLeft: pd.DataFrame, dfRight: pd.DataFrame):
+        dfRes = dfLeft.merge(dfRight, indicator = True, how='left').loc[lambda x : x['_merge']!='both']
+        dfRes.drop(columns=['_merge'], inplace=True)
+        return dfRes
 
     def getGroupedByEmais(self, df: pd.DataFrame):
         # Returns a df with grouped and aggregated values
@@ -119,10 +124,26 @@ class PandasDataLoader:
         self.saverThread.start(QThread.HighestPriority)
         self.saverThread.finished.connect(callbackSave)
 
+    def tiempoAvanceFilterTA(self, df: pd.DataFrame, valuesList: list):
+        """ Filters the df by the values on the TA column"""
+        return df[df['TA'].isin(valuesList)]
+
+    def filterByHitsAmount(self, df: pd.DataFrame, amount: int):
+        """ Filters the df where the hits amount are greater or equal to the given amount """
+        return df[df['HITS'] >= amount]
+
+    def msPowerRangeFilter(self, df: pd.DataFrame, fromN: int, toN: int):
+        """ Filters the df in the column MS POWER with the given boundaries"""
+        return df[df['MS POWER'].between(fromN, toN)]
+
+    def lastLacFrecuencia(self, df: pd.DataFrame):
+        seriesFreq = df.groupby('LAST_LAC')['LAST_LAC'].size()
+        return seriesFreq
+
     def setUniqueNameIdColumn(self, dfEmaisOk: pd.DataFrame):
         """ Updates the NAME with a unique KEY for a EMAI groups and returns that new DataFrame"""
         import hashlib
-        fn = lambda x: hashlib.md5(str(x).encode()).hexdigest()[0:10]
+        def fn(x): return hashlib.md5(str(x).encode()).hexdigest()[0:10]
         df1 = dfEmaisOk.groupby('IMEI')['IMEI'].transform(fn)
         return dfEmaisOk.assign(NAME=df1)
 
@@ -142,14 +163,6 @@ class PandasDataLoader:
         groupedColumn = df.groupby(column)
         dfs = [groupedColumn.get_group(gn) for gn in columnValues]
         return pd.concat(dfs)
-
-    def getDfDatosIncosistentes(self, df: pd.DataFrame, col: str):
-        """ Gets a df where there is nan values in the param column"""
-        return df[df[col].isnull()]
-
-    def getDatosIncosistentes(self, df, cols=[]):
-        return df[df[cols[0]].isnull()]
-    # getDatosIncosistentes(allData, ['IMEI',])
 
     def getMonthInt(self, strMonth):
         if(strMonth.lower() in ["ene"]):
@@ -178,34 +191,36 @@ class PandasDataLoader:
             return 12
 
     def toDatetime(self, dateStr):
-        # Date string example-> ma. dic. 31 23:50:11 2019
-        _, month, t_year= list(map(str.strip, dateStr.split('.')))
-        day, t, year= t_year.split(' ')
-        month= self.getMonthInt(month)
-        dateStr= f"{year}-{month}-{day} {t}"
-        return pd.to_datetime(dateStr, format="%Y-%m-%d %X")
-
+        if isinstance(dateStr, str):
+            # Date string example-> ma. dic. 31 23:50:11 2019
+            _, month,t_year = list(map(str.strip, dateStr.split('.')))
+            day, t, year = t_year.split(' ') 
+            month = self.getMonthInt(month)
+            dateStr = f"{year}-{month}-{day} {t}"
+            return pd.to_datetime(dateStr, format="%Y-%m-%d %X")
+        else:
+            return dateStr
 
 class ThreadingUtils_:
 
     @staticmethod
     def doInThread(worker=None, callback=None):
         with concurrent.futures.ThreadPoolExecutor() as executor:
-            future= executor.submit(worker)
+            future = executor.submit(worker)
             future.add_done_callback(callback)
             return future
 
 
 class ThreadingUtils(QThread):
     """ Thread class processor to do hard work """
-    updateSignal= pyqtSignal()
+    updateSignal = pyqtSignal()
 
     def __init__(self, worker=None):
         super(QThread, self).__init__()
-        self.worker= worker
+        self.worker = worker
 
     def setWorker(self, worker):
-        self.worker= worker
+        self.worker = worker
 
     def run(self):
         # Starts the worker and then emits the signal
