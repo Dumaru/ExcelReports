@@ -6,7 +6,7 @@ import pandas as pd
 from PandasUtils import PandasDataLoader
 import UiUtils
 from VentanaFiltros import VentanaFiltros
-
+from VentanaAnalisisHorario import VentanaAnalisisHorario
 
 class VistaGeneralDatos(QMainWindow):
     def __init__(self, parent=None, pandasUtilsInstance=None):
@@ -117,7 +117,14 @@ class VistaGeneralDatos(QMainWindow):
         )
 
     def fnVentanaAnalisisHorario(self):
+        self.hide()
+        df = self.fnAplicaFiltrosDfOk()
+        ventanaAnalisisHorario = VentanaAnalisisHorario(self, self.pandasUtils, data=df)
+        ventanaAnalisisHorario.show()
         print(f"Fn analisis horario")
+
+
+
 
     def fnProcesaGuardarDatos(self):
         print("Fn procesa guardar datos")

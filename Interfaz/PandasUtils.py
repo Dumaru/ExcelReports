@@ -102,6 +102,7 @@ class PandasDataLoader:
         def joinValues(series):
             return ','.join(map(str, series[series.notnull()].unique()))
         groupedDf = df.groupby('IMEI').agg(
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues), 
             RAT=pd.NamedAgg(column='RAT', aggfunc=joinValues),
             OPERATOR=pd.NamedAgg(column='OPERATOR', aggfunc=joinValues),
             CHANNEL=pd.NamedAgg(column='CHANNEL', aggfunc=joinValues),
@@ -116,6 +117,21 @@ class PandasDataLoader:
         )
         return groupedDf
 
+    def getGroupedByEmaisHorario(self, df: pd.DataFrame):
+        # Returns a df with grouped and aggregated values 
+        def joinValues(series):
+            return ','.join(map(str,series[series.notnull()].unique()))
+        groupedDf = df.groupby('IMEI').agg(
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues), 
+            IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues), 
+            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'), 
+            DATE_TIMEs=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
+        )
+        return groupedDf
+
+    def filtroHoras(self, df: pd.DataFrame, fromTime, toTime):
+        return df[(df['DATE_TIME'].dt.hour >= fromTime) & (df['DATE_TIME'].dt.hour < toTime)]
+
     def saveToExcelFile(self, df: pd.DataFrame, newFilePath: str, index=False, callbackSave=None):
         def saveFunctionWrapper():
             df.to_excel((newFilePath if newFilePath.endswith(
@@ -128,6 +144,10 @@ class PandasDataLoader:
         """ Filters the df by the values on the TA column"""
         return df[df['TA'].isin(valuesList)]
 
+    def filtroDatetimes(self, df: pd.DataFrame, fromDate, toDate):
+        return df.loc[(df['DATE_TIME'] >= fromDate)&(df['DATE_TIME'] <= toDate)]
+
+
     def filterByHitsAmount(self, df: pd.DataFrame, amount: int):
         """ Filters the df where the hits amount are greater or equal to the given amount """
         return df[df['HITS'] >= amount]
@@ -139,6 +159,11 @@ class PandasDataLoader:
     def filtroLastLacValor(self, df: pd.DataFrame, value: float=None):
         return df[df['LAST_LAC']==float(value)] if value is not None else df
 
+    def hitsByDate(self, df: pd.DataFrame):
+        grouped= df.groupby(pd.Grouper(key='DATE_TIME', freq='D'))['HITS'].apply(sum)
+        grouped.sort_values()
+        grouped.rename_axis('DATE', inplace=True)
+        return grouped
 
     def dfLastLacFrecuencia(self, df: pd.DataFrame):
         groupedDf = df.groupby('LAST_LAC')['LAST_LAC'].agg(FRECUENCIA=pd.NamedAgg(column='LAST_LAC', aggfunc='size'))
@@ -154,8 +179,8 @@ class PandasDataLoader:
         df1 = dfEmaisOk.groupby('IMEI')['IMEI'].transform(fn)
         return dfEmaisOk.assign(NAME=df1)
 
-    def filterDfByEmai(self, df: pd.DataFrame = None, imei: str = ""):
-        return df[df['IMEI'] == float(imei)]
+    def filterDfByEmai(self, df: pd.DataFrame = None, imei: float=None):
+        return df[df['IMEI'].astype(float) == float(imei)] if imei is not None else df
 
     def getDfCompletoEmaisOk(self, df: pd.DataFrame):
         """
