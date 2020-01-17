@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>2299</width>
-    <height>1155</height>
+    <height>1394</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,424 +17,354 @@
    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="gridLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>300</y>
-      <width>531</width>
-      <height>581</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="4" column="0">
-      <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <column>
-        <property name="text">
-         <string>IMEI</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>IMSIS</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Data-Time</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>20</y>
-      <width>301</width>
-      <height>141</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-image: url(:/Imagenes/Logo.png);</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>270</y>
-      <width>531</width>
-      <height>361</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosDinamicos"/>
-   </widget>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>300</y>
-      <width>531</width>
-      <height>581</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <column>
-        <property name="text">
-         <string>IMEI</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>IMSI</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>DATA-TIME</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>710</y>
-      <width>531</width>
-      <height>381</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosEstaticos"/>
-   </widget>
-   <widget class="QWidget" name="gridLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>240</y>
-      <width>531</width>
-      <height>82</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_5">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>   Hasta</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QDateTimeEdit" name="dateTimeEditIngresoFinal">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_6">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Desde</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QDateTimeEdit" name="dateTimeEditIngresoInicial">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0" colspan="4">
-      <widget class="QPushButton" name="pushButtonVerDatosTablaFiltrada">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Filtrar Datos y Ver (Tabla 1)</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>40</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="gridLayoutWidget_4">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>240</y>
-      <width>531</width>
-      <height>68</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="1" column="1">
-      <widget class="QPushButton" name="pushButtonVerDatosEstaticos">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>12</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Filtrar Datos y Ver (Tabla 2)</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>30</width>
-         <height>30</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="comboBoxOrganizacionJornadas">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-       <item>
-        <property name="text">
-         <string>Ver Datos Agrupados</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Mayor Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Mayor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Mayor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Mayor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Menor  Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Menor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Menor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Menor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QPushButton" name="pushButtonGraficarDatosTablaFiltrada">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>880</y>
-      <width>371</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Corbel</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-    </property>
-    <property name="text">
-     <string>Graficar Datos De Tabla 1</string>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../../../../.designer/Recursos/20803.png</normaloff>../../../../../.designer/Recursos/20803.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>30</width>
-      <height>30</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>190</y>
-      <width>401</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Corbel</family>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>INGRESA EL RANGO DE TIEMPO </string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButtonGraficarDatosEstaticos">
-    <property name="geometry">
-     <rect>
-      <x>780</x>
-      <y>880</y>
-      <width>301</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Corbel</family>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-    </property>
-    <property name="text">
-     <string>Graficar Datos De Tabla 2</string>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../../../../.designer/Recursos/20803.png</normaloff>../../../../../.designer/Recursos/20803.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>30</width>
-      <height>30</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>240</y>
-      <width>411</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Corbel</family>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Gráficas Generadas Apartir de la tabla 1</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_3">
-    <property name="geometry">
-     <rect>
-      <x>1300</x>
-      <y>670</y>
-      <width>411</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Corbel</family>
-      <pointsize>14</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Gráficas Generadas Apartir de la tabla 2</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>190</y>
-      <width>401</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Corbel</family>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>VER TIEMPOS PARAMÉTRIZADOS</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout_8">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>Corbel</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>INGRESA EL RANGO DE TIEMPO </string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_4">
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/Imagenes/Logo.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2" colspan="2">
+     <widget class="QLabel" name="label_7">
+      <property name="font">
+       <font>
+        <family>Corbel</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>VER TIEMPOS PARAMÉTRIZADOS</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <family>Corbel</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Gráficas Generadas Apartir de la tabla 1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" rowspan="3">
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Desde</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QDateTimeEdit" name="dateTimeEditIngresoInicial">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonVerDatosTablaFiltrada">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+            </property>
+            <property name="text">
+             <string>Filtrar Datos y Ver (Tabla 1)</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="2">
+           <widget class="QPushButton" name="pushButtonGraficarDatosTablaFiltrada">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+            </property>
+            <property name="text">
+             <string>Graficar Datos De Tabla 1</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../.designer/Recursos/20803.png</normaloff>../../../../../.designer/Recursos/20803.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QDateTimeEdit" name="dateTimeEditIngresoFinal">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QGridLayout" name="gridLayout_2">
+            <item row="0" column="2">
+             <widget class="QLabel" name="label_5">
+              <property name="font">
+               <font>
+                <family>Corbel</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>   Hasta</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="5" column="0" colspan="2">
+           <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <column>
+             <property name="text">
+              <string>IMEI</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>IMSIS</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Data-Time</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="3">
+     <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosDinamicos"/>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <family>Corbel</family>
+        <pointsize>14</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Gráficas Generadas Apartir de la tabla 2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosEstaticos"/>
+    </item>
+    <item row="2" column="1" rowspan="3">
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="1" column="0">
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="1" column="0">
+           <widget class="QComboBox" name="comboBoxOrganizacionJornadas">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Ver Datos Agrupados</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Mayor Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Mayor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Mayor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Mayor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Menor  Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Menor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Menor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Menor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButtonVerDatosEstaticos">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+            </property>
+            <property name="text">
+             <string>Filtrar Datos y Ver (Tabla 2)</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</normaloff>../../../../../.designer/Recursos/icons8-marcar-como-no-oculto-96.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <column>
+             <property name="text">
+              <string>IMEI</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>IMSI</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>DATA-TIME</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item row="6" column="0">
+           <widget class="QPushButton" name="pushButtonGraficarDatosEstaticos">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+            </property>
+            <property name="text">
+             <string>Graficar Datos De Tabla 2</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>../../../../../.designer/Recursos/20803.png</normaloff>../../../../../.designer/Recursos/20803.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
