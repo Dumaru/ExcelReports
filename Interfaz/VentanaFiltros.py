@@ -205,7 +205,7 @@ class VentanaFiltros(QMainWindow):
                     self.lineEditValorRangoInicialMSPOWER.text())
                 self.msFinal = float(
                     self.lineEditValorRangoFinalMSPOWER.text())
-            except expression as identifier:
+            except identifier:
                 self.msInicial = None
                 self.msFinal = None
         else:
