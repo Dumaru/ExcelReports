@@ -37,11 +37,12 @@ class VentanaAnalisisHorario(QMainWindow):
         self.pushButtonGraficarDatosTablaFiltrada.clicked.connect(
             self.fnGraficarDatosTabla)
         # Estaticos
+        self.setearValoresEstaticos()
         self.pushButtonVerDatosEstaticos.clicked.connect(
             self.fnVerDatosEstaticosTablaHorario)
-        self.setearValoresEstaticos()
+            # Llenado de tabla de rangos estaticos
         self.pushButtonGraficarDatosEstaticos.clicked.connect(
-            self.fnGraficarDatosEstaticosTabla)
+            self.fnGraficarDatosEstaticosTabla)     
         # Action
         self.actionVolverDatos_General.triggered.connect(
             self.fnMuestraVentanaGeneral)
@@ -79,40 +80,46 @@ class VentanaAnalisisHorario(QMainWindow):
         self.parent().show()
 
     def fnAplicaRangosTablasDinamicas(self):
-        filtroDates = self.pandasUtils.filtroDatetimes(
-            self.data, self.fromDate, self.toDate)
+        self.setearFechas()
+        print(f"From {self.fromDate} to {self.toDate} Data {self.data.shape}")
+        filtroDates = self.pandasUtils.filtroDatetimes(self.data, self.fromDate, self.toDate)
         return self.pandasUtils.getGroupedByEmaisHorario(filtroDates)
 
     def fnAplicaRangosTablasEstaticas(self):
         self.setearValoresEstaticos()
-
         filtroDates = self.pandasUtils.filtroHoras(
             self.data, self.fromTime, self.toTime)
-        return self.pandasUtils.getGroupedByEmaisHorario(filtroDates)
+        if self.viendoMenores is False:
+            filtroHits = self.pandasUtils.filterByHitsAmount(filtroDates, self.valorFiltro)
+        else:
+            filtroHits = self.pandasUtils.filterByHitsAmountMin(filtroDates, self.valorFiltro)
+        return self.pandasUtils.getGroupedByEmaisHorario(filtroHits)
 
     def fnGraficarDatosTabla(self):
         self.setearFechas()
         self.fillTableWidget(
             self.tableWidgetMostrarDatosFiltrados, self.fnAplicaRangosTablasDinamicas()
         )
-        print(f"Graficar tabla filtrada {self.fromDate} - {self.finalDate}")
+        print(f"Graficar tabla filtrada {self.fromDate} - {self.toDate}")
 
     def fnVerDatosTablaHorario(self):
+        # Llenado de tabla
         self.setearFechas()
         self.fillTableWidget(self.tableWidgetMostrarDatosFiltrados,
                              self.fnAplicaRangosTablasDinamicas())
 
     def fnGraficarDatosEstaticosTabla(self):
+        # Graficar datos con rangos
         self.setearValoresEstaticos()
-
-        self.fillTableWidget(
-            self.tableWidgetMostrarDatosFiltrados, self.fnAplicaRangosTablasEstaticas()
-        )
         print("Graficar tabla filtrada estaticos")
 
     def fnVerDatosEstaticosTablaHorario(self):
+        # Llenado de tabla de rangos estaticos
         self.setearValoresEstaticos()
-
+        self.fillTableWidget(
+            self.tableWidgetMostrarDatosEstaticos, self.fnAplicaRangosTablasEstaticas()
+        )
+    
         print(f"FnVerDatosTablaHorario estatico")
 
     def fillTableWidget(self, qtable: QTableWidget, df: pd.DataFrame = None):
@@ -165,14 +172,10 @@ class VentanaAnalisisHorario(QMainWindow):
     def setearFechas(self):
         dateTimeFormat = 'yyyy-MM-dd hh:mm:ss'
         pythonDateFormat = "%Y-%m-%d %X"
-        try:
-            self.fromDate = pd.to_datetime(self.dateTimeEditIngresoInicial.dateTime(
-            ).toString(dateTimeFormat), format=pythonDateFormat)
-            self.finalDate = pd.to_datetime(self.dateTimeEditIngresoFinal.dateTime(
-            ).toString(dateTimeFormat), format=pythonDateFormat)
-        except expression as identifier:
-            self.fromDate = None
-            self.finalDate = None
+        print(f"{(self.dateTimeEditIngresoInicial).dateTime()}")
+        self.fromDate = pd.to_datetime(self.dateTimeEditIngresoInicial.dateTime().toString(dateTimeFormat), format=pythonDateFormat)
+        print(f"{self.dateTimeEditIngresoFinal.dateTime()}")
+        self.toDate = pd.to_datetime(self.dateTimeEditIngresoFinal.dateTime().toString(dateTimeFormat), format=pythonDateFormat)
 
 
 if(__name__ == "__main__"):

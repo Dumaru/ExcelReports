@@ -151,6 +151,9 @@ class PandasDataLoader:
     def filterByHitsAmount(self, df: pd.DataFrame, amount: int):
         """ Filters the df where the hits amount are greater or equal to the given amount """
         return df[df['HITS'] >= amount]
+    def filterByHitsAmountMin(self, df: pd.DataFrame, amount: int):
+        """ Filters the df where the hits amount are greater or equal to the given amount """
+        return df[df['HITS'] <= amount]
 
     def msPowerRangeFilter(self, df: pd.DataFrame, fromN: float, toN: float):
         """ Filters the df in the column MS POWER with the given boundaries"""
