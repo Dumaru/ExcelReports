@@ -200,7 +200,7 @@ border-color: rgb(0, 0, 0);</string>
        </font>
       </property>
       <property name="text">
-       <string>ACA SE MUESTRAN TUS DATOS</string>
+       <string>LISTA DIRECTORIOS</string>
       </property>
      </widget>
     </item>
