@@ -26,13 +26,13 @@ class VentanaFiltros(QMainWindow):
         # self.ratsSeleccionados = {
             # rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')
         # }
-        self.checkBox2G.stateChanged.connect(self.fnProcesaSeleccionRat)
-        self.checkBox3G.stateChanged.connect(self.fnProcesaSeleccionRat)
-        self.checkBox4G.stateChanged.connect(self.fnProcesaSeleccionRat)
         self.checkBox2G.setChecked(True)
         self.checkBox3G.setChecked(True)
         self.checkBox4G.setChecked(True)
-
+        self.checkBox2G.stateChanged.connect(self.fnProcesaSeleccionRat)
+        self.checkBox3G.stateChanged.connect(self.fnProcesaSeleccionRat)
+        self.checkBox4G.stateChanged.connect(self.fnProcesaSeleccionRat)
+        
         # Checkbox tomar datos
         self.checkBoxTomarDatoMSPower.stateChanged.connect(self.fnProcesaTomaDatosMsPower)
         # Pusb buttons signals
@@ -84,6 +84,13 @@ class VentanaFiltros(QMainWindow):
         self.updateTaUi()
     def updateTaUi(self):
         pass
+
+    def fnAplicarFiltrosDf(self, df: pd.DataFrame):
+        dfFiltrado = self.pandasUtils.tiempoAvanceFilterTA(
+            self.pandasUtils.allData, list(self.valoresTA)
+        )
+        if self.tomarMsPower:
+            dfFiltrado = self.pandasUtils.msPowerRangeFilter(self.pandasUtils.allData)
 
     def getTaValues(self):
         self.valoresTA = set(self.textEditTaValues.split(','))
