@@ -10,6 +10,12 @@
     <height>908</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -18,7 +24,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_8">
-    <item row="8" column="2">
+    <item row="7" column="2">
      <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosDinamicos"/>
     </item>
     <item row="1" column="1">
@@ -31,13 +37,13 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
+    <item row="4" column="1">
      <layout class="QGridLayout" name="gridLayout_7">
       <item row="0" column="0">
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="1" column="0">
+          <item row="5" column="1">
            <widget class="QComboBox" name="comboBoxOrganizacionJornadas">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -55,47 +61,27 @@
             </item>
             <item>
              <property name="text">
-              <string>Mayor Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
+              <string>Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Mayor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
+              <string>Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Mayor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
+              <string>Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Mayor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Menor  Uso Durante Madrugada (00:00:00 am - 05:59:59 am)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Menor Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Menor Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Menor Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
+              <string>Uso Durante Noche (19:00:00 pm - 23:59:59 pm)</string>
              </property>
             </item>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="6" column="1">
            <widget class="QPushButton" name="pushButtonVerDatosEstaticos">
             <property name="font">
              <font>
@@ -121,7 +107,7 @@
             </property>
            </widget>
           </item>
-          <item row="6" column="0">
+          <item row="10" column="1">
            <widget class="QPushButton" name="pushButtonGraficarDatosEstaticos">
             <property name="font">
              <font>
@@ -147,7 +133,50 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Valor Filtro</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QTextEdit" name="textEditValorFiltro">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+           </widget>
+          </item>
           <item row="5" column="0">
+           <widget class="QComboBox" name="comboBox">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Mayor</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Menor</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="9" column="1">
            <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos">
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -169,28 +198,13 @@
             </column>
            </widget>
           </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_3">
-            <property name="font">
-             <font>
-              <family>Corbel</family>
-              <pointsize>14</pointsize>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>Gráficas Generadas Apartir de la tabla 2</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
        </layout>
       </item>
      </layout>
     </item>
-    <item row="10" column="2">
+    <item row="9" column="2">
      <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosEstaticos"/>
     </item>
     <item row="3" column="1">
@@ -335,21 +349,6 @@
       </property>
       <property name="text">
        <string>LISTA FILTRAR DATOS</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QLabel" name="label_2">
-      <property name="font">
-       <font>
-        <family>Corbel</family>
-        <pointsize>14</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Gráficas Generadas Apartir de la tabla 1</string>
       </property>
      </widget>
     </item>
