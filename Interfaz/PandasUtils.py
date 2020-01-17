@@ -136,9 +136,12 @@ class PandasDataLoader:
         """ Filters the df in the column MS POWER with the given boundaries"""
         return df[df['MS POWER'].between(fromN, toN)]
 
-    def lastLacFrecuencia(self, df: pd.DataFrame):
-        seriesFreq = df.groupby('LAST_LAC')['LAST_LAC'].size()
-        return seriesFreq
+    def dfLastLacFrecuencia(self, df: pd.DataFrame):
+        groupedDf = df.groupby('LAST_LAC')['LAST_LAC'].agg(FRECUENCIA=pd.NamedAgg(column='LAST_LAC', aggfunc='size'))
+        groupedDf['LAST_LAC'] = groupedDf.index
+        groupedDf = groupedDf[['LAST_LAC', 'FRECUENCIA']]
+        return groupedDf.sort_values(ascending=False, by='FRECUENCIA')
+    
 
     def setUniqueNameIdColumn(self, dfEmaisOk: pd.DataFrame):
         """ Updates the NAME with a unique KEY for a EMAI groups and returns that new DataFrame"""

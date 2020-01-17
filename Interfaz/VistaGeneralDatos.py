@@ -1,5 +1,6 @@
-from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog, QAbstractItemView,
                              QAction, QTableWidgetItem, QTableWidget, QHeaderView)
+from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUi
 import pandas as pd
 from PandasUtils import PandasDataLoader
@@ -14,7 +15,7 @@ class VistaGeneralDatos(QMainWindow):
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
         self.ratsSeleccionados = dict()
         self.operadoresSeleccionados = dict()
-
+        self.viendoIncidentales = False
         # UI
         loadUi('UI/VistaGeneralDatos.ui', self)
         self.setupUi()
@@ -68,6 +69,11 @@ class VistaGeneralDatos(QMainWindow):
         self.pushButtonAsignarNombresIMEI.clicked.connect(
             self.fnAsignaNombresPorEmais)
         # Fill the table with a df where all the EMAIS are
+        self.tableWidgetDatosExcel.setWordWrap(False)
+        self.tableWidgetDatosExcel.setTextElideMode(Qt.ElideRight)# Qt.ElideNone
+        self.tableWidgetDatosExcel.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableWidgetDatosExcel.setEditTriggers(QAbstractItemView.NoEditTriggers)
+
         self.fillTableWidget(
             self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.allData)))
 
@@ -78,9 +84,10 @@ class VistaGeneralDatos(QMainWindow):
             rat: 1 for rat in self.ratsSeleccionados.keys()}
 
     def fnMuestraTablaOriginal(self):
+        self.viendoIncidentales = False
         self.reseteoFiltros()
         self.fillTableWidget(
-            self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.allData)
+            self.pandasUtils.allData
         )
 
     def fnMuestraVentanaPrincipal(self):
@@ -104,9 +111,9 @@ class VistaGeneralDatos(QMainWindow):
         print(f"Fn asgina nombre a emai")
 
     def fnFiltroDatosIncidentales(self):
-
+        self.viendoIncidentales = True
         self.fillTableWidget(
-            self.pandasUtils.getDfDatosIncosistentes(self.pandasUtils.allData, 'IMEI')
+            self.pandasUtils.dfIncidentales
         )
 
     def fnVentanaAnalisisHorario(self):
@@ -116,9 +123,7 @@ class VistaGeneralDatos(QMainWindow):
         print("Fn procesa guardar datos")
         filePath = self.saveFileDialog()
         if(filePath):
-            dfToSave = self.fnAplicaFiltrosDfOk(
-                self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.allData)
-            )
+            dfToSave = self.fnAplicaFiltrosDfOk()
             self.pandasUtils.saveToExcelFile(
                 dfToSave, filePath, False, self.saveProcessFinished)
 
@@ -136,14 +141,15 @@ class VistaGeneralDatos(QMainWindow):
             self, "Guardar archivo", "", "Excel Files (*.xlsx)", options=options)
         return fileName
 
-    def fnAplicaFiltrosDfOk(self, df):
+    def fnAplicaFiltrosDfOk(self):
         """
         Calls filltable according to all the filters that the user has set and returns the df
         """
+        df = self.pandasUtils.allData if self.viendoIncidentales is False else self.pandasUtils.dfIncidentales
+        # TODO: Tambien tener en cuenta que pudo haber digitado un imei
         listaRats = [rat for rat, v in self.ratsSeleccionados.items()
                      if v is True]
-        listaOps = [rat for rat,
-                    v in self.operadoresSeleccionados.items() if v]
+        listaOps = [op for op, v in self.operadoresSeleccionados.items() if v is True]
         dfFiltradoRats = self.pandasUtils.filterDfByColumnValues(
             self.pandasUtils.allData, "RAT", listaRats
         )
@@ -204,10 +210,7 @@ class VistaGeneralDatos(QMainWindow):
                 self.pandasUtils.allData, 'RAT', listaRats)
             self.labelRATContador.setText(str(cantidad))
             self.fillTableWidget(
-                self.fnAplicaFiltrosDfOk(
-                    self.pandasUtils.getDfCompletoEmaisOk(
-                        self.pandasUtils.allData)
-                )
+                self.fnAplicaFiltrosDfOk()
             )
 
     def fnProcesaSeleccionOperadores(self, action: QAction):
@@ -219,15 +222,11 @@ class VistaGeneralDatos(QMainWindow):
         """
         This function is called when there is a change in the selected rats dictionary
         """
-        listaOps = [rat for rat,
-                    v in self.operadoresSeleccionados.items() if v]
+        listaOps = [op for op,v in self.operadoresSeleccionados.items() if v]
         if len(listaOps) > 0:
             cantidad = self.pandasUtils.getCantidadDatos(
                 self.pandasUtils.allData, 'OPERATOR', listaOps)
             self.labelOperadorDatos.setText(str(cantidad))
             self.fillTableWidget(
-                self.fnAplicaFiltrosDfOk(
-                    self.pandasUtils.getDfCompletoEmaisOk(
-                        self.pandasUtils.allData)
-                )
+                self.fnAplicaFiltrosDfOk()
             )
