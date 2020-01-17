@@ -27,7 +27,40 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="9" column="1" rowspan="6" colspan="4">
+     <item row="7" column="5">
+      <widget class="QPushButton" name="pushButtonAnalisisHorario">
+       <property name="font">
+        <font>
+         <family>Corbel</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Análisis Horario</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/icons8-tiempo-400.png</normaloff>../Recursos/icons8-tiempo-400.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QPushButton" name="pushButtonRATS">
+       <property name="text">
+        <string>IMEI</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="2" rowspan="6" colspan="4">
       <widget class="QTableWidget" name="tableWidgetDatosExcel">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -94,33 +127,24 @@
        </column>
       </widget>
      </item>
-     <item row="6" column="0">
-      <widget class="QPushButton" name="pushButtonAnalisisHorario">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
+     <item row="4" column="1">
+      <widget class="QLabel" name="labelOperadorDatos">
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Análisis Horario</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-tiempo-400.png</normaloff>../Recursos/icons8-tiempo-400.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>60</width>
-         <height>60</height>
-        </size>
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="9" column="18">
+     <item row="3" column="0">
+      <widget class="QPushButton" name="pushButtonRats">
+       <property name="text">
+        <string>RAT</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="19">
       <widget class="QPushButton" name="pushButtonFiltrarDatos">
        <property name="font">
         <font>
@@ -135,7 +159,7 @@
         <string>Filtrar Datos</string>
        </property>
        <property name="icon">
-        <iconset resource="../Recursos/qrc.qrc">
+        <iconset>
          <normaloff>:/newPrefix/icons8-ver-80.png</normaloff>:/newPrefix/icons8-ver-80.png</iconset>
        </property>
        <property name="iconSize">
@@ -146,37 +170,20 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
-      <widget class="QPushButton" name="pushButtonAsignarNombresIMEI">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
+     <item row="5" column="1">
+      <widget class="QLabel" name="labelIMSIDatos">
        <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
-        <string>Asignar Nombres a IMEI</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/icons8-ayuda-100.png</normaloff>../Recursos/icons8-ayuda-100.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>60</width>
-         <height>60</height>
-        </size>
+        <string/>
        </property>
       </widget>
      </item>
-     <item row="3" column="1" rowspan="4" colspan="4">
-      <widget class="QLabel" name="label_4">
+     <item row="6" column="1">
+      <widget class="QLabel" name="labelIMEIDatos">
        <property name="styleSheet">
-        <string notr="true">background-image: url(:/Imagenes/Logo.png);
-image: url(:/newPrefix/Logo.png);</string>
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
        </property>
        <property name="text">
         <string/>
@@ -204,7 +211,7 @@ border-top-color: rgb(0, 0, 0);</string>
        <layout class="QHBoxLayout" name="horizontalLayout_2"/>
       </widget>
      </item>
-     <item row="11" column="18">
+     <item row="11" column="19">
       <widget class="QPushButton" name="pushButtonVerTablaOriginal">
        <property name="font">
         <font>
@@ -230,40 +237,21 @@ border-top-color: rgb(0, 0, 0);</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="5">
+     <item row="5" column="0">
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>IMSI</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
       <widget class="QPushButton" name="pushButtonOperadores">
        <property name="text">
-        <string>PushButton</string>
+        <string>Operador</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
-      <widget class="QPushButton" name="pushButtonGuardarDatos">
-       <property name="font">
-        <font>
-         <family>Corbel</family>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-       </property>
-       <property name="text">
-        <string>Guardar Datos</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../Recursos/upload.png</normaloff>../Recursos/upload.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>60</width>
-         <height>60</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="18">
+     <item row="10" column="19">
       <widget class="QPushButton" name="pushButtonVerDatosIncidentales">
        <property name="font">
         <font>
@@ -289,7 +277,7 @@ border-top-color: rgb(0, 0, 0);</string>
        </property>
       </widget>
      </item>
-     <item row="24" column="18">
+     <item row="24" column="19">
       <widget class="QLabel" name="label_5">
        <property name="styleSheet">
         <string notr="true">background-image: url(:/Imagenes/Logo.png);
@@ -300,10 +288,65 @@ image: url(:/newPrefix/Logo.png);</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="5">
-      <widget class="QPushButton" name="pushButtonRATS">
+     <item row="7" column="4">
+      <widget class="QPushButton" name="pushButtonAsignarNombresIMEI">
+       <property name="font">
+        <font>
+         <family>Corbel</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>Asignar Nombres a IMEI</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/icons8-ayuda-100.png</normaloff>../Recursos/icons8-ayuda-100.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="3">
+      <widget class="QPushButton" name="pushButtonGuardarDatos">
+       <property name="font">
+        <font>
+         <family>Corbel</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Guardar Datos</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/upload.png</normaloff>../Recursos/upload.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>60</width>
+         <height>60</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="labelRATSContador">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -332,7 +375,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
      <string>Buscar</string>
     </property>
     <property name="icon">
-     <iconset resource="../Recursos/qrc.qrc">
+     <iconset>
       <normaloff>:/newPrefix/icons8-google-web-search-400.png</normaloff>:/newPrefix/icons8-google-web-search-400.png</iconset>
     </property>
     <property name="iconSize">
