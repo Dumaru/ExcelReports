@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1601</width>
-    <height>822</height>
+    <height>835</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,14 +20,88 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="1">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="2">
-       <widget class="QPushButton" name="pushButton">
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
+      <item row="3" column="0">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="1" column="0">
+         <widget class="QPushButton" name="pushButtonGuardarDatosIMISISIMEI">
+          <property name="text">
+           <string>Guargar Datos IMSIS-IMEI</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectItems</enum>
+          </property>
+          <property name="textElideMode">
+           <enum>Qt::ElideRight</enum>
+          </property>
+          <column>
+           <property name="text">
+            <string>RAT</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Operator</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>IMEI</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>IMSI</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>TA</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>MS Power</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Last Lac</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Hits</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="pushButtonGuardarReporte">
+          <property name="text">
+           <string>Generar Reporte Final</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="pushButtonGraficar">
+          <property name="text">
+           <string>Graficar Datos</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="1" column="2">
+      <item row="0" column="2">
+       <layout class="QGridLayout" name="gridLayout_4"/>
+      </item>
+      <item row="3" column="3">
        <widget class="QLabel" name="label">
         <property name="styleSheet">
          <string notr="true">image: url(:/Imagenes/Logo.png);</string>
@@ -36,93 +110,6 @@
          <string/>
         </property>
        </widget>
-      </item>
-      <item row="2" column="2">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="text">
-         <string>PushButton</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <layout class="QGridLayout" name="gridLayout_4"/>
-      </item>
-      <item row="1" column="0">
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <widget class="QGraphicsView" name="graphicsView">
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 255);</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="2" column="0">
-       <widget class="QTableWidget" name="tableWidget">
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="selectionBehavior">
-         <enum>QAbstractItemView::SelectItems</enum>
-        </property>
-        <property name="textElideMode">
-         <enum>Qt::ElideRight</enum>
-        </property>
-        <column>
-         <property name="text">
-          <string>RAT</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Operator</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>IMEI</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>IMSI</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>TA</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>MS Power</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Last Lac</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>Hits</string>
-         </property>
-        </column>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>
@@ -153,8 +140,20 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuVolver_A_Filtros">
+    <property name="title">
+     <string>Volver</string>
+    </property>
+    <addaction name="actionVer_Filtros"/>
+   </widget>
+   <addaction name="menuVolver_A_Filtros"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionVer_Filtros">
+   <property name="text">
+    <string>Ver Filtros</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="../Recursos/Re.qrc"/>
