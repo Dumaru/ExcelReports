@@ -272,32 +272,6 @@ border-top-color: rgb(0, 0, 0);</string>
         </property>
        </widget>
       </item>
-      <item row="23" column="2" colspan="2">
-       <widget class="QPushButton" name="pushButtonAsignarNombresIMEI">
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string> Asignar Nombres a IMEI</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-ayuda-100.png</normaloff>../Recursos/icons8-ayuda-100.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>60</width>
-          <height>60</height>
-         </size>
-        </property>
-       </widget>
-      </item>
       <item row="25" column="2" colspan="2">
        <widget class="QPushButton" name="pushButtonAnalisisHorario">
         <property name="font">
@@ -402,7 +376,33 @@ image: url(:/newPrefix/Logo.png);</string>
         </column>
        </widget>
       </item>
-      <item row="22" column="2" colspan="2">
+      <item row="23" column="2" colspan="3">
+       <widget class="QPushButton" name="pushButtonAsignarNombresIMEI">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string> Asignar Nombres a IMEI</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Recursos/icons8-ayuda-100.png</normaloff>../Recursos/icons8-ayuda-100.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>60</width>
+          <height>60</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="22" column="2" colspan="3">
        <widget class="QPushButton" name="pushButtonAsignarIMEIS">
         <property name="font">
          <font>
