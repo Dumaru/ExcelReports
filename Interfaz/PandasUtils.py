@@ -20,7 +20,10 @@ class PandasDataLoader:
         if PandasDataLoader.__instance != None:
             raise Exception("This class is a singleton!")
         else:
-            self.allData = None
+            self.allData2G = None
+            self.allData3G = None
+            self.allData4G = None
+            self.sinImei4g = None
             self.dfIncidentales = None
             self.processing = False
             self.threadProcessor = ThreadingUtils()
@@ -28,13 +31,12 @@ class PandasDataLoader:
             self.uniqueColumnValues = dict()
             PandasDataLoader.__instance = self
 
-    def getAllDataOk(self):
-        return self.allData
-
     def setUniqueColumnValues(self, df: pd.DataFrame, column: str):
+        # Adds to the state dictionary the unique values of a column from the df
         self.uniqueColumnValues[column] = df[column].unique().tolist()
 
     def getCantidadDatos(self, df, columna, filtros=[]):
+        
         groupedData = df.groupby(columna)
         dfs = [groupedData.get_group(gn) for gn in filtros]
         return pd.concat(dfs).shape[0]
@@ -77,7 +79,7 @@ class PandasDataLoader:
             self.allData.columns = cols
 
             # Sacar los incidentales
-            self.dfIncidentales = self.getDfDatosIncidentales(self.allData, 1)
+            self.dfIncidentales = self.getDfDatosIncidentales(self.allData, hitsMin=1)
             self.allData = self.getDifferenceBetweenDataFrames(self.allData,  self.dfIncidentales)
 
             self.processing = False
