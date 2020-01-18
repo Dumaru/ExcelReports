@@ -483,7 +483,7 @@
           </spacer>
          </item>
          <item row="4" column="4">
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="pushButtonLastLac4G">
            <property name="text">
             <string>Valores LAST LAC</string>
            </property>
@@ -648,14 +648,14 @@
           </widget>
          </item>
          <item row="4" column="2">
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="pushButtonLastLac3G">
            <property name="text">
             <string>Valores LAST LAC</string>
            </property>
           </widget>
          </item>
          <item row="4" column="0">
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pushButtonLastLac2G">
            <property name="text">
             <string>Valores LAST LAC</string>
            </property>
