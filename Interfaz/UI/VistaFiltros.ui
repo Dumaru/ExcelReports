@@ -352,7 +352,7 @@
         <rect>
          <x>160</x>
          <y>20</y>
-         <width>301</width>
+         <width>241</width>
          <height>31</height>
         </rect>
        </property>
@@ -395,7 +395,7 @@
         <rect>
          <x>10</x>
          <y>500</y>
-         <width>671</width>
+         <width>571</width>
          <height>411</height>
         </rect>
        </property>
@@ -410,7 +410,7 @@
          <rect>
           <x>10</x>
           <y>40</y>
-          <width>641</width>
+          <width>551</width>
           <height>381</height>
          </rect>
         </property>
@@ -682,7 +682,7 @@
         <rect>
          <x>0</x>
          <y>260</y>
-         <width>681</width>
+         <width>571</width>
          <height>241</height>
         </rect>
        </property>
@@ -697,7 +697,7 @@
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>661</width>
+          <width>551</width>
           <height>258</height>
          </rect>
         </property>
@@ -972,7 +972,7 @@ selection-background-color: rgb(0, 0, 0);</string>
         <rect>
          <x>10</x>
          <y>70</y>
-         <width>661</width>
+         <width>561</width>
          <height>171</height>
         </rect>
        </property>
@@ -987,7 +987,7 @@ selection-background-color: rgb(0, 0, 0);</string>
          <rect>
           <x>6</x>
           <y>12</y>
-          <width>651</width>
+          <width>551</width>
           <height>179</height>
          </rect>
         </property>
@@ -1203,7 +1203,7 @@ selection-background-color: rgb(0, 0, 0);</string>
             </font>
            </property>
            <property name="text">
-            <string>Valor Incial</string>
+            <string>Valores TA</string>
            </property>
           </widget>
          </item>
@@ -1245,9 +1245,9 @@ selection-background-color: rgb(0, 0, 0);</string>
       <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
        <property name="geometry">
         <rect>
-         <x>490</x>
+         <x>420</x>
          <y>20</y>
-         <width>181</width>
+         <width>151</width>
          <height>49</height>
         </rect>
        </property>
@@ -1271,8 +1271,8 @@ selection-background-color: rgb(0, 0, 0);</string>
        </property>
        <property name="iconSize">
         <size>
-         <width>40</width>
-         <height>40</height>
+         <width>30</width>
+         <height>30</height>
         </size>
        </property>
       </widget>
