@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1717</width>
-    <height>1061</height>
+    <width>1771</width>
+    <height>1002</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -36,7 +36,7 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="9" column="4">
+    <item row="12" column="2">
      <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
@@ -85,46 +85,7 @@
       </column>
      </widget>
     </item>
-    <item row="15" column="2">
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Maximum</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="10" column="4">
-     <widget class="QTableView" name="tableView">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="4">
-     <layout class="QGridLayout" name="gridLayout_7">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="spacing">
-       <number>3</number>
-      </property>
-     </layout>
-    </item>
-    <item row="8" column="3" rowspan="8">
+    <item row="7" column="3" rowspan="9">
      <widget class="QGroupBox" name="groupBox">
       <property name="enabled">
        <bool>true</bool>
@@ -138,11 +99,11 @@
       <property name="title">
        <string>LISTS FILTROS</string>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>20</y>
+         <x>630</x>
+         <y>10</y>
          <width>233</width>
          <height>26</height>
         </rect>
@@ -201,8 +162,8 @@
       <widget class="QPushButton" name="pushButtonBuscarDatos">
        <property name="geometry">
         <rect>
-         <x>530</x>
-         <y>10</y>
+         <x>20</x>
+         <y>20</y>
          <width>111</width>
          <height>31</height>
         </rect>
@@ -241,8 +202,8 @@
       <widget class="QTextEdit" name="textEditBuscarDatos">
        <property name="geometry">
         <rect>
-         <x>640</x>
-         <y>10</y>
+         <x>130</x>
+         <y>20</y>
          <width>271</width>
          <height>31</height>
         </rect>
@@ -286,27 +247,25 @@
         <rect>
          <x>10</x>
          <y>490</y>
-         <width>771</width>
+         <width>671</width>
          <height>421</height>
         </rect>
        </property>
        <property name="title">
         <string>LAST LAC</string>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>40</y>
-          <width>741</width>
+          <width>651</width>
           <height>381</height>
          </rect>
         </property>
         <property name="font">
          <font>
-          <family>Corbel</family>
-          <weight>75</weight>
-          <bold>true</bold>
+          <pointsize>12</pointsize>
          </font>
         </property>
         <layout class="QGridLayout" name="gridLayout">
@@ -335,23 +294,6 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="4">
-          <widget class="QLabel" name="labelMostrarDatoLastLac4G">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
          <item row="2" column="0">
           <widget class="QLabel" name="labelMostrarDatoLastLac">
            <property name="font">
@@ -366,49 +308,6 @@
            </property>
            <property name="text">
             <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="4">
-          <widget class="QTableWidget" name="tableWidgetDatosObtenidosLASTLAC4G">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">alternate-background-color: rgb(255, 255, 255);
-background-color: rgb(255, 255, 255);</string>
-           </property>
-           <column>
-            <property name="text">
-             <string>Last Lac</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Frecuencia</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QLabel" name="LabeltITULOLASTLAC">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(85, 255, 0);</string>
-           </property>
-           <property name="text">
-            <string>         LAST LAC (2G)</string>
            </property>
           </widget>
          </item>
@@ -437,31 +336,6 @@ background-color: rgb(255, 255, 255);</string>
            </column>
           </widget>
          </item>
-         <item row="3" column="0" alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="pushButtonLimpiarSeleccion">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>10</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Limpiar Selección</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-          </widget>
-         </item>
          <item row="1" column="1">
           <spacer name="horizontalSpacer_6">
            <property name="font">
@@ -482,34 +356,6 @@ background-color: rgb(255, 255, 255);</string>
            </property>
           </spacer>
          </item>
-         <item row="5" column="2">
-          <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>11</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-           </property>
-           <property name="text">
-            <string>Obtener Datos Filtrados</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="4">
           <widget class="QLabel" name="LabeltITULOLASTLAC_3">
            <property name="font">
@@ -525,74 +371,6 @@ background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="text">
             <string>            LAST LAC (4G)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="LabeltITULOLASTLAC_2">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 0);</string>
-           </property>
-           <property name="text">
-            <string>          LAST LAC (3G)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="2" alignment="Qt::AlignHCenter">
-          <widget class="QTableWidget" name="tableWidgetDatosObtenidosLASTLAC3G">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">alternate-background-color: rgb(255, 255, 255);
-background-color: rgb(255, 255, 255);</string>
-           </property>
-           <column>
-            <property name="text">
-             <string>Last Lac</string>
-            </property>
-           </column>
-           <column>
-            <property name="text">
-             <string>Frecuencia</string>
-            </property>
-           </column>
-          </widget>
-         </item>
-         <item row="3" column="4" alignment="Qt::AlignHCenter">
-          <widget class="QPushButton" name="pushButtonLimpiarSeleccion3G">
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>10</pointsize>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string>Limpiar Selección</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
            </property>
           </widget>
          </item>
@@ -633,27 +411,180 @@ background-color: rgb(255, 255, 255);</string>
            </property>
           </widget>
          </item>
+         <item row="3" column="4" alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="pushButtonLimpiarSeleccion3G">
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Limpiar Selección</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0" alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="pushButtonLimpiarSeleccion">
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>Limpiar Selección</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QLabel" name="labelMostrarDatoLastLac4G">
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="LabeltITULOLASTLAC">
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(85, 255, 0);</string>
+           </property>
+           <property name="text">
+            <string>         LAST LAC (2G)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2" alignment="Qt::AlignHCenter">
+          <widget class="QTableWidget" name="tableWidgetDatosObtenidosLASTLAC3G">
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">alternate-background-color: rgb(255, 255, 255);
+background-color: rgb(255, 255, 255);</string>
+           </property>
+           <column>
+            <property name="text">
+             <string>Last Lac</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Frecuencia</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="4" column="4">
+          <widget class="QTableWidget" name="tableWidgetDatosObtenidosLASTLAC4G">
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">alternate-background-color: rgb(255, 255, 255);
+background-color: rgb(255, 255, 255);</string>
+           </property>
+           <column>
+            <property name="text">
+             <string>Last Lac</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Frecuencia</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="LabeltITULOLASTLAC_2">
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <pointsize>12</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 0);</string>
+           </property>
+           <property name="text">
+            <string>          LAST LAC (3G)</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </widget>
       <widget class="QGroupBox" name="groupBox_3">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>240</y>
-         <width>771</width>
+         <x>0</x>
+         <y>260</y>
+         <width>681</width>
          <height>241</height>
         </rect>
        </property>
        <property name="title">
         <string>MS POWER</string>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
           <y>20</y>
-          <width>761</width>
+          <width>661</width>
           <height>211</height>
          </rect>
         </property>
@@ -905,7 +836,7 @@ selection-background-color: rgb(0, 0, 0);</string>
        <property name="title">
         <string>TA</string>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>6</x>
@@ -1109,14 +1040,14 @@ selection-background-color: rgb(0, 0, 0);</string>
       <widget class="QPushButton" name="pushButtonGenerarGraficas">
        <property name="geometry">
         <rect>
-         <x>670</x>
-         <y>100</y>
+         <x>690</x>
+         <y>70</y>
          <width>161</width>
          <height>49</height>
         </rect>
        </property>
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>1</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -1161,8 +1092,8 @@ selection-background-color: rgb(0, 0, 0);</string>
       <widget class="QPushButton" name="pushButtonVerAnalisis">
        <property name="geometry">
         <rect>
-         <x>670</x>
-         <y>50</y>
+         <x>690</x>
+         <y>130</y>
          <width>161</width>
          <height>49</height>
         </rect>
@@ -1192,6 +1123,79 @@ selection-background-color: rgb(0, 0, 0);</string>
         </size>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
+       <property name="geometry">
+        <rect>
+         <x>700</x>
+         <y>470</y>
+         <width>161</width>
+         <height>49</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Corbel</family>
+         <pointsize>11</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+       </property>
+       <property name="text">
+        <string>Obtener Datos </string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>30</width>
+         <height>30</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="12" column="4">
+     <layout class="QGridLayout" name="gridLayout_7">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="spacing">
+       <number>3</number>
+      </property>
+     </layout>
+    </item>
+    <item row="15" column="2">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Maximum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="13" column="2">
+     <widget class="QTableView" name="tableView">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
      </widget>
     </item>
    </layout>
@@ -1201,7 +1205,7 @@ selection-background-color: rgb(0, 0, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1717</width>
+     <width>1771</width>
      <height>26</height>
     </rect>
    </property>
