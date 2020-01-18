@@ -200,14 +200,12 @@ class VentanaFiltros(QMainWindow):
             f"tomar ms power {self.tomarMsPower}  valores ms power {self.msInicial} {self.msFinal}",
             f"Last lasc {self.lastLacValue}")
         if self.tomarMsPower:
-            try:
-                self.msInicial = float(
-                    self.lineEditValorRangoInicialMSPOWER.text())
-                self.msFinal = float(
-                    self.lineEditValorRangoFinalMSPOWER.text())
-            except identifier:
-                self.msInicial = None
-                self.msFinal = None
+            self.msInicial = float(
+                self.lineEditValorRangoInicialMSPOWER.text())
+            self.msFinal = float(
+                self.lineEditValorRangoFinalMSPOWER.text())
+            self.msInicial = None
+            self.msFinal = None
         else:
             self.msInicial = None
             self.msFinal = None

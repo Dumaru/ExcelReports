@@ -123,9 +123,6 @@ class VistaGeneralDatos(QMainWindow):
         ventanaAnalisisHorario.show()
         print(f"Fn analisis horario")
 
-
-
-
     def fnProcesaGuardarDatos(self):
         print("Fn procesa guardar datos")
         filePath = self.saveFileDialog()
