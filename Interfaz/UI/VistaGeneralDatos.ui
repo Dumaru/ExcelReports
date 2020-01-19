@@ -228,7 +228,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
           </property>
           <property name="icon">
            <iconset>
-            <normaloff>:/newPrefix/icons8-google-web-search-400.png</normaloff>:/newPrefix/icons8-google-web-search-400.png</iconset>
+            <normaloff>icons8-google-web-search-400.png</normaloff>icons8-google-web-search-400.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -372,6 +372,12 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
       </item>
       <item row="20" column="1">
        <widget class="QPushButton" name="pushButtonGuardarImsisVSImei">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
@@ -424,6 +430,12 @@ border-top-color: rgb(0, 0, 0);</string>
       </item>
       <item row="19" column="1">
        <widget class="QPushButton" name="pushButtonVerImsisVSImeis">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
