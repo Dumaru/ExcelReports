@@ -71,17 +71,28 @@ class VistaGeneralDatos(QMainWindow):
         # Btn guardar datos 4g sin sus imeis
         self.pushButtonGuardarDatos4G.clicked.connect(self.fnGuardar4gSinImeis)
         # Btn guardar datos incidentales
-        self.pushButtonGuardarDatosIncidentales.clicked.connect(self.fnGuardarIncidentales)
         # Fill the table with a df where all the EMAIS are
         self.tableWidgetDatosExcel.setWordWrap(False)
         self.tableWidgetDatosExcel.setTextElideMode(Qt.ElideRight)
         self.tableWidgetDatosExcel.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.tableWidgetDatosExcel.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
+        self.pushButtonAsignarIMEIS.clicked.connect(self.fnProcesaAsignarImeis)
         self.fillTableWidget(self.pandasUtils.tempDf)
 
-    def fnGuardarIncidentales(self):
-        print(f"Fn guardar datos incidentales")
+    def fnProcesaAsignarImeis(self):
+        print("Empieza proceso de asignacion de IMEIS")
+        antesSinImei = self.pandasUtils.getDfImeisFaltantes(self.pandasUtils.getAllData())
+        allData = self.pandasUtils.getAllData()
+        cantidadAntesCon = allData.shape[0] - antesSinImei.shape[0] 
+        print(f"Cantidad antes con IMEIS bien {cantidadAntesCon} cantidad de sin imei {antesSinImei.shape[0]}")
+        self.pandasUtils.setTempDf(self.pandasUtils.asignarIMEIS(allData, antesSinImei))
+
+        # Dividir de nuevo los df en 2g 3g y 4g y asignarlos de nuevo
+        self.pandasUtils.dividirDfEnRats(self.pandasUtils.tempDf)
+        cantidadDespuesCon = self.pandasUtils.tempDf[self.pandasUtils.tempDf['IMEI'].notnull()].shape[0]
+        self.fillTableWidget(self.pandasUtils.tempDf)
+        print(f"Cantidad de imeis despues {cantidadDespuesCon}")
 
     def fnGuardar4gSinImeis(self):
         print(f"Funcion guardar datos de 4g sin sus imeis")

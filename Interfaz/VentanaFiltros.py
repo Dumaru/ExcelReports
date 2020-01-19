@@ -8,6 +8,7 @@ from PandasUtils import PandasDataLoader
 from PlotWindow import PlotWindow
 from FiltrosContainer import FiltrosContainer
 import UiUtils
+from VistaAnalisisDatos import VentanaAnalisisDatos
 
 class VentanaFiltros(QMainWindow):
     ACTION_IMSIS = 1
@@ -22,6 +23,7 @@ class VentanaFiltros(QMainWindow):
         self.filtros2G = FiltrosContainer()
         self.filtros3G = FiltrosContainer()
         self.filtros4G = FiltrosContainer()
+        self.agruparDatos = True
         # UI
         loadUi('UI/VistaFiltros.ui', self)
         self.setupUi()
@@ -33,6 +35,7 @@ class VentanaFiltros(QMainWindow):
         # self.ratsSeleccionados = {
             # rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')
         # }
+        self.checkBoxDatosAgrupados.setChecked(True)
         self.pandasUtils.setTempDf(self.pandasUtils.getAllData())
         self.checkBox2G.setChecked(True)
         self.checkBox3G.setChecked(True)
@@ -59,7 +62,7 @@ class VentanaFiltros(QMainWindow):
 
         # Tabla Datos filtrados
         # Seleccionar toda la fila
-        self.tableWidgetVerDatosFiltrados.setSelectionBehavior(QAbstractItemView.SelectRows)
+        # self.tableWidgetVerDatosFiltrados.setSelectionBehavior(QAbstractItemView.SelectRows)
         # Seleccionar una fila a la vez
         self.tableWidgetVerDatosFiltrados.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tableWidgetVerDatosFiltrados.setAlternatingRowColors(True)
@@ -79,6 +82,9 @@ class VentanaFiltros(QMainWindow):
         self.menu4GLastLac = UiUtils.createDynamicMenu(self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData4G))
         self.pushButtonLastLac4G.setMenu(self.menu4GLastLac)
         self.menu4GLastLac.triggered.connect(self.fnProcesaMenuLastLac4G)
+
+        self.fnAplicaFiltros()
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
 
     def fnProcesaMenuLastLac2G(self):
         print(f"Procesamiento menu de 2g")
@@ -173,16 +179,17 @@ class VentanaFiltros(QMainWindow):
         print(f"Dato buscar {datoBuscar}")
         if(len(datoBuscar) > 0):
             self.fnAplicaFiltros()
-            df = self.pandasUtils.tempDf
+            df = self.pandasUtils.filterDfByEmai(self.pandasUtils.getAllData(), datoBuscar)
             self.fillTableWidget(self.tableWidgetVerDatosFiltrados, df)
 
     def fnMuestraVentanaAnalisis(self):
         self.hide()
-        ventanaAnalisis = 
-        # TODO: MOSTRAR NUEVA VENTANA ANALIS
+        ventanaAnalisis = VentanaAnalisisDatos(self, self.pandasUtils, self.pandasUtils.tempDf) 
+        ventanaAnalisis.show()
         print(f"Fn muestra ventana analisis de datos")
 
     def fnGeneraGraficaDatosFiltrados(self):
+        print(f"Dimesiones df a graficar {self.pandasUtils.tempDf}")
         ventanaGrafica = PlotWindow(self)
         hitsByDate = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
         ventanaGrafica.plot(x=hitsByDate.index.to_pydatetime(), y=hitsByDate.values, xLabel='DATE', yLabel='HITS')
@@ -200,12 +207,12 @@ class VentanaFiltros(QMainWindow):
         self.filtros3G.hitsMinimos = int(self.lineEditValorHitsMinimos3G.text()) if self.lineEditValorHitsMinimos3G.text().isnumeric() else 0
         self.filtros4G.hitsMinimos = int(self.lineEditValorHitsMinimos4G.text()) if self.lineEditValorHitsMinimos4G.text().isnumeric() else 0
         # Toma de valores de ms power
-        self.filtros2G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER2G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER2G.text()) else None
-        self.filtros3G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER3G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER3G.text()) else None
-        self.filtros4G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER4G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER4G.text()) else None
-        self.filtros2G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER2G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER2G.text()) else None
-        self.filtros3G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER3G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER3G.text()) else None
-        self.filtros4G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER4G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER4G.text()) else None
+        self.filtros2G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER2G.text()) if self.filtros2G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER2G.text()) else None
+        self.filtros2G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER2G.text()) if self.filtros2G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER2G.text()) else None
+        self.filtros3G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER3G.text()) if self.filtros3G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER3G.text()) else None
+        self.filtros3G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER3G.text()) if self.filtros3G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER3G.text()) else None
+        self.filtros4G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER4G.text()) if self.filtros4G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER4G.text()) else None
+        self.filtros4G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER4G.text()) if self.filtros4G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER4G.text()) else None
         self.fnAplicaFiltros()
         self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
 
@@ -220,9 +227,9 @@ class VentanaFiltros(QMainWindow):
             dfs.append(self.pandasUtils.getGroupedByEmais(df2GHitsMin))
         if self.filtros3G.selected:
             df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
-            df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros2G.msPowerInicial, self.filtros3G.msPowerFinal)
+            df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
             df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.valoresLastLac)
-            df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
+            df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
             dfs.append(self.pandasUtils.getGroupedByEmais(df3GHitsMin))
         if self.filtros4G.selected:
             df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G,self.filtros4G.valoresTA)
@@ -233,6 +240,7 @@ class VentanaFiltros(QMainWindow):
         # Empieza a agrupar todo
         print("Se empiezan a agrupar los datos de 2g 3g y 4g")
         self.pandasUtils.setTempDf(self.pandasUtils.concatDfs(dfs))
+
 
     def setLastLacValue2G(self):
         pass
