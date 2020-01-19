@@ -2,10 +2,24 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
-    <width>1717</width>
-    <height>1061</height>
+    <width>1280</width>
+    <height>720</height>
    </size>
   </property>
   <property name="maximumSize">
@@ -75,8 +89,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1717</width>
-     <height>26</height>
+     <width>1280</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>

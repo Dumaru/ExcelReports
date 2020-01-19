@@ -238,9 +238,7 @@ class PandasDataLoader:
         return groupedDf
 
     def hitsByDate(self, df: pd.DataFrame):
-        
         grouped = df[df['DATE_TIME'].notnull()].groupby(pd.Grouper(key='DATE_TIME', freq='D'))['HITS'].apply(sum)
-        grouped.sort_values()
         grouped.rename_axis('DATE', inplace=True)
         return grouped
 

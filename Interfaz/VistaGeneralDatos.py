@@ -65,9 +65,6 @@ class VistaGeneralDatos(QMainWindow):
             self.fnMuestraVentanaPrincipal)
         # Btn ventana filtro  de datos
         self.pushButtonFiltrarDatos.clicked.connect(self.fnVentanaFiltroDatos)
-        # Btn asignar nombres para los emais
-        self.pushButtonAsignarNombresIMEI.clicked.connect(
-            self.fnAsignaNombresPorEmais)
         # Btn guardar datos 4g sin sus imeis
         self.pushButtonGuardarDatos4G.clicked.connect(self.fnGuardar4gSinImeis)
         # Btn guardar datos incidentales
@@ -120,14 +117,14 @@ class VistaGeneralDatos(QMainWindow):
             parent=self, pandasUtilsInstance=self.pandasUtils)
         ventanaFiltroDatos.show()
 
-    def fnAsignaNombresPorEmais(self):
-        print(f"Fn asgina nombre a emai")
-        self.pandasUtils.tempDf = self.pandasUtils.setUniqueNameIdColumn(
-            self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.tempDf)
-        ) 
-        self.fillTableWidget(
-            self.pandasUtils.tempDf
-        )
+    # def fnAsignaNombresPorEmais(self):
+        # print(f"Fn asgina nombre a emai")
+        # self.pandasUtils.tempDf = self.pandasUtils.setUniqueNameIdColumn(
+            # self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.tempDf)
+        # ) 
+        # self.fillTableWidget(
+            # self.pandasUtils.tempDf
+        # )
 
     def fnFiltroDatosIncidentales(self):
         self.reseteoFiltros()
