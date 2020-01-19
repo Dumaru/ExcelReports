@@ -107,9 +107,7 @@ class PandasDataLoader:
             # Sacar los incidentales
             self.dfIncidentales = self.getDfDatosIncidentales(allData, hitsMin=1)
             allData = self.getDifferenceBetweenDataFrames(allData,  self.dfIncidentales)
-            self.allData2G = self.filterByRat(allData, "2G")
-            self.allData3G = self.filterByRat(allData, "3G")
-            self.allData4G = self.filterByRat(allData, "4G")
+            self.dividirDfEnRats(allData)
 
             self.sinImei4g = self.allData4G[self.allData4G['IMEI'].isnull()]
             self.processing = False
@@ -117,6 +115,14 @@ class PandasDataLoader:
         self.threadProcessor.start(QThread.HighestPriority)
         self.threadProcessor.finished.connect(callback)
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
+
+    def dividirDfEnRats(self, allData: pd.DataFrame):
+        self.allData2G = self.filterByRat(allData, "2G")
+        self.allData3G = self.filterByRat(allData, "3G")
+        self.allData4G = self.filterByRat(allData, "4G")
+
+    def getDfImeisFaltantes(self, df: pd.DataFrame):
+        return df[df['IMEI'].isnull()]
 
     def asignarIMEIS(self, allDataP: pd.DataFrame, dfImeisFaltantes: pd.DataFrame):
         """ Assigns Emais for the columns where the emais is null based on the historical data"""
@@ -130,9 +136,11 @@ class PandasDataLoader:
             imeis = joinValues(rCoincide[rCoincide.notnull()].unique())
             return imeis
         nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
-        allDataP.loc[dfFalta.index, 'IMEI'] = nuevosValores
+        allDataP.loc[dfImeisFaltantes.index, 'IMEI'] = nuevosValores
         # Retorna serie con nuevos valores de IMEI separados por coma
         return allDataP
+
+
 
     def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int = 1):
         print(f"Empieza obtencion incidentales df arg {df.shape}")
@@ -217,6 +225,7 @@ class PandasDataLoader:
 
     def msPowerRangeFilter(self, df: pd.DataFrame, fromN: float, toN: float):
         """ Filters the df in the column MS POWER with the given boundaries"""
+        print(f"PANDAS UTILS: Ms power filter from {fromN} to {toN}")
         return (df[df['MS_POWER'].between(fromN, toN)] if fromN is not None and toN is not None else df)
 
     def filtroLastLacValor(self, df: pd.DataFrame, value: float = None):
@@ -229,7 +238,8 @@ class PandasDataLoader:
         return groupedDf
 
     def hitsByDate(self, df: pd.DataFrame):
-        grouped = df.groupby(pd.Grouper(key='DATE_TIME', freq='D'))['HITS'].apply(sum)
+        
+        grouped = df[df['DATE_TIME'].notnull()].groupby(pd.Grouper(key='DATE_TIME', freq='D'))['HITS'].apply(sum)
         grouped.sort_values()
         grouped.rename_axis('DATE', inplace=True)
         return grouped
@@ -264,7 +274,7 @@ class PandasDataLoader:
 
     def filterByHitsGrouping(self, df: pd.DataFrame, columnToGroupBy: str = 'IMEI', hitsMin: int = 0):
         """ Returns all the rows that in the group acomplish the filter of min of hits"""
-        print(f"Hits by grouping {df.info()} column {columnToGroupBy}")
+        print(f"Hits by grouping df shape{df.info()} column {columnToGroupBy}")
         return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].sum() >= hitsMin)
 
     def getMonthInt(self, strMonth):
