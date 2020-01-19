@@ -114,13 +114,6 @@
       </column>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="pushButtonGuardar">
-      <property name="text">
-       <string>Guardar</string>
-      </property>
-     </widget>
-    </item>
     <item row="12" column="3">
      <layout class="QGridLayout" name="gridLayout_7">
       <property name="sizeConstraint">
@@ -1192,6 +1185,20 @@ selection-background-color: rgb(0, 0, 0);</string>
     </item>
     <item row="14" column="1">
      <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="5">
+       <widget class="QPushButton" name="pushButtonGuardar">
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string>Guardar</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="2">
        <widget class="QPushButton" name="pushButtonVerAnalisis">
         <property name="font">
@@ -1312,14 +1319,21 @@ selection-background-color: rgb(0, 0, 0);</string>
         </property>
        </widget>
       </item>
+      <item row="0" column="6">
+       <widget class="QPushButton" name="pushButtonVerImsisVSImeis">
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string>Ver IMSIS VS IMEIS</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons8-marcar-como-no-oculto-96.png</normaloff>icons8-marcar-como-no-oculto-96.png</iconset>
+        </property>
+       </widget>
+      </item>
      </layout>
-    </item>
-    <item row="1" column="1">
-     <widget class="QPushButton" name="pushButtonVerImsisVSImeis">
-      <property name="text">
-       <string>Ver IMSIS VS IMEIS</string>
-      </property>
-     </widget>
     </item>
    </layout>
   </widget>
