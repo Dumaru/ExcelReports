@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import concurrent.futures
 import time
 from PyQt5.QtCore import QThread, pyqtSignal
@@ -20,25 +21,48 @@ class PandasDataLoader:
         if PandasDataLoader.__instance != None:
             raise Exception("This class is a singleton!")
         else:
+            # Dataframes
+            self.tempDf = None
             self.allData2G = None
             self.allData3G = None
             self.allData4G = None
             self.sinImei4g = None
             self.dfIncidentales = None
+
+            # Processing ans state
             self.processing = False
             self.threadProcessor = ThreadingUtils()
             self.saverThread = ThreadingUtils()
             self.uniqueColumnValues = dict()
             PandasDataLoader.__instance = self
 
+    def concatDfs(self, dfs: list):
+        return pd.concat(dfs)
+
+    def getAllData(self):
+        df = pd.concat([self.allData2G, self.allData3G, self.allData4G])
+        print(f"All data shape {df.shape}")
+        return df
+
+    def setTempDf(self, df: pd.DataFrame):
+        print(f"PANDAS UTILS: setting new temp df {df.shape}")
+        self.tempDf = df
+
     def setUniqueColumnValues(self, df: pd.DataFrame, column: str):
         # Adds to the state dictionary the unique values of a column from the df
         self.uniqueColumnValues[column] = df[column].unique().tolist()
 
     def getCantidadDatos(self, df, columna, filtros=[]):
-        
         groupedData = df.groupby(columna)
-        dfs = [groupedData.get_group(gn) for gn in filtros]
+
+        dfs = []
+        try:
+            # [groupedData.get_group(gn) for gn in filtros]
+            for gn in filtros:
+                dfs.append(groupedData.get_group(gn))
+        except Exception as e:
+            print(e)
+            return 0
         return pd.concat(dfs).shape[0]
 
     def getRowCountForColumn(self, df, columna):
@@ -65,38 +89,68 @@ class PandasDataLoader:
                 temd_df = pd.read_excel(f"{filePath}", usecols=COLS)
                 dfsList.append(temd_df)
             # Puts all the general and raw data into a df
-            self.allData = pd.concat(dfsList)
-            self.allData.dropna(how='all', inplace=True)
+            allData = pd.concat(dfsList)
+            allData.dropna(how='all', inplace=True)
 
-            # TODO: HACER REEMPLAZO DE UNA
-            self.allData['DATE_TIME'] = self.allData['DATE-TIME'].apply(
-                self.toDatetime)
-            self.allData.drop('DATE-TIME', axis=1, inplace=True)
-            # Cambia el nombre de las columnas a estandar
-            cols = self.allData.columns
+            # Asigna nueva columna DATE_TIME ya formateado y quita la vieja
+            allData['DATE_TIME'] = allData['DATE-TIME'].apply(self.toDatetime)
+            allData.drop('DATE-TIME', axis=1, inplace=True)
+            # Cambia el nombre de las columnas a estandar con _ en lugar de espacios
+            cols = allData.columns
             cols = cols.map(lambda x: x.strip().replace(
                 ' ', '_').strip() if isinstance(x, (str, )) else x)
-            self.allData.columns = cols
+            allData.columns = cols
+
+            # Intenta convertir cada columna y si no pone NaN
+            allData['MS_POWER'] = pd.to_numeric(allData['MS_POWER'], errors='coerce')
 
             # Sacar los incidentales
-            self.dfIncidentales = self.getDfDatosIncidentales(self.allData, hitsMin=1)
-            self.allData = self.getDifferenceBetweenDataFrames(self.allData,  self.dfIncidentales)
+            self.dfIncidentales = self.getDfDatosIncidentales(allData, hitsMin=1)
+            allData = self.getDifferenceBetweenDataFrames(allData,  self.dfIncidentales)
+            self.allData2G = self.filterByRat(allData, "2G")
+            self.allData3G = self.filterByRat(allData, "3G")
+            self.allData4G = self.filterByRat(allData, "4G")
 
+            self.sinImei4g = self.allData4G[self.allData4G['IMEI'].isnull()]
             self.processing = False
         self.threadProcessor.setWorker(loadDataWrapper)
         self.threadProcessor.start(QThread.HighestPriority)
         self.threadProcessor.finished.connect(callback)
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
 
-    def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int):
-        groupedDfHitsMin = df.groupby('IMEI').filter(lambda x: x['HITS'].sum()<=hitsMin)
-        groupedDfNullValues = df[df['DATE_TIME'].isnull() | df['HITS'].isnull()]
-        incidentales = pd.concat([groupedDfHitsMin, groupedDfNullValues])
+    def asignarIMEIS(self, allDataP: pd.DataFrame, dfImeisFaltantes: pd.DataFrame):
+        """ Assigns Emais for the columns where the emais is null based on the historical data"""
+        def joinValues(values):
+            # print(f"{type(values)}")
+            return ','.join(map(str, values))
+
+        def obtenerEmai(x: str):
+            # X is the IMSI value
+            rCoincide = allDataP[allDataP['IMSI'].isin(x.values)]['IMEI']
+            imeis = joinValues(rCoincide[rCoincide.notnull()].unique())
+            return imeis
+        nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
+        allDataP.loc[dfFalta.index, 'IMEI'] = nuevosValores
+        # Retorna serie con nuevos valores de IMEI separados por coma
+        return allDataP
+
+    def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int = 1):
+        print(f"Empieza obtencion incidentales df arg {df.shape}")
+        groupedDfHitsMin = df.groupby('IMEI').filter(lambda x: x['HITS'].sum() <= hitsMin)
+        print(f"Grouped hits min {groupedDfHitsMin.shape}")
+        # print("Agrupados por hits igual a 1\n ", groupedDfHitsMin)
+        groupedDfNullVals = df.loc[df['MS_POWER'].isnull() | df['DATE_TIME'].isnull() | df['HITS'].isnull()]
+        print(f"Grouped nulls {groupedDfNullVals.shape}")
+        incidentales = pd.concat([groupedDfHitsMin, groupedDfNullVals]).drop_duplicates()
+        # Sin IMEI ni IMSI
+        print(f"Finaliza obtencion de incidentales df arg {incidentales.shape}")
         return incidentales
 
     def getDifferenceBetweenDataFrames(self, dfLeft: pd.DataFrame, dfRight: pd.DataFrame):
-        dfRes = dfLeft.merge(dfRight, indicator = True, how='left').loc[lambda x : x['_merge']!='both']
+        print(f"Empieza proceso de diferencia entre dfs left {dfLeft.shape} right {dfRight.shape}")
+        dfRes = dfLeft.merge(dfRight, indicator=True, how='left').loc[lambda x: x['_merge'] != 'both']
         dfRes.drop(columns=['_merge'], inplace=True)
+        print(f"New df after merge-drop {dfRes.shape}")
         return dfRes
 
     def getGroupedByEmais(self, df: pd.DataFrame):
@@ -104,7 +158,7 @@ class PandasDataLoader:
         def joinValues(series):
             return ','.join(map(str, series[series.notnull()].unique()))
         groupedDf = df.groupby('IMEI').agg(
-            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues), 
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             RAT=pd.NamedAgg(column='RAT', aggfunc=joinValues),
             OPERATOR=pd.NamedAgg(column='OPERATOR', aggfunc=joinValues),
             CHANNEL=pd.NamedAgg(column='CHANNEL', aggfunc=joinValues),
@@ -120,13 +174,13 @@ class PandasDataLoader:
         return groupedDf
 
     def getGroupedByEmaisHorario(self, df: pd.DataFrame):
-        # Returns a df with grouped and aggregated values 
+        # Returns a df with grouped and aggregated values
         def joinValues(series):
-            return ','.join(map(str,series[series.notnull()].unique()))
+            return ','.join(map(str, series[series.notnull()].unique()))
         groupedDf = df.groupby('IMEI').agg(
-            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues), 
-            IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues), 
-            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'), 
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
+            IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
             DATE_TIMEs=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
         )
         return groupedDf
@@ -142,30 +196,40 @@ class PandasDataLoader:
         self.saverThread.start(QThread.HighestPriority)
         self.saverThread.finished.connect(callbackSave)
 
-    def tiempoAvanceFilterTA(self, df: pd.DataFrame, valuesList: list):
+    def tiempoAvanceFilterTA(self, df: pd.DataFrame, valuesList: list = []):
         """ Filters the df by the values on the TA column"""
-        return df[df['TA'].isin(valuesList)]
+        return (df[df['TA'].isin(valuesList)] if len(valuesList) > 0 else df)
 
     def filtroDatetimes(self, df: pd.DataFrame, fromDate, toDate):
-        return df.loc[(df['DATE_TIME'] >= fromDate)&(df['DATE_TIME'] <= toDate)]
+        return df.loc[(df['DATE_TIME'] >= fromDate) & (df['DATE_TIME'] <= toDate)]
 
+    def filterByRat(self, df: pd.DataFrame, rat: str):
+        """ Returns a df with the seleccted rats """
+        return df[df['RAT'] == rat]
 
-    def filterByHitsAmount(self, df: pd.DataFrame, amount: int):
+    def filterByHitsAmount(self, df: pd.DataFrame, amount: int = 0):
         """ Filters the df where the hits amount are greater or equal to the given amount """
         return df[df['HITS'] >= amount]
+
     def filterByHitsAmountMin(self, df: pd.DataFrame, amount: int):
         """ Filters the df where the hits amount are greater or equal to the given amount """
         return df[df['HITS'] <= amount]
 
     def msPowerRangeFilter(self, df: pd.DataFrame, fromN: float, toN: float):
         """ Filters the df in the column MS POWER with the given boundaries"""
-        return (df[df['MS_POWER'].between(fromN, toN)]  if fromN is not None and toN is not None else df )
+        return (df[df['MS_POWER'].between(fromN, toN)] if fromN is not None and toN is not None else df)
 
-    def filtroLastLacValor(self, df: pd.DataFrame, value: float=None):
-        return df[df['LAST_LAC']==float(value)] if value is not None else df
+    def filtroLastLacValor(self, df: pd.DataFrame, value: float = None):
+        # return (df[df['LAST_LAC'] == float(value)] if value is not None else df)
+        df = (df[df['LAST_LAC'] == float(value)] if value is not None else df)
+        return {key: val for key, val in df.itertuples()}
+
+    def lastLacFrecuenciaSeries(self, df: pd.DataFrame):
+        groupedDf = df.groupby('LAST_LAC').size().sort_values(ascending=False)
+        return groupedDf
 
     def hitsByDate(self, df: pd.DataFrame):
-        grouped= df.groupby(pd.Grouper(key='DATE_TIME', freq='D'))['HITS'].apply(sum)
+        grouped = df.groupby(pd.Grouper(key='DATE_TIME', freq='D'))['HITS'].apply(sum)
         grouped.sort_values()
         grouped.rename_axis('DATE', inplace=True)
         return grouped
@@ -175,7 +239,6 @@ class PandasDataLoader:
         groupedDf['LAST_LAC'] = groupedDf.index
         groupedDf = groupedDf[['LAST_LAC', 'FRECUENCIA']]
         return groupedDf.sort_values(ascending=False, by='FRECUENCIA')
-    
 
     def setUniqueNameIdColumn(self, dfEmaisOk: pd.DataFrame):
         """ Updates the NAME with a unique KEY for a EMAI groups and returns that new DataFrame"""
@@ -184,8 +247,8 @@ class PandasDataLoader:
         df1 = dfEmaisOk.groupby('IMEI')['IMEI'].transform(fn)
         return dfEmaisOk.assign(NAME=df1)
 
-    def filterDfByEmai(self, df: pd.DataFrame = None, imei: float=None):
-        return df[df['IMEI'].astype(float) == float(imei)] if imei is not None else df
+    def filterDfByEmai(self, df: pd.DataFrame = None, imei: float = None):
+        return (df[df['IMEI'].astype(float) == float(imei)] if imei is not None else df)
 
     def getDfCompletoEmaisOk(self, df: pd.DataFrame):
         """
@@ -193,11 +256,16 @@ class PandasDataLoader:
         """
         return df.loc[df['IMEI'].notnull()]
 
-    def filterDfByColumnValues(self, df: pd.DataFrame, column: str, columnValues: list):
+    def filterDfByColumnValues(self, df: pd.DataFrame, column: str, columnValues: list=[]):
         """
         Groups the df by the column parameters and gets the groups in the columnValues list
         """
-        return df[df[column].isin(columnValues)]
+        return df[df[column].isin(columnValues)] if len(columnValues) > 0 else df
+
+    def filterByHitsGrouping(self, df: pd.DataFrame, columnToGroupBy: str = 'IMEI', hitsMin: int = 0):
+        """ Returns all the rows that in the group acomplish the filter of min of hits"""
+        print(f"Hits by grouping {df.info()} column {columnToGroupBy}")
+        return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].sum() >= hitsMin)
 
     def getMonthInt(self, strMonth):
         if(strMonth.lower() in ["ene"]):
@@ -226,15 +294,24 @@ class PandasDataLoader:
             return 12
 
     def toDatetime(self, dateStr):
-        if isinstance(dateStr, str):
+        try:
             # Date string example-> ma. dic. 31 23:50:11 2019
-            _, month,t_year = list(map(str.strip, dateStr.split('.')))
-            day, t, year = t_year.split(' ') 
+            _, month, t_year = list(map(str.strip, dateStr.split('.')))
+            day, t, year = t_year.split(' ')
             month = self.getMonthInt(month)
             dateStr = f"{year}-{month}-{day} {t}"
             return pd.to_datetime(dateStr, format="%Y-%m-%d %X")
-        else:
-            return dateStr
+        except Exception as e:
+            print(e)
+            return np.NaN
+
+    def isFloat(self, strNumber: str):
+        try:
+            float(strNumber)
+            return True
+        except ValueError as ve:
+            return False
+
 
 class ThreadingUtils_:
 

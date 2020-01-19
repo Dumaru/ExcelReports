@@ -38,6 +38,7 @@ class ExcelReportsInicio(QMainWindow):
         self.pushButtonMostrarDatos.setEnabled(False)
 
     def fnProcessOpenDir(self):
+        """ Inicia procesa para abrir un solo directorio""" 
         dirPath = self.fnAbrirDir()
         if(dirPath):
             with os.scandir(dirPath) as it:
@@ -96,12 +97,11 @@ class ExcelReportsInicio(QMainWindow):
         """
         if(len(self.filesDirectories) > 0):
             self.overlay.show()
-            # self.pandasUtils.loadDataframes(self.filesDirectories, self.fnCargaDatosCompleta)
             self.pandasUtils.loadDataframes(
                 self.filesDirectories, self.fnCargaDatosCompleta)
         else:
             UiUtils.showInfoMessage(title="Informacion de carga",
-                                    description=f"No se han cargado archivos.")
+                                    description=f"No se han subido archivos a la lista.")
 
     def fnCargaDatosCompleta(self):
         self.overlay.killAndHide()

@@ -18,6 +18,19 @@ def createMenu(menuItems) -> QMenu:
         accion.setData(str(item))
         menu.addAction(accion)
     return menu
+
+def createDynamicMenu(menuItems: dict) -> QMenu:
+    menu = QMenu()
+    for key, value in menuItems.items():
+        accion = QAction(str(key)+" Cantidad: "+str(value), menu)
+        accion.setCheckable(True)
+        accion.setChecked(True)
+        # To know later which indice was clicked we can use setData to get it later in the slot 
+        accion.setData(str(key))
+        menu.addAction(accion)
+    return menu
+
+
 def fnAbrirDir():
         """
         Opens a folder dialog and returns the path to the folder

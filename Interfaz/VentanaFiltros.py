@@ -6,24 +6,22 @@ from PyQt5.uic import loadUi
 import pandas as pd
 from PandasUtils import PandasDataLoader
 from PlotWindow import PlotWindow
-# from Ventana
+from FiltrosContainer import FiltrosContainer
+import UiUtils
 
 class VentanaFiltros(QMainWindow):
     ACTION_IMSIS = 1
     ACTION_FECHAS = 2
     ACTION_CANALES = 3
     ACTION_OPERADORES = 4
+
     def __init__(self, parent=None, pandasUtilsInstance=None):
         super(VentanaFiltros, self).__init__(parent)
         # State fields
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
-        self.msInicial = None
-        self.msFinal = None
-        self.ratsSeleccionados = {'2G': 1, '3G': 1, '4G': 1}
-        self.valoresTA = set()
-        self.tomarMsPower = False
-        self.hitsMinimos = 0
-        self.lastLacValue = None
+        self.filtros2G = FiltrosContainer()
+        self.filtros3G = FiltrosContainer()
+        self.filtros4G = FiltrosContainer()
         # UI
         loadUi('UI/VistaFiltros.ui', self)
         self.setupUi()
@@ -35,6 +33,7 @@ class VentanaFiltros(QMainWindow):
         # self.ratsSeleccionados = {
             # rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')
         # }
+        self.pandasUtils.setTempDf(self.pandasUtils.getAllData())
         self.checkBox2G.setChecked(True)
         self.checkBox3G.setChecked(True)
         self.checkBox4G.setChecked(True)
@@ -42,52 +41,59 @@ class VentanaFiltros(QMainWindow):
         self.checkBox3G.stateChanged.connect(self.fnProcesaSeleccionRat)
         self.checkBox4G.stateChanged.connect(self.fnProcesaSeleccionRat)
         self.seteaValoresTA()
-        # Checkbox tomar datos
-        self.checkBoxTomarDatoMSPower.stateChanged.connect(
-            self.fnProcesaTomaDatosMsPower)
+        # Checkbox tomar datos ms power de 2g 3g y 4g
+        self.checkBoxTomarDatoMSPower2G.stateChanged.connect(self.fnProcesaTomaDatosMsPower)
+        self.checkBoxTomarDatoMSPower3G.stateChanged.connect(self.fnProcesaTomaDatosMsPower)
+        self.checkBoxTomarDatoMSPower4G.stateChanged.connect(self.fnProcesaTomaDatosMsPower)
         # Push buttons signals
-        self.pushButtonObtenerDatosFiltrados.clicked.connect(
-            self.fnProcesaObtenerDatosFiltrados)
-        self.pushButtonGenerarGraficas.clicked.connect(
-            self.fnGeneraGraficaDatosFiltrados)
-        self.pushButtonVerAnalisis.clicked.connect(
-            self.fnMuestraVentanaAnalisis)
+        self.pushButtonObtenerDatosFiltrados.clicked.connect(self.fnProcesaObtenerDatosFiltrados)
+        self.pushButtonGenerarGraficas.clicked.connect(self.fnGeneraGraficaDatosFiltrados)
+        self.pushButtonVerAnalisis.clicked.connect(self.fnMuestraVentanaAnalisis)
         self.pushButtonBuscarDatos.clicked.connect(self.fnProcesaBusquedaDatos)
+        # Limpiar selecciones last lac etc
+        self.pushButtonLimpiarSeleccion2G.clicked.connect(lambda state: self.fnProcesaLimpiezaRat("2G"))
+        self.pushButtonLimpiarSeleccion3G.clicked.connect(lambda state: self.fnProcesaLimpiezaRat("3G"))
+        self.pushButtonLimpiarSeleccion4G.clicked.connect(lambda state: self.fnProcesaLimpiezaRat("4G"))
 
-        self.actionIrADatosGenerales.triggered.connect(
-            self.fnMostrarDatosGenerales)
+        self.actionIrADatosGenerales.triggered.connect(self.fnMostrarDatosGenerales)
 
-        # Tabla Last Lac
-        # Seleccionar toda la fila
-        self.tableWidgetDatosObtenidosLASTLAC.setSelectionBehavior(
-            QAbstractItemView.SelectRows)
-        # Seleccionar una fila a la vez
-        self.tableWidgetDatosObtenidosLASTLAC.setSelectionMode(
-            QAbstractItemView.SingleSelection)
-        self.tableWidgetDatosObtenidosLASTLAC.horizontalHeader().setStretchLastSection(True)
-        self.tableWidgetDatosObtenidosLASTLAC.setEditTriggers(
-            QAbstractItemView.NoEditTriggers)
-        self.tableWidgetDatosObtenidosLASTLAC.setAlternatingRowColors(True)
-
-        self.fillTableWidget(self.tableWidgetDatosObtenidosLASTLAC,
-                             self.pandasUtils.dfLastLacFrecuencia(self.pandasUtils.allData))
-        # Boton limpiaar seleccion de last lac
-        self.pushButtonLimpiarSeleccion.clicked.connect(
-            lambda state: self.fnProcesaDeseleccion(self.tableWidgetDatosObtenidosLASTLAC))
         # Tabla Datos filtrados
         # Seleccionar toda la fila
-        self.tableWidgetVerDatosFiltrados.setSelectionBehavior(
-            QAbstractItemView.SelectRows)
+        self.tableWidgetVerDatosFiltrados.setSelectionBehavior(QAbstractItemView.SelectRows)
         # Seleccionar una fila a la vez
-        self.tableWidgetVerDatosFiltrados.setSelectionMode(
-            QAbstractItemView.SingleSelection)
+        self.tableWidgetVerDatosFiltrados.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tableWidgetVerDatosFiltrados.setAlternatingRowColors(True)
 
-        self.tableWidgetVerDatosFiltrados.setContextMenuPolicy(
-            Qt.CustomContextMenu)
+        self.tableWidgetVerDatosFiltrados.setContextMenuPolicy(Qt.CustomContextMenu)
         # Establece la funcion que crea el menu contextual y le pasa la posicion
-        self.tableWidgetVerDatosFiltrados.customContextMenuRequested.connect(
-            self.menuContextualDatosFiltrados)
+        self.tableWidgetVerDatosFiltrados.customContextMenuRequested.connect(self.menuContextualDatosFiltrados)
+        # Menus y sus botones
+        self.menu2GLastLac = UiUtils.createDynamicMenu(self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData2G))
+        self.pushButtonLastLac2G.setMenu(self.menu2GLastLac)
+        self.menu2GLastLac.triggered.connect(self.fnProcesaMenuLastLac2G)
+
+        self.menu3GLastLac = UiUtils.createDynamicMenu(self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData3G))
+        self.pushButtonLastLac3G.setMenu(self.menu3GLastLac)
+        self.menu3GLastLac.triggered.connect(self.fnProcesaMenuLastLac3G)
+
+        self.menu4GLastLac = UiUtils.createDynamicMenu(self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData4G))
+        self.pushButtonLastLac4G.setMenu(self.menu4GLastLac)
+        self.menu4GLastLac.triggered.connect(self.fnProcesaMenuLastLac4G)
+
+    def fnProcesaMenuLastLac2G(self):
+        print(f"Procesamiento menu de 2g")
+    def fnProcesaMenuLastLac3G(self):
+        print(f"Procesamiento menu de 3g")
+    def fnProcesaMenuLastLac4G(self):
+        print(f"Procesamiento menu de 4g")
+
+    def fnProcesaLimpiezaRat(self, rat: str):
+        if rat == "2G":
+            print("Limpieza 2g")
+        if rat == "3G":
+            print("Limpieza 3g")
+        if rat == "4G":
+            print("Limpieza 4g")
 
     def fnProcesaDeseleccion(self, tableWidget: QTableWidget):
         tableWidget.selectionModel().clearSelection()
@@ -157,7 +163,6 @@ class VentanaFiltros(QMainWindow):
         elif accion == VentanaFiltros.ACTION_OPERADORES:
             print("Accion operadores")
 
-
     def fnMostrarDatosGenerales(self):
         self.parent().show()
         self.hide()
@@ -167,106 +172,120 @@ class VentanaFiltros(QMainWindow):
         datoBuscar = self.textEditBuscarDatos.toPlainText()
         print(f"Dato buscar {datoBuscar}")
         if(len(datoBuscar) > 0):
-            df = self.pandasUtils.filterDfByEmai(
-                self.pandasUtils.getGroupedByEmais(self.pandasUtils.allData), datoBuscar)
-            print(f"df {df.shape}")
+            self.fnAplicaFiltros()
+            df = self.pandasUtils.tempDf
             self.fillTableWidget(self.tableWidgetVerDatosFiltrados, df)
 
     def fnMuestraVentanaAnalisis(self):
         self.hide()
+        ventanaAnalisis = 
         # TODO: MOSTRAR NUEVA VENTANA ANALIS
         print(f"Fn muestra ventana analisis de datos")
 
     def fnGeneraGraficaDatosFiltrados(self):
         ventanaGrafica = PlotWindow(self)
-        hitsByDate = self.pandasUtils.hitsByDate(self.pandasUtils.allData)
-        ventanaGrafica.plot(x=hitsByDate.index.to_pydatetime(),
-                            y=hitsByDate.values, xLabel='DATE', yLabel='HITS')
+        hitsByDate = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
+        ventanaGrafica.plot(x=hitsByDate.index.to_pydatetime(), y=hitsByDate.values, xLabel='DATE', yLabel='HITS')
         ventanaGrafica.show()
         print(f"Fn genera grafica datos filtrados")
 
     def fnProcesaObtenerDatosFiltrados(self):
-        self.ratsSeleccionados['2G'] = self.checkBox2G.isChecked()
-        self.ratsSeleccionados['3G'] = self.checkBox3G.isChecked()
-        self.ratsSeleccionados['4G'] = self.checkBox4G.isChecked()
-
-        self.setLastLacValue()
-        self.valoresTA = set(self.lineEditValorRangosTA.text().split(','))
-        self.hitsMinimos = int(self.lineEditValorHitsMinimos.text()) if len(
-            self.lineEditValorHitsMinimos.text()) > 0 else 0
-        print(
-            f"Fn procesa obtener datos filtrados rats {self.ratsSeleccionados}",
-            f"valores TA {self.valoresTA} min hits {self.hitsMinimos}",
-            f"tomar ms power {self.tomarMsPower}  valores ms power {self.msInicial} {self.msFinal}",
-            f"Last lasc {self.lastLacValue}")
-        if self.tomarMsPower:
-            self.msInicial = float(
-                self.lineEditValorRangoInicialMSPOWER.text())
-            self.msFinal = float(
-                self.lineEditValorRangoFinalMSPOWER.text())
-            self.msInicial = None
-            self.msFinal = None
-        else:
-            self.msInicial = None
-            self.msFinal = None
-        self.fillTableWidget(
-            self.tableWidgetVerDatosFiltrados, self.fnAplicaFiltros())
+        """ Setea todos los valores de la interfaz en los campos de instancia"""
+        # Valores de TA
+        self.filtros2G.valoresTA = set(self.lineEditValorRangosTA2G.text().split(','))
+        self.filtros3G.valoresTA = set(self.lineEditValorRangosTA3G.text().split(','))
+        self.filtros4G.valoresTA = set(self.lineEditValorRangosTA4G.text().split(','))
+        # Hits minimos
+        self.filtros2G.hitsMinimos = int(self.lineEditValorHitsMinimos2G.text()) if self.lineEditValorHitsMinimos2G.text().isnumeric() else 0
+        self.filtros3G.hitsMinimos = int(self.lineEditValorHitsMinimos3G.text()) if self.lineEditValorHitsMinimos3G.text().isnumeric() else 0
+        self.filtros4G.hitsMinimos = int(self.lineEditValorHitsMinimos4G.text()) if self.lineEditValorHitsMinimos4G.text().isnumeric() else 0
+        # Toma de valores de ms power
+        self.filtros2G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER2G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER2G.text()) else None
+        self.filtros3G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER3G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER3G.text()) else None
+        self.filtros4G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER4G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER4G.text()) else None
+        self.filtros2G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER2G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER2G.text()) else None
+        self.filtros3G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER3G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER3G.text()) else None
+        self.filtros4G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER4G.text()) if self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER4G.text()) else None
+        self.fnAplicaFiltros()
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
 
     def fnAplicaFiltros(self):
         # Procesa de aplicacion de filtros
-        print(f"Procesa de aplicacion de filtros")
-        listaRats = [rat for rat, v in self.ratsSeleccionados.items()
-                     if v is True]
-        dfFiltradoRats = self.pandasUtils.filterDfByColumnValues(
-            self.pandasUtils.allData, "RAT", listaRats
-        )
-
-        dfTa = self.pandasUtils.tiempoAvanceFilterTA(
-            self.pandasUtils.allData, list(self.valoresTA))
-        dfMsPower = self.pandasUtils.msPowerRangeFilter(
-            dfTa, self.msInicial, self.msFinal)
-        dfLastLac = self.pandasUtils.filtroLastLacValor(
-            dfMsPower, self.lastLacValue)
+        dfs = list()
+        if self.filtros2G.selected:
+            df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
+            df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
+            df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.valoresLastLac)
+            df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
+            dfs.append(self.pandasUtils.getGroupedByEmais(df2GHitsMin))
+        if self.filtros3G.selected:
+            df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
+            df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros2G.msPowerInicial, self.filtros3G.msPowerFinal)
+            df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.valoresLastLac)
+            df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
+            dfs.append(self.pandasUtils.getGroupedByEmais(df3GHitsMin))
+        if self.filtros4G.selected:
+            df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G,self.filtros4G.valoresTA)
+            df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
+            df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.valoresLastLac)
+            df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
+            dfs.append(self.pandasUtils.getGroupedByEmais(df4GHitsMin))
         # Empieza a agrupar todo
-        print("Se empiezan a agrupar los datos")
-        grouped = self.pandasUtils.getGroupedByEmais(dfLastLac)
+        print("Se empiezan a agrupar los datos de 2g 3g y 4g")
+        self.pandasUtils.setTempDf(self.pandasUtils.concatDfs(dfs))
 
-        return self.pandasUtils.filterByHitsAmount(grouped, self.hitsMinimos)
+    def setLastLacValue2G(self):
+        pass
 
-    def setLastLacValue(self):
-        filaSeleccionada = [
-            dato.text() for dato in self.tableWidgetDatosObtenidosLASTLAC.selectedItems()]
-        if(filaSeleccionada):
-            print(f"Fila seleccionada {filaSeleccionada}")
-            self.lastLacValue = float(filaSeleccionada[0])
-        else:
-            self.lastLacValue = None
+    def setLastLacValue3G(self):
+        pass
+
+    def setLastLacValue4G(self):
+        pass
 
     def fnProcesaTomaDatosMsPower(self):
-        self.tomarMsPower = self.checkBoxTomarDatoMSPower.isChecked()
-        print(f"Fn procesa toma datos ms power {self.tomarMsPower}")
+        self.filtros2G.tomarMsPower = self.checkBoxTomarDatoMSPower2G.isChecked()
+        self.filtros3G.tomarMsPower = self.checkBoxTomarDatoMSPower3G.isChecked()
+        self.filtros4G.tomarMsPower = self.checkBoxTomarDatoMSPower4G.isChecked()
+        # Setear a None los valores de los rangos para que al hacer la llamada se devuelve el df sin consultar
+        if self.filtros2G.tomarMsPower is False:
+            self.filtros2G.msPowerInicial = None 
+            self.filtros2G.msPowerFinal = None
+        if self.filtros3G.tomarMsPower is False:
+            self.filtros3G.msPowerInicial = None 
+            self.filtros3G.msPowerFinal = None
+        if self.filtros4G.tomarMsPower is False:
+            self.filtros4G.msPowerInicial = None 
+            self.filtros4G.msPowerFinal = None
+
+        print(f"Fn procesa toma datos ms power {self.filtros2G} {self.filtros3G} {self.filtros4G}")
 
     def fnProcesaSeleccionRat(self, state):
-        self.ratsSeleccionados['2G'] = self.checkBox2G.isChecked()
-        self.ratsSeleccionados['3G'] = self.checkBox3G.isChecked()
-        self.ratsSeleccionados['4G'] = self.checkBox4G.isChecked()
-        if not self.ratsSeleccionados['2G'] and not self.ratsSeleccionados['3G'] and not self.ratsSeleccionados['4G']:
+        self.filtros2G.selected = self.checkBox2G.isChecked()
+        self.filtros3G.selected = self.checkBox3G.isChecked()
+        self.filtros4G.selected = self.checkBox4G.isChecked()
+        if not self.filtros2G.selected and not self.filtros3G.selected and not self.filtros4G.selected:
             self.checkBox2G.setChecked(True)
             self.checkBox3G.setChecked(True)
             self.checkBox4G.setChecked(True)
-
+            self.filtros2G.selected = self.checkBox2G.isChecked()
+            self.filtros3G.selected = self.checkBox3G.isChecked()
+            self.filtros4G.selected = self.checkBox4G.isChecked()
+        print(f"Rats seleccion 2g {self.filtros2G.selected} 3g {self.filtros3G.selected} 4g {self.filtros4G.selected}")
         self.seteaValoresTA()
-        print(f"Fn procesa seleccion {self.ratsSeleccionados}")
 
     def seteaValoresTA(self):
         if self.checkBox2G.isChecked():
-            self.valoresTA = {0, 1}
+            self.filtros2G.valoresTA = {0, 1}
+            self.lineEditValorRangosTA2G.setText(",".join(map(str, list(self.filtros2G.valoresTA))))
+
         if self.checkBox3G.isChecked():
-            self.valoresTA = {0, 1, 2}
+            self.filtros3G.valoresTA = {0, 1, 2}
+            self.lineEditValorRangosTA3G.setText(",".join(map(str, list(self.filtros3G.valoresTA))))
+
         if self.checkBox4G.isChecked():
-            self.valoresTA = {0, 1, 2, 3, 4, 5, 6}
-        self.lineEditValorRangosTA.setText(
-            ",".join(map(str, list(self.valoresTA))))
+            self.filtros4G.valoresTA = {0, 1, 2, 3, 4, 5, 6}
+            self.lineEditValorRangosTA4G.setText(",".join(map(str, list(self.filtros4G.valoresTA))))
 
 
 if(__name__ == "__main__"):
