@@ -179,7 +179,7 @@ class PandasDataLoader:
             HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
-        return groupedDf
+        return groupedDf.reset_index(drop=True)
 
     def getGroupedByEmaisHorario(self, df: pd.DataFrame):
         # Returns a df with grouped and aggregated values
@@ -191,7 +191,7 @@ class PandasDataLoader:
             HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
             DATE_TIMEs=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
         )
-        return groupedDf
+        return groupedDf.reset_index(drop=True)
 
     def filtroHoras(self, df: pd.DataFrame, fromTime, toTime):
         return df[(df['DATE_TIME'].dt.hour >= fromTime) & (df['DATE_TIME'].dt.hour < toTime)]
@@ -238,10 +238,10 @@ class PandasDataLoader:
         return groupedDf
 
     def hitsByDate(self, df: pd.DataFrame):
-        grouped = df[df['DATE_TIME'].notnull()].groupby(pd.Grouper(key='DATE_TIME', freq='D'))['HITS'].apply(sum)
-        grouped.rename_axis('DATE', inplace=True)
-        return grouped
-
+        print(f"Pandas Utils: Df to group by date shape {df.shape} info  {df.info()} Index {df.index}")
+        dfT = df[df['DATE_TIME'].notnull()]
+        series = dfT.set_index('DATE_TIME').groupby(pd.Grouper(freq='D'))['HITS'].apply(sum)
+        return series
     def dfLastLacFrecuencia(self, df: pd.DataFrame):
         groupedDf = df.groupby('LAST_LAC')['LAST_LAC'].agg(FRECUENCIA=pd.NamedAgg(column='LAST_LAC', aggfunc='size'))
         groupedDf['LAST_LAC'] = groupedDf.index

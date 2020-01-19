@@ -23,7 +23,7 @@ class VentanaFiltros(QMainWindow):
         self.filtros2G = FiltrosContainer()
         self.filtros3G = FiltrosContainer()
         self.filtros4G = FiltrosContainer()
-        self.agruparDatos = True
+        self.verDatosAgrupados = True
         # UI
         loadUi('UI/VistaFiltros.ui', self)
         self.setupUi()
@@ -191,8 +191,10 @@ class VentanaFiltros(QMainWindow):
     def fnGeneraGraficaDatosFiltrados(self):
         print(f"Dimesiones df a graficar {self.pandasUtils.tempDf}")
         ventanaGrafica = PlotWindow(self)
-        hitsByDate = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
-        ventanaGrafica.plot(x=hitsByDate.index.to_pydatetime(), y=hitsByDate.values, xLabel='DATE', yLabel='HITS')
+        # Get the x and y values of current stuff
+        self.fnAplicaFiltrosNoGrouping()
+        series = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
+        ventanaGrafica.plot(x=series.index.date, y=series.values, xLabel='DATE', yLabel='HITS')
         ventanaGrafica.show()
         print(f"Fn genera grafica datos filtrados")
 
@@ -214,7 +216,33 @@ class VentanaFiltros(QMainWindow):
         self.filtros4G.msPowerInicial = float(self.lineEditValorRangoInicialMSPOWER4G.text()) if self.filtros4G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoInicialMSPOWER4G.text()) else None
         self.filtros4G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER4G.text()) if self.filtros4G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER4G.text()) else None
         self.fnAplicaFiltros()
+
         self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
+
+    def fnAplicaFiltrosNoGrouping(self):
+        # Procesa de aplicacion de filtros
+        dfs = list()
+        if self.filtros2G.selected:
+            df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
+            df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
+            df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.valoresLastLac)
+            df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
+
+            dfs.append(df2GHitsMin)
+        if self.filtros3G.selected:
+            df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
+            df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
+            df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.valoresLastLac)
+            df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
+            dfs.append(df3GHitsMin)
+        if self.filtros4G.selected:
+            df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G,self.filtros4G.valoresTA)
+            df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
+            df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.valoresLastLac)
+            df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
+            dfs.append(df4GHitsMin)
+        # Empieza a agrupar todo
+        self.pandasUtils.setTempDf(self.pandasUtils.concatDfs(dfs))
 
     def fnAplicaFiltros(self):
         # Procesa de aplicacion de filtros
@@ -238,8 +266,10 @@ class VentanaFiltros(QMainWindow):
             df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
             dfs.append(self.pandasUtils.getGroupedByEmais(df4GHitsMin))
         # Empieza a agrupar todo
-        print("Se empiezan a agrupar los datos de 2g 3g y 4g")
         self.pandasUtils.setTempDf(self.pandasUtils.concatDfs(dfs))
+        print("Se empiezan a agrupar los datos de 2g 3g y 4g")
+        if(self.verDatosAgrupados):
+            self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(self.pandasUtils.tempDf))
 
 
     def setLastLacValue2G(self):
