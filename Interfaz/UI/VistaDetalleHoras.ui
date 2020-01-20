@@ -37,10 +37,10 @@
      <widget class="QLabel" name="label_7">
       <property name="font">
        <font>
-        <family>Corbel</family>
-        <pointsize>14</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <family>Agency FB</family>
+        <pointsize>24</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="text">
@@ -353,6 +353,12 @@
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>Ingresar Valor delimitador</string>
             </property>
