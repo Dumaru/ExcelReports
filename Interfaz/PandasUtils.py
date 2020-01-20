@@ -222,7 +222,7 @@ class PandasDataLoader:
         groupedDf = df.groupby('IMEI').agg(
             IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
-            CANTIDAD=pd.NamedAgg(column='IMSI', aggfunc='count'),
+            CANTIDAD=pd.NamedAgg(column='IMSI', aggfunc=pd.Series.nunique),
             DATE_TIMEs=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
         )
         return groupedDf.reset_index(drop=True)
@@ -234,7 +234,7 @@ class PandasDataLoader:
         groupedDf = df.groupby('IMEI').agg(
             IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             DATE_TIMES=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
-            CANTIDAD=pd.NamedAgg(column='IMSI', aggfunc='count'),
+            CANTIDAD=pd.NamedAgg(column='IMSI', aggfunc=pd.Series.nunique),
         )
         return groupedDf.reset_index(drop=True)
 
@@ -245,7 +245,7 @@ class PandasDataLoader:
         groupedDf = df.groupby('IMEI').agg(
             IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             CHANNELS=pd.NamedAgg(column='CHANNEL', aggfunc=joinValues),
-            CANTIDAD=pd.NamedAgg(column='CHANNEL', aggfunc='count'),
+            CANTIDAD=pd.NamedAgg(column='CHANNEL', aggfunc=pd.Series.nunique),
         )
         return groupedDf.reset_index(drop=True)
 
@@ -256,7 +256,7 @@ class PandasDataLoader:
         groupedDf = df.groupby('IMEI').agg(
             IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             OPERATORS=pd.NamedAgg(column='OPERATOR', aggfunc=joinValues),
-            CANTIDAD=pd.NamedAgg(column='OPERATOR', aggfunc='count'),
+            CANTIDAD=pd.NamedAgg(column='OPERATOR', aggfunc=pd.Series.nunique),
         )
         return groupedDf.reset_index(drop=True)
 

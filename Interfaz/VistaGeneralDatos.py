@@ -53,21 +53,19 @@ class VistaGeneralDatos(QMainWindow):
         # Boton exportar
         self.pushButtonGuardarDatos.clicked.connect(self.fnProcesaGuardarDatos)
         # Boton Analisis horario
-        self.pushButtonAnalisisHorario.clicked.connect(
-            self.fnVentanaAnalisisHorario)
+        self.pushButtonAnalisisHorario.clicked.connect(self.fnVentanaAnalisisHorario)
         # Btn Ver datos indidentales
-        self.pushButtonVerDatosIncidentales.clicked.connect(
-            self.fnFiltroDatosIncidentales)
+        self.pushButtonVerDatosIncidentales.clicked.connect(self.fnFiltroDatosIncidentales)
         # Btn Ver tabla original
-        self.pushButtonVerTablaOriginal.clicked.connect(
-            self.fnMuestraTablaOriginal)
+        self.pushButtonVerTablaOriginal.clicked.connect(self.fnMuestraTablaOriginal)
         # Btn volver a principal de inicio
-        self.actionIr_A_Principal.triggered.connect(
-            self.fnMuestraVentanaPrincipal)
+        self.actionIr_A_Principal.triggered.connect(self.fnMuestraVentanaPrincipal)
         # Btn ventana filtro  de datos
         self.pushButtonFiltrarDatos.clicked.connect(self.fnVentanaFiltroDatos)
         # Btn guardar datos 4g sin sus imeis
         self.pushButtonGuardarDatos4G.clicked.connect(self.fnGuardar4gSinImeis)
+        # Btn ver IMSIS VS IMEIS
+        self.pushButtonVerImsisVSImeis.clicked.connect(self.fnVerImsisImeis)
         # Btn guardar imsis vs imeis
         self.pushButtonGuardarImsisVSImei.clicked.connect(self.fnGuardarImsisImeis)
         # Fill the table with a df where all the EMAIS are
@@ -78,6 +76,11 @@ class VistaGeneralDatos(QMainWindow):
 
         self.pushButtonAsignarIMEIS.clicked.connect(self.fnProcesaAsignarImeis)
         self.fillTableWidget(self.pandasUtils.tempDf)
+
+    def fnVerImsisImeis(self):
+        self.fillTableWidget(
+            self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
+        )
 
     def fnGuardarImsisImeis(self):
         print("Fn procesa guardar datos imsis vs imeis")
@@ -147,6 +150,7 @@ class VistaGeneralDatos(QMainWindow):
         # )
 
     def fnFiltroDatosIncidentales(self):
+        # self.pushButtonVerDatosIncidentales.setStyleSheet('QPushButton {color: green;}')
         self.reseteoFiltros()
         self.viendoIncidentales = True
         self.fnAplicaFiltrosDfOk()

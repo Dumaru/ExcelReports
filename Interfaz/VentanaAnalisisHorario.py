@@ -64,8 +64,10 @@ class VentanaAnalisisHorario(QMainWindow):
         self.tableWidgetMostrarDatosFiltrados.setAlternatingRowColors(True)
 
     def fnGuardarDatosEstaticos(self):
+        
         print(f"fnGuardarDatosEstaticos ")
     def fnGuardarDatosDinamicos(self):
+
         print(f"fnGuardarDatosDinamicos ")
 
     def seteaIndexRango(self, index):
@@ -95,6 +97,7 @@ class VentanaAnalisisHorario(QMainWindow):
         self.setearFechas()
         plotWindow = PlotWindow(self)
         df = self.pandasUtils.filtroDatetimes(self.data, self.fromDate, self.toDate)
+        # TODO: AGRUPAR TODO POR IMEI
         df.sort_values(by="DATE_TIME", inplace=True)
         # dfGropued 
         x = df['DATE_TIME']

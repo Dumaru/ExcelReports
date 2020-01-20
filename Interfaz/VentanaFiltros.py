@@ -250,7 +250,7 @@ class VentanaFiltros(QMainWindow):
         self.fnAplicaFiltrosNoGrouping()
         series = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
         series.sort_values(inplace=True)
-        ventanaGrafica.plot(x=series.index.date, y=series.values, xLabel='DATE', yLabel='HITS')
+        ventanaGrafica.plot(x=pd.to_datetime(series.index), y=series.values, xLabel='DATE', yLabel='HITS')
         ventanaGrafica.show()
         print(f"Fn genera grafica datos filtrados")
 

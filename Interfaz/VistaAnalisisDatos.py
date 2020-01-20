@@ -41,7 +41,6 @@ class VentanaAnalisisDatos(QMainWindow):
         print("Fn procesa guardar datos reporte")
         filePath = self.saveFileDialog()
         if(filePath):
-            self.fnAplicaFiltrosDfOk()
             self.pandasUtils.saveToExcelFile(
                 self.data, filePath, False, self.saveProcessFinished)
 
