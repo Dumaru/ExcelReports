@@ -6,7 +6,8 @@ from PyQt5.uic import loadUi
 import pandas as pd
 from PandasUtils import PandasDataLoader
 from PlotWindow import PlotWindow
-
+from PlotWindowBars import PlotWindowBars
+import UiUtils
 class VentanaAnalisisHorario(QMainWindow):
     RANGO_DIA = 0
     RANGO_MADRUGADA = 0
@@ -40,7 +41,7 @@ class VentanaAnalisisHorario(QMainWindow):
         # Estaticos
         self.setearValoresEstaticos()
         self.pushButtonVerDatosEstaticos.clicked.connect(self.fnVerDatosEstaticosTablaHorario)
-            # Llenado de tabla de rangos estaticos
+        # Llenado de tabla de rangos estaticos
         self.pushButtonGraficarDatosEstaticos.clicked.connect(self.fnGraficarDatosEstaticosTabla)     
         # Action
         self.actionVolverDatos_General.triggered.connect(self.fnMuestraVentanaGeneral)
@@ -69,7 +70,9 @@ class VentanaAnalisisHorario(QMainWindow):
         if(filePath):
             self.pandasUtils.saveToExcelFile(
                 self.fnAplicaRangosTablasEstaticas(), filePath, False, self.saveProcessFinished)
-
+    def saveProcessFinished(self):
+        UiUtils.showInfoMessage(parent=self, title="Guardado de archivos",
+                                description=f"Se guardo el archivo de la tabla filtrada correctamente.")
     
     def saveFileDialog(self):
         """
@@ -116,7 +119,7 @@ class VentanaAnalisisHorario(QMainWindow):
         self.setearFechas()
         plotWindow = PlotWindow(self)
         df = self.pandasUtils.filtroDatetimes(self.data, self.fromDate, self.toDate)
-        # TODO: AGRUPAR TODO POR IMEI
+        df = self.pandasUtils.getGroupedByEmaisHorario(df)
         df.sort_values(by="DATE_TIME", inplace=True)
         # dfGropued 
         x = df['DATE_TIME']
@@ -134,8 +137,9 @@ class VentanaAnalisisHorario(QMainWindow):
     def fnGraficarDatosEstaticosTabla(self):
         # Graficar datos con rangos
         self.setearValoresEstaticos()
-        plotWindow = PlotWindow(self)
+        plotWindow = PlotWindowBars(self)
         filtroDates = self.pandasUtils.filtroHoras(self.data, self.fromTime, self.toTime)
+        filtroDates = self.pandasUtils.getGroupedByEmaisHorario(filtroDates)
         if self.viendoMenores is False:
             filtroHits = self.pandasUtils.filterByHitsAmount(filtroDates, self.valorFiltro)
         else:
@@ -152,7 +156,8 @@ class VentanaAnalisisHorario(QMainWindow):
         # Llenado de tabla de rangos estaticos
         self.setearValoresEstaticos()
         self.fillTableWidget(
-            self.tableWidgetMostrarDatosEstaticos, self.fnAplicaRangosTablasEstaticas()
+            self.tableWidgetMostrarDatosEstaticos,
+            self.fnAplicaRangosTablasEstaticas()
         )
     
         print(f"FnVerDatosTablaHorario estatico")

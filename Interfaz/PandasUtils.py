@@ -211,7 +211,7 @@ class PandasDataLoader:
             IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
             HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
-            DATE_TIMEs=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
+            DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
         )
         return groupedDf.reset_index(drop=True)
 
