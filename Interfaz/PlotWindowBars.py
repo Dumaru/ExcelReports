@@ -8,9 +8,9 @@ import matplotlib.dates as mdates
 import random
 
 
-class PlotWindow(QDialog):
+class PlotWindowBars(QDialog):
     def __init__(self, parent=None):
-        super(PlotWindow, self).__init__(parent)
+        super(PlotWindowBars, self).__init__(parent)
 
         # a figure instance to plot on
         self.figure = plt.figure()
@@ -34,7 +34,7 @@ class PlotWindow(QDialog):
         # layout.addWidget(self.button)
         self.setLayout(layout)
 
-    def plot(self, data=None, xLabel: str="X", yLabel: str="Y", x=None, y=None):
+    def plot(self, xLabel: str="X", yLabel: str="Y", x=None, y=None):
         ''' plot some random stuff '''
         # instead of ax.hold(False)
         self.figure.clear()
@@ -42,21 +42,18 @@ class PlotWindow(QDialog):
         # create an axis
         ax = self.figure.add_subplot(111)
 
-        # rotate and align the tick labels so they look better
-        self.figure.autofmt_xdate()
-
-        # discards the old graph
-        # ax.hold(False) # deprecated, see above
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+        idx = [i for i in range(len(x[:20]))]
+        heights = y[:20]
+        width = 0.4
         # plot data
-        if x is not None and y is not None:
-            ax.plot(x, y, '*-')
-            ax.set_xlabel(xLabel)
-            ax.set_ylabel(yLabel)
-        else:
-            ax.plot(xLabel, yLabel, 'ro-',data=data)
+        ax.bar(idx, heights, width=width)
+        ax.set_xticks(idx)
+        ax.set_xticklabels(x[:20], rotation=80)
+        ax.set_xlabel(xLabel)
+        ax.set_ylabel(yLabel)
 
         # refresh canvas
+        self.figure.tight_layout()
         self.canvas.draw()
 
 
