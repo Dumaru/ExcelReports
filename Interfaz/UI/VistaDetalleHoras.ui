@@ -61,19 +61,6 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="font">
-             <font>
-              <family>Corbel</family>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Desde</string>
-            </property>
-           </widget>
-          </item>
           <item row="3" column="0">
            <widget class="QDateTimeEdit" name="dateTimeEditIngresoInicial">
             <property name="styleSheet">
@@ -81,8 +68,36 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0" colspan="2">
+          <item row="8" column="0" colspan="2">
+           <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <column>
+             <property name="text">
+              <string>IMEI</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>IMSIS</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Data-Time</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item row="6" column="0">
            <widget class="QPushButton" name="pushButtonVerDatosTablaFiltrada">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
               <family>Corbel</family>
@@ -107,6 +122,19 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Desde</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="2">
@@ -124,30 +152,14 @@
             </item>
            </layout>
           </item>
-          <item row="6" column="0" colspan="2">
-           <widget class="QTableWidget" name="tableWidgetMostrarDatosFiltrados">
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);</string>
-            </property>
-            <column>
-             <property name="text">
-              <string>IMEI</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>IMSIS</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Data-Time</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="2">
+          <item row="6" column="1">
            <widget class="QPushButton" name="pushButtonaGuardarBusquedaTabla1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="font">
              <font>
               <family>Corbel</family>
@@ -169,7 +181,7 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0" colspan="2">
+          <item row="10" column="0" colspan="2">
            <widget class="QPushButton" name="pushButtonGraficarDatosTablaFiltrada">
             <property name="font">
              <font>
@@ -207,7 +219,14 @@
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="12" column="1">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Ingresar Valor delimitador</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="1">
            <widget class="QPushButton" name="pushButtonGraficarDatosEstaticos">
             <property name="font">
              <font>
@@ -233,7 +252,71 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="1">
+          <item row="6" column="1">
+           <widget class="QPushButton" name="pushButtonGuardarBsuquedaTabla2">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Guardar Busqueda (Tabla 2)</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="1">
+           <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <column>
+             <property name="text">
+              <string>IMEI</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>IMSI</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>DATA-TIME</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QTextEdit" name="textEditValorFiltro">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1">
            <widget class="QPushButton" name="pushButtonVerDatosEstaticos">
             <property name="font">
              <font>
@@ -257,45 +340,6 @@
               <height>30</height>
              </size>
             </property>
-           </widget>
-          </item>
-          <item row="5" column="0">
-           <widget class="QComboBox" name="comboBoxVerMayorMenor">
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>Mayor</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Menor</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="10" column="1">
-           <widget class="QTableWidget" name="tableWidgetMostrarDatosEstaticos">
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);</string>
-            </property>
-            <column>
-             <property name="text">
-              <string>IMEI</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>IMSI</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>DATA-TIME</string>
-             </property>
-            </column>
            </widget>
           </item>
           <item row="5" column="1">
@@ -336,53 +380,21 @@
             </item>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Ingresar Valor</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QTextEdit" name="textEditValorFiltro">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>30</height>
-             </size>
-            </property>
+          <item row="5" column="0">
+           <widget class="QComboBox" name="comboBoxVerMayorMenor">
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
-           </widget>
-          </item>
-          <item row="6" column="1">
-           <widget class="QPushButton" name="pushButtonGuardarBsuquedaTabla2">
-            <property name="font">
-             <font>
-              <family>Corbel</family>
-              <pointsize>12</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Guardar Busqueda (Tabla 2)</string>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>30</width>
-              <height>30</height>
-             </size>
-            </property>
+            <item>
+             <property name="text">
+              <string>Mayor</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Menor</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

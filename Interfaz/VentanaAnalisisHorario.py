@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUi
 import pandas as pd
 from PandasUtils import PandasDataLoader
-
+from PlotWindow import PlotWindow
 
 class VentanaAnalisisHorario(QMainWindow):
     RANGO_DIA = 0
@@ -32,44 +32,41 @@ class VentanaAnalisisHorario(QMainWindow):
 
     def setupUi(self):
         # Principales
-        self.pushButtonVerDatosTablaFiltrada.clicked.connect(
-            self.fnVerDatosTablaHorario)
-        self.pushButtonGraficarDatosTablaFiltrada.clicked.connect(
-            self.fnGraficarDatosTabla)
+        self.pushButtonVerDatosTablaFiltrada.clicked.connect(self.fnVerDatosTablaHorario)
+        self.pushButtonGraficarDatosTablaFiltrada.clicked.connect(self.fnGraficarDatosTablaDinamica)
+        self.pushButtonaGuardarBusquedaTabla1.clicked.connect(self.fnGuardarDatosDinamicos)
+        self.pushButtonGuardarBsuquedaTabla2.clicked.connect(self.fnGuardarDatosEstaticos)
+
         # Estaticos
         self.setearValoresEstaticos()
-        self.pushButtonVerDatosEstaticos.clicked.connect(
-            self.fnVerDatosEstaticosTablaHorario)
+        self.pushButtonVerDatosEstaticos.clicked.connect(self.fnVerDatosEstaticosTablaHorario)
             # Llenado de tabla de rangos estaticos
-        self.pushButtonGraficarDatosEstaticos.clicked.connect(
-            self.fnGraficarDatosEstaticosTabla)     
+        self.pushButtonGraficarDatosEstaticos.clicked.connect(self.fnGraficarDatosEstaticosTabla)     
         # Action
-        self.actionVolverDatos_General.triggered.connect(
-            self.fnMuestraVentanaGeneral)
+        self.actionVolverDatos_General.triggered.connect(self.fnMuestraVentanaGeneral)
         self.comboBoxOrganizacionJornadas.currentIndexChanged.connect(self.seteaIndexRango)
 
         # Tabla estaticos
         # Seleccionar toda la fila
-        self.tableWidgetMostrarDatosEstaticos.setSelectionBehavior(
-            QAbstractItemView.SelectRows)
+        self.tableWidgetMostrarDatosEstaticos.setSelectionBehavior(QAbstractItemView.SelectRows)
         # Seleccionar una fila a la vez
-        self.tableWidgetMostrarDatosEstaticos.setSelectionMode(
-            QAbstractItemView.SingleSelection)
+        self.tableWidgetMostrarDatosEstaticos.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tableWidgetMostrarDatosEstaticos.horizontalHeader().setStretchLastSection(True)
-        self.tableWidgetMostrarDatosEstaticos.setEditTriggers(
-            QAbstractItemView.NoEditTriggers)
+        self.tableWidgetMostrarDatosEstaticos.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableWidgetMostrarDatosEstaticos.setAlternatingRowColors(True)
         # ---Tabla dinamicos---
         # Seleccionar toda la fila
-        self.tableWidgetMostrarDatosFiltrados.setSelectionBehavior(
-            QAbstractItemView.SelectRows)
+        self.tableWidgetMostrarDatosFiltrados.setSelectionBehavior(QAbstractItemView.SelectRows)
         # Seleccionar una fila a la vez
-        self.tableWidgetMostrarDatosFiltrados.setSelectionMode(
-            QAbstractItemView.SingleSelection)
+        self.tableWidgetMostrarDatosFiltrados.setSelectionMode(QAbstractItemView.SingleSelection)
         self.tableWidgetMostrarDatosFiltrados.horizontalHeader().setStretchLastSection(True)
-        self.tableWidgetMostrarDatosFiltrados.setEditTriggers(
-            QAbstractItemView.NoEditTriggers)
+        self.tableWidgetMostrarDatosFiltrados.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableWidgetMostrarDatosFiltrados.setAlternatingRowColors(True)
+
+    def fnGuardarDatosEstaticos(self):
+        print(f"fnGuardarDatosEstaticos ")
+    def fnGuardarDatosDinamicos(self):
+        print(f"fnGuardarDatosDinamicos ")
 
     def seteaIndexRango(self, index):
         self.rangoSeleccionadoIndex = index
@@ -87,19 +84,23 @@ class VentanaAnalisisHorario(QMainWindow):
 
     def fnAplicaRangosTablasEstaticas(self):
         self.setearValoresEstaticos()
-        filtroDates = self.pandasUtils.filtroHoras(
-            self.data, self.fromTime, self.toTime)
+        filtroDates = self.pandasUtils.filtroHoras(self.data, self.fromTime, self.toTime)
         if self.viendoMenores is False:
             filtroHits = self.pandasUtils.filterByHitsAmount(filtroDates, self.valorFiltro)
         else:
             filtroHits = self.pandasUtils.filterByHitsAmountMin(filtroDates, self.valorFiltro)
         return self.pandasUtils.getGroupedByEmaisHorario(filtroHits)
 
-    def fnGraficarDatosTabla(self):
+    def fnGraficarDatosTablaDinamica(self):
         self.setearFechas()
-        self.fillTableWidget(
-            self.tableWidgetMostrarDatosFiltrados, self.fnAplicaRangosTablasDinamicas()
-        )
+        plotWindow = PlotWindow(self)
+        df = self.pandasUtils.filtroDatetimes(self.data, self.fromDate, self.toDate)
+        df.sort_values(by="DATE_TIME", inplace=True)
+        # dfGropued 
+        x = df['DATE_TIME']
+        y = df['HITS']
+        plotWindow.plot(x=x, y=y, xLabel="DATE", yLabel="HITS AMOUNT")
+        plotWindow.show()
         print(f"Graficar tabla filtrada {self.fromDate} - {self.toDate}")
 
     def fnVerDatosTablaHorario(self):
@@ -111,6 +112,18 @@ class VentanaAnalisisHorario(QMainWindow):
     def fnGraficarDatosEstaticosTabla(self):
         # Graficar datos con rangos
         self.setearValoresEstaticos()
+        plotWindow = PlotWindow(self)
+        filtroDates = self.pandasUtils.filtroHoras(self.data, self.fromTime, self.toTime)
+        if self.viendoMenores is False:
+            filtroHits = self.pandasUtils.filterByHitsAmount(filtroDates, self.valorFiltro)
+        else:
+            filtroHits = self.pandasUtils.filterByHitsAmountMin(filtroDates, self.valorFiltro)
+        # dfGropued 
+        filtroHits.sort_values(by="DATE_TIME", inplace=True)
+        x = filtroHits['DATE_TIME']
+        y = filtroHits['HITS']
+        plotWindow.plot(x=x, y=y, xLabel="DATE", yLabel="HITS AMOUNT")
+        plotWindow.show()
         print("Graficar tabla filtrada estaticos")
 
     def fnVerDatosEstaticosTablaHorario(self):
