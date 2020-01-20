@@ -5,7 +5,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUi
 import pandas as pd
 from PandasUtils import PandasDataLoader
-
+import UiUtils
 
 class VentanaAnalisisDatos(QMainWindow):
     def __init__(self, parent=None, pandasUtilsInstance=None, data: pd.DataFrame = None):
