@@ -53,12 +53,19 @@ class VentanaFiltros(QMainWindow):
         self.pushButtonGenerarGraficas.clicked.connect(self.fnGeneraGraficaDatosFiltrados)
         self.pushButtonVerAnalisis.clicked.connect(self.fnMuestraVentanaAnalisis)
         self.pushButtonBuscarDatos.clicked.connect(self.fnProcesaBusquedaDatos)
+        self.pushButtonGuardarBusqueda.clicked.connect(self.fnGuardarTablaFiltrada)
         # Limpiar selecciones last lac etc
         self.pushButtonLimpiarSeleccion2G.clicked.connect(lambda state: self.fnProcesaLimpiezaRat("2G"))
         self.pushButtonLimpiarSeleccion3G.clicked.connect(lambda state: self.fnProcesaLimpiezaRat("3G"))
         self.pushButtonLimpiarSeleccion4G.clicked.connect(lambda state: self.fnProcesaLimpiezaRat("4G"))
 
         self.actionIrADatosGenerales.triggered.connect(self.fnMostrarDatosGenerales)
+
+        # Tabla previsualizacion
+        self.tableWidgetMostrarSeleccion.setWordWrap(False)
+        self.tableWidgetMostrarSeleccion.setAlternatingRowColors(True)
+        self.tableWidgetMostrarSeleccion.setTextElideMode(Qt.ElideRight)# Qt.ElideNone
+
 
         # Tabla Datos filtrados
         # Seleccionar toda la fila
@@ -71,14 +78,20 @@ class VentanaFiltros(QMainWindow):
         # Establece la funcion que crea el menu contextual y le pasa la posicion
         self.tableWidgetVerDatosFiltrados.customContextMenuRequested.connect(self.menuContextualDatosFiltrados)
         # Menus y sus botones
-        self.menu2GLastLac = UiUtils.createDynamicMenu(self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData2G))
+        lastLacFreq2G = self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData2G)
+        self.filtros2G.valoresLastLac = {lastLac: True for lastLac, f in lastLacFreq2G.items()}
+        self.menu2GLastLac = UiUtils.createDynamicMenu(lastLacFreq2G)
         self.pushButtonLastLac2G.setMenu(self.menu2GLastLac)
         self.menu2GLastLac.triggered.connect(self.fnProcesaMenuLastLac2G)
 
-        self.menu3GLastLac = UiUtils.createDynamicMenu(self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData3G))
+        lastLacFreq3G = self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData3G)
+        self.filtros3G.valoresLastLac = {lastLac: True for lastLac, f in lastLacFreq3G.items()}
+        self.menu3GLastLac = UiUtils.createDynamicMenu(lastLacFreq3G)
         self.pushButtonLastLac3G.setMenu(self.menu3GLastLac)
         self.menu3GLastLac.triggered.connect(self.fnProcesaMenuLastLac3G)
 
+        lastLacFreq4G = self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData4G)
+        self.filtros4G.valoresLastLac = {lastLac: True for lastLac, f in lastLacFreq4G.items()}
         self.menu4GLastLac = UiUtils.createDynamicMenu(self.pandasUtils.lastLacFrecuenciaSeries(self.pandasUtils.allData4G))
         self.pushButtonLastLac4G.setMenu(self.menu4GLastLac)
         self.menu4GLastLac.triggered.connect(self.fnProcesaMenuLastLac4G)
@@ -86,12 +99,41 @@ class VentanaFiltros(QMainWindow):
         self.fnAplicaFiltros()
         self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
 
-    def fnProcesaMenuLastLac2G(self):
-        print(f"Procesamiento menu de 2g")
-    def fnProcesaMenuLastLac3G(self):
-        print(f"Procesamiento menu de 3g")
-    def fnProcesaMenuLastLac4G(self):
-        print(f"Procesamiento menu de 4g")
+    def fnGuardarTablaFiltrada(self):
+        print("Fn procesa guardar datos tabla filtrada")
+        filePath = self.saveFileDialog()
+        if(filePath):
+            self.fnAplicaFiltros()
+            self.pandasUtils.saveToExcelFile(
+                self.pandasUtils.tempDf, filePath, False, self.saveProcessFinished)
+
+        print("Fn generacion del reporte")
+
+    def saveProcessFinished(self):
+        UiUtils.showInfoMessage(parent=self, title="Guardado de archivos",
+                                description=f"Se guardo el archivo de la tabla filtrada correctamente.")
+
+    def saveFileDialog(self):
+        """
+        Opens a save file dialog and returns the path to the file
+        """
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(
+            self, "Guardar archivo", "", "Excel Files (*.xlsx)", options=options)
+        return fileName
+
+    def fnProcesaMenuLastLac2G(self, action):
+        print(f"Procesamiento menu de 2g antes: {action.data()} valores filtro 2g last lac {self.filtros2G.valoresLastLac}")
+        self.filtros2G.valoresLastLac[float(action.data())] = not self.filtros2G.valoresLastLac[float(action.data())]
+        print(f"Procesamiento menu de 2g despues: {action.data()} valores filtro 2g last lac {self.filtros2G.valoresLastLac}")
+    def fnProcesaMenuLastLac3G(self, action):
+        print(f"Procesamiento menu de 3g antes: {action.data()} valores filtro 3g last lac {self.filtros3G.valoresLastLac}")
+        self.filtros3G.valoresLastLac[float(action.data())] = not self.filtros3G.valoresLastLac[float(action.data())]
+
+    def fnProcesaMenuLastLac4G(self, action):
+        print(f"Procesamiento menu de 4g antes: {action.data()} valores filtro 4g last lac {self.filtros4G.valoresLastLac}")
+        self.filtros4G.valoresLastLac[float(action.data())] = not self.filtros4G.valoresLastLac[float(action.data())]
 
     def fnProcesaLimpiezaRat(self, rat: str):
         if rat == "2G":
@@ -159,14 +201,27 @@ class VentanaFiltros(QMainWindow):
 
     def fnProcesaMenuContextual(self, action):
         accion = action.data()
+        currentTableItem = float(self.tableWidgetVerDatosFiltrados.currentItem().text()) if len(self.tableWidgetVerDatosFiltrados.currentItem().text())>0 else None
         print(f"Procesa menu contetual {accion}")
         if accion == VentanaFiltros.ACTION_IMSIS:
             print("Accion imsis")
+            dfImei = self.pandasUtils.filterDfByEmai(self.pandasUtils.getAllData(), currentTableItem)
+            dfAgrupado = self.pandasUtils.getGroupedByEmaisIMSIS(dfImei) 
+            self.fillTableWidget(self.tableWidgetMostrarSeleccion, dfAgrupado)
         elif accion == VentanaFiltros.ACTION_FECHAS:
             print("Accion fechas")
+            dfImei = self.pandasUtils.filterDfByEmai(self.pandasUtils.getAllData(), currentTableItem)
+            dfAgrupado = self.pandasUtils.getGroupedByEmaisDates(dfImei) 
+            self.fillTableWidget(self.tableWidgetMostrarSeleccion, dfAgrupado)
         elif accion == VentanaFiltros.ACTION_CANALES:
             print("Accion canales")
+            dfImei = self.pandasUtils.filterDfByEmai(self.pandasUtils.getAllData(), currentTableItem)
+            dfAgrupado = self.pandasUtils.getGroupedByEmaisCanales(dfImei) 
+            self.fillTableWidget(self.tableWidgetMostrarSeleccion, dfAgrupado)
         elif accion == VentanaFiltros.ACTION_OPERADORES:
+            dfImei = self.pandasUtils.filterDfByEmai(self.pandasUtils.getAllData(), currentTableItem)
+            dfAgrupado = self.pandasUtils.getGroupedByEmaisOps(dfImei) 
+            self.fillTableWidget(self.tableWidgetMostrarSeleccion, dfAgrupado)
             print("Accion operadores")
 
     def fnMostrarDatosGenerales(self):
@@ -250,19 +305,19 @@ class VentanaFiltros(QMainWindow):
         if self.filtros2G.selected:
             df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
             df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
-            df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.valoresLastLac)
+            df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.getSelectedLastLacValues())
             df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
             dfs.append(self.pandasUtils.getGroupedByEmais(df2GHitsMin))
         if self.filtros3G.selected:
             df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
             df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
-            df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.valoresLastLac)
+            df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.getSelectedLastLacValues())
             df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
             dfs.append(self.pandasUtils.getGroupedByEmais(df3GHitsMin))
         if self.filtros4G.selected:
             df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G,self.filtros4G.valoresTA)
             df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
-            df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.valoresLastLac)
+            df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.getSelectedLastLacValues())
             df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
             dfs.append(self.pandasUtils.getGroupedByEmais(df4GHitsMin))
         # Empieza a agrupar todo
@@ -270,16 +325,6 @@ class VentanaFiltros(QMainWindow):
         print("Se empiezan a agrupar los datos de 2g 3g y 4g")
         if(self.verDatosAgrupados):
             self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(self.pandasUtils.tempDf))
-
-
-    def setLastLacValue2G(self):
-        pass
-
-    def setLastLacValue3G(self):
-        pass
-
-    def setLastLacValue4G(self):
-        pass
 
     def fnProcesaTomaDatosMsPower(self):
         self.filtros2G.tomarMsPower = self.checkBoxTomarDatoMSPower2G.isChecked()

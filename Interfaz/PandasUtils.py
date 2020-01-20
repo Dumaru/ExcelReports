@@ -181,6 +181,28 @@ class PandasDataLoader:
         )
         return groupedDf.reset_index(drop=True)
 
+
+    def getGroupedByIMSI(self, df: pd.DataFrame):
+        # Returns a df with grouped and aggregated values
+        def joinValues(series):
+            return ','.join(map(str, series[series.notnull()].unique()))
+        groupedDf = df.groupby('IMSI').agg(
+            IMSI=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
+            RAT=pd.NamedAgg(column='RAT', aggfunc=joinValues),
+            OPERATOR=pd.NamedAgg(column='OPERATOR', aggfunc=joinValues),
+            CHANNEL=pd.NamedAgg(column='CHANNEL', aggfunc=joinValues),
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
+            TMSI=pd.NamedAgg(column='TMSI', aggfunc=joinValues),
+            MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
+            TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
+            LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
+            NAME=pd.NamedAgg(column='NAME', aggfunc=joinValues),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
+        )
+        return groupedDf.reset_index(drop=True)
+
+
     def getGroupedByEmaisHorario(self, df: pd.DataFrame):
         # Returns a df with grouped and aggregated values
         def joinValues(series):
@@ -192,6 +214,52 @@ class PandasDataLoader:
             DATE_TIMEs=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
         )
         return groupedDf.reset_index(drop=True)
+
+    def getGroupedByEmaisIMSIS(self, df: pd.DataFrame):
+        # Returns a df with grouped and aggregated values
+        def joinValues(series):
+            return ','.join(map(str, series[series.notnull()].unique()))
+        groupedDf = df.groupby('IMEI').agg(
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
+            IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
+            CANTIDAD=pd.NamedAgg(column='IMSI', aggfunc='count'),
+            DATE_TIMEs=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
+        )
+        return groupedDf.reset_index(drop=True)
+
+    def getGroupedByEmaisDates(self, df: pd.DataFrame):
+        # Returns a df with grouped and aggregated values
+        def joinValues(series):
+            return ','.join(map(str, series[series.notnull()].unique()))
+        groupedDf = df.groupby('IMEI').agg(
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
+            DATE_TIMES=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
+            CANTIDAD=pd.NamedAgg(column='IMSI', aggfunc='count'),
+        )
+        return groupedDf.reset_index(drop=True)
+
+    def getGroupedByEmaisCanales(self, df: pd.DataFrame):
+        # Returns a df with grouped and aggregated values
+        def joinValues(series):
+            return ','.join(map(str, series[series.notnull()].unique()))
+        groupedDf = df.groupby('IMEI').agg(
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
+            CHANNELS=pd.NamedAgg(column='CHANNEL', aggfunc=joinValues),
+            CANTIDAD=pd.NamedAgg(column='CHANNEL', aggfunc='count'),
+        )
+        return groupedDf.reset_index(drop=True)
+
+    def getGroupedByEmaisOps(self, df: pd.DataFrame):
+        # Returns a df with grouped and aggregated values
+        def joinValues(series):
+            return ','.join(map(str, series[series.notnull()].unique()))
+        groupedDf = df.groupby('IMEI').agg(
+            IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
+            OPERATORS=pd.NamedAgg(column='OPERATOR', aggfunc=joinValues),
+            CANTIDAD=pd.NamedAgg(column='OPERATOR', aggfunc='count'),
+        )
+        return groupedDf.reset_index(drop=True)
+
 
     def filtroHoras(self, df: pd.DataFrame, fromTime, toTime):
         return df[(df['DATE_TIME'].dt.hour >= fromTime) & (df['DATE_TIME'].dt.hour < toTime)]

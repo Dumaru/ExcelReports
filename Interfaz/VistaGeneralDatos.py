@@ -23,6 +23,7 @@ class VistaGeneralDatos(QMainWindow):
     def setupUi(self):
         self.pandasUtils.setTempDf(self.pandasUtils.getAllData())
         print(f"Setup UI vista general y temp df {self.pandasUtils.tempDf.shape}")
+        self.pushButtonGuardarDatos4G.setEnabled(False)
         # Setting the menus for the RAT and OPERATOR buttons
         self.pandasUtils.setUniqueColumnValues(self.pandasUtils.tempDf, 'RAT')
         self.ratsSeleccionados = {
@@ -67,7 +68,8 @@ class VistaGeneralDatos(QMainWindow):
         self.pushButtonFiltrarDatos.clicked.connect(self.fnVentanaFiltroDatos)
         # Btn guardar datos 4g sin sus imeis
         self.pushButtonGuardarDatos4G.clicked.connect(self.fnGuardar4gSinImeis)
-        # Btn guardar datos incidentales
+        # Btn guardar imsis vs imeis
+        self.pushButtonGuardarImsisVSImei.clicked.connect(self.fnGuardarImsisImeis)
         # Fill the table with a df where all the EMAIS are
         self.tableWidgetDatosExcel.setWordWrap(False)
         self.tableWidgetDatosExcel.setTextElideMode(Qt.ElideRight)
@@ -76,6 +78,17 @@ class VistaGeneralDatos(QMainWindow):
 
         self.pushButtonAsignarIMEIS.clicked.connect(self.fnProcesaAsignarImeis)
         self.fillTableWidget(self.pandasUtils.tempDf)
+
+    def fnGuardarImsisImeis(self):
+        print("Fn procesa guardar datos imsis vs imeis")
+        groupedIMSIS = self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
+        filePath = self.saveFileDialog()
+        if(filePath):
+            self.fnAplicaFiltrosDfOk()
+            self.pandasUtils.saveToExcelFile(
+                groupedIMSIS, filePath, False, self.saveProcessFinished)
+
+        print("Fn generacion del reporte")
 
     def fnProcesaAsignarImeis(self):
         print("Empieza proceso de asignacion de IMEIS")
@@ -89,10 +102,17 @@ class VistaGeneralDatos(QMainWindow):
         self.pandasUtils.dividirDfEnRats(self.pandasUtils.tempDf)
         cantidadDespuesCon = self.pandasUtils.tempDf[self.pandasUtils.tempDf['IMEI'].notnull()].shape[0]
         self.fillTableWidget(self.pandasUtils.tempDf)
+        self.pushButtonGuardarDatos4G.setEnabled(True)
         print(f"Cantidad de imeis despues {cantidadDespuesCon}")
 
     def fnGuardar4gSinImeis(self):
         print(f"Funcion guardar datos de 4g sin sus imeis")
+        print("Fn procesa guardar datos 4g sin imei")
+        filePath = self.saveFileDialog()
+        if(filePath):
+            self.fnAplicaFiltrosDfOk()
+            self.pandasUtils.saveToExcelFile(
+                self.pandasUtils.sinImei4g, filePath, False, self.saveProcessFinished)
 
     def reseteoFiltros(self):
         self.operadoresSeleccionados = {op: True for op in self.operadoresSeleccionados.keys()}
@@ -149,7 +169,7 @@ class VistaGeneralDatos(QMainWindow):
 
     def saveProcessFinished(self):
         UiUtils.showInfoMessage(parent=self, title="Guardado de archivos",
-                                description=f"Se guardo el archiv correctamente.")
+                                description=f"Se guardo el archivo correctamente.")
 
     def saveFileDialog(self):
         """

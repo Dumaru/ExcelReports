@@ -22,13 +22,44 @@ class VentanaAnalisisDatos(QMainWindow):
         print(f"Setup Ui")
         self.pushButtonGuardarReporte.clicked.connect(self.fnGeneraReporte)
         self.pushButtonGuardarDatosIMISISIMEI.clicked.connect(self.fnGuardarIMSISIMEIS)
+        self.actionVer_Filtros.triggered.connect(self.fnMostrarVentanaFiltros)
+
+        # Llenar tabla con lo que venia del otro lado
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.data)
+
+    def fnMostrarVentanaFiltros(self):
+        self.hide()
+        self.parent().show()
 
     def fnGuardarIMSISIMEIS(self):
+        groupedIMSIS = self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, groupedIMSIS)
+        # Guardar
         print(f"Fn guardar IMSIS vs IMEIS")
 
     def fnGeneraReporte(self):
+        print("Fn procesa guardar datos reporte")
+        filePath = self.saveFileDialog()
+        if(filePath):
+            self.fnAplicaFiltrosDfOk()
+            self.pandasUtils.saveToExcelFile(
+                self.data, filePath, False, self.saveProcessFinished)
+
         print("Fn generacion del reporte")
 
+    def saveProcessFinished(self):
+        UiUtils.showInfoMessage(parent=self, title="Guardado de archivos",
+                                description=f"Se guardo el archivo de reporte correctamente.")
+
+    def saveFileDialog(self):
+        """
+        Opens a save file dialog and returns the path to the file
+        """
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(
+            self, "Guardar archivo", "", "Excel Files (*.xlsx)", options=options)
+        return fileName
 
     def fnMuestraVentanaGeneral(self):
         self.hide()
