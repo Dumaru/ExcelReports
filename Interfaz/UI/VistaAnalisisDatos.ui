@@ -34,14 +34,53 @@
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="0">
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QPushButton" name="pushButtonGuardarDatosIMISISIMEI">
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Guargar Datos IMSIS-IMEI</string>
           </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
          </widget>
         </item>
-        <item row="3" column="0">
+        <item row="4" column="1">
+         <widget class="QPushButton" name="pushButtonGraficar">
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Graficar Datos</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>20803.png</normaloff>20803.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
          <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
           <property name="styleSheet">
            <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -94,17 +133,26 @@
           </column>
          </widget>
         </item>
-        <item row="0" column="0">
+        <item row="1" column="0">
          <widget class="QPushButton" name="pushButtonGuardarReporte">
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string>Generar Reporte Final</string>
           </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="pushButtonGraficar">
-          <property name="text">
-           <string>Graficar Datos</string>
+          <property name="icon">
+           <iconset>
+            <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -149,7 +197,7 @@
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuVolver_A_Filtros">
