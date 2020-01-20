@@ -41,11 +41,11 @@ class PandasDataLoader:
 
     def getAllData(self):
         df = pd.concat([self.allData2G, self.allData3G, self.allData4G])
-        print(f"All data shape {df.shape}")
+        # print(f"All data shape {df.shape}")
         return df
 
     def setTempDf(self, df: pd.DataFrame):
-        print(f"PANDAS UTILS: setting new temp df {df.shape}")
+        # print(f"PANDAS UTILS: setting new temp df {df.shape}")
         self.tempDf = df
 
     def setUniqueColumnValues(self, df: pd.DataFrame, column: str):
@@ -61,7 +61,7 @@ class PandasDataLoader:
             for gn in filtros:
                 dfs.append(groupedData.get_group(gn))
         except Exception as e:
-            print(e)
+            # print(e)
             return 0
         return pd.concat(dfs).shape[0]
 
@@ -77,14 +77,14 @@ class PandasDataLoader:
 
     def loadDataframes(self, pathList=[], callback=None):
         def loadDataWrapper():
-            print("Empieza carga de datos desde thread")
+            # print("Empieza carga de datos desde thread")
             self.processing = True
             dfsList = []
             """
             Reads each excel file and saves all the sheets into a list with the specified columns
             """
             COLS = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
-                    "MS POWER", "TA", "LAST LAC", "NAME", "HITS", "DATE-TIME"]
+                    "MS POWER", "TA", "LAST LAC", "HITS", "DATE-TIME"]
             for filePath in pathList:
                 temd_df = pd.read_excel(f"{filePath}", usecols=COLS)
                 dfsList.append(temd_df)
@@ -111,6 +111,7 @@ class PandasDataLoader:
 
             self.sinImei4g = self.allData4G[self.allData4G['IMEI'].isnull()]
             self.processing = False
+        self.threadProcessor = ThreadingUtils()
         self.threadProcessor.setWorker(loadDataWrapper)
         self.threadProcessor.start(QThread.HighestPriority)
         self.threadProcessor.finished.connect(callback)
@@ -124,39 +125,43 @@ class PandasDataLoader:
     def getDfImeisFaltantes(self, df: pd.DataFrame):
         return df[df['IMEI'].isnull()]
 
-    def asignarIMEIS(self, allDataP: pd.DataFrame, dfImeisFaltantes: pd.DataFrame):
+    def asignarIMEIS(self, allDataP: pd.DataFrame, dfImeisFaltantes: pd.DataFrame, callback):
         """ Assigns Emais for the columns where the emais is null based on the historical data"""
-        def joinValues(values):
-            # print(f"{type(values)}")
-            return ','.join(map(str, values))
-
-        def obtenerEmai(x: str):
-            # X is the IMSI value
-            rCoincide = allDataP[allDataP['IMSI'].isin(x.values)]['IMEI']
-            imeis = joinValues(rCoincide[rCoincide.notnull()].unique())
-            return imeis
-        nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
-        allDataP.loc[dfImeisFaltantes.index, 'IMEI'] = nuevosValores
-        # Retorna serie con nuevos valores de IMEI separados por coma
-        return allDataP
+        def asignaWrapper():
+            def joinValues(values):
+                print(f"{type(values)}")
+                return ','.join(map(str, values))
+            def obtenerEmai(x: str):
+                # X is the IMSI value
+                rCoincide = allDataP[allDataP['IMSI'].isin(x.values)]['IMEI']
+                imeis = joinValues(rCoincide[rCoincide.notnull()].unique())
+                return imeis
+            nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
+            allDataP.loc[dfImeisFaltantes.index, 'IMEI'] = nuevosValores
+            # Retorna serie con nuevos valores de IMEI separados por coma
+            self.setTempDf(allDataP)
+        self.threadProcessor = ThreadingUtils()
+        self.threadProcessor.setWorker(asignaWrapper)
+        self.threadProcessor.start(QThread.HighestPriority)
+        self.threadProcessor.finished.connect(callback)
 
     def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int = 1):
-        print(f"Empieza obtencion incidentales df arg {df.shape}")
+        # print(f"Empieza obtencion incidentales df arg {df.shape}")
         groupedDfHitsMin = df.groupby('IMEI').filter(lambda x: x['HITS'].sum() <= hitsMin)
-        print(f"Grouped hits min {groupedDfHitsMin.shape}")
-        # print("Agrupados por hits igual a 1\n ", groupedDfHitsMin)
+        # print(f"Grouped hits min {groupedDfHitsMin.shape}")
+        print("Agrupados por hits igual a 1\n ", groupedDfHitsMin)
         groupedDfNullVals = df.loc[df['MS_POWER'].isnull() | df['DATE_TIME'].isnull() | df['HITS'].isnull()]
-        print(f"Grouped nulls {groupedDfNullVals.shape}")
+        # print(f"Grouped nulls {groupedDfNullVals.shape}")
         incidentales = pd.concat([groupedDfHitsMin, groupedDfNullVals]).drop_duplicates()
         # Sin IMEI ni IMSI
-        print(f"Finaliza obtencion de incidentales df arg {incidentales.shape}")
+        # print(f"Finaliza obtencion de incidentales df arg {incidentales.shape}")
         return incidentales
 
     def getDifferenceBetweenDataFrames(self, dfLeft: pd.DataFrame, dfRight: pd.DataFrame):
-        print(f"Empieza proceso de diferencia entre dfs left {dfLeft.shape} right {dfRight.shape}")
+        # print(f"Empieza proceso de diferencia entre dfs left {dfLeft.shape} right {dfRight.shape}")
         dfRes = dfLeft.merge(dfRight, indicator=True, how='left').loc[lambda x: x['_merge'] != 'both']
         dfRes.drop(columns=['_merge'], inplace=True)
-        print(f"New df after merge-drop {dfRes.shape}")
+        # print(f"New df after merge-drop {dfRes.shape}")
         return dfRes
 
     def getGroupedByEmais(self, df: pd.DataFrame):
@@ -173,7 +178,6 @@ class PandasDataLoader:
             MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
             TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
             LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
-            NAME=pd.NamedAgg(column='NAME', aggfunc=joinValues),
             HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
@@ -194,7 +198,6 @@ class PandasDataLoader:
             MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
             TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
             LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
-            NAME=pd.NamedAgg(column='NAME', aggfunc=joinValues),
             HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
@@ -266,6 +269,7 @@ class PandasDataLoader:
         def saveFunctionWrapper():
             df.to_excel((newFilePath if newFilePath.endswith(
                 ".xlsx") else (newFilePath+".xlsx")), index=index)
+        self.saverThread = ThreadingUtils()
         self.saverThread.setWorker(saveFunctionWrapper)
         self.saverThread.start(QThread.HighestPriority)
         self.saverThread.finished.connect(callbackSave)
@@ -291,7 +295,7 @@ class PandasDataLoader:
 
     def msPowerRangeFilter(self, df: pd.DataFrame, fromN: float, toN: float):
         """ Filters the df in the column MS POWER with the given boundaries"""
-        print(f"PANDAS UTILS: Ms power filter from {fromN} to {toN}")
+        # print(f"PANDAS UTILS: Ms power filter from {fromN} to {toN}")
         return (df[df['MS_POWER'].between(fromN, toN)] if fromN is not None and toN is not None else df)
 
     def filtroLastLacValor(self, df: pd.DataFrame, value: float = None):
@@ -304,7 +308,7 @@ class PandasDataLoader:
         return groupedDf
 
     def hitsByDate(self, df: pd.DataFrame):
-        print(f"Pandas Utils: Df to group by date shape {df.shape} info  {df.info()} Index {df.index}")
+        # print(f"Pandas Utils: Df to group by date shape {df.shape} info  {df.info()} Index {df.index}")
         dfT = df[df['DATE_TIME'].notnull()]
         series = dfT.set_index('DATE_TIME').groupby(pd.Grouper(freq='D'))['HITS'].apply(sum)
         return series
@@ -338,7 +342,7 @@ class PandasDataLoader:
 
     def filterByHitsGrouping(self, df: pd.DataFrame, columnToGroupBy: str = 'IMEI', hitsMin: int = 0):
         """ Returns all the rows that in the group acomplish the filter of min of hits"""
-        print(f"Hits by grouping df shape{df.info()} column {columnToGroupBy}")
+        # print(f"Hits by grouping df shape{df.info()} column {columnToGroupBy}")
         return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].sum() >= hitsMin)
 
     def getMonthInt(self, strMonth):
@@ -376,7 +380,7 @@ class PandasDataLoader:
             dateStr = f"{year}-{month}-{day} {t}"
             return pd.to_datetime(dateStr, format="%Y-%m-%d %X")
         except Exception as e:
-            print(e)
+            # print(e)
             return np.NaN
 
     def isFloat(self, strNumber: str):
@@ -422,7 +426,7 @@ def worker():
 
 def callBack(future):
     print(f"Se ejecuta callback {future} {future.result()}")
-
+    return
 
 if(__name__ == '__main__'):
     ThreadingUtils.doInThread(worker, callBack)

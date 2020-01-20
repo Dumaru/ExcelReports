@@ -65,7 +65,7 @@ class VentanaAnalisisHorario(QMainWindow):
         self.tableWidgetMostrarDatosFiltrados.setAlternatingRowColors(True)
 
     def fnGuardarDatosEstaticos(self):
-        print(f"fnGuardarDatosEstaticos ")
+        # print(f"fnGuardarDatosEstaticos ")
         filePath = self.saveFileDialog()
         if(filePath):
             self.pandasUtils.saveToExcelFile(
@@ -90,11 +90,11 @@ class VentanaAnalisisHorario(QMainWindow):
         if(filePath):
             self.pandasUtils.saveToExcelFile(
                 self.fnAplicaRangosTablasDinamicas(), filePath, False, self.saveProcessFinished)
-        print(f"fnGuardarDatosDinamicos ")
+        # print(f"fnGuardarDatosDinamicos ")
 
     def seteaIndexRango(self, index):
         self.rangoSeleccionadoIndex = index
-        print(f"Fn procesa rango seleccionado {self.rangoSeleccionadoIndex }")
+        # print(f"Fn procesa rango seleccionado {self.rangoSeleccionadoIndex }")
 
     def fnMuestraVentanaGeneral(self):
         self.hide()
@@ -102,7 +102,7 @@ class VentanaAnalisisHorario(QMainWindow):
 
     def fnAplicaRangosTablasDinamicas(self):
         self.setearFechas()
-        print(f"From {self.fromDate} to {self.toDate} Data {self.data.shape}")
+        # print(f"From {self.fromDate} to {self.toDate} Data {self.data.shape}")
         filtroDates = self.pandasUtils.filtroDatetimes(self.data, self.fromDate, self.toDate)
         return self.pandasUtils.getGroupedByEmaisHorario(filtroDates).sort_values(by='HITS')
 
@@ -117,16 +117,16 @@ class VentanaAnalisisHorario(QMainWindow):
 
     def fnGraficarDatosTablaDinamica(self):
         self.setearFechas()
-        plotWindow = PlotWindow(self)
+        plotWindow = PlotWindowBars(self)
         df = self.pandasUtils.filtroDatetimes(self.data, self.fromDate, self.toDate)
         df = self.pandasUtils.getGroupedByEmaisHorario(df)
-        df.sort_values(by="DATE_TIME", inplace=True)
+        df.sort_values(by=["DATE_TIME", 'HITS'], inplace=True)
         # dfGropued 
-        x = df['DATE_TIME']
+        x = df['IMEI']
         y = df['HITS']
-        plotWindow.plot(x=x, y=y, xLabel="DATE", yLabel="HITS AMOUNT")
+        plotWindow.plot(x=x, y=y, xLabel="IMEI", yLabel="HITS AMOUNT")
         plotWindow.show()
-        print(f"Graficar tabla filtrada {self.fromDate} - {self.toDate}")
+        # print(f"Graficar tabla filtrada {self.fromDate} - {self.toDate}")
 
     def fnVerDatosTablaHorario(self):
         # Llenado de tabla
@@ -145,12 +145,12 @@ class VentanaAnalisisHorario(QMainWindow):
         else:
             filtroHits = self.pandasUtils.filterByHitsAmountMin(filtroDates, self.valorFiltro)
         # dfGropued 
-        filtroHits.sort_values(by="DATE_TIME", inplace=True)
-        x = filtroHits['DATE_TIME']
+        filtroHits.sort_values(by=["DATE_TIME", 'HITS'], inplace=True)
+        x = filtroHits['IMEI']
         y = filtroHits['HITS']
-        plotWindow.plot(x=x, y=y, xLabel="DATE", yLabel="HITS AMOUNT")
+        plotWindow.plot(x=x, y=y, xLabel="IMEI", yLabel="HITS AMOUNT")
         plotWindow.show()
-        print("Graficar tabla filtrada estaticos")
+        # print("Graficar tabla filtrada estaticos")
 
     def fnVerDatosEstaticosTablaHorario(self):
         # Llenado de tabla de rangos estaticos
@@ -160,7 +160,7 @@ class VentanaAnalisisHorario(QMainWindow):
             self.fnAplicaRangosTablasEstaticas()
         )
     
-        print(f"FnVerDatosTablaHorario estatico")
+        # print(f"FnVerDatosTablaHorario estatico")
 
     def fillTableWidget(self, qtable: QTableWidget, df: pd.DataFrame = None):
         # TODO: Hacerla gfeneral {self.fromTime} {self.toTime} recibiendo el widget
@@ -190,31 +190,31 @@ class VentanaAnalisisHorario(QMainWindow):
         if self.rangoSeleccionadoIndex == VentanaAnalisisHorario.RANGO_DIA:
             self.fromTime = 0  
             self.toTime = 24
-            print(f"Seteados {self.fromTime} {self.toTime}")
+            # print(f"Seteados {self.fromTime} {self.toTime}")
         if self.rangoSeleccionadoIndex == VentanaAnalisisHorario.RANGO_MADRUGADA:
             self.fromTime = 0
             self.toTime = 6
-            print(f"Seteados {self.fromTime} {self.toTime}")
+            # print(f"Seteados {self.fromTime} {self.toTime}")
         if self.rangoSeleccionadoIndex == VentanaAnalisisHorario.RANGO_MANANA:
             self.fromTime = 6
             self.toTime = 12
-            print(f"Seteados {self.fromTime} {self.toTime}")
+            # print(f"Seteados {self.fromTime} {self.toTime}")
         if self.rangoSeleccionadoIndex == VentanaAnalisisHorario.RANGO_TARDE:
             self.fromTime = 12
             self.toTime = 18
-            print(f"Seteados {self.fromTime} {self.toTime}")
+            # print(f"Seteados {self.fromTime} {self.toTime}")
         if self.rangoSeleccionadoIndex == VentanaAnalisisHorario.RANGO_NOCHE:
             self.fromTime = 18
             self.toTime = 24
-            print(f"Seteados {self.fromTime} {self.toTime}")
-        print(f"Estaticos {self.fromTime} {self.toTime} menores {self.viendoMenores} valor {self.valorFiltro}")
+            # print(f"Seteados {self.fromTime} {self.toTime}")
+        # print(f"Estaticos {self.fromTime} {self.toTime} menores {self.viendoMenores} valor {self.valorFiltro}")
 
     def setearFechas(self):
         dateTimeFormat = 'yyyy-MM-dd hh:mm:ss'
         pythonDateFormat = "%Y-%m-%d %X"
-        print(f"{(self.dateTimeEditIngresoInicial).dateTime()}")
+        # print(f"{(self.dateTimeEditIngresoInicial).dateTime()}")
         self.fromDate = pd.to_datetime(self.dateTimeEditIngresoInicial.dateTime().toString(dateTimeFormat), format=pythonDateFormat)
-        print(f"{self.dateTimeEditIngresoFinal.dateTime()}")
+        # print(f"{self.dateTimeEditIngresoFinal.dateTime()}")
         self.toDate = pd.to_datetime(self.dateTimeEditIngresoFinal.dateTime().toString(dateTimeFormat), format=pythonDateFormat)
 
 

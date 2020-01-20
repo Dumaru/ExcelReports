@@ -21,25 +21,40 @@ class VentanaAnalisisDatos(QMainWindow):
 
     def setupUi(self):
         # Botones y signals
-        print(f"Setup Ui")
+        # print(f"Setup Ui")
         self.pushButtonGuardarReporte.clicked.connect(self.fnGeneraReporte)
         self.pushButtonGuardarDatosIMISISIMEI.clicked.connect(self.fnGuardarIMSISIMEIS)
         self.actionVer_Filtros.triggered.connect(self.fnMostrarVentanaFiltros)
         self.pushButtonGraficar.clicked.connect(self.fnGraficarHitsImei)
+        self.pushButtonReporte.clicked.connect(self.fnMostrarReporte)
+        self.pushButtonIMSIS.clicked.connect(self.fnMostrarImsisImeis)
         # Llenar tabla con lo que venia del otro lado
         self.data.sort_values(by="HITS", inplace=True)
+
+        # Tabla
+        self.tableWidgetVerDatosFiltrados.setWordWrap(False)
+        self.tableWidgetVerDatosFiltrados.setTextElideMode(Qt.ElideRight)
+        
+
         self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.data)
 
+    def fnMostrarReporte(self):
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.data)
+
+    def fnMostrarImsisImeis(self):
+        groupedIMSIS = self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, groupedIMSIS)
+
     def fnGraficarHitsImei(self):
-        print("Vista analisis datos se empieza a graficar")
+        # print("Vista analisis datos se empieza a graficar")
         plotWindow = PlotWindowBars(self)
         df = self.data.sort_values(by="HITS", ascending=False)
         x = df['IMEI'].values
         y = df['HITS'].values
-        print(f"X {x} Y{y}")
+        # print(f"X {x} Y{y}")
         plotWindow.plot(x=x, y=y, xLabel="IMEI", yLabel="HITS AMOUNT")
         plotWindow.show()
-        print("Vista analisis datos se termina de graficar")
+        # print("Vista analisis datos se termina de graficar")
 
 
     def fnMostrarVentanaFiltros(self):
@@ -47,19 +62,22 @@ class VentanaAnalisisDatos(QMainWindow):
         self.parent().show()
 
     def fnGuardarIMSISIMEIS(self):
-        groupedIMSIS = self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
-        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, groupedIMSIS)
         # Guardar
-        print(f"Fn guardar IMSIS vs IMEIS")
+        # print(f"Fn guardar IMSIS vs IMEIS")
+        filePath = self.saveFileDialog()
+        if(filePath):
+            self.pandasUtils.saveToExcelFile(
+                self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData()),
+                filePath, False, self.saveProcessFinished)
+        # print("Fn generacion del reporte")
 
     def fnGeneraReporte(self):
-        print("Fn procesa guardar datos reporte")
+        # print("Fn procesa guardar datos reporte")
         filePath = self.saveFileDialog()
         if(filePath):
             self.pandasUtils.saveToExcelFile(
                 self.data, filePath, False, self.saveProcessFinished)
-
-        print("Fn generacion del reporte")
+        # print("Fn generacion del reporte")
 
     def saveProcessFinished(self):
         UiUtils.showInfoMessage(parent=self, title="Guardado de archivos",

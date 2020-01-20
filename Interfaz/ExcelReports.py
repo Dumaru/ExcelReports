@@ -59,7 +59,7 @@ class ExcelReportsInicio(QMainWindow):
         options |= QFileDialog.DontUseNativeDialog
         fileDir = str(QFileDialog.getExistingDirectory(
             self, "Selecciona una carpeta"))
-        print(f"Files Folder {fileDir}")
+        # print(f"Files Folder {fileDir}")
         return fileDir
 
     def saveFileDialog(self, title: str):
@@ -79,10 +79,10 @@ class ExcelReportsInicio(QMainWindow):
         fileName, _ = QFileDialog.getOpenFileName(
             self, "Añadir archivo", "", "All Files (*);;Excel files (*.xlsx)", options=options)
         if fileName:
-            print(fileName)
+            # print(fileName)
             self.filesDirectories.append(fileName)
             self.fnMuestraDirectorios()
-            print(f"Directory {fileName}")
+            # print(f"Directory {fileName}")
 
     def fnProcesaElimnarArchivo(self):
         selectedItems = self.listWidgetListaArchivos.selectedItems()

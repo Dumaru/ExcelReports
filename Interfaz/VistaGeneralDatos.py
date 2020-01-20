@@ -22,7 +22,7 @@ class VistaGeneralDatos(QMainWindow):
 
     def setupUi(self):
         self.pandasUtils.setTempDf(self.pandasUtils.getAllData())
-        print(f"Setup UI vista general y temp df {self.pandasUtils.tempDf.shape}")
+        # print(f"Setup UI vista general y temp df {self.pandasUtils.tempDf.shape}")
         self.pushButtonGuardarDatos4G.setEnabled(False)
         # Setting the menus for the RAT and OPERATOR buttons
         self.pandasUtils.setUniqueColumnValues(self.pandasUtils.tempDf, 'RAT')
@@ -83,7 +83,7 @@ class VistaGeneralDatos(QMainWindow):
         )
 
     def fnGuardarImsisImeis(self):
-        print("Fn procesa guardar datos imsis vs imeis")
+        # print("Fn procesa guardar datos imsis vs imeis")
         groupedIMSIS = self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
         filePath = self.saveFileDialog()
         if(filePath):
@@ -91,27 +91,34 @@ class VistaGeneralDatos(QMainWindow):
             self.pandasUtils.saveToExcelFile(
                 groupedIMSIS, filePath, False, self.saveProcessFinished)
 
-        print("Fn generacion del reporte")
+        # print("Fn generacion del reporte")
 
     def fnProcesaAsignarImeis(self):
-        print("Empieza proceso de asignacion de IMEIS")
+        # print("Empieza proceso de asignacion de IMEIS")
         antesSinImei = self.pandasUtils.getDfImeisFaltantes(self.pandasUtils.getAllData())
         allData = self.pandasUtils.getAllData()
         cantidadAntesCon = allData.shape[0] - antesSinImei.shape[0] 
-        print(f"Cantidad antes con IMEIS bien {cantidadAntesCon} cantidad de sin imei {antesSinImei.shape[0]}")
+        # print(f"Cantidad antes con IMEIS bien {cantidadAntesCon} cantidad de sin imei {antesSinImei.shape[0]}")
         
-        self.pandasUtils.setTempDf(self.pandasUtils.asignarIMEIS(allData, antesSinImei))
+
+        # self.pandasUtils.setTempDf(self.pandasUtils.asignarIMEIS(allData, antesSinImei))
+        self.pandasUtils.asignarIMEIS(allData, antesSinImei, self.pandasProcessingFinished)
 
         # Dividir de nuevo los df en 2g 3g y 4g y asignarlos de nuevo
         self.pandasUtils.dividirDfEnRats(self.pandasUtils.tempDf)
         cantidadDespuesCon = self.pandasUtils.tempDf[self.pandasUtils.tempDf['IMEI'].notnull()].shape[0]
         self.fillTableWidget(self.pandasUtils.tempDf)
         self.pushButtonGuardarDatos4G.setEnabled(True)
-        print(f"Cantidad de imeis despues {cantidadDespuesCon}")
+        # print(f"Cantidad de imeis despues {cantidadDespuesCon}")
+
+    def pandasProcessingFinished(self):
+        UiUtils.showInfoMessage(parent=self, title="Estado de la operacion",
+                                description=f"Se realizo la operación correctamente.")
+
 
     def fnGuardar4gSinImeis(self):
-        print(f"Funcion guardar datos de 4g sin sus imeis")
-        print("Fn procesa guardar datos 4g sin imei")
+        # print(f"Funcion guardar datos de 4g sin sus imeis")
+        # print("Fn procesa guardar datos 4g sin imei")
         filePath = self.saveFileDialog()
         if(filePath):
             self.fnAplicaFiltrosDfOk()
@@ -135,14 +142,14 @@ class VistaGeneralDatos(QMainWindow):
         self.hide()
 
     def fnVentanaFiltroDatos(self):
-        print(f"Fn mostrar ventana filtro de datos")
+        # print(f"Fn mostrar ventana filtro de datos")
         self.hide()
         ventanaFiltroDatos = VentanaFiltros(
             parent=self, pandasUtilsInstance=self.pandasUtils)
         ventanaFiltroDatos.show()
 
     # def fnAsignaNombresPorEmais(self):
-        # print(f"Fn asgina nombre a emai")
+        print(f"Fn asgina nombre a emai")
         # self.pandasUtils.tempDf = self.pandasUtils.setUniqueNameIdColumn(
             # self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.tempDf)
         # ) 
@@ -158,14 +165,14 @@ class VistaGeneralDatos(QMainWindow):
         self.fillTableWidget(self.pandasUtils.tempDf)
 
     def fnVentanaAnalisisHorario(self):
-        print(f"Fn analisis horario")
+        # print(f"Fn analisis horario")
         self.hide()
         df = self.fnAplicaFiltrosDfOk()
         ventanaAnalisisHorario = VentanaAnalisisHorario(self, self.pandasUtils, data=self.pandasUtils.tempDf)
         ventanaAnalisisHorario.show()
 
     def fnProcesaGuardarDatos(self):
-        print("Fn procesa guardar datos")
+        # print("Fn procesa guardar datos")
         filePath = self.saveFileDialog()
         if(filePath):
             self.fnAplicaFiltrosDfOk()
@@ -195,10 +202,10 @@ class VistaGeneralDatos(QMainWindow):
         # TODO: Tambien tener en cuenta que pudo haber digitado un imei
         listaRats = [rat for rat, v in self.ratsSeleccionados.items() if v is True]
         listaOps = [op for op, v in self.operadoresSeleccionados.items() if v is True]
-        print(f"Aplicacion de filtros Lista rats {listaRats} {listaOps}")
+        # print(f"Aplicacion de filtros Lista rats {listaRats} {listaOps}")
         dfFiltradoRats = self.pandasUtils.filterDfByColumnValues(df, "RAT", listaRats)
         dfFiltradosOps = self.pandasUtils.filterDfByColumnValues(dfFiltradoRats, "OPERATOR", listaOps)
-        print(f"New df with filter applied {dfFiltradosOps.shape}")
+        # print(f"New df with filter applied {dfFiltradosOps.shape}")
         self.pandasUtils.setTempDf(dfFiltradosOps)
 
     def fnProcesaFiltroImei(self):
@@ -207,7 +214,7 @@ class VistaGeneralDatos(QMainWindow):
             self.pandasUtils.tempDf = self.pandasUtils.filterDfByEmai(
                 self.pandasUtils.tempDf, imei)
             if(df.shape[0] > 0):
-                print("Shape del filtro ", df.shape)
+                # print("Shape del filtro ", df.shape)
                 self.fillTableWidget(self.pandasUtils.tempDf)
             else:
                 UiUtils.showInfoMessage(self,
@@ -215,7 +222,6 @@ class VistaGeneralDatos(QMainWindow):
                                         description=f"No se encontro el imei {imei} .")
 
     def fillTableWidget(self, df: pd.DataFrame = None):
-        # TODO: Hacerla general recibiendo el widget
         # Limpiar contenidos de tabla
         headerList = tuple(df.columns.values)
         self.tableWidgetDatosExcel.clearContents()
@@ -236,7 +242,7 @@ class VistaGeneralDatos(QMainWindow):
             rowCount += 1
 
     def fnProcesaSeleccionRats(self, action: QAction):
-        print(f"Fn procesa seleccion Rat {action}")
+        # print(f"Fn procesa seleccion Rat {action}")
         self.ratsSeleccionados[str(action.data())] = action.isChecked()
         if(sum([1 for rat, v in self.ratsSeleccionados.items() if v is True]) == 0):
             action.setChecked(True)
@@ -252,14 +258,14 @@ class VistaGeneralDatos(QMainWindow):
         """
         listaRats = [rat for rat, v in self.ratsSeleccionados.items()
                      if v is True]
-        print(f"Lista rats {listaRats}")
+        # print(f"Lista rats {listaRats}")
         if len(listaRats) > 0:
             self.fnAplicaFiltrosDfOk()
             cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.tempDf, 'RAT', listaRats)
             self.labelRATContador.setText(str(cantidad))
 
     def fnProcesaSeleccionOperadores(self, action: QAction):
-        print(f"Fn procesa seleccion opeadores {action}")
+        # print(f"Fn procesa seleccion opeadores {action}")
         self.operadoresSeleccionados[str(action.data())] = action.isChecked()
         if(sum([1 for rat, v in self.operadoresSeleccionados.items() if v is True]) == 0):
             action.setChecked(True)
