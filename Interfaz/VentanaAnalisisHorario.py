@@ -64,10 +64,29 @@ class VentanaAnalisisHorario(QMainWindow):
         self.tableWidgetMostrarDatosFiltrados.setAlternatingRowColors(True)
 
     def fnGuardarDatosEstaticos(self):
-        
         print(f"fnGuardarDatosEstaticos ")
-    def fnGuardarDatosDinamicos(self):
+        filePath = self.saveFileDialog()
+        if(filePath):
+            self.pandasUtils.saveToExcelFile(
+                self.fnAplicaRangosTablasEstaticas(), filePath, False, self.saveProcessFinished)
 
+    
+    def saveFileDialog(self):
+        """
+        Opens a save file dialog and returns the path to the file
+        """
+        options = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getSaveFileName(
+            self, "Guardar archivo", "", "Excel Files (*.xlsx)", options=options)
+        return fileName
+
+
+    def fnGuardarDatosDinamicos(self):
+        filePath = self.saveFileDialog()
+        if(filePath):
+            self.pandasUtils.saveToExcelFile(
+                self.fnAplicaRangosTablasDinamicas(), filePath, False, self.saveProcessFinished)
         print(f"fnGuardarDatosDinamicos ")
 
     def seteaIndexRango(self, index):
@@ -82,7 +101,7 @@ class VentanaAnalisisHorario(QMainWindow):
         self.setearFechas()
         print(f"From {self.fromDate} to {self.toDate} Data {self.data.shape}")
         filtroDates = self.pandasUtils.filtroDatetimes(self.data, self.fromDate, self.toDate)
-        return self.pandasUtils.getGroupedByEmaisHorario(filtroDates)
+        return self.pandasUtils.getGroupedByEmaisHorario(filtroDates).sort_values(by='HITS')
 
     def fnAplicaRangosTablasEstaticas(self):
         self.setearValoresEstaticos()
@@ -91,7 +110,7 @@ class VentanaAnalisisHorario(QMainWindow):
             filtroHits = self.pandasUtils.filterByHitsAmount(filtroDates, self.valorFiltro)
         else:
             filtroHits = self.pandasUtils.filterByHitsAmountMin(filtroDates, self.valorFiltro)
-        return self.pandasUtils.getGroupedByEmaisHorario(filtroHits)
+        return self.pandasUtils.getGroupedByEmaisHorario(filtroHits).sort_values(by='HITS')
 
     def fnGraficarDatosTablaDinamica(self):
         self.setearFechas()

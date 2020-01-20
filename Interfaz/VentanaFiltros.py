@@ -105,7 +105,7 @@ class VentanaFiltros(QMainWindow):
         if(filePath):
             self.fnAplicaFiltros()
             self.pandasUtils.saveToExcelFile(
-                self.pandasUtils.tempDf, filePath, False, self.saveProcessFinished)
+                self.pandasUtils.tempDf.sort_values(by="HITS"), filePath, False, self.saveProcessFinished)
 
         print("Fn generacion del reporte")
 
@@ -149,6 +149,7 @@ class VentanaFiltros(QMainWindow):
     def fillTableWidget(self, qtable: QTableWidget, df: pd.DataFrame = None):
         # TODO: Hacerla general recibiendo el widget
         # Limpiar contenidos de tabla
+        df.sort_values(by="HITS", inplace=True)
         headerList = tuple(df.columns.values)
         qtable.clearContents()
         qtable.setColumnCount(len(headerList))

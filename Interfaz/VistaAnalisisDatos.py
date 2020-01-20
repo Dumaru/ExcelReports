@@ -27,6 +27,7 @@ class VentanaAnalisisDatos(QMainWindow):
         self.actionVer_Filtros.triggered.connect(self.fnMostrarVentanaFiltros)
         self.pushButtonGraficar.clicked.connect(self.fnGraficarHitsImei)
         # Llenar tabla con lo que venia del otro lado
+        self.data.sort_values(by="HITS", inplace=True)
         self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.data)
 
     def fnGraficarHitsImei(self):
