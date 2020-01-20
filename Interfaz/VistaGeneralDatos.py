@@ -99,6 +99,7 @@ class VistaGeneralDatos(QMainWindow):
         allData = self.pandasUtils.getAllData()
         cantidadAntesCon = allData.shape[0] - antesSinImei.shape[0] 
         print(f"Cantidad antes con IMEIS bien {cantidadAntesCon} cantidad de sin imei {antesSinImei.shape[0]}")
+        
         self.pandasUtils.setTempDf(self.pandasUtils.asignarIMEIS(allData, antesSinImei))
 
         # Dividir de nuevo los df en 2g 3g y 4g y asignarlos de nuevo

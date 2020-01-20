@@ -137,10 +137,16 @@ class VentanaFiltros(QMainWindow):
 
     def fnProcesaLimpiezaRat(self, rat: str):
         if rat == "2G":
+            for action in self.menu2GLastLac.actions():
+                action.setChecked(True)
             print("Limpieza 2g")
         if rat == "3G":
+            for action in self.menu3GLastLac.actions():
+                action.setChecked(True)
             print("Limpieza 3g")
         if rat == "4G":
+            for action in self.menu4GLastLac.actions():
+                action.setChecked(True)
             print("Limpieza 4g")
 
     def fnProcesaDeseleccion(self, tableWidget: QTableWidget):
