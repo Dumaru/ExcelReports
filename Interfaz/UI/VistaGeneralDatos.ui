@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>887</height>
+    <height>911</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -502,8 +502,14 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb
     </item>
     <item row="1" column="1">
      <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>Agency FB</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Tabla Ver Datos Incidentales </string>
+       <string>                                                                                                                     DATOS GENERALES</string>
       </property>
      </widget>
     </item>
