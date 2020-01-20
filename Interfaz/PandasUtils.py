@@ -140,8 +140,6 @@ class PandasDataLoader:
         # Retorna serie con nuevos valores de IMEI separados por coma
         return allDataP
 
-
-
     def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int = 1):
         print(f"Empieza obtencion incidentales df arg {df.shape}")
         groupedDfHitsMin = df.groupby('IMEI').filter(lambda x: x['HITS'].sum() <= hitsMin)
