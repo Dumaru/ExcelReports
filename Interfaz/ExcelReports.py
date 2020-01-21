@@ -1,6 +1,7 @@
 import sys
 import os
 import pandas as pd
+import PyQt5
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,
                              QAction, QTableWidgetItem, QTableWidget, QHeaderView)
 from PyQt5.uic import loadUi
@@ -10,24 +11,27 @@ import UiUtils
 import pandas as pd
 from VistaGeneralDatos import VistaGeneralDatos
 
-class ExcelReportsInicio(QMainWindow):
+from UIPyfiles.InicioSubirDatos import Ui_VistaInicioSubirDatos
+
+class ExcelReportsInicio(QMainWindow, Ui_VistaInicioSubirDatos):
     """
     Window class to load all the files from a directory
     """
 
     def __init__(self, parent=None, pandasUtilsInstance=None):
         # Calls the super class to init all the values in the this object
-        super(ExcelReportsInicio, self).__init__(parent)
+        QMainWindow.__init__(self)
+        Ui_VistaInicioSubirDatos.__init__(self)
+        self.setupUi(self)
         # State Fields
         self.filesDirectories = []
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
 
         # UI
-        loadUi("UI/InicioSubirDatos.ui", self)
         self.overlay = Overlay(self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         self.overlay.hide()
         # Links all the events for the different actions and buttons
         self.actionAbrir.triggered.connect(self.fnProcessOpenDir)

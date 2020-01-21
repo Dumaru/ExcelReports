@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>VistaFiltros</class>
+ <widget class="QMainWindow" name="VistaFiltros">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -1372,7 +1372,7 @@ selection-background-color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">

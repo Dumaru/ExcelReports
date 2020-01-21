@@ -8,14 +8,19 @@ from PandasUtils import PandasDataLoader
 from PlotWindow import PlotWindow
 from PlotWindowBars import PlotWindowBars
 import UiUtils
-class VentanaAnalisisHorario(QMainWindow):
+
+from UIPyfiles.VistaDetalleHoras import Ui_VistaDetalleHoras
+
+class VentanaAnalisisHorario(QMainWindow, Ui_VistaDetalleHoras):
     RANGO_DIA = 0
     RANGO_MADRUGADA = 0
     RANGO_MANANA = 0
     RANGO_TARDE = 0
     RANGO_NOCHE = 0
     def __init__(self, parent=None, pandasUtilsInstance=None, data: pd.DataFrame = None):
-        super(VentanaAnalisisHorario, self).__init__(parent)
+        super(QMainWindow, self).__init__(parent)
+        Ui_VistaDetalleHoras.__init__(self)
+        self.setupUi(self)
         # State fields
         self.fromDate = None
         self.toDate = None
@@ -28,10 +33,9 @@ class VentanaAnalisisHorario(QMainWindow):
         self.viendoMenores = False
         self.valorFiltro = None
         # UI
-        loadUi('UI/VistaDetalleHoras.ui', self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         # Principales
         self.pushButtonVerDatosTablaFiltrada.clicked.connect(self.fnVerDatosTablaHorario)
         self.pushButtonGraficarDatosTablaFiltrada.clicked.connect(self.fnGraficarDatosTablaDinamica)

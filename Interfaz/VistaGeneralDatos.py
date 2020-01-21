@@ -8,19 +8,21 @@ import UiUtils
 from VentanaFiltros import VentanaFiltros
 from VentanaAnalisisHorario import VentanaAnalisisHorario
 
-class VistaGeneralDatos(QMainWindow):
+from UIPyfiles.VistaGeneralDatos import Ui_VistaGeneralDatos
+class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
     def __init__(self, parent=None, pandasUtilsInstance=None):
-        super(VistaGeneralDatos, self).__init__(parent)
+        super(QMainWindow, self).__init__(parent)
+        Ui_VistaGeneralDatos.__init__(self)
+        self.setupUi(self)
         # State fields
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
         self.ratsSeleccionados = dict()
         self.operadoresSeleccionados = dict()
         self.viendoIncidentales = False
         # UI
-        loadUi('UI/VistaGeneralDatos.ui', self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         self.pandasUtils.setTempDf(self.pandasUtils.getAllData())
         # print(f"Setup UI vista general y temp df {self.pandasUtils.tempDf.shape}")
         self.pushButtonGuardarDatos4G.setEnabled(False)

@@ -10,15 +10,17 @@ from FiltrosContainer import FiltrosContainer
 import UiUtils
 from VistaAnalisisDatos import VentanaAnalisisDatos
 
-
-class VentanaFiltros(QMainWindow):
+from UIPyfiles.VistaFiltros import Ui_VistaFiltros
+class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
     ACTION_IMSIS = 1
     ACTION_FECHAS = 2
     ACTION_CANALES = 3
     ACTION_OPERADORES = 4
 
     def __init__(self, parent=None, pandasUtilsInstance=None):
-        super(VentanaFiltros, self).__init__(parent)
+        super(QMainWindow, self).__init__(parent)
+        Ui_VistaFiltros.__init__(self)
+        self.setupUi(self)
         # State fields
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
         self.filtros2G = FiltrosContainer()
@@ -26,10 +28,9 @@ class VentanaFiltros(QMainWindow):
         self.filtros4G = FiltrosContainer()
         self.verDatosAgrupados = True
         # UI
-        loadUi('UI/VistaFiltros.ui', self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         # Set rats based on the db
         # RAT Checkboxes setup
         # self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'RAT')

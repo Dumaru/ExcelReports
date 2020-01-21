@@ -8,18 +8,20 @@ from PandasUtils import PandasDataLoader
 import UiUtils
 from PlotWindowBars import PlotWindowBars
 
+from UIPyfiles.VistaAnalisisDatos import Ui_VistaAnalisisDatos
 
-class VentanaAnalisisDatos(QMainWindow):
+class VentanaAnalisisDatos(QMainWindow, Ui_VistaAnalisisDatos):
     def __init__(self, parent=None, pandasUtilsInstance=None, data: pd.DataFrame = None):
-        super(VentanaAnalisisDatos, self).__init__(parent)
+        super(QMainWindow, self).__init__(parent)
+        Ui_VistaAnalisisDatos.__init__(self)
+        self.setupUi(self)
         # State fields
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
         self.data = data
         # UI
-        loadUi('UI/VistaAnalisisDatos.ui', self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         # Botones y signals
         # print(f"Setup Ui")
         self.pushButtonGuardarReporte.clicked.connect(self.fnGeneraReporte)
