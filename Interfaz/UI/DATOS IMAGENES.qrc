@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="Logos">
+    <file>RAPTOR.png</file>
+  </qresource>
+</RCC>
