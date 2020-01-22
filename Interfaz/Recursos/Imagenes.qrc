@@ -1,6 +1,5 @@
-<!DOCTYPE RCC>
-<RCC version="1.0">
-<qresource prefix="imagenes">
-		<file alias="Iocom.png">Iocom.png</file>
-</qresource>
+<RCC>
+  <qresource prefix="imagenes">
+    <file>Iocom.png</file>
+  </qresource>
 </RCC>

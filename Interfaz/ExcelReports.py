@@ -123,9 +123,7 @@ class ExcelReportsInicio(QMainWindow):
 
 if(__name__ == "__main__"):
     # Instanciates a new QApplication with the given terminal parameters
-    dirname = os.path.dirname(PyQt5.__file__)
-    plugin_path = os.path.join(dirname, 'plugins', 'platforms')
-    QApplication.addLibraryPath(plugin_path)
+  
     app = QApplication(sys.argv)
 
     pandasDataInstance = PandasDataLoader()
