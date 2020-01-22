@@ -69,8 +69,7 @@ background-color: rgb(255, 255, 255);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));
-</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
            <string>Añadir Archivos</string>
@@ -99,8 +98,7 @@ background-color: rgb(255, 255, 255);</string>
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));
-</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
            <string>Eliminar Archivo</string>
@@ -132,8 +130,7 @@ background-color: rgb(255, 255, 255);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));
-</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
            <string>Ver Datos</string>
@@ -196,7 +193,7 @@ border-color: rgb(0, 0, 0);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
            <string>Cargar Datos</string>
