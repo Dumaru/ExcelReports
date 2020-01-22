@@ -235,6 +235,16 @@ border-color: rgb(0, 0, 0);</string>
       </property>
      </widget>
     </item>
+    <item row="2" column="3">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="DATOS IMAGENES.qrc">:/Logos/Logo.png</pixmap>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="3">
      <spacer name="horizontalSpacer_2">
       <property name="orientation">
@@ -251,21 +261,8 @@ border-color: rgb(0, 0, 0);</string>
       </property>
      </spacer>
     </item>
-    <item row="2" column="3">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="DATOS IMAGENES.qrc">:/Logos/Logo.png</pixmap>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="3">
      <widget class="QLabel" name="label_6">
-      <property name="styleSheet">
-       <string notr="true">image: url(:/Logos/RAPTOR.png);</string>
-      </property>
       <property name="text">
        <string/>
       </property>
