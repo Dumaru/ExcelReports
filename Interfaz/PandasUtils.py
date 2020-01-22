@@ -112,6 +112,7 @@ class PandasDataLoader:
             self.dividirDfEnRats(allData)
 
             self.sinImei = allData[allData['IMEI'].isnull()]
+
             self.msg = (f"Información Carga {total} filas\n"
                         f" Se cargaron {self.allData2G.shape[0]} datos de 2G\n"
                         f" Se cargaron {self.allData3G.shape[0]} datos de 3G\n"
@@ -152,6 +153,7 @@ class PandasDataLoader:
                     return np.NaN
             # print(f"Ref all data {allDataP.shape},  dfImesFaltantes {dfImeisFaltantes.shape} {dfImeisFaltantes.info()}")
             nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
+            nuevosValores = nuevosValores[nuevosValores.notnull()] 
             self.msg = f"Se le asigno imeis a {nuevosValores.shape[0]} filas"
             # print(f"Nuevos valores {nuevosValores}")
             allDataP.loc[dfImeisFaltantes.index, 'IMEI'] = nuevosValores
@@ -363,7 +365,7 @@ class PandasDataLoader:
     def filterByHitsGrouping(self, df: pd.DataFrame, columnToGroupBy: str = 'IMEI', hitsMin: int = 0):
         """ Returns all the rows that in the group acomplish the filter of min of hits"""
         # print(f"Hits by grouping df shape{df.info()} column {columnToGroupBy}")
-        return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].size() >= hitsMin)
+        return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].size >= hitsMin)
 
     def getMonthInt(self, strMonth):
         if(strMonth.lower() in ["ene"]):

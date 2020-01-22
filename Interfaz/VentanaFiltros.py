@@ -240,7 +240,7 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         # print("Empieza busqueda de datos")
         datoBuscar = self.textEditBuscarDatos.toPlainText()
         # print(f"Dato buscar {datoBuscar}")
-        if(len(datoBuscar) > 0):
+        if(len(datoBuscar) > 0 and self.pandasUtils.isFloat(datoBuscar)):
             df = self.fnAplicaFiltrosNoGroupingReturns()
             df = self.pandasUtils.filterDfByEmai(df, datoBuscar)
             df = self.pandasUtils.getGroupedByEmais(df)
@@ -371,7 +371,7 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(newDf))
         if(self.pandasUtils.tempDf.shape[0]>0):
             self.pandasUtils.tempDf.sort_values(by='HITS')
-        print(f"New dfs {newDf}")
+        # print(f"New dfs {newDf}")
         # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
         # print("Se empiezan a agrupar los datos de 2g 3g y 4g")
         # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
