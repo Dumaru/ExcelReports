@@ -353,19 +353,19 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
             df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
             df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.getSelectedLastLacValues())
             df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
-            dfs.append(self.pandasUtils.getGroupedByEmais(df2GHitsMin))
+            dfs.append(df2GHitsMin)
         if self.filtros3G.selected:
             df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
             df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
             df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.getSelectedLastLacValues())
             df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
-            dfs.append(self.pandasUtils.getGroupedByEmais(df3GHitsMin))
+            dfs.append(df3GHitsMin)
         if self.filtros4G.selected:
             df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G, self.filtros4G.valoresTA)
             df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
             df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.getSelectedLastLacValues())
             df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
-            dfs.append(self.pandasUtils.getGroupedByEmais(df4GHitsMin))
+            dfs.append(df4GHitsMin)
         # Empieza a agrupar todo
         newDf = self.pandasUtils.concatDfs(dfs)
         self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(newDf))
