@@ -9,6 +9,7 @@ from VentanaFiltros import VentanaFiltros
 from VentanaAnalisisHorario import VentanaAnalisisHorario
 
 from UIPyfiles.VistaGeneralDatos import Ui_VistaGeneralDatos
+from LoadingOverlay import Overlay
 class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
     def __init__(self, parent=None, pandasUtilsInstance=None):
         super(QMainWindow, self).__init__(parent)
@@ -20,9 +21,11 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
         self.operadoresSeleccionados = dict()
         self.viendoIncidentales = False
         # UI
+        self.overlay = Overlay(self)
         self.setupUiCustom()
 
     def setupUiCustom(self):
+        self.overlay.hide()
         self.pandasUtils.setTempDf(self.pandasUtils.getAllData())
         # print(f"Setup UI vista general y temp df {self.pandasUtils.tempDf.shape}")
         self.pushButtonGuardarDatos4G.setEnabled(False)
@@ -43,14 +46,11 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
         # Establece contadores inicialmente
         self.fnMuestraCantidadEnRats()
         self.fnMuestraCantidadEnOperadores()
-        self.labelIMEIDatos.setText(
-            str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.tempDf, "IMEI")))
-        self.labelIMSIDatos.setText(
-            str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.tempDf, "IMSI")))
-
+        self.fnMuestraCantidadesImeisImsis()
         # Connects signals to sloots and callbacks
         self.menuOperadores.triggered.connect(self.fnProcesaSeleccionOperadores)
         self.menuRats.triggered.connect(self.fnProcesaSeleccionRats)
+        # Busqueda IMEI
         self.pushButtonBuscarDato.clicked.connect(self.fnProcesaFiltroImei)
         # Boton exportar
         self.pushButtonGuardarDatos.clicked.connect(self.fnProcesaGuardarDatos)
@@ -74,14 +74,20 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
         self.tableWidgetDatosExcel.setWordWrap(False)
         self.tableWidgetDatosExcel.setTextElideMode(Qt.ElideRight)
         self.tableWidgetDatosExcel.setSelectionBehavior(QAbstractItemView.SelectRows)
-        self.tableWidgetDatosExcel.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        # self.tableWidgetDatosExcel.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
         self.pushButtonAsignarIMEIS.clicked.connect(self.fnProcesaAsignarImeis)
-        self.fillTableWidget(self.pandasUtils.tempDf)
+        # self.fillTableWidget(self.pandasUtils.tempDf)
+
+    def fnMuestraCantidadesImeisImsis(self):
+        self.labelIMEIDatos.setText(str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.tempDf, "IMEI")))
+        self.labelIMSIDatos.setText(str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.tempDf, "IMSI")))
 
     def fnVerImsisImeis(self):
+        self.pandasUtils.setTempDf(
+            self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData()))
         self.fillTableWidget(
-            self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
+            self.pandasUtils.tempDf
         )
 
     def fnGuardarImsisImeis(self):
@@ -97,20 +103,25 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
 
     def fnProcesaAsignarImeis(self):
         # print("Empieza proceso de asignacion de IMEIS")
-        antesSinImei = self.pandasUtils.getDfImeisFaltantes(self.pandasUtils.getAllData())
-        allData = self.pandasUtils.getAllData()
-        cantidadAntesCon = allData.shape[0] - antesSinImei.shape[0] 
-        # print(f"Cantidad antes con IMEIS bien {cantidadAntesCon} cantidad de sin imei {antesSinImei.shape[0]}")
-        
+        self.overlay.show()
+        self.pandasUtils.asignarIMEIS(self.pandasUtils.getAllData(),
+                                    self.pandasUtils.getDfImeisFaltantes(), self.fnAsignacionTerminada)
 
-        # self.pandasUtils.setTempDf(self.pandasUtils.asignarIMEIS(allData, antesSinImei))
-        self.pandasUtils.asignarIMEIS(allData, antesSinImei, self.pandasProcessingFinished)
-
+    def fnAsignacionTerminada(self, msg):
         # Dividir de nuevo los df en 2g 3g y 4g y asignarlos de nuevo
         self.pandasUtils.dividirDfEnRats(self.pandasUtils.tempDf)
         cantidadDespuesCon = self.pandasUtils.tempDf[self.pandasUtils.tempDf['IMEI'].notnull()].shape[0]
+        self.fnMuestraCantidadEnOperadores()
+        self.fnMuestraCantidadEnRats()
+        self.fnMuestraCantidadesImeisImsis()
+
         self.fillTableWidget(self.pandasUtils.tempDf)
         self.pushButtonGuardarDatos4G.setEnabled(True)
+        self.overlay.killAndHide()
+        UiUtils.showInfoMessage(parent=self, title="Estado de la asignacion",
+                                description=msg)
+                            
+
         # print(f"Cantidad de imeis despues {cantidadDespuesCon}")
 
     def pandasProcessingFinished(self):
@@ -134,6 +145,8 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
 
     def fnMuestraTablaOriginal(self):
         self.viendoIncidentales = False
+        self.fnMuestraCantidadEnOperadores()
+        self.fnMuestraCantidadEnRats()
         self.reseteoFiltros()
         self.fillTableWidget(
             self.pandasUtils.getAllData()
@@ -164,6 +177,9 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
         self.reseteoFiltros()
         self.viendoIncidentales = True
         self.fnAplicaFiltrosDfOk()
+
+        self.fnMuestraCantidadEnOperadores()
+        self.fnMuestraCantidadEnRats()
         self.fillTableWidget(self.pandasUtils.tempDf)
 
     def fnVentanaAnalisisHorario(self):
@@ -213,11 +229,12 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
     def fnProcesaFiltroImei(self):
         imei = self.textEditBuscarDatos.toPlainText()
         if(len(imei) > 0):
-            self.pandasUtils.tempDf = self.pandasUtils.filterDfByEmai(
-                self.pandasUtils.tempDf, imei)
+            df = self.pandasUtils.filterDfByEmai(self.pandasUtils.tempDf, imei)
             if(df.shape[0] > 0):
-                # print("Shape del filtro ", df.shape)
-                self.fillTableWidget(self.pandasUtils.tempDf)
+                print("Shape del filtro ", df.shape, "dato buscar", imei)
+                self.fillTableWidget(df)
+                self.fnMuestraCantidadEnOperadores()
+                self.fnMuestraCantidadEnRats()
             else:
                 UiUtils.showInfoMessage(self,
                                         title=f"Busqueda de imei: {imei} ",
@@ -230,8 +247,7 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
         self.tableWidgetDatosExcel.setColumnCount(len(headerList))
         self.tableWidgetDatosExcel.setHorizontalHeaderLabels(headerList)
         self.tableWidgetDatosExcel.horizontalHeader().setStretchLastSection(True)
-        self.tableWidgetDatosExcel.horizontalHeader(
-        ).setSectionResizeMode(QHeaderView.Stretch)
+        self.tableWidgetDatosExcel.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         rowCount = 0
         for row in df.itertuples():
             # Sets the number of rows in this table's model to rows. If this is less than rowCount(),
@@ -286,3 +302,7 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
             self.fnAplicaFiltrosDfOk()
             cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.tempDf, 'OPERATOR', listaOps)
             self.labelOperadorDatos.setText(str(cantidad))
+
+    def resizeEvent(self, event):
+        self.overlay.resize(event.size())
+        event.accept()

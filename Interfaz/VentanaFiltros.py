@@ -99,8 +99,8 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         self.pushButtonLastLac4G.setMenu(self.menu4GLastLac)
         self.menu4GLastLac.triggered.connect(self.fnProcesaMenuLastLac4G)
 
-        self.fnAplicaFiltros()
-        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
+        # self.fnAplicaFiltros()
+        # self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
 
     def fnGuardarTablaFiltrada(self):
         # print("Fn procesa guardar datos tabla filtrada")

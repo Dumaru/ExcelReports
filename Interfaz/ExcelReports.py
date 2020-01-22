@@ -107,10 +107,10 @@ class ExcelReportsInicio(QMainWindow, Ui_VistaInicioSubirDatos):
             UiUtils.showInfoMessage(title="Informacion de carga",
                                     description=f"No se han subido archivos a la lista.")
 
-    def fnCargaDatosCompleta(self):
+    def fnCargaDatosCompleta(self, msg):
         self.overlay.killAndHide()
         UiUtils.showInfoMessage(title="Informacion de carga",
-                                description=f"Se cargaron los archivos correctamente.")
+                                description=msg)
         self.pushButtonMostrarDatos.setEnabled(True)
 
     def resizeEvent(self, event):
