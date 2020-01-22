@@ -198,7 +198,7 @@ class PandasDataLoader:
             MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
             TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
             LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
-            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='size'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
         return groupedDf.reset_index(drop=True)
@@ -218,7 +218,7 @@ class PandasDataLoader:
             MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
             TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
             LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
-            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='size'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
         return groupedDf.reset_index(drop=True)
@@ -231,7 +231,7 @@ class PandasDataLoader:
         groupedDf = df.groupby('IMEI').agg(
             IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
-            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='size'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
         )
         return groupedDf.reset_index(drop=True)
@@ -363,7 +363,7 @@ class PandasDataLoader:
     def filterByHitsGrouping(self, df: pd.DataFrame, columnToGroupBy: str = 'IMEI', hitsMin: int = 0):
         """ Returns all the rows that in the group acomplish the filter of min of hits"""
         # print(f"Hits by grouping df shape{df.info()} column {columnToGroupBy}")
-        return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].sum() >= hitsMin)
+        return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].size() >= hitsMin)
 
     def getMonthInt(self, strMonth):
         if(strMonth.lower() in ["ene"]):
