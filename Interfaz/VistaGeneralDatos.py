@@ -159,8 +159,7 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
     def fnVentanaFiltroDatos(self):
         # print(f"Fn mostrar ventana filtro de datos")
         self.hide()
-        ventanaFiltroDatos = VentanaFiltros(
-            parent=self, pandasUtilsInstance=self.pandasUtils)
+        ventanaFiltroDatos = VentanaFiltros(parent=self, pandasUtilsInstance=self.pandasUtils)
         ventanaFiltroDatos.show()
 
     # def fnAsignaNombresPorEmais(self):

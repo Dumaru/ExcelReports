@@ -411,6 +411,12 @@ class PandasDataLoader:
             print(ve)
             return False
 
+    def checkInts(self, intsList):
+        try:
+            ints = list(map(int, intsList))
+            return True
+        except Exception as e:
+            return False
 
 class ThreadingUtils_:
 
