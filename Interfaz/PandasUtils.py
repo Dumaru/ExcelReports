@@ -136,21 +136,28 @@ class PandasDataLoader:
     def asignarIMEIS(self, allDataP: pd.DataFrame, dfImeisFaltantes: pd.DataFrame, callback):
         """ Assigns Emais for the columns where the emais is null based on the historical data"""
         def asignaWrapper():
-            def joinValues(values):
+            def joinValues(series):
                 # print(f"{type(values)}")
                 # return ','.join(map(str, values))
-                return list(set(values))[0]
-            def obtenerEmai(x: str):
+                return series.to_list()
+            def obtenerEmai(x: pd.Series):
                 # X is the IMSI value
                 rCoincide = allDataP[allDataP['IMSI'].isin(x.values)]['IMEI']
-                imeis = joinValues(rCoincide[rCoincide.notnull()].unique())
-                return imeis
+                rCoincide.dropna(inplace=True)
+                imeis = joinValues(rCoincide)
+                # print(f"<X {x} \nR coincide {imeis}>")
+                if len(imeis)>0:
+                    return imeis[0]
+                else:
+                    return np.NaN
             # print(f"Ref all data {allDataP.shape},  dfImesFaltantes {dfImeisFaltantes.shape} {dfImeisFaltantes.info()}")
             nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
             self.msg = f"Se le asigno imeis a {nuevosValores.shape[0]} filas"
-            allDataP.loc[dfImeisFaltantes.index.astype(int), 'IMEI'] = nuevosValores
+            # print(f"Nuevos valores {nuevosValores}")
+            allDataP.loc[dfImeisFaltantes.index, 'IMEI'] = nuevosValores
             self.sinImei = allDataP[allDataP['IMEI'].isnull()]
             # Retorna serie con nuevos valores de IMEI separados por coma
+            self.dividirDfEnRats(allDataP)
             self.setTempDf(allDataP)
 
         self.threadProcessor = ThreadingUtils()
