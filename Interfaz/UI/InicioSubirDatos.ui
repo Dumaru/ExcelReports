@@ -31,103 +31,13 @@ background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="1" column="3">
-     <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <family>Agency FB</family>
-        <pointsize>36</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="5">
+    <item row="1" column="4">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <layout class="QGridLayout" name="gridLayout">
         <property name="sizeConstraint">
          <enum>QLayout::SetMinimumSize</enum>
         </property>
-        <item row="2" column="2">
-         <widget class="QPushButton" name="pushButtonCargarDatos">
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
-          </property>
-          <property name="text">
-           <string>Cargar Datos</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/upload.png</normaloff>../Recursos/upload.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonEliminar">
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="whatsThis">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));
-</string>
-          </property>
-          <property name="text">
-           <string>Eliminar Archivo</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-eliminar-400.png</normaloff>../Recursos/icons8-eliminar-400.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="23" column="5">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item row="23" column="4">
          <widget class="QLabel" name="label_2">
           <property name="maximumSize">
@@ -177,27 +87,33 @@ background-color: rgb(255, 255, 255);</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="5">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Images/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushButtonEliminar">
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>11</pointsize>
+           </font>
           </property>
-         </widget>
-        </item>
-        <item row="23" column="0" colspan="4">
-         <widget class="QListWidget" name="listWidgetListaArchivos">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-            <horstretch>30</horstretch>
-            <verstretch>30</verstretch>
-           </sizepolicy>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 255);
-border-color: rgb(0, 0, 0);</string>
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));
+</string>
           </property>
-          <property name="autoScrollMargin">
-           <number>23</number>
+          <property name="text">
+           <string>Eliminar Archivo</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../Recursos/icons8-eliminar-400.png</normaloff>../Recursos/icons8-eliminar-400.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -234,11 +150,74 @@ border-color: rgb(0, 0, 0);</string>
           </property>
          </widget>
         </item>
+        <item row="23" column="5">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="23" column="0" colspan="4">
+         <widget class="QListWidget" name="listWidgetListaArchivos">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+            <horstretch>30</horstretch>
+            <verstretch>30</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(0, 0, 0);</string>
+          </property>
+          <property name="autoScrollMargin">
+           <number>23</number>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="5">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Images/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="pushButtonCargarDatos">
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+          </property>
+          <property name="text">
+           <string>Cargar Datos</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../Recursos/upload.png</normaloff>../Recursos/upload.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
     </item>
-    <item row="0" column="5" alignment="Qt::AlignHCenter">
+    <item row="0" column="4" alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
@@ -256,17 +235,7 @@ border-color: rgb(0, 0, 0);</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="4">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap resource="DATOS IMAGENES.qrc">:/Logos/RAPTOR.png</pixmap>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
+    <item row="1" column="3">
      <spacer name="horizontalSpacer_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -281,6 +250,29 @@ border-color: rgb(0, 0, 0);</string>
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="DATOS IMAGENES.qrc">:/Logos/Logo.png</pixmap>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_6">
+      <property name="styleSheet">
+       <string notr="true">image: url(:/Logos/RAPTOR.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="DATOS IMAGENES.qrc">:/Logos/RAPTOR.png</pixmap>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

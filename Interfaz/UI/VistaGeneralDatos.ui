@@ -30,7 +30,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="0">
+    <item row="0" column="3">
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
@@ -46,9 +46,9 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
+    <item row="2" column="3">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="55" column="20">
+      <item row="57" column="20">
        <widget class="QLabel" name="label_5">
         <property name="styleSheet">
          <string notr="true">background-image: url(:/Imagenes/Logo.png);
@@ -59,7 +59,7 @@ image: url(:/newPrefix/Logo.png);</string>
         </property>
        </widget>
       </item>
-      <item row="25" column="1">
+      <item row="23" column="1">
        <widget class="QPushButton" name="pushButtonAnalisisHorario">
         <property name="font">
          <font>
@@ -71,7 +71,7 @@ image: url(:/newPrefix/Logo.png);</string>
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
         <property name="text">
-         <string>Análisis Horario</string>
+         <string>ANÁLISIS HORARIO DATOS GENERALES</string>
         </property>
         <property name="icon">
          <iconset>
@@ -81,32 +81,6 @@ image: url(:/newPrefix/Logo.png);</string>
          <size>
           <width>50</width>
           <height>50</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="31" column="1">
-       <widget class="QPushButton" name="pushButtonFiltrarDatos">
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>Filtrar Datos</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
          </size>
         </property>
        </widget>
@@ -123,7 +97,7 @@ image: url(:/newPrefix/Logo.png);</string>
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
         <property name="text">
-         <string>Asignar IMEI'S a 4G</string>
+         <string>ASIGNAR IMEI A 4G</string>
         </property>
         <property name="icon">
          <iconset>
@@ -137,34 +111,8 @@ image: url(:/newPrefix/Logo.png);</string>
         </property>
        </widget>
       </item>
-      <item row="28" column="1">
-       <widget class="QPushButton" name="pushButtonGuardarDatos">
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>Guardar Tabla (Vista Actual)</string>
-        </property>
-        <property name="icon">
-         <iconset resource="../Recursos/ArchiImagenes.qrc">
-          <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="19" column="1">
-       <widget class="QPushButton" name="pushButtonVerDatosIncidentales">
+      <item row="20" column="1">
+       <widget class="QPushButton" name="pushButtonVerTablaOriginal">
         <property name="font">
          <font>
           <family>Corbel</family>
@@ -175,37 +123,11 @@ image: url(:/newPrefix/Logo.png);</string>
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
         <property name="text">
-         <string> Tabla Datos Incidentales </string>
+         <string>TABLA DATOS GENERALES</string>
         </property>
         <property name="icon">
          <iconset>
           <normaloff>../Recursos/icons8-big-data-150.png</normaloff>../Recursos/icons8-big-data-150.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="26" column="1">
-       <widget class="QPushButton" name="pushButtonGuardarImsisVSImei">
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>Guardar Tabla Datos IMSIS VS IMEI </string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>icons8-añadir-libro-80.png</normaloff>icons8-añadir-libro-80.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -244,27 +166,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.014
            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
           </property>
           <property name="text">
-           <string>Operador</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="pushButton">
-          <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
-          </property>
-          <property name="text">
-           <string>IMSI</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
-          </property>
-          <property name="text">
-           <string>IMEI</string>
+           <string>OPERADOR</string>
           </property>
          </widget>
         </item>
@@ -278,6 +180,16 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.014
           </property>
          </widget>
         </item>
+        <item row="4" column="0">
+         <widget class="QPushButton" name="pushButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+          </property>
+          <property name="text">
+           <string>IMSI</string>
+          </property>
+         </widget>
+        </item>
         <item row="4" column="1">
          <widget class="QLabel" name="labelIMSIDatos">
           <property name="styleSheet">
@@ -285,6 +197,16 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.014
           </property>
           <property name="text">
            <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QPushButton" name="pushButton_2">
+          <property name="styleSheet">
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+          </property>
+          <property name="text">
+           <string>IMEI</string>
           </property>
          </widget>
         </item>
@@ -354,7 +276,85 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.014
         </item>
        </layout>
       </item>
-      <item row="35" column="4">
+      <item row="24" column="1">
+       <widget class="QPushButton" name="pushButtonGuardarImsisVSImei">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string>GUARDAR TABLA DATOS IMSIS VS IMEI </string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons8-añadir-libro-80.png</normaloff>icons8-añadir-libro-80.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="21" column="1">
+       <widget class="QPushButton" name="pushButtonVerImsisVSImeis">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string>TABLA IMSIS VS IMEIS</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons8-big-data-150.png</normaloff>icons8-big-data-150.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="26" column="1">
+       <widget class="QPushButton" name="pushButtonGuardarDatos4G">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string>GUARDAR DATOS 4G</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>icons8-añadir-libro-80.png</normaloff>icons8-añadir-libro-80.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="38" column="4">
        <widget class="QFrame" name="frame">
         <property name="font">
          <font>
@@ -375,33 +375,7 @@ border-top-color: rgb(0, 0, 0);</string>
         <layout class="QHBoxLayout" name="horizontalLayout_2"/>
        </widget>
       </item>
-      <item row="17" column="1">
-       <widget class="QPushButton" name="pushButtonVerTablaOriginal">
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string> Tabla Datos Generales</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-big-data-150.png</normaloff>../Recursos/icons8-big-data-150.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="14" column="3" rowspan="22">
+      <item row="14" column="3" rowspan="25">
        <widget class="QTableWidget" name="tableWidgetDatosExcel">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
@@ -468,23 +442,23 @@ border-top-color: rgb(0, 0, 0);</string>
         </column>
        </widget>
       </item>
-      <item row="24" column="1">
-       <widget class="QPushButton" name="pushButtonVerImsisVSImeis">
+      <item row="35" column="1">
+       <widget class="QPushButton" name="pushButtonFiltrarDatos">
         <property name="font">
          <font>
           <family>Corbel</family>
-          <pointsize>10</pointsize>
+          <pointsize>11</pointsize>
          </font>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
         <property name="text">
-         <string>Tabla IMSIS VS IMEIS</string>
+         <string>IR A FILTROS</string>
         </property>
         <property name="icon">
          <iconset>
-          <normaloff>icons8-big-data-150.png</normaloff>icons8-big-data-150.png</iconset>
+          <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -494,8 +468,34 @@ border-top-color: rgb(0, 0, 0);</string>
         </property>
        </widget>
       </item>
-      <item row="27" column="1">
-       <widget class="QPushButton" name="pushButtonGuardarDatos4G">
+      <item row="19" column="1">
+       <widget class="QPushButton" name="pushButtonVerDatosIncidentales">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string> TABLA DATOS INCIDENTALES</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Recursos/icons8-big-data-150.png</normaloff>../Recursos/icons8-big-data-150.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="25" column="1">
+       <widget class="QPushButton" name="pushButtonGuardarDatos">
         <property name="font">
          <font>
           <family>Corbel</family>
@@ -506,11 +506,11 @@ border-top-color: rgb(0, 0, 0);</string>
          <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
         <property name="text">
-         <string>Guardar Tabla Datos 4G</string>
+         <string>GUARDAR TABLA (Vista Actual)</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons8-añadir-libro-80.png</normaloff>icons8-añadir-libro-80.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -521,6 +521,23 @@ border-top-color: rgb(0, 0, 0);</string>
        </widget>
       </item>
      </layout>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../Recursos/ArchiImagenes.qrc">:/Logos/logoRaptor.png</pixmap>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

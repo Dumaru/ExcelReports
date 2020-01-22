@@ -26,7 +26,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -36,163 +36,7 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="17" column="1">
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Maximum</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="14" column="1">
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="2">
-       <widget class="QPushButton" name="pushButtonVerAnalisis">
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string> Ver Análisis</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButtonGuardarBusqueda">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>Guardar Busqueda</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-añadir-libro-80.png</normaloff>../Recursos/icons8-añadir-libro-80.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButtonGenerarGraficas">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>Generar Gráficas </string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="12" column="3">
-     <layout class="QGridLayout" name="gridLayout_7">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="spacing">
-       <number>3</number>
-      </property>
-     </layout>
-    </item>
-    <item row="12" column="1">
+    <item row="12" column="2">
      <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
@@ -241,15 +85,60 @@
       </column>
      </widget>
     </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="2">
+     <widget class="QTableWidget" name="tableWidgetMostrarSeleccion">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="17" column="2">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Maximum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="12" column="0">
      <layout class="QGridLayout" name="gridLayout_6">
       <property name="spacing">
        <number>23</number>
       </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelRAT">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>RAT</string>
+        </property>
+       </widget>
+      </item>
       <item row="4" column="0">
        <widget class="QCheckBox" name="checkBox3G">
         <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>3G</string>
@@ -259,32 +148,17 @@
       <item row="3" column="0">
        <widget class="QCheckBox" name="checkBox2G">
         <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>2G</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelRAT">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>RAT</string>
-        </property>
-       </widget>
-      </item>
       <item row="5" column="0">
        <widget class="QCheckBox" name="checkBox4G">
         <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>4G</string>
@@ -293,14 +167,163 @@
       </item>
      </layout>
     </item>
-    <item row="15" column="1">
-     <widget class="QTableWidget" name="tableWidgetMostrarSeleccion">
+    <item row="14" column="2">
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushButtonVerAnalisis">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string> Ver Análisis</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" alignment="Qt::AlignHCenter">
+       <widget class="QPushButton" name="pushButtonGuardarBusqueda">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string>Guardar Busqueda</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Recursos/icons8-añadir-libro-80.png</normaloff>../Recursos/icons8-añadir-libro-80.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4" alignment="Qt::AlignHCenter">
+       <widget class="QPushButton" name="pushButtonGenerarGraficas">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+        </property>
+        <property name="text">
+         <string>Generar Gráficas </string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="3" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>Agency FB</family>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
+      </property>
+      <property name="text">
+       <string>FILTRAR DATOS</string>
       </property>
      </widget>
     </item>
-    <item row="7" column="2" rowspan="11">
+    <item row="12" column="4">
+     <layout class="QGridLayout" name="gridLayout_7">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="spacing">
+       <number>3</number>
+      </property>
+     </layout>
+    </item>
+    <item row="7" column="3" rowspan="11">
      <widget class="QGroupBox" name="groupBox">
       <property name="enabled">
        <bool>true</bool>
@@ -316,6 +339,9 @@
         <family>Agency FB</family>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="title">
        <string>LISTA FILTROS</string>
@@ -1243,7 +1269,7 @@ selection-background-color: rgb(0, 0, 0);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
           </property>
           <property name="text">
            <string>Buscar En Tabla</string>
@@ -1314,7 +1340,7 @@ selection-background-color: rgb(0, 0, 0);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(255, 246, 85, 255), stop:1 rgba(255, 255, 255, 255));</string>
           </property>
           <property name="text">
            <string>Obtener Datos </string>
@@ -1335,16 +1361,13 @@ selection-background-color: rgb(0, 0, 0);</string>
       </widget>
      </widget>
     </item>
-    <item row="0" column="2" alignment="Qt::AlignHCenter">
-     <widget class="QLabel" name="label">
-      <property name="font">
-       <font>
-        <family>Agency FB</family>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>FILTRAR DATOS</string>
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../Recursos/ArchiImagenes.qrc">:/Logos/logoRaptor.png</pixmap>
       </property>
      </widget>
     </item>
@@ -1391,6 +1414,7 @@ selection-background-color: rgb(0, 0, 0);</string>
  </widget>
  <resources>
   <include location="../Recursos/Re.qrc"/>
+  <include location="../Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
 </ui>
