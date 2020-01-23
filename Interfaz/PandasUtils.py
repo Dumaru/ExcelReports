@@ -333,6 +333,7 @@ class PandasDataLoader:
         dfT = df[df['DATE_TIME'].notnull()]
         series = dfT.set_index('DATE_TIME').groupby(pd.Grouper(freq='D'))['HITS'].apply(sum)
         return series
+
     def dfLastLacFrecuencia(self, df: pd.DataFrame):
         groupedDf = df.groupby('LAST_LAC')['LAST_LAC'].agg(FRECUENCIA=pd.NamedAgg(column='LAST_LAC', aggfunc='size'))
         groupedDf['LAST_LAC'] = groupedDf.index
