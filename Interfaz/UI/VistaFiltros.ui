@@ -372,25 +372,53 @@
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
-         <item row="7" column="2">
-          <widget class="QPushButton" name="pushButtonLastLac4G">
+         <item row="4" column="1">
+          <widget class="QPushButton" name="pushButtonLimpiarSeleccion3G">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>15</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 146, 146);
-
-</string>
+            <string notr="true">background-color: rgb(207, 223, 255);</string>
            </property>
            <property name="text">
-            <string>DATOS LAST LAC</string>
+            <string>Limpiar Selección</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
            </property>
           </widget>
          </item>
-         <item row="3" column="2">
+         <item row="4" column="2">
           <widget class="QPushButton" name="pushButtonLimpiarSeleccion4G">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
@@ -437,7 +465,68 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
+         <item row="2" column="2">
+          <widget class="QLabel" name="LabeltITULOLASTLAC_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 146, 146);
+</string>
+           </property>
+           <property name="text">
+            <string>            LAST LAC (4G)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="LabeltITULOLASTLAC">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(155, 255, 144);</string>
+           </property>
+           <property name="text">
+            <string>         LAST LAC (2G)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
           <widget class="QPushButton" name="pushButtonLimpiarSeleccion2G">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
@@ -467,52 +556,6 @@
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(155, 255, 144);</string>
-           </property>
-           <property name="text">
-            <string>Limpiar Selección</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
-          <widget class="QPushButton" name="pushButtonLimpiarSeleccion3G">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>15</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>10</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(207, 223, 255);</string>
            </property>
            <property name="text">
             <string>Limpiar Selección</string>
@@ -559,37 +602,41 @@
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="LabeltITULOLASTLAC">
+         <item row="9" column="1">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="pushButtonLastLac2G">
            <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
            <property name="font">
             <font>
-             <family>Agency FB</family>
-             <pointsize>14</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
+             <family>Corbel</family>
             </font>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(155, 255, 144);</string>
            </property>
            <property name="text">
-            <string>         LAST LAC (2G)</string>
+            <string>DATOS LAST LAC</string>
            </property>
           </widget>
          </item>
-         <item row="7" column="1">
+         <item row="3" column="1">
           <widget class="QPushButton" name="pushButtonLastLac3G">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
@@ -605,8 +652,8 @@
            </property>
           </widget>
          </item>
-         <item row="7" column="0">
-          <widget class="QPushButton" name="pushButtonLastLac2G">
+         <item row="3" column="2">
+          <widget class="QPushButton" name="pushButtonLastLac4G">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -614,56 +661,14 @@
             </sizepolicy>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(155, 255, 144);</string>
+            <string notr="true">background-color: rgb(255, 146, 146);
+
+</string>
            </property>
            <property name="text">
             <string>DATOS LAST LAC</string>
            </property>
           </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLabel" name="LabeltITULOLASTLAC_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Agency FB</family>
-             <pointsize>14</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 146, 146);
-</string>
-           </property>
-           <property name="text">
-            <string>            LAST LAC (4G)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
@@ -1402,7 +1407,6 @@
  <resources>
   <include location="../Recursos/Re.qrc"/>
   <include location="../Recursos/ArchiImagenes.qrc"/>
-  <include location="../../../../../.designer/Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
 </ui>

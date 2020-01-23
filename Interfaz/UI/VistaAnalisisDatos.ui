@@ -283,7 +283,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../Recursos/Re.qrc"/>
+  <include location="..GitHub/ExcelReports/Interfaz/Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
 </ui>

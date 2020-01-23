@@ -75,8 +75,8 @@ background-color: rgb(255, 255, 255);</string>
            <string>Añadir Archivos</string>
           </property>
           <property name="icon">
-           <iconset resource="../Recursos/ArchiImagenes.qrc">
-            <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
+           <iconset>
+            <normaloff>../Recursos/icons8-añadir-libro-80.png</normaloff>../Recursos/icons8-añadir-libro-80.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -193,7 +193,8 @@ border-color: rgb(0, 0, 0);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 127);</string>
+           <string notr="true">background-color: rgb(255, 255, 127);
+image: url(:/Iconos/upload.png);</string>
           </property>
           <property name="text">
            <string>Cargar Datos</string>
@@ -346,9 +347,7 @@ border-color: rgb(0, 0, 0);</string>
  </widget>
  <resources>
   <include location="../Recursos/Re.qrc"/>
-  <include location="Imagenes.qrc"/>
   <include location="DATOS IMAGENES.qrc"/>
-  <include location="../../../../../.designer/Recursos/ArchiImagenes.qrc"/>
   <include location="../Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
