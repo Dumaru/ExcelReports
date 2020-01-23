@@ -26,16 +26,52 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="1">
      <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="2">
+       <widget class="QLabel" name="label">
+        <property name="styleSheet">
+         <string notr="true">image: url(:/Imagenes/Logo.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/logoRaptor.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QGridLayout" name="gridLayout_4"/>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Agency FB</family>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>REPORTE FINAL </string>
+        </property>
+       </widget>
+      </item>
       <item row="3" column="0">
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonGuardarDatosIMISISIMEI">
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushButtonIMSIS">
           <property name="font">
            <font>
             <family>Corbel</family>
@@ -43,22 +79,15 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
+           <string notr="true">background-color: rgb(255, 255, 127);
 </string>
           </property>
           <property name="text">
-           <string>Guargar Datos IMSIS-IMEI</string>
+           <string>Ver IMSIS.IMEI</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
           </property>
          </widget>
         </item>
@@ -71,16 +100,15 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
+           <string notr="true">background-color: rgb(255, 255, 127);
 </string>
           </property>
           <property name="text">
            <string>Graficar Datos</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>20803.png</normaloff>20803.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/graficas.png</normaloff>:/Iconos/graficas.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -152,16 +180,14 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
            <string>Generar Reporte Final</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -180,21 +206,19 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
            <string>Ver Reporte</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-hand-box-256.png</normaloff>icons8-hand-box-256.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonIMSIS">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="pushButtonGuardarDatosIMISISIMEI">
           <property name="font">
            <font>
             <family>Corbel</family>
@@ -202,46 +226,31 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
-           <string>Ver IMSIS.IMEI</string>
+           <string>Generar Datos IMSIS-IMEI</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-hand-box-256.png</normaloff>icons8-hand-box-256.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/Iocom.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
        </layout>
-      </item>
-      <item row="0" column="2">
-       <layout class="QGridLayout" name="gridLayout_4"/>
-      </item>
-      <item row="3" column="3">
-       <widget class="QLabel" name="label">
-        <property name="styleSheet">
-         <string notr="true">image: url(:/Imagenes/Logo.png);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" alignment="Qt::AlignHCenter">
-       <widget class="QLabel" name="label_2">
-        <property name="font">
-         <font>
-          <family>Agency FB</family>
-          <pointsize>20</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>REPORTE FINAL </string>
-        </property>
-       </widget>
       </item>
      </layout>
     </item>
@@ -288,7 +297,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../Recursos/Re.qrc"/>
+  <include location="Recursos/DATOS IMAGENES.qrc"/>
  </resources>
  <connections/>
 </ui>

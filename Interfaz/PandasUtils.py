@@ -4,7 +4,6 @@ import concurrent.futures
 import time
 from PyQt5.QtCore import QThread, pyqtSignal
 
-
 class PandasDataLoader:
     """
     A class that acts as a container for the dataframe and manages all the operations
@@ -334,6 +333,7 @@ class PandasDataLoader:
         dfT = df[df['DATE_TIME'].notnull()]
         series = dfT.set_index('DATE_TIME').groupby(pd.Grouper(freq='D'))['HITS'].apply(sum)
         return series
+
     def dfLastLacFrecuencia(self, df: pd.DataFrame):
         groupedDf = df.groupby('LAST_LAC')['LAST_LAC'].agg(FRECUENCIA=pd.NamedAgg(column='LAST_LAC', aggfunc='size'))
         groupedDf['LAST_LAC'] = groupedDf.index
@@ -348,7 +348,7 @@ class PandasDataLoader:
         return dfEmaisOk.assign(NAME=df1)
 
     def filterDfByEmai(self, df: pd.DataFrame = None, imei: int = None):
-        return df[df['IMEI'].isin([int(imei)])]
+        return df[df['IMEI'].isin([int(imei)])] if imei is not None else df
 
     def getDfCompletoEmaisOk(self, df: pd.DataFrame):
         """

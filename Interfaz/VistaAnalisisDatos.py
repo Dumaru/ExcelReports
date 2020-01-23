@@ -19,6 +19,7 @@ class VentanaAnalisisDatos(QMainWindow, Ui_VistaAnalisisDatos):
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
         self.data = data
         # UI
+        # loadUi('UI/VistaAnalisisDatos.ui', self)
         self.setupUiCustom()
 
     def setupUiCustom(self):

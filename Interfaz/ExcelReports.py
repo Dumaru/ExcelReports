@@ -28,6 +28,7 @@ class ExcelReportsInicio(QMainWindow, Ui_VistaInicioSubirDatos):
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
 
         # UI
+        # loadUi('', self)
         self.overlay = Overlay(self)
         self.setupUiCustom()
 

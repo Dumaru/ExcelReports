@@ -21,6 +21,7 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
         self.operadoresSeleccionados = dict()
         self.viendoIncidentales = False
         # UI
+        # loadUi('UI/VistaGeneralDatos.ui', self)
         self.overlay = Overlay(self)
         self.setupUiCustom()
 
@@ -228,6 +229,10 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
     def fnProcesaFiltroImei(self):
         imei = self.textEditBuscarDatos.toPlainText()
         if(len(imei) > 0):
+<<<<<<< HEAD
+=======
+            self.fnAplicaFiltrosDfOk()
+>>>>>>> master
             df = self.pandasUtils.filterDfByEmai(self.pandasUtils.tempDf, imei)
             if(df.shape[0] > 0):
                 print("Shape del filtro ", df.shape, "dato buscar", imei)

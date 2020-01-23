@@ -27,7 +27,7 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         self.filtros3G = FiltrosContainer()
         self.filtros4G = FiltrosContainer()
         # UI
-        
+        # loadUi('UI/VistaFiltros.ui', self)
         self.setupUiCustom()
 
     def setupUiCustom(self):
@@ -374,7 +374,11 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         newDf = self.pandasUtils.concatDfs(dfs)
         self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(newDf))
         if(self.pandasUtils.tempDf.shape[0]>0):
+<<<<<<< HEAD
             self.pandasUtils.tempDf.sort_values(by='HITS')
+=======
+            self.pandasUtils.setTempDf(self.pandasUtils.tempDf.sort_values(by="HITS", ascending=False))
+>>>>>>> master
         # print(f"New dfs {newDf}")
         # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
         # print("Se empiezan a agrupar los datos de 2g 3g y 4g")

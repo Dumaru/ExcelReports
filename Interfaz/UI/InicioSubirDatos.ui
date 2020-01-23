@@ -27,11 +27,21 @@
   </property>
   <property name="styleSheet">
    <string notr="true">
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="5" alignment="Qt::AlignHCenter">
+    <item row="3" column="1">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>:/Logos/Logo.png</pixmap>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2" alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="label_3">
       <property name="font">
        <font>
@@ -41,36 +51,36 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgb
         <bold>false</bold>
        </font>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <property name="text">
        <string>LISTA DIRECTORIOS</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="4">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/logoRaptor.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Minimum</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
+     </widget>
     </item>
-    <item row="1" column="5">
+    <item row="2" column="2">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
        <layout class="QGridLayout" name="gridLayout">
         <property name="sizeConstraint">
          <enum>QLayout::SetMinimumSize</enum>
         </property>
-        <item row="2" column="2">
-         <widget class="QPushButton" name="pushButtonCargarDatos">
+        <item row="25" column="1" colspan="2">
+         <widget class="QPushButton" name="pushButtonMostrarDatos">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777213</height>
+           </size>
+          </property>
           <property name="font">
            <font>
             <family>Corbel</family>
@@ -78,15 +88,14 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgb
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgb(85, 170, 255);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
-           <string>Cargar Datos</string>
+           <string>Ver Datos</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/upload.png</normaloff>../Recursos/upload.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -96,49 +105,12 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonEliminar">
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="whatsThis">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
-
-</string>
-          </property>
+        <item row="1" column="5">
+         <widget class="QLabel" name="label">
           <property name="text">
-           <string>Eliminar Archivo</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-eliminar-400.png</normaloff>../Recursos/icons8-eliminar-400.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Images/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
-        </item>
-        <item row="23" column="5">
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
         <item row="23" column="4">
          <widget class="QLabel" name="label_2">
@@ -156,47 +128,18 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="pushButtonAnadirArchivo">
-          <property name="maximumSize">
+        <item row="23" column="5">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
            <size>
-            <width>16777215</width>
-            <height>48</height>
+            <width>40</width>
+            <height>20</height>
            </size>
           </property>
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(85, 170, 255);
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
-          </property>
-          <property name="text">
-           <string>Añadir Archivos</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-añadir-libro-100.png</normaloff>../Recursos/icons8-añadir-libro-100.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>30</width>
-            <height>30</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="5">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Images/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
+         </spacer>
         </item>
         <item row="23" column="0" colspan="4">
          <widget class="QListWidget" name="listWidgetListaArchivos">
@@ -215,75 +158,113 @@ border-color: rgb(0, 0, 0);</string>
           </property>
          </widget>
         </item>
-        <item row="25" column="1" colspan="2">
-         <widget class="QPushButton" name="pushButtonMostrarDatos">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777213</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>11</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517413 rgba(55, 117, 206, 229), stop:1 rgba(255, 255, 255, 255));
+        <item row="3" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="pushButtonAnadirArchivo">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>48</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 127);</string>
+            </property>
+            <property name="text">
+             <string>Añadir Archivos</string>
+            </property>
+            <property name="icon">
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>30</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonEliminar">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/newPrefix/Iocom png.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 127);</string>
+            </property>
+            <property name="text">
+             <string>Eliminar Archivo</string>
+            </property>
+            <property name="icon">
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/icons8-eliminar-400.png</normaloff>:/Iconos/icons8-eliminar-400.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonCargarDatos">
+            <property name="font">
+             <font>
+              <family>Corbel</family>
+              <pointsize>11</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 127);
 </string>
-          </property>
-          <property name="text">
-           <string>Ver Datos</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
-          </property>
-         </widget>
+            </property>
+            <property name="text">
+             <string>Cargar Datos</string>
+            </property>
+            <property name="icon">
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/upload.png</normaloff>:/Iconos/upload.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
      </layout>
     </item>
-    <item row="1" column="3">
-     <widget class="QLabel" name="label_4">
-      <property name="font">
-       <font>
-        <family>Agency FB</family>
-        <pointsize>36</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>SOFTWARE RAPTOR</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/Iocom.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="3">
-     <widget class="QLabel" name="label_5">
-      <property name="font">
-       <font>
-        <family>Agency FB</family>
-        <pointsize>36</pointsize>
-       </font>
-      </property>
+    <item row="3" column="5">
+     <widget class="QLabel" name="label_6">
       <property name="text">
-       <string>IOCOM.LTDA</string>
+       <string>TextLabel</string>
       </property>
      </widget>
     </item>
@@ -355,8 +336,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.517
   </action>
  </widget>
  <resources>
-  <include location="../Recursos/Re.qrc"/>
-  <include location="Imagenes.qrc"/>
+  <include location="Recursos/DATOS IMAGENES.qrc"/>
  </resources>
  <connections/>
 </ui>

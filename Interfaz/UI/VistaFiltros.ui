@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>720</height>
+    <width>1378</width>
+    <height>817</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -26,7 +26,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -36,287 +36,7 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="17" column="1">
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Maximum</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="14" column="1">
-     <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="2">
-       <widget class="QPushButton" name="pushButtonVerAnalisis">
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string> Ver Análisis</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>40</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButtonGuardarBusqueda">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>Guardar Busqueda</string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-añadir-libro-80.png</normaloff>../Recursos/icons8-añadir-libro-80.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="4" alignment="Qt::AlignHCenter">
-       <widget class="QPushButton" name="pushButtonGenerarGraficas">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Corbel</family>
-          <pointsize>11</pointsize>
-          <weight>50</weight>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>Generar Gráficas </string>
-        </property>
-        <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>30</width>
-          <height>40</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="1">
-     <widget class="QCheckBox" name="checkBoxDatosAgrupados">
-      <property name="font">
-       <font>
-        <family>Corbel</family>
-        <pointsize>11</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Datos Agrupados</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="3">
-     <layout class="QGridLayout" name="gridLayout_7">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMinimumSize</enum>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="spacing">
-       <number>3</number>
-      </property>
-     </layout>
-    </item>
-    <item row="12" column="1">
-     <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>700</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <column>
-       <property name="text">
-        <string>IMEI</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>IMSIS Asociados</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Operator</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Channel</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Hits</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Data-Time</string>
-       </property>
-      </column>
-     </widget>
-    </item>
-    <item row="12" column="0">
-     <layout class="QGridLayout" name="gridLayout_6">
-      <property name="spacing">
-       <number>23</number>
-      </property>
-      <item row="4" column="0">
-       <widget class="QCheckBox" name="checkBox3G">
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>3G</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QCheckBox" name="checkBox2G">
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>2G</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelRAT">
-        <property name="font">
-         <font>
-          <pointsize>12</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>RAT</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QCheckBox" name="checkBox4G">
-        <property name="styleSheet">
-         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
-        </property>
-        <property name="text">
-         <string>4G</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="15" column="1">
-     <widget class="QTableWidget" name="tableWidgetMostrarSeleccion">
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2" rowspan="11">
+    <item row="7" column="2" rowspan="10">
      <widget class="QGroupBox" name="groupBox">
       <property name="enabled">
        <bool>true</bool>
@@ -332,6 +52,9 @@
         <family>Agency FB</family>
         <pointsize>10</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="title">
        <string>LISTA FILTROS</string>
@@ -369,121 +92,7 @@
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
          </property>
-         <item row="7" column="2">
-          <widget class="QPushButton" name="pushButtonLastLac4G">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
-           </property>
-           <property name="text">
-            <string>Valores LAST LAC</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="2">
-          <widget class="QPushButton" name="pushButtonLimpiarSeleccion4G">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>15</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>10</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
-           </property>
-           <property name="text">
-            <string>Limpiar Selección</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QPushButton" name="pushButtonLimpiarSeleccion2G">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>15</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>16777215</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>10</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
-           </property>
-           <property name="text">
-            <string>Limpiar Selección</string>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1">
+         <item row="4" column="1">
           <widget class="QPushButton" name="pushButtonLimpiarSeleccion3G">
            <property name="sizePolicy">
             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
@@ -512,8 +121,53 @@
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
+            <string notr="true">background-color: rgb(207, 223, 255);</string>
+           </property>
+           <property name="text">
+            <string>Limpiar Selección</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QPushButton" name="pushButtonLimpiarSeleccion4G">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>15</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 146, 146);
 </string>
            </property>
            <property name="text">
@@ -521,7 +175,114 @@
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
+             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLabel" name="LabeltITULOLASTLAC_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 146, 146);
+</string>
+           </property>
+           <property name="text">
+            <string>            LAST LAC (4G)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="LabeltITULOLASTLAC">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(155, 255, 144);</string>
+           </property>
+           <property name="text">
+            <string>         LAST LAC (2G)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QPushButton" name="pushButtonLimpiarSeleccion2G">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>15</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(155, 255, 144);</string>
+           </property>
+           <property name="text">
+            <string>Limpiar Selección</string>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -547,117 +308,21 @@
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 0);</string>
+            <string notr="true">background-color: rgb(207, 223, 255);</string>
            </property>
            <property name="text">
             <string>          LAST LAC (3G)</string>
            </property>
           </widget>
          </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="LabeltITULOLASTLAC">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(85, 255, 0);</string>
-           </property>
-           <property name="text">
-            <string>         LAST LAC (2G)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="1">
-          <widget class="QPushButton" name="pushButtonLastLac3G">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
-           </property>
-           <property name="text">
-            <string>Valores LAST LAC</string>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0">
-          <widget class="QPushButton" name="pushButtonLastLac2G">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(63, 117, 194, 200), stop:1 rgba(255, 255, 255, 255));
-
-</string>
-           </property>
-           <property name="text">
-            <string>Valores LAST LAC</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <widget class="QLabel" name="LabeltITULOLASTLAC_3">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>150</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 85, 0);</string>
-           </property>
-           <property name="text">
-            <string>            LAST LAC (4G)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="1">
+         <item row="9" column="1">
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -669,6 +334,61 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item row="3" column="0">
+          <widget class="QPushButton" name="pushButtonLastLac2G">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>Corbel</family>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(155, 255, 144);</string>
+           </property>
+           <property name="text">
+            <string>DATOS LAST LAC</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QPushButton" name="pushButtonLastLac3G">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(207, 223, 255);</string>
+           </property>
+           <property name="text">
+            <string>DATOS LAST LAC</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2">
+          <widget class="QPushButton" name="pushButtonLastLac4G">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 146, 146);
+
+</string>
+           </property>
+           <property name="text">
+            <string>DATOS LAST LAC</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -711,7 +431,7 @@
            </property>
           </widget>
          </item>
-         <item row="7" column="1">
+         <item row="7" column="1" alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="LabelRangoFinalMSPOWER">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -727,17 +447,17 @@
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>11</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="text">
-            <string>Ingresar Dato (Final) </string>
+            <string>DATOS FINALES</string>
            </property>
           </widget>
          </item>
@@ -752,14 +472,14 @@
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+            <string notr="true">background-color: rgb(207, 223, 255);</string>
            </property>
            <property name="text">
             <string>Tomar Dato</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="0">
+         <item row="1" column="0" alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="LabelMSPOWER">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -775,22 +495,21 @@
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(85, 255, 0);
-selection-background-color: rgb(0, 0, 0);</string>
+            <string notr="true">background-color: rgb(155, 255, 144);</string>
            </property>
            <property name="text">
             <string> MS POWER (2G)</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="2">
+         <item row="1" column="2" alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="LabelMSPOWER_3">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -806,21 +525,22 @@ selection-background-color: rgb(0, 0, 0);</string>
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 85, 0);</string>
+            <string notr="true">background-color: rgb(255, 146, 146);
+</string>
            </property>
            <property name="text">
             <string> MS POWER (4G)</string>
            </property>
           </widget>
          </item>
-         <item row="3" column="1">
+         <item row="3" column="1" alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="LabelRangoInciaMSPOWER">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -836,21 +556,21 @@ selection-background-color: rgb(0, 0, 0);</string>
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>11</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="text">
-            <string>Ingresar Datos (Iniciales)</string>
+            <string> DATOS  INICIALES</string>
            </property>
           </widget>
          </item>
-         <item row="1" column="1">
+         <item row="1" column="1" alignment="Qt::AlignHCenter">
           <widget class="QLabel" name="LabelMSPOWER_2">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
@@ -866,14 +586,14 @@ selection-background-color: rgb(0, 0, 0);</string>
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 0);</string>
+            <string notr="true">background-color: rgb(207, 223, 255);</string>
            </property>
            <property name="text">
             <string> MS POWER (3G)</string>
@@ -901,7 +621,7 @@ selection-background-color: rgb(0, 0, 0);</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+            <string notr="true">background-color: rgb(155, 255, 144);</string>
            </property>
            <property name="text">
             <string>Tomar Dato</string>
@@ -919,7 +639,8 @@ selection-background-color: rgb(0, 0, 0);</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+            <string notr="true">background-color: rgb(255, 146, 146);
+</string>
            </property>
            <property name="text">
             <string>Tomar Dato</string>
@@ -1004,14 +725,14 @@ selection-background-color: rgb(0, 0, 0);</string>
           <widget class="QLabel" name="LabelTiempoAvance_2">
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 0);</string>
+            <string notr="true">background-color: rgb(207, 223, 255);</string>
            </property>
            <property name="text">
             <string>          TA (3G)</string>
@@ -1034,14 +755,14 @@ selection-background-color: rgb(0, 0, 0);</string>
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>11</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="text">
-            <string>Valores TA</string>
+            <string>VALORES TA</string>
            </property>
           </widget>
          </item>
@@ -1116,14 +837,14 @@ selection-background-color: rgb(0, 0, 0);</string>
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(85, 255, 0);</string>
+            <string notr="true">background-color: rgb(155, 255, 144);</string>
            </property>
            <property name="text">
             <string>         TA (2G)</string>
@@ -1146,17 +867,17 @@ selection-background-color: rgb(0, 0, 0);</string>
            </property>
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>10</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:1 rgba(85, 125, 255, 255));</string>
+            <string notr="true">background-color: rgb(255, 255, 255);</string>
            </property>
            <property name="text">
-            <string>Cantidad Hits Minimos</string>
+            <string>CANTIDAD HITS MINIMOS</string>
            </property>
           </widget>
          </item>
@@ -1212,14 +933,15 @@ selection-background-color: rgb(0, 0, 0);</string>
           <widget class="QLabel" name="LabelTiempoAvance_3">
            <property name="font">
             <font>
-             <family>Corbel</family>
-             <pointsize>12</pointsize>
+             <family>Agency FB</family>
+             <pointsize>14</pointsize>
              <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 85, 0);</string>
+            <string notr="true">background-color: rgb(255, 146, 146);
+</string>
            </property>
            <property name="text">
             <string>           TA (4G)</string>
@@ -1242,40 +964,6 @@ selection-background-color: rgb(0, 0, 0);</string>
         <property name="sizeConstraint">
          <enum>QLayout::SetMaximumSize</enum>
         </property>
-        <item>
-         <widget class="QPushButton" name="pushButtonBuscarDatos">
-          <property name="maximumSize">
-           <size>
-            <width>167</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
-          </property>
-          <property name="text">
-           <string>Buscar En Tabla</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-google-web-search-400.png</normaloff>../Recursos/icons8-google-web-search-400.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
-          </property>
-         </widget>
-        </item>
         <item>
          <widget class="QTextEdit" name="textEditBuscarDatos">
           <property name="sizePolicy">
@@ -1314,6 +1002,40 @@ selection-background-color: rgb(0, 0, 0);</string>
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="pushButtonBuscarDatos">
+          <property name="maximumSize">
+           <size>
+            <width>167</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
+          </property>
+          <property name="text">
+           <string>Buscar En Tabla</string>
+          </property>
+          <property name="icon">
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-google-web-search-400.png</normaloff>:/Iconos/icons8-google-web-search-400.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
@@ -1330,14 +1052,14 @@ selection-background-color: rgb(0, 0, 0);</string>
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.0149254 rgba(85, 125, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
            <string>Obtener Datos </string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1351,18 +1073,295 @@ selection-background-color: rgb(0, 0, 0);</string>
       </widget>
      </widget>
     </item>
+    <item row="14" column="1">
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="2">
+       <widget class="QPushButton" name="pushButtonVerAnalisis">
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 127);</string>
+        </property>
+        <property name="text">
+         <string> Ver Reportes </string>
+        </property>
+        <property name="icon">
+         <iconset resource="Recursos/DATOS IMAGENES.qrc">
+          <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" alignment="Qt::AlignHCenter">
+       <widget class="QPushButton" name="pushButtonGuardarBusqueda">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 127);</string>
+        </property>
+        <property name="text">
+         <string>Guardar Tabla Actual</string>
+        </property>
+        <property name="icon">
+         <iconset resource="Recursos/DATOS IMAGENES.qrc">
+          <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4" alignment="Qt::AlignHCenter">
+       <widget class="QPushButton" name="pushButtonGenerarGraficas">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Corbel</family>
+          <pointsize>11</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 127);</string>
+        </property>
+        <property name="text">
+         <string>Generar Gráficas </string>
+        </property>
+        <property name="icon">
+         <iconset resource="Recursos/DATOS IMAGENES.qrc">
+          <normaloff>:/Iconos/graficas.png</normaloff>:/Iconos/graficas.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="15" column="1">
+     <widget class="QTableWidget" name="tableWidgetMostrarSeleccion">
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="1">
+     <widget class="QTableWidget" name="tableWidgetVerDatosFiltrados">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>700</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <column>
+       <property name="text">
+        <string>IMEI</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>IMSIS Asociados</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Operator</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Channel</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Hits</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Data-Time</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="16" column="1">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Maximum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/logoRaptor.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+      <property name="pixmap">
+       <pixmap>:/Logos/logoRaptor.png</pixmap>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="2" alignment="Qt::AlignHCenter">
      <widget class="QLabel" name="label">
       <property name="font">
        <font>
         <family>Agency FB</family>
-        <pointsize>14</pointsize>
+        <pointsize>16</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>FILTRAR DATOS</string>
       </property>
      </widget>
+    </item>
+    <item row="12" column="3">
+     <layout class="QGridLayout" name="gridLayout_7">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="spacing">
+       <number>3</number>
+      </property>
+     </layout>
+    </item>
+    <item row="12" column="0">
+     <layout class="QGridLayout" name="gridLayout_6">
+      <property name="spacing">
+       <number>23</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelRAT">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>RAT</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QCheckBox" name="checkBox3G">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(207, 223, 255);</string>
+        </property>
+        <property name="text">
+         <string>3G</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="checkBox2G">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(155, 255, 144);</string>
+        </property>
+        <property name="text">
+         <string>2G</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QCheckBox" name="checkBox4G">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 146, 146);</string>
+        </property>
+        <property name="text">
+         <string>4G</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -1371,8 +1370,8 @@ selection-background-color: rgb(0, 0, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1280</width>
-     <height>21</height>
+     <width>1378</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuArchivo">
@@ -1406,7 +1405,7 @@ selection-background-color: rgb(0, 0, 0);</string>
   </action>
  </widget>
  <resources>
-  <include location="../Recursos/Re.qrc"/>
+  <include location="Recursos/DATOS IMAGENES.qrc"/>
  </resources>
  <connections/>
 </ui>
