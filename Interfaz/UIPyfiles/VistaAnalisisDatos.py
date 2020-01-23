@@ -10,7 +10,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from UI.Recursos import images_rc
 
-
 class Ui_VistaAnalisisDatos(object):
     def setupUi(self, VistaAnalisisDatos):
         VistaAnalisisDatos.setObjectName("VistaAnalisisDatos")

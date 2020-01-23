@@ -219,6 +219,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         """
         # df = self.pandasUtils.tempDf if self.viendoIncidentales is False else self.pandasUtils.dfIncidentales
         df = self.pandasUtils.getAllData() if self.viendoIncidentales is not True else self.pandasUtils.dfIncidentales
+        df.sort_values(by="HITS", ascending=False, inplace=True)
         # TODO: Tambien tener en cuenta que pudo haber digitado un imei
         listaRats = [rat for rat, v in self.ratsSeleccionados.items() if v is True]
         listaOps = [op for op, v in self.operadoresSeleccionados.items() if v is True]

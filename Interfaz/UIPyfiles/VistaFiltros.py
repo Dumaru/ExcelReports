@@ -8,8 +8,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from UI.Recursos import images_rc
 
+from UI.Recursos import images_rc
 
 class Ui_VistaFiltros(object):
     def setupUi(self, VistaFiltros):
@@ -635,6 +635,7 @@ class Ui_VistaFiltros(object):
         spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
         self.gridLayout_4.addItem(spacerItem2, 16, 1, 1, 1)
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setText("")
         self.label_3.setPixmap(QtGui.QPixmap(":/Logos/logoRaptor.png"))
         self.label_3.setObjectName("label_3")
         self.gridLayout_4.addWidget(self.label_3, 0, 1, 1, 1)
@@ -698,6 +699,37 @@ class Ui_VistaFiltros(object):
 
         self.retranslateUi(VistaFiltros)
         QtCore.QMetaObject.connectSlotsByName(VistaFiltros)
+        VistaFiltros.setTabOrder(self.checkBox2G, self.checkBox3G)
+        VistaFiltros.setTabOrder(self.checkBox3G, self.checkBox4G)
+        VistaFiltros.setTabOrder(self.checkBox4G, self.textEditBuscarDatos)
+        VistaFiltros.setTabOrder(self.textEditBuscarDatos, self.pushButtonBuscarDatos)
+        VistaFiltros.setTabOrder(self.pushButtonBuscarDatos, self.pushButtonObtenerDatosFiltrados)
+        VistaFiltros.setTabOrder(self.pushButtonObtenerDatosFiltrados, self.lineEditValorRangosTA2G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangosTA2G, self.lineEditValorRangosTA3G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangosTA3G, self.lineEditValorRangosTA4G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangosTA4G, self.lineEditValorHitsMinimos2G)
+        VistaFiltros.setTabOrder(self.lineEditValorHitsMinimos2G, self.lineEditValorHitsMinimos3G)
+        VistaFiltros.setTabOrder(self.lineEditValorHitsMinimos3G, self.lineEditValorHitsMinimos4G)
+        VistaFiltros.setTabOrder(self.lineEditValorHitsMinimos4G, self.checkBoxTomarDatoMSPower2G)
+        VistaFiltros.setTabOrder(self.checkBoxTomarDatoMSPower2G, self.checkBoxTomarDatoMSPower3G)
+        VistaFiltros.setTabOrder(self.checkBoxTomarDatoMSPower3G, self.checkBoxTomarDatoMSPower4G)
+        VistaFiltros.setTabOrder(self.checkBoxTomarDatoMSPower4G, self.lineEditValorRangoInicialMSPOWER2G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangoInicialMSPOWER2G, self.lineEditValorRangoInicialMSPOWER3G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangoInicialMSPOWER3G, self.lineEditValorRangoInicialMSPOWER4G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangoInicialMSPOWER4G, self.lineEditValorRangoFinalMSPOWER2G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangoFinalMSPOWER2G, self.lineEditValorRangoFinalMSPOWER3G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangoFinalMSPOWER3G, self.lineEditValorRangoFinalMSPOWER4G)
+        VistaFiltros.setTabOrder(self.lineEditValorRangoFinalMSPOWER4G, self.pushButtonLastLac2G)
+        VistaFiltros.setTabOrder(self.pushButtonLastLac2G, self.pushButtonLastLac3G)
+        VistaFiltros.setTabOrder(self.pushButtonLastLac3G, self.pushButtonLastLac4G)
+        VistaFiltros.setTabOrder(self.pushButtonLastLac4G, self.pushButtonGenerarGraficas)
+        VistaFiltros.setTabOrder(self.pushButtonGenerarGraficas, self.tableWidgetMostrarSeleccion)
+        VistaFiltros.setTabOrder(self.tableWidgetMostrarSeleccion, self.tableWidgetVerDatosFiltrados)
+        VistaFiltros.setTabOrder(self.tableWidgetVerDatosFiltrados, self.pushButtonLimpiarSeleccion4G)
+        VistaFiltros.setTabOrder(self.pushButtonLimpiarSeleccion4G, self.pushButtonLimpiarSeleccion3G)
+        VistaFiltros.setTabOrder(self.pushButtonLimpiarSeleccion3G, self.pushButtonLimpiarSeleccion2G)
+        VistaFiltros.setTabOrder(self.pushButtonLimpiarSeleccion2G, self.pushButtonGuardarBusqueda)
+        VistaFiltros.setTabOrder(self.pushButtonGuardarBusqueda, self.pushButtonVerAnalisis)
 
     def retranslateUi(self, VistaFiltros):
         _translate = QtCore.QCoreApplication.translate
@@ -748,7 +780,6 @@ class Ui_VistaFiltros(object):
         item.setText(_translate("VistaFiltros", "Hits"))
         item = self.tableWidgetVerDatosFiltrados.horizontalHeaderItem(5)
         item.setText(_translate("VistaFiltros", "Data-Time"))
-        self.label_3.setText(_translate("VistaFiltros", "<html><head/><body><p><img src=\":/Iconos/logoRaptor.png\"/></p></body></html>"))
         self.label.setText(_translate("VistaFiltros", "FILTRAR DATOS"))
         self.labelRAT.setText(_translate("VistaFiltros", "RAT"))
         self.checkBox3G.setText(_translate("VistaFiltros", "3G"))

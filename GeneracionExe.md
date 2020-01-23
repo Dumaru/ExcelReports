@@ -19,6 +19,8 @@ Se crean carpetas dist y build, el ejecutable esta en dist
 Chequear los hooks de pyinstaller y los dlls
 
 Comando pipwin para tener ambiente 
+poner en los archivos generados por pyuic5
+from 
 
 > cd C:\Users\robin\Anaconda3\Scripts
 > pyinstaller --onedir --windowed pythonFilePathMadeWithPyinstaller

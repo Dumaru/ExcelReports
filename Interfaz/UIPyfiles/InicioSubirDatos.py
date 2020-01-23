@@ -193,9 +193,6 @@ class Ui_vistaInicioSubirDatos(object):
         self.actionGuardar_Como.setText(_translate("vistaInicioSubirDatos", "Guardar Como "))
         self.actionSalir.setText(_translate("vistaInicioSubirDatos", "Salir "))
 
-# import DATOS IMAGENES_rc
-
-
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

@@ -10,7 +10,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from UI.Recursos import images_rc
 
-
 class Ui_VistaDetalleHoras(object):
     def setupUi(self, VistaDetalleHoras):
         VistaDetalleHoras.setObjectName("VistaDetalleHoras")
@@ -36,12 +35,6 @@ class Ui_VistaDetalleHoras(object):
         self.label_7.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label_7.setObjectName("label_7")
         self.gridLayout_8.addWidget(self.label_7, 0, 1, 1, 1, QtCore.Qt.AlignHCenter)
-        self.verticalLayoutGraficosDatosEstaticos = QtWidgets.QVBoxLayout()
-        self.verticalLayoutGraficosDatosEstaticos.setObjectName("verticalLayoutGraficosDatosEstaticos")
-        self.gridLayout_8.addLayout(self.verticalLayoutGraficosDatosEstaticos, 8, 2, 1, 1)
-        self.verticalLayoutGraficaDatosDinamicos = QtWidgets.QVBoxLayout()
-        self.verticalLayoutGraficaDatosDinamicos.setObjectName("verticalLayoutGraficaDatosDinamicos")
-        self.gridLayout_8.addLayout(self.verticalLayoutGraficaDatosDinamicos, 6, 2, 1, 1)
         self.gridLayout_7 = QtWidgets.QGridLayout()
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.gridLayout_5 = QtWidgets.QGridLayout()
@@ -85,7 +78,7 @@ class Ui_VistaDetalleHoras(object):
         self.pushButtonVerDatosEstaticos.setFont(font)
         self.pushButtonVerDatosEstaticos.setStyleSheet("background-color: rgb(255, 255, 127);")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../Recursos/icons8-ver-80.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/Iconos/icons8-marcar-como-no-oculto-96.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonVerDatosEstaticos.setIcon(icon)
         self.pushButtonVerDatosEstaticos.setIconSize(QtCore.QSize(30, 30))
         self.pushButtonVerDatosEstaticos.setObjectName("pushButtonVerDatosEstaticos")
@@ -93,7 +86,7 @@ class Ui_VistaDetalleHoras(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setFamily("Corbel")
-        font.setPointSize(11)
+        font.setPointSize(9)
         self.label.setFont(font)
         self.label.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.label.setObjectName("label")
@@ -105,7 +98,7 @@ class Ui_VistaDetalleHoras(object):
         self.pushButtonGuardarBsuquedaTabla2.setFont(font)
         self.pushButtonGuardarBsuquedaTabla2.setStyleSheet("background-color: rgb(255, 255, 127);")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("icons8-añadir-libro-100.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/Iconos/icons8-añadir-libro-80.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonGuardarBsuquedaTabla2.setIcon(icon1)
         self.pushButtonGuardarBsuquedaTabla2.setIconSize(QtCore.QSize(30, 30))
         self.pushButtonGuardarBsuquedaTabla2.setObjectName("pushButtonGuardarBsuquedaTabla2")
@@ -131,14 +124,14 @@ class Ui_VistaDetalleHoras(object):
         self.pushButtonGraficarDatosEstaticos.setFont(font)
         self.pushButtonGraficarDatosEstaticos.setStyleSheet("background-color: rgb(255, 255, 127);")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../Recursos/20803.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/Iconos/graficas.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButtonGraficarDatosEstaticos.setIcon(icon2)
         self.pushButtonGraficarDatosEstaticos.setIconSize(QtCore.QSize(30, 30))
         self.pushButtonGraficarDatosEstaticos.setObjectName("pushButtonGraficarDatosEstaticos")
         self.gridLayout_3.addWidget(self.pushButtonGraficarDatosEstaticos, 17, 1, 1, 1)
         self.gridLayout_5.addLayout(self.gridLayout_3, 1, 0, 1, 1)
         self.gridLayout_7.addLayout(self.gridLayout_5, 0, 0, 1, 1)
-        self.gridLayout_8.addLayout(self.gridLayout_7, 3, 1, 1, 1)
+        self.gridLayout_8.addLayout(self.gridLayout_7, 4, 1, 1, 1)
         self.gridLayout_6 = QtWidgets.QGridLayout()
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.gridLayout_4 = QtWidgets.QGridLayout()
@@ -226,10 +219,19 @@ class Ui_VistaDetalleHoras(object):
         self.gridLayout.addWidget(self.pushButtonaGuardarBusquedaTabla1, 6, 1, 1, 1)
         self.gridLayout_4.addLayout(self.gridLayout, 0, 0, 1, 1)
         self.gridLayout_6.addLayout(self.gridLayout_4, 0, 0, 1, 1)
-        self.gridLayout_8.addLayout(self.gridLayout_6, 1, 1, 2, 1)
+        self.gridLayout_8.addLayout(self.gridLayout_6, 2, 1, 2, 1)
+        self.verticalLayoutGraficaDatosDinamicos = QtWidgets.QVBoxLayout()
+        self.verticalLayoutGraficaDatosDinamicos.setObjectName("verticalLayoutGraficaDatosDinamicos")
+        self.gridLayout_8.addLayout(self.verticalLayoutGraficaDatosDinamicos, 7, 2, 1, 1)
+        self.verticalLayoutGraficosDatosEstaticos = QtWidgets.QVBoxLayout()
+        self.verticalLayoutGraficosDatosEstaticos.setObjectName("verticalLayoutGraficosDatosEstaticos")
+        self.gridLayout_8.addLayout(self.verticalLayoutGraficosDatosEstaticos, 9, 2, 1, 1)
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout_8.addWidget(self.label_2, 1, 1, 1, 1)
         VistaDetalleHoras.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(VistaDetalleHoras)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1280, 26))
         self.menubar.setObjectName("menubar")
         self.menuVolver = QtWidgets.QMenu(self.menubar)
         self.menuVolver.setObjectName("menuVolver")
@@ -244,6 +246,18 @@ class Ui_VistaDetalleHoras(object):
 
         self.retranslateUi(VistaDetalleHoras)
         QtCore.QMetaObject.connectSlotsByName(VistaDetalleHoras)
+        VistaDetalleHoras.setTabOrder(self.dateTimeEditIngresoInicial, self.dateTimeEditIngresoFinal)
+        VistaDetalleHoras.setTabOrder(self.dateTimeEditIngresoFinal, self.pushButtonVerDatosTablaFiltrada)
+        VistaDetalleHoras.setTabOrder(self.pushButtonVerDatosTablaFiltrada, self.pushButtonaGuardarBusquedaTabla1)
+        VistaDetalleHoras.setTabOrder(self.pushButtonaGuardarBusquedaTabla1, self.pushButtonGraficarDatosTablaFiltrada)
+        VistaDetalleHoras.setTabOrder(self.pushButtonGraficarDatosTablaFiltrada, self.textEditValorFiltro)
+        VistaDetalleHoras.setTabOrder(self.textEditValorFiltro, self.comboBoxVerMayorMenor)
+        VistaDetalleHoras.setTabOrder(self.comboBoxVerMayorMenor, self.comboBoxOrganizacionJornadas)
+        VistaDetalleHoras.setTabOrder(self.comboBoxOrganizacionJornadas, self.pushButtonVerDatosEstaticos)
+        VistaDetalleHoras.setTabOrder(self.pushButtonVerDatosEstaticos, self.pushButtonGuardarBsuquedaTabla2)
+        VistaDetalleHoras.setTabOrder(self.pushButtonGuardarBsuquedaTabla2, self.pushButtonGraficarDatosEstaticos)
+        VistaDetalleHoras.setTabOrder(self.pushButtonGraficarDatosEstaticos, self.tableWidgetMostrarDatosFiltrados)
+        VistaDetalleHoras.setTabOrder(self.tableWidgetMostrarDatosFiltrados, self.tableWidgetMostrarDatosEstaticos)
 
     def retranslateUi(self, VistaDetalleHoras):
         _translate = QtCore.QCoreApplication.translate
@@ -257,7 +271,7 @@ class Ui_VistaDetalleHoras(object):
         self.comboBoxOrganizacionJornadas.setItemText(3, _translate("VistaDetalleHoras", "Uso Durante Tarde (12:00:00 pm - 18:59:59 pm)"))
         self.comboBoxOrganizacionJornadas.setItemText(4, _translate("VistaDetalleHoras", "Uso Durante Noche (19:00:00 pm - 23:59:59 pm)"))
         self.pushButtonVerDatosEstaticos.setText(_translate("VistaDetalleHoras", "Filtrar Datos y Ver (Tabla 2)"))
-        self.label.setText(_translate("VistaDetalleHoras", "Ingresar Valor delimitador"))
+        self.label.setText(_translate("VistaDetalleHoras", "Número A Comparar"))
         self.pushButtonGuardarBsuquedaTabla2.setText(_translate("VistaDetalleHoras", "Guardar Busqueda (Tabla 2)"))
         item = self.tableWidgetMostrarDatosEstaticos.horizontalHeaderItem(0)
         item.setText(_translate("VistaDetalleHoras", "IMEI"))
@@ -268,8 +282,8 @@ class Ui_VistaDetalleHoras(object):
         self.pushButtonGraficarDatosEstaticos.setText(_translate("VistaDetalleHoras", "Graficar Datos De Tabla 2"))
         self.pushButtonGraficarDatosTablaFiltrada.setText(_translate("VistaDetalleHoras", "Graficar Datos De Tabla 1"))
         self.pushButtonVerDatosTablaFiltrada.setText(_translate("VistaDetalleHoras", "Filtrar Datos y Ver (Tabla 1)"))
-        self.label_5.setText(_translate("VistaDetalleHoras", "   Hasta"))
-        self.label_6.setText(_translate("VistaDetalleHoras", "Desde"))
+        self.label_5.setText(_translate("VistaDetalleHoras", "   Hasta (Día-Mes-Año)"))
+        self.label_6.setText(_translate("VistaDetalleHoras", "Desde (Día-Mes-Año)"))
         item = self.tableWidgetMostrarDatosFiltrados.horizontalHeaderItem(0)
         item.setText(_translate("VistaDetalleHoras", "IMEI"))
         item = self.tableWidgetMostrarDatosFiltrados.horizontalHeaderItem(1)
@@ -277,11 +291,11 @@ class Ui_VistaDetalleHoras(object):
         item = self.tableWidgetMostrarDatosFiltrados.horizontalHeaderItem(2)
         item.setText(_translate("VistaDetalleHoras", "Data-Time"))
         self.pushButtonaGuardarBusquedaTabla1.setText(_translate("VistaDetalleHoras", "Guardar Busqueda (Tabla 1)"))
+        self.label_2.setText(_translate("VistaDetalleHoras", "<html><head/><body><p><img src=\":/Iconos/logoRaptor.png\"/></p></body></html>"))
         self.menuVolver.setTitle(_translate("VistaDetalleHoras", "Volver"))
         self.actionVolverDatos_General.setText(_translate("VistaDetalleHoras", "Datos General"))
-# import ArchiImagenes_rc
-# import Re_rc
 
+# import DATOS IMAGENES_rc
 
 if __name__ == "__main__":
     import sys

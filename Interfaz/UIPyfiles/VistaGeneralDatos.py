@@ -10,7 +10,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from UI.Recursos import images_rc
 
-
 class Ui_vistaGeneralDatos(object):
     def setupUi(self, vistaGeneralDatos):
         vistaGeneralDatos.setObjectName("vistaGeneralDatos")
@@ -328,6 +327,7 @@ class Ui_vistaGeneralDatos(object):
         self.menuDatos.setTitle(_translate("vistaGeneralDatos", "Datos"))
         self.actionIr_A_Principal.setText(_translate("vistaGeneralDatos", "Ir A Principal "))
         self.actionGuardar.setText(_translate("vistaGeneralDatos", "Guardar "))
+
 # import DATOS IMAGENES_rc
 
 
