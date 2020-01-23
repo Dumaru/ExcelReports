@@ -79,8 +79,8 @@
            <string>Graficar Datos</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>20803.png</normaloff>20803.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/graficas.png</normaloff>:/Iconos/graficas.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -159,8 +159,8 @@
            <string>Ver IMSIS.IMEI</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-hand-box-256.png</normaloff>icons8-hand-box-256.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
           </property>
          </widget>
         </item>
@@ -179,8 +179,8 @@
            <string>Ver Reporte</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-hand-box-256.png</normaloff>icons8-hand-box-256.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
           </property>
          </widget>
         </item>
@@ -199,8 +199,8 @@
            <string>Generar Reporte Final</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -222,11 +222,11 @@
            <string notr="true">background-color: rgb(255, 255, 127);</string>
           </property>
           <property name="text">
-           <string>Guargar Datos IMSIS-IMEI</string>
+           <string>Generar Datos IMSIS-IMEI</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -283,7 +283,7 @@
   </action>
  </widget>
  <resources>
-  <include location="..GitHub/ExcelReports/Interfaz/Recursos/ArchiImagenes.qrc"/>
+  <include location="Recursos/DATOS IMAGENES.qrc"/>
  </resources>
  <connections/>
 </ui>

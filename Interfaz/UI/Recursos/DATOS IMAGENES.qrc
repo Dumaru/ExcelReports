@@ -1,0 +1,18 @@
+<RCC>
+  <qresource prefix="Iconos">
+    <file>icons8-marcar-como-no-oculto-96.png</file>
+    <file>icons8-tiempo-400.png</file>
+    <file>icons8-big-data-150.png</file>
+    <file>icons8-ayuda-100.png</file>
+    <file>graficas.png</file>
+    <file>icons8-google-web-search-400.png</file>
+    <file>icons8-hand-box-256.png</file>
+    <file>upload.png</file>
+    <file>icons8-eliminar-400.png</file>
+    <file>icons8-añadir-libro-80.png</file>
+    <file>Iocom.png</file>
+    <file>logoRaptor.png</file>
+    <file>Logo.png</file>
+    <file>RAPTOR.png</file>
+  </qresource>
+</RCC>

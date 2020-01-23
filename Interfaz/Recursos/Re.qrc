@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="Imagenes">
-    <file>Logo.png</file>
-    <file>icons8-ver-80.png</file>
-    <file>20803.png</file>
-  </qresource>
-</RCC>
