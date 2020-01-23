@@ -32,10 +32,7 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="1">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="2">
-       <layout class="QGridLayout" name="gridLayout_4"/>
-      </item>
-      <item row="3" column="3">
+      <item row="3" column="2">
        <widget class="QLabel" name="label">
         <property name="styleSheet">
          <string notr="true">image: url(:/Imagenes/Logo.png);</string>
@@ -44,6 +41,16 @@
          <string/>
         </property>
        </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/logoRaptor.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <layout class="QGridLayout" name="gridLayout_4"/>
       </item>
       <item row="1" column="0" alignment="Qt::AlignHCenter">
        <widget class="QLabel" name="label_2">
@@ -63,6 +70,27 @@
       </item>
       <item row="3" column="0">
        <layout class="QGridLayout" name="gridLayout_5">
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushButtonIMSIS">
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 127);
+</string>
+          </property>
+          <property name="text">
+           <string>Ver IMSIS.IMEI</string>
+          </property>
+          <property name="icon">
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
+          </property>
+         </widget>
+        </item>
         <item row="4" column="1">
          <widget class="QPushButton" name="pushButtonGraficar">
           <property name="font">
@@ -143,47 +171,6 @@
           </column>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="pushButtonIMSIS">
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 127);
-</string>
-          </property>
-          <property name="text">
-           <string>Ver IMSIS.IMEI</string>
-          </property>
-          <property name="icon">
-           <iconset resource="Recursos/DATOS IMAGENES.qrc">
-            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="pushButtonReporte">
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>10</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 127);</string>
-          </property>
-          <property name="text">
-           <string>Ver Reporte</string>
-          </property>
-          <property name="icon">
-           <iconset resource="Recursos/DATOS IMAGENES.qrc">
-            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="pushButtonGuardarReporte">
           <property name="font">
@@ -210,6 +197,26 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="pushButtonReporte">
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
+          </property>
+          <property name="text">
+           <string>Ver Reporte</string>
+          </property>
+          <property name="icon">
+           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+            <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
+          </property>
+         </widget>
+        </item>
         <item row="2" column="0">
          <widget class="QPushButton" name="pushButtonGuardarDatosIMISISIMEI">
           <property name="font">
@@ -233,6 +240,13 @@
             <width>30</width>
             <height>30</height>
            </size>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/Iocom.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>
