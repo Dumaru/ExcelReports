@@ -227,6 +227,7 @@ class VistaGeneralDatos(QMainWindow):
     def fnProcesaFiltroImei(self):
         imei = self.textEditBuscarDatos.toPlainText()
         if(len(imei) > 0):
+            self.fnAplicaFiltrosDfOk()
             df = self.pandasUtils.filterDfByEmai(self.pandasUtils.tempDf, imei)
             if(df.shape[0] > 0):
                 print("Shape del filtro ", df.shape, "dato buscar", imei)

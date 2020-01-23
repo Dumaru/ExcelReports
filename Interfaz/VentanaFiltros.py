@@ -373,7 +373,7 @@ class VentanaFiltros(QMainWindow):
         newDf = self.pandasUtils.concatDfs(dfs)
         self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(newDf))
         if(self.pandasUtils.tempDf.shape[0]>0):
-            self.pandasUtils.tempDf.sort_values(by='HITS')
+            self.pandasUtils.setTempDf(self.pandasUtils.tempDf.sort_values(by="HITS", ascending=False))
         # print(f"New dfs {newDf}")
         # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
         # print("Se empiezan a agrupar los datos de 2g 3g y 4g")
