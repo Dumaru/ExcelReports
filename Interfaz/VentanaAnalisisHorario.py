@@ -29,9 +29,9 @@ class VentanaAnalisisHorario(QMainWindow):
         self.valorFiltro = None
         # UI
         loadUi('UI/VistaDetalleHoras.ui', self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         # Principales
         self.pushButtonVerDatosTablaFiltrada.clicked.connect(self.fnVerDatosTablaHorario)
         self.pushButtonGraficarDatosTablaFiltrada.clicked.connect(self.fnGraficarDatosTablaDinamica)

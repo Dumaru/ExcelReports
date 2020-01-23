@@ -1,6 +1,7 @@
 import sys
 import os
 import pandas as pd
+import PyQt5
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QFileDialog,
                              QAction, QTableWidgetItem, QTableWidget, QHeaderView)
 from PyQt5.uic import loadUi
@@ -25,9 +26,10 @@ class ExcelReportsInicio(QMainWindow):
         # UI
         loadUi("UI/InicioSubirDatos.ui", self)
         self.overlay = Overlay(self)
-        self.setupUi()
+        
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         self.overlay.hide()
         # Links all the events for the different actions and buttons
         self.actionAbrir.triggered.connect(self.fnProcessOpenDir)
@@ -103,10 +105,10 @@ class ExcelReportsInicio(QMainWindow):
             UiUtils.showInfoMessage(title="Informacion de carga",
                                     description=f"No se han subido archivos a la lista.")
 
-    def fnCargaDatosCompleta(self):
+    def fnCargaDatosCompleta(self, msg):
         self.overlay.killAndHide()
         UiUtils.showInfoMessage(title="Informacion de carga",
-                                description=f"Se cargaron los archivos correctamente.")
+                                description=msg)
         self.pushButtonMostrarDatos.setEnabled(True)
 
     def resizeEvent(self, event):

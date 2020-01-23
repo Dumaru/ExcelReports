@@ -27,16 +27,15 @@ class VentanaFiltros(QMainWindow):
         self.verDatosAgrupados = True
         # UI
         loadUi('UI/VistaFiltros.ui', self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         # Set rats based on the db
         # RAT Checkboxes setup
         # self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'RAT')
         # self.ratsSeleccionados = {
             # rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')
         # }
-        self.checkBoxDatosAgrupados.setChecked(True)
         self.pandasUtils.setTempDf(self.pandasUtils.getAllData())
         self.checkBox2G.setChecked(True)
         self.checkBox3G.setChecked(True)
@@ -98,8 +97,8 @@ class VentanaFiltros(QMainWindow):
         self.pushButtonLastLac4G.setMenu(self.menu4GLastLac)
         self.menu4GLastLac.triggered.connect(self.fnProcesaMenuLastLac4G)
 
-        self.fnAplicaFiltros()
-        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
+        # self.fnAplicaFiltros()
+        # self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
 
     def fnGuardarTablaFiltrada(self):
         # print("Fn procesa guardar datos tabla filtrada")
@@ -158,7 +157,6 @@ class VentanaFiltros(QMainWindow):
     def fillTableWidget(self, qtable: QTableWidget, df: pd.DataFrame = None):
         # TODO: Hacerla general recibiendo el widget
         # Limpiar contenidos de tabla
-        df.sort_values(by="HITS", inplace=True)
         headerList = tuple(df.columns.values)
         qtable.clearContents()
         qtable.setColumnCount(len(headerList))
@@ -242,7 +240,7 @@ class VentanaFiltros(QMainWindow):
         # print("Empieza busqueda de datos")
         datoBuscar = self.textEditBuscarDatos.toPlainText()
         # print(f"Dato buscar {datoBuscar}")
-        if(len(datoBuscar) > 0):
+        if(len(datoBuscar) > 0 and self.pandasUtils.isFloat(datoBuscar)):
             df = self.fnAplicaFiltrosNoGroupingReturns()
             df = self.pandasUtils.filterDfByEmai(df, datoBuscar)
             df = self.pandasUtils.getGroupedByEmais(df)
@@ -268,9 +266,14 @@ class VentanaFiltros(QMainWindow):
     def fnProcesaObtenerDatosFiltrados(self):
         """ Setea todos los valores de la interfaz en los campos de instancia"""
         # Valores de TA
-        self.filtros2G.valoresTA = set(self.lineEditValorRangosTA2G.text().split(','))
-        self.filtros3G.valoresTA = set(self.lineEditValorRangosTA3G.text().split(','))
-        self.filtros4G.valoresTA = set(self.lineEditValorRangosTA4G.text().split(','))
+        valores2g = self.lineEditValorRangosTA2G.text().split(',')
+        self.filtros2G.valoresTA = set(map(int, valores2g)) if self.pandasUtils.checkInts(valores2g) else []
+
+        valores3g = self.lineEditValorRangosTA3G.text().split(',')
+        self.filtros3G.valoresTA = set(map(int, valores3g)) if self.pandasUtils.checkInts(valores3g) else []
+
+        valores4g = self.lineEditValorRangosTA4G.text().split(',')
+        self.filtros4G.valoresTA = set(map(int, valores4g)) if self.pandasUtils.checkInts(valores4g) else []
         # Hits minimos
         self.filtros2G.hitsMinimos = int(self.lineEditValorHitsMinimos2G.text()) if self.lineEditValorHitsMinimos2G.text().isnumeric() else 0
         self.filtros3G.hitsMinimos = int(self.lineEditValorHitsMinimos3G.text()) if self.lineEditValorHitsMinimos3G.text().isnumeric() else 0
@@ -290,7 +293,6 @@ class VentanaFiltros(QMainWindow):
         )) if self.filtros4G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER4G.text()) else None
 
         self.fnAplicaFiltros()
-
         self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
 
     def fnAplicaFiltrosNoGroupingReturns(self):
@@ -344,31 +346,35 @@ class VentanaFiltros(QMainWindow):
         self.pandasUtils.setTempDf(self.pandasUtils.concatDfs(dfs))
 
     def fnAplicaFiltros(self):
-        # Procesa de aplicacion de filtros
+        # Procesa de alicacion de filtros
         dfs = list()
         if self.filtros2G.selected:
             df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
             df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
             df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.getSelectedLastLacValues())
             df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
-            dfs.append(self.pandasUtils.getGroupedByEmais(df2GHitsMin))
+            dfs.append(df2GHitsMin)
         if self.filtros3G.selected:
             df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
             df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
             df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.getSelectedLastLacValues())
             df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
-            dfs.append(self.pandasUtils.getGroupedByEmais(df3GHitsMin))
+            dfs.append(df3GHitsMin)
         if self.filtros4G.selected:
             df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G, self.filtros4G.valoresTA)
             df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
             df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.getSelectedLastLacValues())
             df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
-            dfs.append(self.pandasUtils.getGroupedByEmais(df4GHitsMin))
+            dfs.append(df4GHitsMin)
         # Empieza a agrupar todo
-        self.pandasUtils.setTempDf(self.pandasUtils.concatDfs(dfs))
+        newDf = self.pandasUtils.concatDfs(dfs)
+        self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(newDf))
+        if(self.pandasUtils.tempDf.shape[0]>0):
+            self.pandasUtils.tempDf.sort_values(by='HITS')
+        # print(f"New dfs {newDf}")
+        # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
         # print("Se empiezan a agrupar los datos de 2g 3g y 4g")
-        if(self.verDatosAgrupados):
-            self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(self.pandasUtils.tempDf))
+        # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
 
     def fnProcesaTomaDatosMsPower(self):
         self.filtros2G.tomarMsPower = self.checkBoxTomarDatoMSPower2G.isChecked()

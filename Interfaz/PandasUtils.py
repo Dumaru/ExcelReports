@@ -4,7 +4,6 @@ import concurrent.futures
 import time
 from PyQt5.QtCore import QThread, pyqtSignal
 
-
 class PandasDataLoader:
     """
     A class that acts as a container for the dataframe and manages all the operations
@@ -26,7 +25,7 @@ class PandasDataLoader:
             self.allData2G = None
             self.allData3G = None
             self.allData4G = None
-            self.sinImei4g = None
+            self.sinImei = None
             self.dfIncidentales = None
 
             # Processing ans state
@@ -34,6 +33,7 @@ class PandasDataLoader:
             self.threadProcessor = ThreadingUtils()
             self.saverThread = ThreadingUtils()
             self.uniqueColumnValues = dict()
+            self.msg = ""
             PandasDataLoader.__instance = self
 
     def concatDfs(self, dfs: list):
@@ -53,17 +53,7 @@ class PandasDataLoader:
         self.uniqueColumnValues[column] = df[column].unique().tolist()
 
     def getCantidadDatos(self, df, columna, filtros=[]):
-        groupedData = df.groupby(columna)
-
-        dfs = []
-        try:
-            # [groupedData.get_group(gn) for gn in filtros]
-            for gn in filtros:
-                dfs.append(groupedData.get_group(gn))
-        except Exception as e:
-            # print(e)
-            return 0
-        return pd.concat(dfs).shape[0]
+        return df[df[columna].isin(filtros)].shape[0]
 
     def getRowCountForColumn(self, df, columna):
         # returns the number of non-NaN values in the column
@@ -86,35 +76,53 @@ class PandasDataLoader:
             COLS = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
                     "MS POWER", "TA", "LAST LAC", "HITS", "DATE-TIME"]
             for filePath in pathList:
-                temd_df = pd.read_excel(f"{filePath}", usecols=COLS)
+                temd_df = pd.read_excel(f"{filePath}", usecols=COLS, convert_float=True)
                 dfsList.append(temd_df)
             # Puts all the general and raw data into a df
             allData = pd.concat(dfsList)
             allData.dropna(how='all', inplace=True)
+            total = allData.shape[0]
 
             # Asigna nueva columna DATE_TIME ya formateado y quita la vieja
             allData['DATE_TIME'] = allData['DATE-TIME'].apply(self.toDatetime)
             allData.drop('DATE-TIME', axis=1, inplace=True)
             # Cambia el nombre de las columnas a estandar con _ en lugar de espacios
             cols = allData.columns
-            cols = cols.map(lambda x: x.strip().replace(
-                ' ', '_').strip() if isinstance(x, (str, )) else x)
+            cols = cols.map(lambda x: x.strip().replace(' ', '_').strip() if isinstance(x, (str, )) else x)
             allData.columns = cols
 
             # Intenta convertir cada columna y si no pone NaN
             allData['MS_POWER'] = pd.to_numeric(allData['MS_POWER'], errors='coerce')
+            
+            allData['IMEI'] = pd.to_numeric(allData['IMEI'], errors='coerce' )
+            allData['IMEI'] = pd.array(allData['IMEI'], dtype=pd.Int64Dtype() )
 
+            allData['IMSI'] = pd.to_numeric(allData['IMSI'], errors='coerce' )
+            allData['IMSI'] = pd.array(allData['IMSI'], dtype=pd.Int64Dtype() )
+
+            allData['TA'] = pd.to_numeric(allData['TA'], errors='coerce' )
+            allData['TA'] = pd.array(allData['TA'], dtype=pd.Int64Dtype() )
+
+            allData['HITS'] = pd.to_numeric(allData['HITS'], errors='coerce')
+            allData['HITS'] = pd.array(allData['HITS'], dtype=pd.Int64Dtype() )
             # Sacar los incidentales
             self.dfIncidentales = self.getDfDatosIncidentales(allData, hitsMin=1)
             allData = self.getDifferenceBetweenDataFrames(allData,  self.dfIncidentales)
             self.dividirDfEnRats(allData)
 
-            self.sinImei4g = self.allData4G[self.allData4G['IMEI'].isnull()]
+            self.sinImei = allData[allData['IMEI'].isnull()]
+
+            self.msg = (f"Información Carga {total} filas\n"
+                        f" Se cargaron {self.allData2G.shape[0]} datos de 2G\n"
+                        f" Se cargaron {self.allData3G.shape[0]} datos de 3G\n"
+                        f" Se cargaron {self.allData4G.shape[0]} datos de 4G\n"
+                        f" Se cargaron {self.dfIncidentales.shape[0]} datos incidentales")
             self.processing = False
+
         self.threadProcessor = ThreadingUtils()
         self.threadProcessor.setWorker(loadDataWrapper)
         self.threadProcessor.start(QThread.HighestPriority)
-        self.threadProcessor.finished.connect(callback)
+        self.threadProcessor.finished.connect(lambda: callback(self.msg))
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
 
     def dividirDfEnRats(self, allData: pd.DataFrame):
@@ -122,34 +130,47 @@ class PandasDataLoader:
         self.allData3G = self.filterByRat(allData, "3G")
         self.allData4G = self.filterByRat(allData, "4G")
 
-    def getDfImeisFaltantes(self, df: pd.DataFrame):
-        return df[df['IMEI'].isnull()]
+    def getDfImeisFaltantes(self):
+        return self.sinImei
 
     def asignarIMEIS(self, allDataP: pd.DataFrame, dfImeisFaltantes: pd.DataFrame, callback):
         """ Assigns Emais for the columns where the emais is null based on the historical data"""
         def asignaWrapper():
-            def joinValues(values):
-                print(f"{type(values)}")
-                return ','.join(map(str, values))
-            def obtenerEmai(x: str):
+            def joinValues(series):
+                # print(f"{type(values)}")
+                # return ','.join(map(str, values))
+                return series.to_list()
+            def obtenerEmai(x: pd.Series):
                 # X is the IMSI value
                 rCoincide = allDataP[allDataP['IMSI'].isin(x.values)]['IMEI']
-                imeis = joinValues(rCoincide[rCoincide.notnull()].unique())
-                return imeis
+                rCoincide.dropna(inplace=True)
+                imeis = joinValues(rCoincide)
+                # print(f"<X {x} \nR coincide {imeis}>")
+                if len(imeis)>0:
+                    return imeis[0]
+                else:
+                    return np.NaN
+            # print(f"Ref all data {allDataP.shape},  dfImesFaltantes {dfImeisFaltantes.shape} {dfImeisFaltantes.info()}")
             nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
+            nuevosValores = nuevosValores[nuevosValores.notnull()] 
+            self.msg = f"Se le asigno imeis a {nuevosValores.shape[0]} filas"
+            # print(f"Nuevos valores {nuevosValores}")
             allDataP.loc[dfImeisFaltantes.index, 'IMEI'] = nuevosValores
+            self.sinImei = allDataP[allDataP['IMEI'].isnull()]
             # Retorna serie con nuevos valores de IMEI separados por coma
+            self.dividirDfEnRats(allDataP)
             self.setTempDf(allDataP)
+
         self.threadProcessor = ThreadingUtils()
         self.threadProcessor.setWorker(asignaWrapper)
         self.threadProcessor.start(QThread.HighestPriority)
-        self.threadProcessor.finished.connect(callback)
+        self.threadProcessor.finished.connect(lambda: callback(self.msg))
 
     def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int = 1):
         # print(f"Empieza obtencion incidentales df arg {df.shape}")
         groupedDfHitsMin = df.groupby('IMEI').filter(lambda x: x['HITS'].sum() <= hitsMin)
         # print(f"Grouped hits min {groupedDfHitsMin.shape}")
-        print("Agrupados por hits igual a 1\n ", groupedDfHitsMin)
+        # print("Agrupados por hits igual a 1\n ", groupedDfHitsMin)
         groupedDfNullVals = df.loc[df['MS_POWER'].isnull() | df['DATE_TIME'].isnull() | df['HITS'].isnull()]
         # print(f"Grouped nulls {groupedDfNullVals.shape}")
         incidentales = pd.concat([groupedDfHitsMin, groupedDfNullVals]).drop_duplicates()
@@ -178,7 +199,7 @@ class PandasDataLoader:
             MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
             TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
             LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
-            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='size'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
         return groupedDf.reset_index(drop=True)
@@ -198,7 +219,7 @@ class PandasDataLoader:
             MS_POWER=pd.NamedAgg(column='MS_POWER', aggfunc=joinValues),
             TA=pd.NamedAgg(column='TA', aggfunc=joinValues),
             LAST_LAC=pd.NamedAgg(column='LAST_LAC', aggfunc=joinValues),
-            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='size'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
         return groupedDf.reset_index(drop=True)
@@ -211,7 +232,7 @@ class PandasDataLoader:
         groupedDf = df.groupby('IMEI').agg(
             IMEI=pd.NamedAgg(column='IMEI', aggfunc=joinValues),
             IMSIS=pd.NamedAgg(column='IMSI', aggfunc=joinValues),
-            HITS=pd.NamedAgg(column='HITS', aggfunc='sum'),
+            HITS=pd.NamedAgg(column='HITS', aggfunc='size'),
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues)
         )
         return groupedDf.reset_index(drop=True)
@@ -325,8 +346,8 @@ class PandasDataLoader:
         df1 = dfEmaisOk.groupby('IMEI')['IMEI'].transform(fn)
         return dfEmaisOk.assign(NAME=df1)
 
-    def filterDfByEmai(self, df: pd.DataFrame = None, imei: float = None):
-        return (df[df['IMEI'].astype(float) == float(imei)] if imei is not None else df)
+    def filterDfByEmai(self, df: pd.DataFrame = None, imei: int = None):
+        return df[df['IMEI'].isin([int(imei)])]
 
     def getDfCompletoEmaisOk(self, df: pd.DataFrame):
         """
@@ -343,7 +364,7 @@ class PandasDataLoader:
     def filterByHitsGrouping(self, df: pd.DataFrame, columnToGroupBy: str = 'IMEI', hitsMin: int = 0):
         """ Returns all the rows that in the group acomplish the filter of min of hits"""
         # print(f"Hits by grouping df shape{df.info()} column {columnToGroupBy}")
-        return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].sum() >= hitsMin)
+        return df.groupby(columnToGroupBy).filter(lambda x: x['HITS'].size >= hitsMin)
 
     def getMonthInt(self, strMonth):
         if(strMonth.lower() in ["ene"]):
@@ -388,8 +409,22 @@ class PandasDataLoader:
             float(strNumber)
             return True
         except ValueError as ve:
+            print(ve)
+            return False
+    def isInt(self, strNumber: str):
+        try:
+            int(strNumber)
+            return True
+        except ValueError as ve:
+            print(ve)
             return False
 
+    def checkInts(self, intsList):
+        try:
+            ints = list(map(int, intsList))
+            return True
+        except Exception as e:
+            return False
 
 class ThreadingUtils_:
 

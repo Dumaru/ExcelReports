@@ -17,9 +17,9 @@ class VentanaAnalisisDatos(QMainWindow):
         self.data = data
         # UI
         loadUi('UI/VistaAnalisisDatos.ui', self)
-        self.setupUi()
+        self.setupUiCustom()
 
-    def setupUi(self):
+    def setupUiCustom(self):
         # Botones y signals
         # print(f"Setup Ui")
         self.pushButtonGuardarReporte.clicked.connect(self.fnGeneraReporte)
