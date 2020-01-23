@@ -176,11 +176,11 @@
          <string notr="true">background-color: rgb(255, 255, 127);</string>
         </property>
         <property name="text">
-         <string> Ver Análisis</string>
+         <string> Ver Reportes </string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -222,11 +222,11 @@
          <string notr="true">background-color: rgb(255, 255, 127);</string>
         </property>
         <property name="text">
-         <string>Guardar Busqueda</string>
+         <string>Guardar Tabla Actual</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-añadir-libro-80.png</normaloff>../Recursos/icons8-añadir-libro-80.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-big-data-150.png</normaloff>:/Iconos/icons8-big-data-150.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -271,8 +271,8 @@
          <string>Generar Gráficas </string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+         <iconset resource="../Recursos/Re.qrc">
+          <normaloff>:/Imagenes/20803.png</normaloff>:/Imagenes/20803.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -427,7 +427,7 @@
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
+             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -473,7 +473,7 @@
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
+             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -519,7 +519,7 @@
            </property>
            <property name="icon">
             <iconset>
-             <normaloff>../Recursos/47559.png</normaloff>../Recursos/47559.png</iconset>
+             <normaloff>../../../../../.designer/Recursos/47559.png</normaloff>../../../../../.designer/Recursos/47559.png</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -1240,40 +1240,6 @@
          <enum>QLayout::SetMaximumSize</enum>
         </property>
         <item>
-         <widget class="QPushButton" name="pushButtonBuscarDatos">
-          <property name="maximumSize">
-           <size>
-            <width>167</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>Corbel</family>
-            <pointsize>10</pointsize>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: rgb(255, 255, 127);</string>
-          </property>
-          <property name="text">
-           <string>Buscar En Tabla</string>
-          </property>
-          <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-google-web-search-400.png</normaloff>../Recursos/icons8-google-web-search-400.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>40</width>
-            <height>40</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QTextEdit" name="textEditBuscarDatos">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
@@ -1311,6 +1277,40 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="pushButtonBuscarDatos">
+          <property name="maximumSize">
+           <size>
+            <width>167</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Corbel</family>
+            <pointsize>10</pointsize>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 127);</string>
+          </property>
+          <property name="text">
+           <string>Buscar En Tabla</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../Recursos/ArchiImagenes.qrc">
+            <normaloff>:/Iconos/icons8-google-web-search-400.png</normaloff>:/Iconos/icons8-google-web-search-400.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="pushButtonObtenerDatosFiltrados">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
@@ -1333,8 +1333,8 @@
            <string>Obtener Datos </string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
+           <iconset resource="../Recursos/ArchiImagenes.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -1402,6 +1402,7 @@
  <resources>
   <include location="../Recursos/Re.qrc"/>
   <include location="../Recursos/ArchiImagenes.qrc"/>
+  <include location="../../../../../.designer/Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
 </ui>

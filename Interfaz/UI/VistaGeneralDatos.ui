@@ -74,8 +74,8 @@ image: url(:/newPrefix/Logo.png);</string>
          <string>ASIGNAR IMEI A 4G</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-ayuda-100.png</normaloff>../Recursos/icons8-ayuda-100.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-ayuda-100.png</normaloff>:/Iconos/icons8-ayuda-100.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -100,8 +100,8 @@ image: url(:/newPrefix/Logo.png);</string>
          <string>TABLA DATOS GENERALES</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-big-data-150.png</normaloff>../Recursos/icons8-big-data-150.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-big-data-150.png</normaloff>:/Iconos/icons8-big-data-150.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -126,8 +126,8 @@ image: url(:/newPrefix/Logo.png);</string>
          <string>GUARDAR TABLA DATOS IMSIS VS IMEI </string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons8-añadir-libro-80.png</normaloff>icons8-añadir-libro-80.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -152,8 +152,8 @@ image: url(:/newPrefix/Logo.png);</string>
          <string>TABLA IMSIS VS IMEIS</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons8-big-data-150.png</normaloff>icons8-big-data-150.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-big-data-150.png</normaloff>:/Iconos/icons8-big-data-150.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -178,8 +178,8 @@ image: url(:/newPrefix/Logo.png);</string>
          <string>GUARDAR DATOS 4G</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>icons8-añadir-libro-80.png</normaloff>icons8-añadir-libro-80.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -225,8 +225,8 @@ border-top-color: rgb(0, 0, 0);</string>
          <string>Filtrar Datos</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -370,8 +370,8 @@ border-top-color: rgb(0, 0, 0);</string>
          <string>ANÁLISIS HORARIO DATOS GENERALES</string>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>../Recursos/icons8-tiempo-400.png</normaloff>../Recursos/icons8-tiempo-400.png</iconset>
+         <iconset resource="../Recursos/ArchiImagenes.qrc">
+          <normaloff>:/Iconos/icons8-tiempo-400.png</normaloff>:/Iconos/icons8-tiempo-400.png</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -508,7 +508,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.014
           </property>
           <property name="icon">
            <iconset>
-            <normaloff>icons8-google-web-search-400.png</normaloff>icons8-google-web-search-400.png</iconset>
+            <normaloff>../../../../../.designer/backup/icons8-google-web-search-400.png</normaloff>../../../../../.designer/backup/icons8-google-web-search-400.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -574,6 +574,7 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.014
  <resources>
   <include location="../Recursos/Imagenes.qrc"/>
   <include location="../Recursos/ArchiImagenes.qrc"/>
+  <include location="../../../../../.designer/Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
 </ui>
