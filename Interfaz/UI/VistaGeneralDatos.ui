@@ -42,7 +42,7 @@
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>                                                                                                     DATOS GENERALES</string>
+       <string>                                                                                                                                                                        DATOS GENERALES</string>
       </property>
      </widget>
     </item>
@@ -574,7 +574,6 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0.014
  <resources>
   <include location="../Recursos/Imagenes.qrc"/>
   <include location="../Recursos/ArchiImagenes.qrc"/>
-  <include location="../../../../../.designer/Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -75,8 +75,8 @@ background-color: rgb(255, 255, 255);</string>
            <string>Añadir Archivos</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-añadir-libro-100.png</normaloff>../Recursos/icons8-añadir-libro-100.png</iconset>
+           <iconset resource="../Recursos/ArchiImagenes.qrc">
+            <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -104,8 +104,8 @@ background-color: rgb(255, 255, 255);</string>
            <string>Eliminar Archivo</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-eliminar-400.png</normaloff>../Recursos/icons8-eliminar-400.png</iconset>
+           <iconset resource="../Recursos/ArchiImagenes.qrc">
+            <normaloff>:/Iconos/icons8-eliminar-400.png</normaloff>:/Iconos/icons8-eliminar-400.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -136,8 +136,8 @@ background-color: rgb(255, 255, 255);</string>
            <string>Ver Datos</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/icons8-hand-box-256.png</normaloff>../Recursos/icons8-hand-box-256.png</iconset>
+           <iconset resource="../Recursos/ArchiImagenes.qrc">
+            <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -199,8 +199,8 @@ border-color: rgb(0, 0, 0);</string>
            <string>Cargar Datos</string>
           </property>
           <property name="icon">
-           <iconset>
-            <normaloff>../Recursos/upload.png</normaloff>../Recursos/upload.png</iconset>
+           <iconset resource="../Recursos/ArchiImagenes.qrc">
+            <normaloff>:/Iconos/upload.png</normaloff>:/Iconos/upload.png</iconset>
           </property>
           <property name="iconSize">
            <size>
@@ -265,6 +265,15 @@ border-color: rgb(0, 0, 0);</string>
       </property>
       <property name="pixmap">
        <pixmap resource="DATOS IMAGENES.qrc">:/Logos/RAPTOR.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>false</bool>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -339,6 +348,8 @@ border-color: rgb(0, 0, 0);</string>
   <include location="../Recursos/Re.qrc"/>
   <include location="Imagenes.qrc"/>
   <include location="DATOS IMAGENES.qrc"/>
+  <include location="../../../../../.designer/Recursos/ArchiImagenes.qrc"/>
+  <include location="../Recursos/ArchiImagenes.qrc"/>
  </resources>
  <connections/>
 </ui>

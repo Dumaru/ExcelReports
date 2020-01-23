@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="Iconos">
+    <file>upload.png</file>
+    <file>icons8-eliminar-400.png</file>
     <file>icons8-google-web-search-400.png</file>
     <file>icons8-tiempo-400.png</file>
     <file>icons8-hand-box-256.png</file>
