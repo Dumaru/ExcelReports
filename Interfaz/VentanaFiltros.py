@@ -209,7 +209,11 @@ class VentanaFiltros(QMainWindow):
 
     def fnProcesaMenuContextual(self, action):
         accion = action.data()
-        currentTableItem = float(self.tableWidgetVerDatosFiltrados.currentItem().text()) if len(self.tableWidgetVerDatosFiltrados.currentItem().text()) > 0 else None
+        try:
+            currentTableItem = int(self.tableWidgetVerDatosFiltrados.currentItem().text()) if len(self.tableWidgetVerDatosFiltrados.currentItem().text()) > 0 else None
+        except Exception as e:
+            print(e)
+            currentTableItem = None
         # print(f"Procesa menu contetual {accion}")
         if accion == VentanaFiltros.ACTION_IMSIS:
             # print("Accion imsis")

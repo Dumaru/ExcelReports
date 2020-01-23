@@ -8,6 +8,8 @@ import UiUtils
 from VentanaFiltros import VentanaFiltros
 from VentanaAnalisisHorario import VentanaAnalisisHorario
 
+from LoadingOverlay import Overlay
+
 class VistaGeneralDatos(QMainWindow):
     def __init__(self, parent=None, pandasUtilsInstance=None):
         super(VistaGeneralDatos, self).__init__(parent)
@@ -18,6 +20,7 @@ class VistaGeneralDatos(QMainWindow):
         self.viendoIncidentales = False
         # UI
         loadUi('UI/VistaGeneralDatos.ui', self)
+        self.overlay = Overlay(self)
         self.setupUiCustom()
 
     def setupUiCustom(self):

@@ -347,7 +347,7 @@ class PandasDataLoader:
         return dfEmaisOk.assign(NAME=df1)
 
     def filterDfByEmai(self, df: pd.DataFrame = None, imei: int = None):
-        return df[df['IMEI'].isin([int(imei)])]
+        return df[df['IMEI'].isin([int(imei)])] if imei is not None else df
 
     def getDfCompletoEmaisOk(self, df: pd.DataFrame):
         """

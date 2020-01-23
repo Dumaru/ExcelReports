@@ -8,6 +8,7 @@ from PandasUtils import PandasDataLoader
 from PlotWindow import PlotWindow
 from PlotWindowBars import PlotWindowBars
 import UiUtils
+
 class VentanaAnalisisHorario(QMainWindow):
     RANGO_DIA = 0
     RANGO_MADRUGADA = 0
