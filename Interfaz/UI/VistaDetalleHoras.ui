@@ -48,13 +48,7 @@
       </property>
      </widget>
     </item>
-    <item row="8" column="2">
-     <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosEstaticos"/>
-    </item>
-    <item row="6" column="2">
-     <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosDinamicos"/>
-    </item>
-    <item row="3" column="1">
+    <item row="4" column="1">
      <layout class="QGridLayout" name="gridLayout_7">
       <item row="0" column="0">
        <layout class="QGridLayout" name="gridLayout_5">
@@ -149,8 +143,8 @@
              <string>Filtrar Datos y Ver (Tabla 2)</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -165,14 +159,14 @@
             <property name="font">
              <font>
               <family>Corbel</family>
-              <pointsize>11</pointsize>
+              <pointsize>9</pointsize>
              </font>
             </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string>Ingresar Valor delimitador</string>
+             <string>Número A Comparar</string>
             </property>
            </widget>
           </item>
@@ -191,8 +185,8 @@
              <string>Guardar Busqueda (Tabla 2)</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -241,8 +235,8 @@ border-top-color: rgb(0, 0, 0);</string>
              <string>Graficar Datos De Tabla 2</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/graficas.png</normaloff>:/Iconos/graficas.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -258,7 +252,7 @@ border-top-color: rgb(0, 0, 0);</string>
       </item>
      </layout>
     </item>
-    <item row="1" column="1" rowspan="2">
+    <item row="2" column="1" rowspan="2">
      <layout class="QGridLayout" name="gridLayout_6">
       <item row="0" column="0">
        <layout class="QGridLayout" name="gridLayout_4">
@@ -279,8 +273,8 @@ border-top-color: rgb(0, 0, 0);</string>
              <string>Graficar Datos De Tabla 1</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../Recursos/20803.png</normaloff>../Recursos/20803.png</iconset>
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/graficas.png</normaloff>:/Iconos/graficas.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -312,8 +306,8 @@ border-color: rgb(0, 0, 0);</string>
              <string>Filtrar Datos y Ver (Tabla 1)</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>../Recursos/icons8-ver-80.png</normaloff>../Recursos/icons8-ver-80.png</iconset>
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</normaloff>:/Iconos/icons8-marcar-como-no-oculto-96.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -334,7 +328,7 @@ border-color: rgb(0, 0, 0);</string>
                </font>
               </property>
               <property name="text">
-               <string>   Hasta</string>
+               <string>   Hasta (Día-Mes-Año)</string>
               </property>
              </widget>
             </item>
@@ -359,7 +353,7 @@ border-color: rgb(0, 0, 0);</string>
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string>Desde</string>
+             <string>Desde (Día-Mes-Año)</string>
             </property>
            </widget>
           </item>
@@ -413,8 +407,8 @@ border-color: rgb(0, 0, 0);</string>
              <string>Guardar Busqueda (Tabla 1)</string>
             </property>
             <property name="icon">
-             <iconset>
-              <normaloff>icons8-añadir-libro-100.png</normaloff>icons8-añadir-libro-100.png</iconset>
+             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+              <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -430,6 +424,19 @@ border-color: rgb(0, 0, 0);</string>
       </item>
      </layout>
     </item>
+    <item row="7" column="2">
+     <layout class="QVBoxLayout" name="verticalLayoutGraficaDatosDinamicos"/>
+    </item>
+    <item row="9" column="2">
+     <layout class="QVBoxLayout" name="verticalLayoutGraficosDatosEstaticos"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/logoRaptor.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -438,7 +445,7 @@ border-color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuVolver">
@@ -456,9 +463,23 @@ border-color: rgb(0, 0, 0);</string>
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>dateTimeEditIngresoInicial</tabstop>
+  <tabstop>dateTimeEditIngresoFinal</tabstop>
+  <tabstop>pushButtonVerDatosTablaFiltrada</tabstop>
+  <tabstop>pushButtonaGuardarBusquedaTabla1</tabstop>
+  <tabstop>pushButtonGraficarDatosTablaFiltrada</tabstop>
+  <tabstop>textEditValorFiltro</tabstop>
+  <tabstop>comboBoxVerMayorMenor</tabstop>
+  <tabstop>comboBoxOrganizacionJornadas</tabstop>
+  <tabstop>pushButtonVerDatosEstaticos</tabstop>
+  <tabstop>pushButtonGuardarBsuquedaTabla2</tabstop>
+  <tabstop>pushButtonGraficarDatosEstaticos</tabstop>
+  <tabstop>tableWidgetMostrarDatosFiltrados</tabstop>
+  <tabstop>tableWidgetMostrarDatosEstaticos</tabstop>
+ </tabstops>
  <resources>
-  <include location="../Recursos/Re.qrc"/>
-  <include location="../Recursos/ArchiImagenes.qrc"/>
+  <include location="Recursos/DATOS IMAGENES.qrc"/>
  </resources>
  <connections/>
 </ui>

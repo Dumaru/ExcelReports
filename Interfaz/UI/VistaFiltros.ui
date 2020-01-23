@@ -1272,7 +1272,7 @@
     <item row="0" column="1">
      <widget class="QLabel" name="label_3">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/Iconos/logoRaptor.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string/>
       </property>
       <property name="pixmap">
        <pixmap>:/Logos/logoRaptor.png</pixmap>
@@ -1404,6 +1404,40 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>checkBox2G</tabstop>
+  <tabstop>checkBox3G</tabstop>
+  <tabstop>checkBox4G</tabstop>
+  <tabstop>textEditBuscarDatos</tabstop>
+  <tabstop>pushButtonBuscarDatos</tabstop>
+  <tabstop>pushButtonObtenerDatosFiltrados</tabstop>
+  <tabstop>lineEditValorRangosTA2G</tabstop>
+  <tabstop>lineEditValorRangosTA3G</tabstop>
+  <tabstop>lineEditValorRangosTA4G</tabstop>
+  <tabstop>lineEditValorHitsMinimos2G</tabstop>
+  <tabstop>lineEditValorHitsMinimos3G</tabstop>
+  <tabstop>lineEditValorHitsMinimos4G</tabstop>
+  <tabstop>checkBoxTomarDatoMSPower2G</tabstop>
+  <tabstop>checkBoxTomarDatoMSPower3G</tabstop>
+  <tabstop>checkBoxTomarDatoMSPower4G</tabstop>
+  <tabstop>lineEditValorRangoInicialMSPOWER2G</tabstop>
+  <tabstop>lineEditValorRangoInicialMSPOWER3G</tabstop>
+  <tabstop>lineEditValorRangoInicialMSPOWER4G</tabstop>
+  <tabstop>lineEditValorRangoFinalMSPOWER2G</tabstop>
+  <tabstop>lineEditValorRangoFinalMSPOWER3G</tabstop>
+  <tabstop>lineEditValorRangoFinalMSPOWER4G</tabstop>
+  <tabstop>pushButtonLastLac2G</tabstop>
+  <tabstop>pushButtonLastLac3G</tabstop>
+  <tabstop>pushButtonLastLac4G</tabstop>
+  <tabstop>pushButtonGenerarGraficas</tabstop>
+  <tabstop>tableWidgetMostrarSeleccion</tabstop>
+  <tabstop>tableWidgetVerDatosFiltrados</tabstop>
+  <tabstop>pushButtonLimpiarSeleccion4G</tabstop>
+  <tabstop>pushButtonLimpiarSeleccion3G</tabstop>
+  <tabstop>pushButtonLimpiarSeleccion2G</tabstop>
+  <tabstop>pushButtonGuardarBusqueda</tabstop>
+  <tabstop>pushButtonVerAnalisis</tabstop>
+ </tabstops>
  <resources>
   <include location="Recursos/DATOS IMAGENES.qrc"/>
  </resources>
