@@ -27,6 +27,7 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         self.filtros3G = FiltrosContainer()
         self.filtros4G = FiltrosContainer()
         # UI
+        
         self.setupUiCustom()
 
     def setupUiCustom(self):
@@ -209,7 +210,11 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
 
     def fnProcesaMenuContextual(self, action):
         accion = action.data()
-        currentTableItem = float(self.tableWidgetVerDatosFiltrados.currentItem().text()) if len(self.tableWidgetVerDatosFiltrados.currentItem().text()) > 0 else None
+        try:
+            currentTableItem = int(self.tableWidgetVerDatosFiltrados.currentItem().text()) if len(self.tableWidgetVerDatosFiltrados.currentItem().text()) > 0 else None
+        except Exception as e:
+            print(e)
+            currentTableItem = None
         # print(f"Procesa menu contetual {accion}")
         if accion == VentanaFiltros.ACTION_IMSIS:
             # print("Accion imsis")
@@ -258,7 +263,6 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         # Get the x and y values of current stuff
         self.fnAplicaFiltrosNoGrouping()
         series = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
-        series.sort_values(inplace=True)
         ventanaGrafica.plot(x=pd.to_datetime(series.index), y=series.values, xLabel='DATE', yLabel='HITS')
         ventanaGrafica.show()
         # print(f"Fn genera grafica datos filtrados")
