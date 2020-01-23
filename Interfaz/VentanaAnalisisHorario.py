@@ -10,6 +10,7 @@ from PlotWindowBars import PlotWindowBars
 import UiUtils
 
 from UIPyfiles.VistaDetalleHoras import Ui_VistaDetalleHoras
+from UI.Recursos import images_rc
 
 class VentanaAnalisisHorario(QMainWindow, Ui_VistaDetalleHoras):
     RANGO_DIA = 0

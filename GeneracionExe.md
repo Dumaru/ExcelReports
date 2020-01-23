@@ -30,4 +30,8 @@ Con la carpeta de platforms añadir librerias que estan en anaconda
 Opcional
 Pyinstaller spec/build/dist location paths can be configured as part of pyinstaller command. Refer below example
 
+Correr comando para generar modulo python con todos los recursos de qrc
+pyrcc5 -o images_rc.py images.qrc
+
+
 pyinstaller --specpath /opt/bk/spec --distpath /opt/bk/dist --workpath /opt/bk/build testscript.py

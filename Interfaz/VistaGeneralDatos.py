@@ -8,12 +8,14 @@ import UiUtils
 from VentanaFiltros import VentanaFiltros
 from VentanaAnalisisHorario import VentanaAnalisisHorario
 
-from UIPyfiles.VistaGeneralDatos import Ui_VistaGeneralDatos
+from UIPyfiles.VistaGeneralDatos import Ui_vistaGeneralDatos
 from LoadingOverlay import Overlay
-class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
+from UI.Recursos import images_rc
+
+class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
     def __init__(self, parent=None, pandasUtilsInstance=None):
         super(QMainWindow, self).__init__(parent)
-        Ui_VistaGeneralDatos.__init__(self)
+        Ui_vistaGeneralDatos.__init__(self)
         self.setupUi(self)
         # State fields
         self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
@@ -229,10 +231,7 @@ class VistaGeneralDatos(QMainWindow, Ui_VistaGeneralDatos):
     def fnProcesaFiltroImei(self):
         imei = self.textEditBuscarDatos.toPlainText()
         if(len(imei) > 0):
-<<<<<<< HEAD
-=======
             self.fnAplicaFiltrosDfOk()
->>>>>>> master
             df = self.pandasUtils.filterDfByEmai(self.pandasUtils.tempDf, imei)
             if(df.shape[0] > 0):
                 print("Shape del filtro ", df.shape, "dato buscar", imei)

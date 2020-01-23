@@ -11,9 +11,10 @@ import UiUtils
 import pandas as pd
 from VistaGeneralDatos import VistaGeneralDatos
 
-from UIPyfiles.InicioSubirDatos import Ui_VistaInicioSubirDatos
+from UIPyfiles.InicioSubirDatos import Ui_vistaInicioSubirDatos
 
-class ExcelReportsInicio(QMainWindow, Ui_VistaInicioSubirDatos):
+from UI.Recursos import images_rc
+class ExcelReportsInicio(QMainWindow, Ui_vistaInicioSubirDatos):
     """
     Window class to load all the files from a directory
     """
@@ -21,7 +22,7 @@ class ExcelReportsInicio(QMainWindow, Ui_VistaInicioSubirDatos):
     def __init__(self, parent=None, pandasUtilsInstance=None):
         # Calls the super class to init all the values in the this object
         QMainWindow.__init__(self)
-        Ui_VistaInicioSubirDatos.__init__(self)
+        Ui_vistaInicioSubirDatos.__init__(self)
         self.setupUi(self)
         # State Fields
         self.filesDirectories = []
