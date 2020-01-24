@@ -328,7 +328,7 @@ border-color: rgb(0, 0, 0);</string>
                </font>
               </property>
               <property name="text">
-               <string>   Hasta (Día-Mes-Año)</string>
+               <string>   Hasta (Mes-Día-Año)</string>
               </property>
              </widget>
             </item>
@@ -353,7 +353,7 @@ border-color: rgb(0, 0, 0);</string>
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string>Desde (Día-Mes-Año)</string>
+             <string>Desde (Mes-Día-Año)</string>
             </property>
            </widget>
           </item>
