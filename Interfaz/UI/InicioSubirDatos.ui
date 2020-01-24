@@ -59,7 +59,7 @@ background-color: rgb(255, 255, 255);</string>
            <string>Ver Datos</string>
           </property>
           <property name="icon">
-           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+           <iconset resource="Recursos/DATOS_IMAGENES.qrc">
             <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
@@ -146,7 +146,7 @@ border-color: rgb(0, 0, 0);</string>
              <string>Añadir Archivos</string>
             </property>
             <property name="icon">
-             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+             <iconset resource="Recursos/DATOS_IMAGENES.qrc">
               <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
             </property>
             <property name="iconSize">
@@ -175,7 +175,7 @@ border-color: rgb(0, 0, 0);</string>
              <string>Eliminar Archivo</string>
             </property>
             <property name="icon">
-             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+             <iconset resource="Recursos/DATOS_IMAGENES.qrc">
               <normaloff>:/Iconos/icons8-eliminar-400.png</normaloff>:/Iconos/icons8-eliminar-400.png</iconset>
             </property>
             <property name="iconSize">
@@ -202,7 +202,7 @@ border-color: rgb(0, 0, 0);</string>
              <string>Cargar Datos</string>
             </property>
             <property name="icon">
-             <iconset resource="Recursos/DATOS IMAGENES.qrc">
+             <iconset resource="Recursos/DATOS_IMAGENES.qrc">
               <normaloff>:/Iconos/upload.png</normaloff>:/Iconos/upload.png</iconset>
             </property>
             <property name="iconSize">
@@ -329,7 +329,7 @@ border-color: rgb(0, 0, 0);</string>
   </action>
  </widget>
  <resources>
-  <include location="Recursos/DATOS IMAGENES.qrc"/>
+  <include location="Recursos/DATOS_IMAGENES.qrc"/>
  </resources>
  <connections/>
 </ui>

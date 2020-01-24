@@ -94,7 +94,7 @@
             </item>
             <item>
              <property name="text">
-              <string>Uso Durante Mañana (06:00:00 am - 11:59:59 pm)</string>
+              <string>Uso Durante Mañana (06:00:00 am - 11:59:59 am)</string>
              </property>
             </item>
             <item>
@@ -166,7 +166,7 @@
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
-             <string>Número A Comparar</string>
+             <string>Número Hits A Comparar</string>
             </property>
            </widget>
           </item>

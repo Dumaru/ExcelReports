@@ -1024,7 +1024,7 @@
            <string>Buscar En Tabla</string>
           </property>
           <property name="icon">
-           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+           <iconset resource="Recursos/DATOS_IMAGENES.qrc">
             <normaloff>:/Iconos/icons8-google-web-search-400.png</normaloff>:/Iconos/icons8-google-web-search-400.png</iconset>
           </property>
           <property name="iconSize">
@@ -1058,7 +1058,7 @@
            <string>Obtener Datos </string>
           </property>
           <property name="icon">
-           <iconset resource="Recursos/DATOS IMAGENES.qrc">
+           <iconset resource="Recursos/DATOS_IMAGENES.qrc">
             <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
           </property>
           <property name="iconSize">
@@ -1092,7 +1092,7 @@
          <string> Ver Reportes </string>
         </property>
         <property name="icon">
-         <iconset resource="Recursos/DATOS IMAGENES.qrc">
+         <iconset resource="Recursos/DATOS_IMAGENES.qrc">
           <normaloff>:/Iconos/icons8-hand-box-256.png</normaloff>:/Iconos/icons8-hand-box-256.png</iconset>
         </property>
         <property name="iconSize">
@@ -1138,7 +1138,7 @@
          <string>Guardar Tabla Actual</string>
         </property>
         <property name="icon">
-         <iconset resource="Recursos/DATOS IMAGENES.qrc">
+         <iconset resource="Recursos/DATOS_IMAGENES.qrc">
           <normaloff>:/Iconos/icons8-añadir-libro-80.png</normaloff>:/Iconos/icons8-añadir-libro-80.png</iconset>
         </property>
         <property name="iconSize">
@@ -1184,7 +1184,7 @@
          <string>Generar Gráficas </string>
         </property>
         <property name="icon">
-         <iconset resource="Recursos/DATOS IMAGENES.qrc">
+         <iconset resource="Recursos/DATOS_IMAGENES.qrc">
           <normaloff>:/Iconos/graficas.png</normaloff>:/Iconos/graficas.png</iconset>
         </property>
         <property name="iconSize">
@@ -1439,7 +1439,7 @@
   <tabstop>pushButtonVerAnalisis</tabstop>
  </tabstops>
  <resources>
-  <include location="Recursos/DATOS IMAGENES.qrc"/>
+  <include location="Recursos/DATOS_IMAGENES.qrc"/>
  </resources>
  <connections/>
 </ui>
