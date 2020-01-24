@@ -13,19 +13,21 @@ from LoadingOverlay import Overlay
 from UI.Recursos import images_rc
 
 class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
-    def __init__(self, parent=None, pandasUtilsInstance=None):
+    def __init__(self, parent, pandasUtilsInstance):
         super(QMainWindow, self).__init__(parent)
         Ui_vistaGeneralDatos.__init__(self)
         self.setupUi(self)
         # State fields
-        self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
+        # print(f"pandas instance {pandasUtilsInstance}")
+        self.pandasUtils = pandasUtilsInstance
         self.ratsSeleccionados = dict()
         self.operadoresSeleccionados = dict()
         self.viendoIncidentales = False
         # UI
         # loadUi('UI/VistaGeneralDatos.ui', self)
+        self.ventanaFiltroDatos = VentanaFiltros(parent=self, pandasUtilsInstance=self.pandasUtils)
+        self.ventanaAnalisisHorario = VentanaAnalisisHorario(self, self.pandasUtils)
         self.overlay = Overlay(self)
-        self.setupUiCustom()
 
     def setupUiCustom(self):
         self.overlay.hide()
@@ -34,15 +36,11 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         self.pushButtonGuardarDatos4G.setEnabled(False)
         # Setting the menus for the RAT and OPERATOR buttons
         self.pandasUtils.setUniqueColumnValues(self.pandasUtils.tempDf, 'RAT')
-        self.ratsSeleccionados = {
-            rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')}
+        self.ratsSeleccionados = {rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')}
         self.menuRats = UiUtils.createMenu(self.ratsSeleccionados.keys())
-        self.pandasUtils.setUniqueColumnValues(
-            self.pandasUtils.tempDf, 'OPERATOR')
-        self.operadoresSeleccionados = {
-            op: True for op in self.pandasUtils.getUniqueColumnValues('OPERATOR')}
-        self.menuOperadores = UiUtils.createMenu(
-            self.operadoresSeleccionados.keys())
+        self.pandasUtils.setUniqueColumnValues(self.pandasUtils.tempDf, 'OPERATOR')
+        self.operadoresSeleccionados = {op: True for op in self.pandasUtils.getUniqueColumnValues('OPERATOR')}
+        self.menuOperadores = UiUtils.createMenu(self.operadoresSeleccionados.keys())
         self.pushButtonOperadores.setMenu(self.menuOperadores)
         self.pushButtonRATS.setMenu(self.menuRats)
 
@@ -87,11 +85,8 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         self.labelIMSIDatos.setText(str(self.pandasUtils.getRowCountForColumn(self.pandasUtils.tempDf, "IMSI")))
 
     def fnVerImsisImeis(self):
-        self.pandasUtils.setTempDf(
-            self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData()))
-        self.fillTableWidget(
-            self.pandasUtils.tempDf
-        )
+        self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData()))
+        self.fillTableWidget(self.pandasUtils.tempDf)
 
     def fnGuardarImsisImeis(self):
         # print("Fn procesa guardar datos imsis vs imeis")
@@ -162,8 +157,8 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
     def fnVentanaFiltroDatos(self):
         # print(f"Fn mostrar ventana filtro de datos")
         self.hide()
-        ventanaFiltroDatos = VentanaFiltros(parent=self, pandasUtilsInstance=self.pandasUtils)
-        ventanaFiltroDatos.show()
+        self.ventanaFiltroDatos.setupUiCustom()
+        self.ventanaFiltroDatos.show()
 
     # def fnAsignaNombresPorEmais(self):
         print(f"Fn asgina nombre a emai")
@@ -187,9 +182,10 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
     def fnVentanaAnalisisHorario(self):
         # print(f"Fn analisis horario")
         self.hide()
-        df = self.fnAplicaFiltrosDfOk()
-        ventanaAnalisisHorario = VentanaAnalisisHorario(self, self.pandasUtils, data=self.pandasUtils.tempDf)
-        ventanaAnalisisHorario.show()
+        self.fnAplicaFiltrosDfOk()
+        self.ventanaAnalisisHorario.data = data=self.pandasUtils.tempDf
+        self.ventanaAnalisisHorario.setupUiCustom()
+        self.ventanaAnalisisHorario.show()
 
     def fnProcesaGuardarDatos(self):
         # print("Fn procesa guardar datos")
@@ -218,20 +214,18 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         Calls filltable according to all the filters that the user has set and returns the df
         """
         # df = self.pandasUtils.tempDf if self.viendoIncidentales is False else self.pandasUtils.dfIncidentales
-        df = self.pandasUtils.getAllData() if self.viendoIncidentales is not True else self.pandasUtils.dfIncidentales
-        df.sort_values(by="HITS", ascending=False, inplace=True)
-        # TODO: Tambien tener en cuenta que pudo haber digitado un imei
         listaRats = [rat for rat, v in self.ratsSeleccionados.items() if v is True]
         listaOps = [op for op, v in self.operadoresSeleccionados.items() if v is True]
-        # print(f"Aplicacion de filtros Lista rats {listaRats} {listaOps}")
-        dfFiltradoRats = self.pandasUtils.filterDfByColumnValues(df, "RAT", listaRats)
-        dfFiltradosOps = self.pandasUtils.filterDfByColumnValues(dfFiltradoRats, "OPERATOR", listaOps)
-        # print(f"New df with filter applied {dfFiltradosOps.shape}")
-        self.pandasUtils.setTempDf(dfFiltradosOps)
+
+
+        self.pandasUtils.fnAplicaFiltrosGeneral(listaRats, listaOps, self.viendoIncidentales, self.fnAplicacionFiltrosFinished)
+
+    def fnAplicacionFiltrosFinished(self, msg):
+        print(f"Se termino la aplicación de filtros msg->{msg}\n")
 
     def fnProcesaFiltroImei(self):
         imei = self.textEditBuscarDatos.toPlainText()
-        if(len(imei) > 0):
+        if(len(imei) > 0 and self.pandasUtils.isFloat(imei)):
             self.fnAplicaFiltrosDfOk()
             df = self.pandasUtils.filterDfByEmai(self.pandasUtils.tempDf, imei)
             if(df.shape[0] > 0):

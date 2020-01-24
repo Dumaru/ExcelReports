@@ -30,8 +30,8 @@ class PandasDataLoader:
 
             # Processing ans state
             self.processing = False
-            self.threadProcessor = ThreadingUtils()
-            self.saverThread = ThreadingUtils()
+            self.threadProcessors = []
+            self.saverThreads = []
             self.uniqueColumnValues = dict()
             self.msg = ""
             PandasDataLoader.__instance = self
@@ -119,10 +119,11 @@ class PandasDataLoader:
                         f" Se cargaron {self.dfIncidentales.shape[0]} datos incidentales")
             self.processing = False
 
-        self.threadProcessor = ThreadingUtils()
-        self.threadProcessor.setWorker(loadDataWrapper)
-        self.threadProcessor.start(QThread.HighestPriority)
-        self.threadProcessor.finished.connect(lambda: callback(self.msg))
+        threadProcessor = ThreadingUtils()
+        threadProcessor.setWorker(loadDataWrapper)
+        threadProcessor.start(QThread.HighestPriority)
+        threadProcessor.finished.connect(lambda: callback(self.msg))
+        self.threadProcessors.append(threadProcessor)
         # ThreadingUtils.doInThread(loadDataWrapper, callback)
 
     def dividirDfEnRats(self, allData: pd.DataFrame):
@@ -161,10 +162,64 @@ class PandasDataLoader:
             self.dividirDfEnRats(allDataP)
             self.setTempDf(allDataP)
 
-        self.threadProcessor = ThreadingUtils()
-        self.threadProcessor.setWorker(asignaWrapper)
-        self.threadProcessor.start(QThread.HighestPriority)
-        self.threadProcessor.finished.connect(lambda: callback(self.msg))
+        threadProcessor = ThreadingUtils()
+        threadProcessor.setWorker(asignaWrapper)
+        threadProcessor.start(QThread.HighestPriority)
+        threadProcessor.finished.connect(lambda: callback(self.msg))
+        self.threadProcessors.append(threadProcessor)
+
+    # Threading
+    def fnAplicaFiltrosGeneral(self, listaRats, listaOps, viendoIncidentales, callback):
+        def filtrosWrapper():
+            # df = self.pandasUtils.tempDf if self.viendoIncidentales is False else self.pandasUtils.dfIncidentales
+            df = self.getAllData() if viendoIncidentales is not True else self.dfIncidentales
+            if(df.shape[0]>0):
+                df.sort_values(by="HITS", ascending=False, inplace=True)
+            dfFiltradoRats = self.filterDfByColumnValues(df, "RAT", listaRats)
+            dfFiltradosOps = self.filterDfByColumnValues(dfFiltradoRats, "OPERATOR", listaOps)
+            # print(f"New df with filter applied {dfFiltradosOps.shape}")
+            self.setTempDf(dfFiltradosOps)
+            self.msg = f"Se encontraron {self.tempDf.shape[0]} registros"
+        threadProcessorFiltros = ThreadingUtils()
+        threadProcessorFiltros.setWorker(filtrosWrapper)
+        threadProcessorFiltros.start(QThread.HighestPriority)
+        threadProcessorFiltros.finished.connect(lambda: callback(self.msg))
+        self.threadProcessors.append(threadProcessorFiltros)
+
+    def fnAplicaFiltros(self, filtros2G, filtros3G, filtros4G, callback):
+        def filtrosWrapper():
+            dfs = list()
+            if filtros2G.selected:
+                df2G = self.tiempoAvanceFilterTA(self.allData2G, filtros2G.valoresTA)
+                df2GMsPower = self.msPowerRangeFilter(df2G, filtros2G.msPowerInicial, filtros2G.msPowerFinal)
+                df2GLastLac = self.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', filtros2G.getSelectedLastLacValues())
+                df2GHitsMin = self.filterByHitsGrouping(df2GLastLac, 'IMEI', filtros2G.hitsMinimos)
+                dfs.append(df2GHitsMin)
+            if filtros3G.selected:
+                df3G = self.tiempoAvanceFilterTA(self.allData3G, filtros3G.valoresTA)
+                df3GMsPower = self.msPowerRangeFilter(df3G, filtros3G.msPowerInicial, filtros3G.msPowerFinal)
+                df3GLastLac = self.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', filtros3G.getSelectedLastLacValues())
+                df3GHitsMin = self.filterByHitsGrouping(df3GLastLac, 'IMEI', filtros3G.hitsMinimos)
+                dfs.append(df3GHitsMin)
+            if filtros4G.selected:
+                df4G = self.tiempoAvanceFilterTA(self.allData4G, filtros4G.valoresTA)
+                df4GMsPower = self.msPowerRangeFilter(df4G, filtros4G.msPowerInicial, filtros4G.msPowerFinal)
+                df4GLastLac = self.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', filtros4G.getSelectedLastLacValues())
+                df4GHitsMin = self.filterByHitsGrouping(df4GLastLac, 'IMEI', filtros4G.hitsMinimos)
+                dfs.append(df4GHitsMin)
+            # Empieza a agrupar todo
+            newDf = self.concatDfs(dfs)
+            self.setTempDf(self.getGroupedByEmais(newDf))
+            if(self.tempDf.shape[0]>0):
+                self.msg = f"Se encontraron {self.tempDf.shape[0]} registros"
+                self.setTempDf(self.tempDf.sort_values(by="HITS", ascending=False))
+
+        threadProcessorFiltrosGeneral = ThreadingUtils()
+        threadProcessorFiltrosGeneral.setWorker(filtrosWrapper)
+        threadProcessorFiltrosGeneral.start(QThread.HighestPriority)
+        threadProcessorFiltrosGeneral.finished.connect(lambda: callback(self.msg))
+        self.threadProcessors.append(threadProcessorFiltrosGeneral)
+
 
     def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int = 1):
         # print(f"Empieza obtencion incidentales df arg {df.shape}")
@@ -290,6 +345,7 @@ class PandasDataLoader:
         def saveFunctionWrapper():
             df.to_excel((newFilePath if newFilePath.endswith(
                 ".xlsx") else (newFilePath+".xlsx")), index=index)
+
         self.saverThread = ThreadingUtils()
         self.saverThread.setWorker(saveFunctionWrapper)
         self.saverThread.start(QThread.HighestPriority)
@@ -426,7 +482,8 @@ class PandasDataLoader:
             return True
         except Exception as e:
             return False
-
+    def __str__(self):
+        return f"Objecto pandas utils 2g {self.allData2G.shape} 3g {self.allData3G.shape} 4g {self.allData4G.shape}"
 class ThreadingUtils_:
 
     @staticmethod

@@ -35,7 +35,7 @@ class VentanaAnalisisHorario(QMainWindow, Ui_VistaDetalleHoras):
         self.valorFiltro = None
         # UI
         # loadUi('UI/VistaDetalleHoras.ui', self)
-        self.setupUiCustom()
+        # self.setupUiCustom()
 
     def setupUiCustom(self):
         # Principales

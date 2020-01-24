@@ -14,6 +14,8 @@ from VistaGeneralDatos import VistaGeneralDatos
 from UIPyfiles.InicioSubirDatos import Ui_vistaInicioSubirDatos
 
 from UI.Recursos import images_rc
+
+
 class ExcelReportsInicio(QMainWindow, Ui_vistaInicioSubirDatos):
     """
     Window class to load all the files from a directory
@@ -26,12 +28,13 @@ class ExcelReportsInicio(QMainWindow, Ui_vistaInicioSubirDatos):
         self.setupUi(self)
         # State Fields
         self.filesDirectories = []
-        self.pandasUtils = pandasUtilsInstance if pandasUtilsInstance is not None else PandasDataLoader.getInstance()
+        self.pandasUtils = pandasUtilsInstance
 
         # UI
         # loadUi('', self)
         self.overlay = Overlay(self)
         self.setupUiCustom()
+        self.vistaGeneralDatos = VistaGeneralDatos(parent=self, pandasUtilsInstance=self.pandasUtils)
 
     def setupUiCustom(self):
         self.overlay.hide()
@@ -44,7 +47,7 @@ class ExcelReportsInicio(QMainWindow, Ui_vistaInicioSubirDatos):
         self.pushButtonMostrarDatos.setEnabled(False)
 
     def fnProcessOpenDir(self):
-        """ Inicia procesa para abrir un solo directorio""" 
+        """ Inicia procesa para abrir un solo directorio"""
         dirPath = self.fnAbrirDir()
         if(dirPath):
             with os.scandir(dirPath) as it:
@@ -111,8 +114,7 @@ class ExcelReportsInicio(QMainWindow, Ui_vistaInicioSubirDatos):
 
     def fnCargaDatosCompleta(self, msg):
         self.overlay.killAndHide()
-        UiUtils.showInfoMessage(title="Informacion de carga",
-                                description=msg)
+        UiUtils.showInfoMessage(title="Informacion de carga", description=msg)
         self.pushButtonMostrarDatos.setEnabled(True)
 
     def resizeEvent(self, event):
@@ -123,17 +125,17 @@ class ExcelReportsInicio(QMainWindow, Ui_vistaInicioSubirDatos):
         """ Muestra la ventana general de datos"""
         self.hide()
         # Alternativamente le podria pasar una referencia al objeto pandas
-        vistaGeneralDatos = VistaGeneralDatos(parent=self)
-        vistaGeneralDatos.show()
+        self.vistaGeneralDatos.setupUiCustom()
+        self.vistaGeneralDatos.show()
 
 
 if(__name__ == "__main__"):
     # Instanciates a new QApplication with the given terminal parameters
-  
+
     app = QApplication(sys.argv)
 
     pandasDataInstance = PandasDataLoader()
-    inicioCarga = ExcelReportsInicio()
+    inicioCarga = ExcelReportsInicio(parent=None, pandasUtilsInstance=pandasDataInstance)
     inicioCarga.show()
     # vistaGeneralDatos = VistaGeneralDatos()
     # vistaGeneralDatos.show()

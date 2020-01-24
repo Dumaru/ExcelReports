@@ -30,7 +30,7 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         self.filtros4G = FiltrosContainer()
         # UI
         # loadUi('UI/VistaFiltros.ui', self)
-        self.setupUiCustom()
+        # self.setupUiCustom()
 
     def setupUiCustom(self):
         # Set rats based on the db
@@ -263,7 +263,7 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         # print(f"Dimesiones df a graficar {self.pandasUtils.tempDf}")
         ventanaGrafica = PlotWindow(self)
         # Get the x and y values of current stuff
-        self.fnAplicaFiltrosNoGrouping()
+        self.fnAplicaFiltros()
         series = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
         ventanaGrafica.plot(x=pd.to_datetime(series.index), y=series.values, xLabel='DATE', yLabel='HITS')
         ventanaGrafica.show()
@@ -326,61 +326,37 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         # Empieza a agrupar todo
         return self.pandasUtils.concatDfs(dfs)
 
-    def fnAplicaFiltrosNoGrouping(self):
-        # Procesa de aplicacion de filtros
-        dfs = list()
-        if self.filtros2G.selected:
-            df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
-            df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
-            df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.valoresLastLac)
-            df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
+    def fnAplicacionFiltrosFinished(self, msg):
 
-            dfs.append(df2GHitsMin)
-        if self.filtros3G.selected:
-            df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
-            df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
-            df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.valoresLastLac)
-            df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
-            dfs.append(df3GHitsMin)
-        if self.filtros4G.selected:
-            df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G, self.filtros4G.valoresTA)
-            df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
-            df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.valoresLastLac)
-            df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
-            dfs.append(df4GHitsMin)
-        # Empieza a agrupar todo
-        self.pandasUtils.setTempDf(self.pandasUtils.concatDfs(dfs))
+        print(f"Se termino la aplicación de filtros {msg}")
 
     def fnAplicaFiltros(self):
         # Procesa de alicacion de filtros
-        dfs = list()
-        if self.filtros2G.selected:
-            df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
-            df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
-            df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.getSelectedLastLacValues())
-            df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
-            dfs.append(df2GHitsMin)
-        if self.filtros3G.selected:
-            df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
-            df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
-            df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.getSelectedLastLacValues())
-            df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
-            dfs.append(df3GHitsMin)
-        if self.filtros4G.selected:
-            df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G, self.filtros4G.valoresTA)
-            df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
-            df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.getSelectedLastLacValues())
-            df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
-            dfs.append(df4GHitsMin)
-        # Empieza a agrupar todo
-        newDf = self.pandasUtils.concatDfs(dfs)
-        self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(newDf))
-        if(self.pandasUtils.tempDf.shape[0]>0):
-            self.pandasUtils.setTempDf(self.pandasUtils.tempDf.sort_values(by="HITS", ascending=False))
-        # print(f"New dfs {newDf}")
-        # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
-        # print("Se empiezan a agrupar los datos de 2g 3g y 4g")
-        # print(f"Temp dfs {self.pandasUtils.tempDf.shape}")
+        self.pandasUtils.fnAplicaFiltros(self.filtros2G, self.filtros3G, self.filtros4G, self.fnAplicacionFiltrosFinished)
+        # dfs = list()
+        # if self.filtros2G.selected:
+        #     df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
+        #     df2GMsPower = self.pandasUtils.msPowerRangeFilter(df2G, self.filtros2G.msPowerInicial, self.filtros2G.msPowerFinal)
+        #     df2GLastLac = self.pandasUtils.filterDfByColumnValues(df2GMsPower, 'LAST_LAC', self.filtros2G.getSelectedLastLacValues())
+        #     df2GHitsMin = self.pandasUtils.filterByHitsGrouping(df2GLastLac, 'IMEI', self.filtros2G.hitsMinimos)
+        #     dfs.append(df2GHitsMin)
+        # if self.filtros3G.selected:
+        #     df3G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData3G, self.filtros3G.valoresTA)
+        #     df3GMsPower = self.pandasUtils.msPowerRangeFilter(df3G, self.filtros3G.msPowerInicial, self.filtros3G.msPowerFinal)
+        #     df3GLastLac = self.pandasUtils.filterDfByColumnValues(df3GMsPower, 'LAST_LAC', self.filtros3G.getSelectedLastLacValues())
+        #     df3GHitsMin = self.pandasUtils.filterByHitsGrouping(df3GLastLac, 'IMEI', self.filtros3G.hitsMinimos)
+        #     dfs.append(df3GHitsMin)
+        # if self.filtros4G.selected:
+        #     df4G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData4G, self.filtros4G.valoresTA)
+        #     df4GMsPower = self.pandasUtils.msPowerRangeFilter(df4G, self.filtros4G.msPowerInicial, self.filtros4G.msPowerFinal)
+        #     df4GLastLac = self.pandasUtils.filterDfByColumnValues(df4GMsPower, 'LAST_LAC', self.filtros4G.getSelectedLastLacValues())
+        #     df4GHitsMin = self.pandasUtils.filterByHitsGrouping(df4GLastLac, 'IMEI', self.filtros4G.hitsMinimos)
+        #     dfs.append(df4GHitsMin)
+        # # Empieza a agrupar todo
+        # newDf = self.pandasUtils.concatDfs(dfs)
+        # self.pandasUtils.setTempDf(self.pandasUtils.getGroupedByEmais(newDf))
+        # if(self.pandasUtils.tempDf.shape[0]>0):
+        #     self.pandasUtils.setTempDf(self.pandasUtils.tempDf.sort_values(by="HITS", ascending=False))
 
     def fnProcesaTomaDatosMsPower(self):
         self.filtros2G.tomarMsPower = self.checkBoxTomarDatoMSPower2G.isChecked()
