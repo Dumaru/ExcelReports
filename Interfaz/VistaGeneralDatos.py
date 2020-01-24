@@ -12,6 +12,7 @@ from UIPyfiles.VistaGeneralDatos import Ui_vistaGeneralDatos
 from LoadingOverlay import Overlay
 from UI.Recursos import images_rc
 
+
 class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
     def __init__(self, parent, pandasUtilsInstance):
         super(QMainWindow, self).__init__(parent)
@@ -41,6 +42,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         self.pandasUtils.setUniqueColumnValues(self.pandasUtils.tempDf, 'OPERATOR')
         self.operadoresSeleccionados = {op: True for op in self.pandasUtils.getUniqueColumnValues('OPERATOR')}
         self.menuOperadores = UiUtils.createMenu(self.operadoresSeleccionados.keys())
+
         self.pushButtonOperadores.setMenu(self.menuOperadores)
         self.pushButtonRATS.setMenu(self.menuRats)
 
@@ -90,12 +92,15 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
 
     def fnGuardarImsisImeis(self):
         # print("Fn procesa guardar datos imsis vs imeis")
+        def guardaImsisImeis(msg):
+            self.pandasUtils.saveToExcelFile(
+                            groupedIMSIS, filePath, False, self.saveProcessFinished)
+            self.overlay.killAndHide()
+
         groupedIMSIS = self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
         filePath = self.saveFileDialog()
         if(filePath):
-            self.fnAplicaFiltrosDfOk()
-            self.pandasUtils.saveToExcelFile(
-                groupedIMSIS, filePath, False, self.saveProcessFinished)
+            self.fnAplicaFiltrosDfOk(guardaImsisImeis)
 
         # print("Fn generacion del reporte")
 
@@ -103,22 +108,18 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         # print("Empieza proceso de asignacion de IMEIS")
         self.overlay.show()
         self.pandasUtils.asignarIMEIS(self.pandasUtils.getAllData(),
-                                    self.pandasUtils.getDfImeisFaltantes(), self.fnAsignacionTerminada)
+                                      self.pandasUtils.getDfImeisFaltantes(), self.fnAsignacionTerminada)
 
     def fnAsignacionTerminada(self, msg):
         # Dividir de nuevo los df en 2g 3g y 4g y asignarlos de nuevo
-        self.pandasUtils.dividirDfEnRats(self.pandasUtils.tempDf)
-        cantidadDespuesCon = self.pandasUtils.tempDf[self.pandasUtils.tempDf['IMEI'].notnull()].shape[0]
         self.fnMuestraCantidadEnOperadores()
         self.fnMuestraCantidadEnRats()
         self.fnMuestraCantidadesImeisImsis()
-
         self.fillTableWidget(self.pandasUtils.tempDf)
         self.pushButtonGuardarDatos4G.setEnabled(True)
         self.overlay.killAndHide()
         UiUtils.showInfoMessage(parent=self, title="Estado de la asignacion",
                                 description=msg)
-                            
 
         # print(f"Cantidad de imeis despues {cantidadDespuesCon}")
 
@@ -126,15 +127,15 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         UiUtils.showInfoMessage(parent=self, title="Estado de la operacion",
                                 description=f"Se realizo la operación correctamente.")
 
-
     def fnGuardar4gSinImeis(self):
         # print(f"Funcion guardar datos de 4g sin sus imeis")
         # print("Fn procesa guardar datos 4g sin imei")
+        def guarda4GSin(msg):
+            self.pandasUtils.saveToExcelFile(self.pandasUtils.sinImei4g, filePath, False, self.saveProcessFinished)
+            self.overlay.killAndHide()
         filePath = self.saveFileDialog()
         if(filePath):
-            self.fnAplicaFiltrosDfOk()
-            self.pandasUtils.saveToExcelFile(
-                self.pandasUtils.sinImei4g, filePath, False, self.saveProcessFinished)
+            self.fnAplicaFiltrosDfOk(guarda4GSin)
 
     def reseteoFiltros(self):
         self.operadoresSeleccionados = {op: True for op in self.operadoresSeleccionados.keys()}
@@ -142,6 +143,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         self.textEditBuscarDatos.setText("")
 
     def fnMuestraTablaOriginal(self):
+        print(f"Muestra tabla completa ")
         self.viendoIncidentales = False
         self.fnMuestraCantidadEnOperadores()
         self.fnMuestraCantidadEnRats()
@@ -163,37 +165,45 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
     # def fnAsignaNombresPorEmais(self):
         print(f"Fn asgina nombre a emai")
         # self.pandasUtils.tempDf = self.pandasUtils.setUniqueNameIdColumn(
-            # self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.tempDf)
-        # ) 
+        # self.pandasUtils.getDfCompletoEmaisOk(self.pandasUtils.tempDf)
+        # )
         # self.fillTableWidget(
-            # self.pandasUtils.tempDf
+        # self.pandasUtils.tempDf
         # )
 
     def fnFiltroDatosIncidentales(self):
         # self.pushButtonVerDatosIncidentales.setStyleSheet('QPushButton {color: green;}')
+        def incidentalesProcess(msg):
+            self.fnMuestraCantidadEnOperadores()
+            self.fnMuestraCantidadEnRats()
+            self.fillTableWidget(self.pandasUtils.tempDf)
+            self.overlay.killAndHide()
+
         self.reseteoFiltros()
         self.viendoIncidentales = True
-        self.fnAplicaFiltrosDfOk()
-
-        self.fnMuestraCantidadEnOperadores()
-        self.fnMuestraCantidadEnRats()
-        self.fillTableWidget(self.pandasUtils.tempDf)
+        self.fnAplicaFiltrosDfOk(incidentalesProcess)
 
     def fnVentanaAnalisisHorario(self):
         # print(f"Fn analisis horario")
+        def muestraAnalisisHorario(msg):
+            self.ventanaAnalisisHorario.data = data = self.pandasUtils.tempDf
+            self.ventanaAnalisisHorario.setupUiCustom()
+            self.ventanaAnalisisHorario.show()
+            self.overlay.killAndHide()
+
         self.hide()
-        self.fnAplicaFiltrosDfOk()
-        self.ventanaAnalisisHorario.data = data=self.pandasUtils.tempDf
-        self.ventanaAnalisisHorario.setupUiCustom()
-        self.ventanaAnalisisHorario.show()
+        self.fnAplicaFiltrosDfOk(muestraAnalisisHorario)
 
     def fnProcesaGuardarDatos(self):
         # print("Fn procesa guardar datos")
+        def guardarDatos(msg):
+            self.pandasUtils.saveToExcelFile(
+                            self.pandasUtils.tempDf, filePath, False, self.saveProcessFinished)
+            self.overlay.killAndHide()
+
         filePath = self.saveFileDialog()
         if(filePath):
-            self.fnAplicaFiltrosDfOk()
-            self.pandasUtils.saveToExcelFile(
-                self.pandasUtils.tempDf, filePath, False, self.saveProcessFinished)
+            self.fnAplicaFiltrosDfOk(guardarDatos)
 
     def saveProcessFinished(self):
         UiUtils.showInfoMessage(parent=self, title="Guardado de archivos",
@@ -209,7 +219,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
             self, "Guardar archivo", "", "Excel Files (*.xlsx)", options=options)
         return fileName
 
-    def fnAplicaFiltrosDfOk(self):
+    def fnAplicaFiltrosDfOk(self, callback):
         """
         Calls filltable according to all the filters that the user has set and returns the df
         """
@@ -217,16 +227,15 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         listaRats = [rat for rat, v in self.ratsSeleccionados.items() if v is True]
         listaOps = [op for op, v in self.operadoresSeleccionados.items() if v is True]
 
-
-        self.pandasUtils.fnAplicaFiltrosGeneral(listaRats, listaOps, self.viendoIncidentales, self.fnAplicacionFiltrosFinished)
+        self.overlay.show()
+        self.pandasUtils.fnAplicaFiltrosGeneral(listaRats, listaOps, self.viendoIncidentales, callback)
 
     def fnAplicacionFiltrosFinished(self, msg):
+        self.overlay.killAndHide()
         print(f"Se termino la aplicación de filtros msg->{msg}\n")
 
     def fnProcesaFiltroImei(self):
-        imei = self.textEditBuscarDatos.toPlainText()
-        if(len(imei) > 0 and self.pandasUtils.isFloat(imei)):
-            self.fnAplicaFiltrosDfOk()
+        def filtroImeiProcess(msg):
             df = self.pandasUtils.filterDfByEmai(self.pandasUtils.tempDf, imei)
             if(df.shape[0] > 0):
                 print("Shape del filtro ", df.shape, "dato buscar", imei)
@@ -237,6 +246,11 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
                 UiUtils.showInfoMessage(self,
                                         title=f"Busqueda de imei: {imei} ",
                                         description=f"No se encontro el imei {imei} .")
+            self.overlay.killAndHide()
+
+        imei = self.textEditBuscarDatos.toPlainText()
+        if(len(imei) > 0 and self.pandasUtils.isFloat(imei)):
+            self.fnAplicaFiltrosDfOk(filtroImeiProcess)
 
     def fillTableWidget(self, df: pd.DataFrame = None):
         # Limpiar contenidos de tabla
@@ -258,48 +272,55 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
             rowCount += 1
 
     def fnProcesaSeleccionRats(self, action: QAction):
-        # print(f"Fn procesa seleccion Rat {action}")
+        def llenarTabla(msg):
+            self.fillTableWidget(self.pandasUtils.tempDf)
+            self.overlay.killAndHide()
         self.ratsSeleccionados[str(action.data())] = action.isChecked()
+        print(f"Fn procesa seleccion Rat {action} {self.ratsSeleccionados}")
         if(sum([1 for rat, v in self.ratsSeleccionados.items() if v is True]) == 0):
             action.setChecked(True)
             self.ratsSeleccionados[str(action.data())] = action.isChecked()
-        
         self.fnMuestraCantidadEnRats()
-        self.fnAplicaFiltrosDfOk()
-        self.fillTableWidget(self.pandasUtils.tempDf)
+        self.fnAplicaFiltrosDfOk(llenarTabla)
 
-    def fnMuestraCantidadEnRats(self):
+    def fnMuestraCantidadEnRats(self ,msg=None):
         """
         This function is called when there is a change in the selected rats dictionary
         """
-        listaRats = [rat for rat, v in self.ratsSeleccionados.items()
-                     if v is True]
-        # print(f"Lista rats {listaRats}")
-        if len(listaRats) > 0:
-            self.fnAplicaFiltrosDfOk()
+        def muestraCantidadRats(msg):
             cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.tempDf, 'RAT', listaRats)
             self.labelRATContador.setText(str(cantidad))
+            self.overlay.killAndHide()
+
+        listaRats = [rat for rat, v in self.ratsSeleccionados.items()
+                     if v is True]
+        if len(listaRats) > 0:
+            self.fnAplicaFiltrosDfOk(muestraCantidadRats)
 
     def fnProcesaSeleccionOperadores(self, action: QAction):
-        # print(f"Fn procesa seleccion opeadores {action}")
+        def llenarTabla(msg):
+            self.fillTableWidget(self.pandasUtils.tempDf)
+            self.overlay.killAndHide()
         self.operadoresSeleccionados[str(action.data())] = action.isChecked()
+        print(f"Fn procesa seleccion opeadores {action} {self.operadoresSeleccionados}")
         if(sum([1 for rat, v in self.operadoresSeleccionados.items() if v is True]) == 0):
             action.setChecked(True)
             self.operadoresSeleccionados[str(action.data())] = action.isChecked()
 
         self.fnMuestraCantidadEnOperadores()
-        self.fnAplicaFiltrosDfOk()
-        self.fillTableWidget(self.pandasUtils.tempDf)
+        self.fnAplicaFiltrosDfOk(llenarTabla)
 
-    def fnMuestraCantidadEnOperadores(self):
+    def fnMuestraCantidadEnOperadores(self, msg=None):
         """
         This function is called when there is a change in the selected rats dictionary
         """
-        listaOps = [op for op,v in self.operadoresSeleccionados.items() if v]
-        if len(listaOps) > 0:
-            self.fnAplicaFiltrosDfOk()
+        def muestraCantidadOperadores(msg):
             cantidad = self.pandasUtils.getCantidadDatos(self.pandasUtils.tempDf, 'OPERATOR', listaOps)
             self.labelOperadorDatos.setText(str(cantidad))
+            self.overlay.killAndHide()
+        listaOps = [op for op, v in self.operadoresSeleccionados.items() if v]
+        if len(listaOps) > 0:
+            self.fnAplicaFiltrosDfOk(muestraCantidadOperadores)
 
     def resizeEvent(self, event):
         self.overlay.resize(event.size())

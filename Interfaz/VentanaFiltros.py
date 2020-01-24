@@ -10,8 +10,12 @@ from FiltrosContainer import FiltrosContainer
 import UiUtils
 from VistaAnalisisDatos import VentanaAnalisisDatos
 
+from LoadingOverlay import Overlay
+
 from UIPyfiles.VistaFiltros import Ui_VistaFiltros
 from UI.Recursos import images_rc
+
+from PlotWindowBars import PlotWindowBars
 
 class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
     ACTION_IMSIS = 1
@@ -30,9 +34,11 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         self.filtros4G = FiltrosContainer()
         # UI
         # loadUi('UI/VistaFiltros.ui', self)
+        self.overlay = Overlay(self)
         # self.setupUiCustom()
 
     def setupUiCustom(self):
+        self.overlay.hide()
         # Set rats based on the db
         # RAT Checkboxes setup
         # self.pandasUtils.setUniqueColumnValues(self.pandasUtils.allData, 'RAT')
@@ -105,11 +111,15 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
 
     def fnGuardarTablaFiltrada(self):
         # print("Fn procesa guardar datos tabla filtrada")
+        def saveTable(msg):
+            self.pandasUtils.saveToExcelFile(
+            self.pandasUtils.tempDf.sort_values(by="HITS"), filePath, False, self.saveProcessFinished)
+            self.overlay.killAndHide()
         filePath = self.saveFileDialog()
         if(filePath):
-            self.fnAplicaFiltros()
-            self.pandasUtils.saveToExcelFile(
-                self.pandasUtils.tempDf.sort_values(by="HITS"), filePath, False, self.saveProcessFinished)
+            self.overlay.show()
+            self.fnAplicaFiltros(saveTable)
+
 
         # print("Fn generacion del reporte")
 
@@ -260,14 +270,17 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         # print(f"Fn muestra ventana analisis de datos")
 
     def fnGeneraGraficaDatosFiltrados(self):
+        def generaGrafica(msg):
+            series = self.pandasUtils.hitsByDate(self.fnAplicaFiltrosNoGroupingReturns())
+            plotWindow = PlotWindowBars(self)
+            plotWindow.plot(x=pd.to_datetime(series.index), y=series.values, xLabel='DATE', yLabel='HITS')
+            plotWindow.show()
+            self.overlay.killAndHide()
         # print(f"Dimesiones df a graficar {self.pandasUtils.tempDf}")
         ventanaGrafica = PlotWindow(self)
         # Get the x and y values of current stuff
-        self.fnAplicaFiltros()
-        series = self.pandasUtils.hitsByDate(self.pandasUtils.tempDf)
-        ventanaGrafica.plot(x=pd.to_datetime(series.index), y=series.values, xLabel='DATE', yLabel='HITS')
-        ventanaGrafica.show()
-        # print(f"Fn genera grafica datos filtrados")
+        self.overlay.show()
+        self.fnAplicaFiltros(generaGrafica)
 
     def fnProcesaObtenerDatosFiltrados(self):
         """ Setea todos los valores de la interfaz en los campos de instancia"""
@@ -298,8 +311,12 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         self.filtros4G.msPowerFinal = float(self.lineEditValorRangoFinalMSPOWER4G.text(
         )) if self.filtros4G.tomarMsPower and self.pandasUtils.isFloat(self.lineEditValorRangoFinalMSPOWER4G.text()) else None
 
-        self.fnAplicaFiltros()
-        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
+
+        def obtencion(msg):
+            self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
+            self.overlay.killAndHide()
+        self.overlay.show()
+        self.fnAplicaFiltros(obtencion)
 
     def fnAplicaFiltrosNoGroupingReturns(self):
         # Procesa de aplicacion de filtros
@@ -327,12 +344,15 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
         return self.pandasUtils.concatDfs(dfs)
 
     def fnAplicacionFiltrosFinished(self, msg):
-
+        self.overlay.killAndHide()
+        self.fillTableWidget(self.tableWidgetVerDatosFiltrados, self.pandasUtils.tempDf)
+        UiUtils.showInfoMessage(parent=self, title="Resultado de aplicación de filtros",
+                                description=msg)
         print(f"Se termino la aplicación de filtros {msg}")
 
-    def fnAplicaFiltros(self):
+    def fnAplicaFiltros(self, callback):
         # Procesa de alicacion de filtros
-        self.pandasUtils.fnAplicaFiltros(self.filtros2G, self.filtros3G, self.filtros4G, self.fnAplicacionFiltrosFinished)
+        self.pandasUtils.fnAplicaFiltros(self.filtros2G, self.filtros3G, self.filtros4G, callback)
         # dfs = list()
         # if self.filtros2G.selected:
         #     df2G = self.pandasUtils.tiempoAvanceFilterTA(self.pandasUtils.allData2G, self.filtros2G.valoresTA)
@@ -402,6 +422,10 @@ class VentanaFiltros(QMainWindow, Ui_VistaFiltros):
             self.filtros4G.valoresTA = {0, 1, 2, 3, 4, 5, 6}
             self.lineEditValorRangosTA4G.setText(",".join(map(str, list(self.filtros4G.valoresTA))))
 
+
+    def resizeEvent(self, event):
+        self.overlay.resize(event.size())
+        event.accept()
 
 if(__name__ == "__main__"):
     app = QApplication(sys.argv)
