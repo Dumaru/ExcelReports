@@ -86,7 +86,7 @@ class PandasDataLoader:
                             ]
 
             new_names = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
-                         "MS_POWER", "TA", "LAST_LAC", "HITS", "DATE_TIME"]
+                         "MS POWER", "TA", "LAST LAC", "HITS", "DATE-TIME"]
             for filePath in pathList:
                 print(f"File-> {filePath}")
                 try:
@@ -98,13 +98,20 @@ class PandasDataLoader:
                 self.rename_columns(temp_df, file_columns, new_names)
                 temp_df = temp_df[new_names]
                 dfsList.append(temp_df)
+
             # Puts all the general and raw data into a df
             allData = pd.concat(dfsList)
             allData.dropna(how='all', inplace=True)
             total = allData.shape[0]
 
             # Asigna nueva columna DATE_TIME ya formateado y quita la vieja
-            allData['DATE_TIME'] = allData['DATE_TIME'].apply(self.toDatetime)
+            allData['DATE_TIME'] = allData['DATE-TIME'].apply(self.toDatetime)
+            allData.drop('DATE-TIME', axis=1, inplace=True)
+
+            # Cambia el nombre de las columnas a estandar con _ en lugar de espacios
+            cols = allData.columns
+            cols = cols.map(lambda x: x.strip().replace(' ', '_').strip() if isinstance(x, (str, )) else x)
+            allData.columns = cols
 
             # Intenta convertir cada columna y si no pone NaN
             allData['MS_POWER'] = pd.to_numeric(allData['MS_POWER'], errors='coerce')
