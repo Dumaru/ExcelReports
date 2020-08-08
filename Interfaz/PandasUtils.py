@@ -4,6 +4,7 @@ import concurrent.futures
 import time
 from PyQt5.QtCore import QThread, pyqtSignal
 
+
 class PandasDataLoader:
     """
     A class that acts as a container for the dataframe and manages all the operations
@@ -93,18 +94,18 @@ class PandasDataLoader:
 
             # Intenta convertir cada columna y si no pone NaN
             allData['MS_POWER'] = pd.to_numeric(allData['MS_POWER'], errors='coerce')
-            
-            allData['IMEI'] = pd.to_numeric(allData['IMEI'], errors='coerce' )
-            allData['IMEI'] = pd.array(allData['IMEI'], dtype=pd.Int64Dtype() )
 
-            allData['IMSI'] = pd.to_numeric(allData['IMSI'], errors='coerce' )
-            allData['IMSI'] = pd.array(allData['IMSI'], dtype=pd.Int64Dtype() )
+            allData['IMEI'] = pd.to_numeric(allData['IMEI'], errors='coerce')
+            allData['IMEI'] = pd.array(allData['IMEI'], dtype=pd.Int64Dtype())
 
-            allData['TA'] = pd.to_numeric(allData['TA'], errors='coerce' )
-            allData['TA'] = pd.array(allData['TA'], dtype=pd.Int64Dtype() )
+            allData['IMSI'] = pd.to_numeric(allData['IMSI'], errors='coerce')
+            allData['IMSI'] = pd.array(allData['IMSI'], dtype=pd.Int64Dtype())
+
+            allData['TA'] = pd.to_numeric(allData['TA'], errors='coerce')
+            allData['TA'] = pd.array(allData['TA'], dtype=pd.Int64Dtype())
 
             allData['HITS'] = pd.to_numeric(allData['HITS'], errors='coerce')
-            allData['HITS'] = pd.array(allData['HITS'], dtype=pd.Int64Dtype() )
+            allData['HITS'] = pd.array(allData['HITS'], dtype=pd.Int64Dtype())
             # Sacar los incidentales
             self.dfIncidentales = self.getDfDatosIncidentales(allData, hitsMin=1)
             allData = self.getDifferenceBetweenDataFrames(allData,  self.dfIncidentales)
@@ -141,19 +142,20 @@ class PandasDataLoader:
                 # print(f"{type(values)}")
                 # return ','.join(map(str, values))
                 return series.to_list()
+
             def obtenerEmai(x: pd.Series):
                 # X is the IMSI value
                 rCoincide = allDataP[allDataP['IMSI'].isin(x.values)]['IMEI']
                 rCoincide.dropna(inplace=True)
                 imeis = joinValues(rCoincide)
                 # print(f"<X {x} \nR coincide {imeis}>")
-                if len(imeis)>0:
+                if len(imeis) > 0:
                     return imeis[0]
                 else:
                     return np.NaN
             # print(f"Ref all data {allDataP.shape},  dfImesFaltantes {dfImeisFaltantes.shape} {dfImeisFaltantes.info()}")
             nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
-            nuevosValores = nuevosValores[nuevosValores.notnull()] 
+            nuevosValores = nuevosValores[nuevosValores.notnull()]
             self.msg = f"Se le asigno imeis a {nuevosValores.shape[0]} filas"
             # print(f"Nuevos valores {nuevosValores}")
             allDataP.loc[dfImeisFaltantes.index, 'IMEI'] = nuevosValores
@@ -173,7 +175,7 @@ class PandasDataLoader:
         def filtrosWrapper():
             # df = self.pandasUtils.tempDf if self.viendoIncidentales is False else self.pandasUtils.dfIncidentales
             df = self.getAllData() if viendoIncidentales is not True else self.dfIncidentales
-            if(df.shape[0]>0):
+            if(df.shape[0] > 0):
                 df.sort_values(by="HITS", ascending=False, inplace=True)
             dfFiltradoRats = self.filterDfByColumnValues(df, "RAT", listaRats)
             dfFiltradosOps = self.filterDfByColumnValues(dfFiltradoRats, "OPERATOR", listaOps)
@@ -210,7 +212,7 @@ class PandasDataLoader:
             # Empieza a agrupar todo
             newDf = self.concatDfs(dfs)
             self.setTempDf(self.getGroupedByEmais(newDf))
-            if(self.tempDf.shape[0]>0):
+            if(self.tempDf.shape[0] > 0):
                 self.msg = f"Se encontraron {self.tempDf.shape[0]} registros"
                 self.setTempDf(self.tempDf.sort_values(by="HITS", ascending=False))
 
@@ -219,7 +221,6 @@ class PandasDataLoader:
         threadProcessorFiltrosGeneral.start(QThread.HighestPriority)
         threadProcessorFiltrosGeneral.finished.connect(lambda: callback(self.msg))
         self.threadProcessors.append(threadProcessorFiltrosGeneral)
-
 
     def getDfDatosIncidentales(self, df: pd.DataFrame, hitsMin: int = 1):
         # print(f"Empieza obtencion incidentales df arg {df.shape}")
@@ -259,7 +260,6 @@ class PandasDataLoader:
         )
         return groupedDf.reset_index(drop=True)
 
-
     def getGroupedByIMSI(self, df: pd.DataFrame):
         # Returns a df with grouped and aggregated values
         def joinValues(series):
@@ -278,7 +278,6 @@ class PandasDataLoader:
             DATE_TIME=pd.NamedAgg(column='DATE_TIME', aggfunc=joinValues),
         )
         return groupedDf.reset_index(drop=True)
-
 
     def getGroupedByEmaisHorario(self, df: pd.DataFrame):
         # Returns a df with grouped and aggregated values
@@ -336,7 +335,6 @@ class PandasDataLoader:
             CANTIDAD=pd.NamedAgg(column='OPERATOR', aggfunc=pd.Series.nunique),
         )
         return groupedDf.reset_index(drop=True)
-
 
     def filtroHoras(self, df: pd.DataFrame, fromTime, toTime):
         return df[(df['DATE_TIME'].dt.hour >= fromTime) & (df['DATE_TIME'].dt.hour < toTime)]
@@ -412,7 +410,7 @@ class PandasDataLoader:
         """
         return df.loc[df['IMEI'].notnull()]
 
-    def filterDfByColumnValues(self, df: pd.DataFrame, column: str, columnValues: list=[]):
+    def filterDfByColumnValues(self, df: pd.DataFrame, column: str, columnValues: list = []):
         """
         Groups the df by the column parameters and gets the groups in the columnValues list
         """
@@ -468,6 +466,7 @@ class PandasDataLoader:
         except ValueError as ve:
             print(ve)
             return False
+
     def isInt(self, strNumber: str):
         try:
             int(strNumber)
@@ -482,8 +481,11 @@ class PandasDataLoader:
             return True
         except Exception as e:
             return False
+
     def __str__(self):
         return f"Objecto pandas utils 2g {self.allData2G.shape} 3g {self.allData3G.shape} 4g {self.allData4G.shape}"
+
+
 class ThreadingUtils_:
 
     @staticmethod
@@ -520,6 +522,7 @@ def worker():
 def callBack(future):
     print(f"Se ejecuta callback {future} {future.result()}")
     return
+
 
 if(__name__ == '__main__'):
     ThreadingUtils.doInThread(worker, callBack)
