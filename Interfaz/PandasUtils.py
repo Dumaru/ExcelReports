@@ -92,11 +92,14 @@ class PandasDataLoader:
                 try:
                     temp_df = pd.read_excel(f"{filePath}", convert_float=True)
                 except:
-                    temp_df = pd.read_csv(f"{filePath}", delimiter=";", warn_bad_lines=True, error_bad_lines=False)
+                    temp_df = pd.read_csv(f"{filePath}", delimiter=";",
+                                          warn_bad_lines=True, error_bad_lines=False,
+                                          encoding='utf-8', decimal=',')
                 # Format columns of the dataframe
                 temp_df.columns = temp_df.columns.str.strip()
                 self.rename_columns(temp_df, file_columns, new_names)
                 temp_df = temp_df[new_names]
+                temp_df.dropna(how='all', inplace=True)
                 dfsList.append(temp_df)
 
             # Puts all the general and raw data into a df
@@ -159,6 +162,7 @@ class PandasDataLoader:
 
     def asignarIMEIS(self, allDataP: pd.DataFrame, dfImeisFaltantes: pd.DataFrame, callback):
         """ Assigns Emais for the columns where the emais is null based on the historical data"""
+
         def asignaWrapper():
             def joinValues(series):
                 # print(f"{type(values)}")
@@ -176,6 +180,7 @@ class PandasDataLoader:
                 else:
                     return np.NaN
             # print(f"Ref all data {allDataP.shape},  dfImesFaltantes {dfImeisFaltantes.shape} {dfImeisFaltantes.info()}")
+            # if len(self.sinImei.index) > 0:
             nuevosValores = dfImeisFaltantes.groupby('IMSI')['IMSI'].transform(obtenerEmai)
             nuevosValores = nuevosValores[nuevosValores.notnull()]
             self.msg = f"Se le asigno imeis a {nuevosValores.shape[0]} filas"
@@ -185,6 +190,8 @@ class PandasDataLoader:
             # Retorna serie con nuevos valores de IMEI separados por coma
             self.dividirDfEnRats(allDataP)
             self.setTempDf(allDataP)
+            # else:
+            # self.msg = f"Todas las filas tienen su IMEI correspondiente"
 
         threadProcessor = ThreadingUtils()
         threadProcessor.setWorker(asignaWrapper)

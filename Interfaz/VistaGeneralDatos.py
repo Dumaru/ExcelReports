@@ -94,7 +94,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         # print("Fn procesa guardar datos imsis vs imeis")
         def guardaImsisImeis(msg):
             self.pandasUtils.saveToExcelFile(
-                            groupedIMSIS, filePath, False, self.saveProcessFinished)
+                groupedIMSIS, filePath, False, self.saveProcessFinished)
             self.overlay.killAndHide()
 
         groupedIMSIS = self.pandasUtils.getGroupedByIMSI(self.pandasUtils.getAllData())
@@ -131,7 +131,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         # print(f"Funcion guardar datos de 4g sin sus imeis")
         # print("Fn procesa guardar datos 4g sin imei")
         def guarda4GSin(msg):
-            self.pandasUtils.saveToExcelFile(self.pandasUtils.sinImei4g, filePath, False, self.saveProcessFinished)
+            self.pandasUtils.saveToExcelFile(self.pandasUtils.sinImei, filePath, False, self.saveProcessFinished)
             self.overlay.killAndHide()
         filePath = self.saveFileDialog()
         if(filePath):
@@ -198,7 +198,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         # print("Fn procesa guardar datos")
         def guardarDatos(msg):
             self.pandasUtils.saveToExcelFile(
-                            self.pandasUtils.tempDf, filePath, False, self.saveProcessFinished)
+                self.pandasUtils.tempDf, filePath, False, self.saveProcessFinished)
             self.overlay.killAndHide()
 
         filePath = self.saveFileDialog()
@@ -283,7 +283,7 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         self.fnMuestraCantidadEnRats()
         self.fnAplicaFiltrosDfOk(llenarTabla)
 
-    def fnMuestraCantidadEnRats(self ,msg=None):
+    def fnMuestraCantidadEnRats(self, msg=None):
         """
         This function is called when there is a change in the selected rats dictionary
         """
