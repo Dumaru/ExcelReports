@@ -66,11 +66,6 @@ class PandasDataLoader:
         """
         return self.uniqueColumnValues[column]
 
-    def rename_columns(self, df: pd.DataFrame, file_columns: list, column_names: list) -> pd.DataFrame:
-        new_names = dict(zip(file_columns, column_names))
-        print(new_names)
-        df.rename(columns=new_names, inplace=True)
-
     def loadDataframes(self, pathList=[], callback=None):
         def loadDataWrapper():
             # print("Empieza carga de datos desde thread")
@@ -79,26 +74,11 @@ class PandasDataLoader:
             """
             Reads each excel file and saves all the sheets into a list with the specified columns
             """
-
-            # Renaming
-            file_columns = ["rat", "operator", "Channel", "imei", "imsi", "TMSI",
-                            "power", "ta", "LAST LAC", "hits", "dateTime"
-                            ]
-
-            new_names = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
-                         "MS POWER", "TA", "LAST LAC", "HITS", "DATE-TIME"]
+            COLS = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
+                    "MS POWER", "TA", "LAST LAC", "HITS", "DATE-TIME"]
             for filePath in pathList:
-                print(f"File-> {filePath}")
-                try:
-                    temp_df = pd.read_excel(f"{filePath}", convert_float=True)
-                except:
-                    temp_df = pd.read_csv(f"{filePath}", delimiter=";", warn_bad_lines=True, error_bad_lines=False)
-                # Format columns of the dataframe
-                temp_df.columns = temp_df.columns.str.strip()
-                self.rename_columns(temp_df, file_columns, new_names)
-                temp_df = temp_df[new_names]
-                dfsList.append(temp_df)
-
+                temd_df = pd.read_excel(f"{filePath}", usecols=COLS, convert_float=True)
+                dfsList.append(temd_df)
             # Puts all the general and raw data into a df
             allData = pd.concat(dfsList)
             allData.dropna(how='all', inplace=True)
@@ -107,7 +87,6 @@ class PandasDataLoader:
             # Asigna nueva columna DATE_TIME ya formateado y quita la vieja
             allData['DATE_TIME'] = allData['DATE-TIME'].apply(self.toDatetime)
             allData.drop('DATE-TIME', axis=1, inplace=True)
-
             # Cambia el nombre de las columnas a estandar con _ en lugar de espacios
             cols = allData.columns
             cols = cols.map(lambda x: x.strip().replace(' ', '_').strip() if isinstance(x, (str, )) else x)
@@ -127,7 +106,6 @@ class PandasDataLoader:
 
             allData['HITS'] = pd.to_numeric(allData['HITS'], errors='coerce')
             allData['HITS'] = pd.array(allData['HITS'], dtype=pd.Int64Dtype())
-
             # Sacar los incidentales
             self.dfIncidentales = self.getDfDatosIncidentales(allData, hitsMin=1)
             allData = self.getDifferenceBetweenDataFrames(allData,  self.dfIncidentales)
