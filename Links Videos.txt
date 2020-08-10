@@ -7,3 +7,5 @@ https://www.youtube.com/watch?v=y7k0ITqN1fU------ (Tutorial Qt Creator - QPixmap
 https://www.youtube.com/watch?v=Cf6z9BBsi3o--------------(24 PyQt5 Tables Python GUI Programming With PyQt5)
 
 https://www.youtube.com/watch?v=3paHUQiDn8M------------- Tabla (QTableWidget) con Python y PyQt5
+
+Generar exe: https://www.youtube.com/watch?v=oIxSmELR7So

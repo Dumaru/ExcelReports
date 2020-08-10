@@ -81,8 +81,8 @@ class PandasDataLoader:
             """
 
             # Renaming
-            file_columns = ["rat", "operator", "Channel", "imei", "imsi", "TMSI",
-                            "power", "ta", "LAST LAC", "hits", "dateTime"
+            file_columns = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
+                            "POWER", "TA", "LAST LAC", "HITS", "DATETIME"
                             ]
 
             new_names = ["RAT", "OPERATOR", "CHANNEL", "IMEI", "IMSI", "TMSI",
@@ -96,7 +96,11 @@ class PandasDataLoader:
                                           warn_bad_lines=True, error_bad_lines=False,
                                           encoding='utf-8', decimal=',')
                 # Format columns of the dataframe
-                temp_df.columns = temp_df.columns.str.strip()
+                columns = temp_df.columns.str.strip()
+                columns = columns.str.upper()
+                columns = columns.map(lambda x: x.strip().replace('  ', ' ').strip())
+
+                temp_df.columns = columns
                 self.rename_columns(temp_df, file_columns, new_names)
                 temp_df = temp_df[new_names]
                 temp_df.dropna(how='all', inplace=True)
