@@ -39,8 +39,12 @@ class VistaGeneralDatos(QMainWindow, Ui_vistaGeneralDatos):
         self.pandasUtils.setUniqueColumnValues(self.pandasUtils.tempDf, 'RAT')
         self.ratsSeleccionados = {rat: True for rat in self.pandasUtils.getUniqueColumnValues('RAT')}
         self.menuRats = UiUtils.createMenu(self.ratsSeleccionados.keys())
+
         self.pandasUtils.setUniqueColumnValues(self.pandasUtils.tempDf, 'OPERATOR')
+        # TODO: CHANGE TO STATIC OPERATORS
         self.operadoresSeleccionados = {op: True for op in self.pandasUtils.getUniqueColumnValues('OPERATOR')}
+        print(f"Colum names for operator -> {self.operadoresSeleccionados}")
+
         self.menuOperadores = UiUtils.createMenu(self.operadoresSeleccionados.keys())
 
         self.pushButtonOperadores.setMenu(self.menuOperadores)

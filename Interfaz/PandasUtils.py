@@ -90,7 +90,8 @@ class PandasDataLoader:
             for filePath in pathList:
                 print(f"File-> {filePath}")
                 try:
-                    temp_df = pd.read_excel(f"{filePath}", convert_float=True)
+                    temp_df = pd.read_excel(f"{filePath}", convert_float=True,
+                                            encoding='utf-8', decimal=',')
                 except:
                     temp_df = pd.read_csv(f"{filePath}", delimiter=";",
                                           warn_bad_lines=True, error_bad_lines=False,
@@ -135,6 +136,7 @@ class PandasDataLoader:
             allData['HITS'] = pd.to_numeric(allData['HITS'], errors='coerce')
             allData['HITS'] = pd.array(allData['HITS'], dtype=pd.Int64Dtype())
 
+            allData['OPERATOR'] = allData['OPERATOR'].apply(str)
             # Sacar los incidentales
             self.dfIncidentales = self.getDfDatosIncidentales(allData, hitsMin=1)
             allData = self.getDifferenceBetweenDataFrames(allData,  self.dfIncidentales)
